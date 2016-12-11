@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:installLocation="auto"
+	package="org.alfonz.samples">
+
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+	<application
+		android:name=".SamplesApplication"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:theme="@style/Theme.AppCompat.Light"
+		android:hardwareAccelerated="true"
+		android:allowBackup="true"
+		android:supportsRtl="true">
+
+		<activity
+			android:name=".activity.MainActivity"
+			android:label="@string/app_name"
+			android:launchMode="standard">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+
+	</application>
+</manifest>

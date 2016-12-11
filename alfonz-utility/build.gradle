@@ -1,0 +1,76 @@
+final VERSION_MAJOR = 0 // max two digits
+final VERSION_MINOR = 0 // max two digits
+final VERSION_PATCH = 1 // max two digits
+final VERSION_BUILD = 0 // max three digits
+
+apply plugin: "com.android.library"
+
+ext
+{
+	bintrayRepo = "maven"
+	bintrayName = "alfonz-utility"
+
+	publishedGroupId = "org.alfonz"
+	libraryName = "Alfonz-Utility"
+	artifact = "utility"
+
+	libraryDescription = "Mr. Alfonz is here to help you build your Android app, make a development process easier and avoid boilerplate code."
+
+	siteUrl = "https://github.com/petrnohejl/Alfonz"
+	gitUrl = "https://github.com/petrnohejl/Alfonz.git"
+
+	libraryVersion = "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}"
+
+	developerId = "alfonz"
+	developerName = "Alfonz"
+	developerEmail = ""
+
+	licenseName = "The Apache Software License, Version 2.0"
+	licenseUrl = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+	allLicenses = ["Apache-2.0"]
+}
+
+dependencies
+{
+	compile "com.android.support:support-compat:25.0.1"
+	compile "com.android.support:support-core-utils:25.0.1"
+	compile "com.android.support:support-core-ui:25.0.1"
+	compile "com.android.support:support-fragment:25.0.1"
+	compile "com.android.support:appcompat-v7:25.0.1"
+	compile "com.android.support:recyclerview-v7:25.0.1"
+	compile "com.android.support:support-annotations:25.0.1"
+	compile "com.android.support:design:25.0.1"
+	compile fileTree(dir: "libs", include: ["*.jar"])
+}
+
+android
+{
+	compileSdkVersion 25
+	buildToolsVersion "25.0.1"
+
+	defaultConfig
+	{
+		minSdkVersion 16
+		targetSdkVersion 25
+		versionCode VERSION_MAJOR * 10000000 + VERSION_MINOR * 100000 + VERSION_PATCH * 1000 + VERSION_BUILD
+		versionName "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}"
+	}
+
+	buildTypes
+	{
+		release
+		{
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+		}
+	}
+
+	compileOptions
+	{
+		sourceCompatibility JavaVersion.VERSION_1_7
+		targetCompatibility JavaVersion.VERSION_1_7
+	}
+}
+
+apply from: "../install.gradle"
+apply from: "../bintray.gradle"
