@@ -12,7 +12,7 @@ ext
 
 	publishedGroupId = "org.alfonz"
 	libraryName = "Alfonz-Mvvm"
-	artifact = "mvvm"
+	artifact = "alfonz-mvvm"
 
 	libraryDescription = "Mr. Alfonz is here to help you build your Android app, make a development process easier and avoid boilerplate code."
 
