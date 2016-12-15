@@ -17,6 +17,12 @@ public final class Logcat
 	}
 
 
+	public static void init(boolean enabled, String tag)
+	{
+		sConfig = new Config.Builder().setEnabled(enabled).setTag(tag).build();
+	}
+
+
 	public static void d(String msg, Object... args)
 	{
 		if(sConfig.isEnabled()) Log.d(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args));
@@ -138,7 +144,7 @@ public final class Logcat
 		public static class Builder
 		{
 			private boolean mEnabled = false;
-			private String mTag = "ALFONZ";
+			private String mTag = "LOGCAT";
 			private boolean mShowCodeLocation = true;
 			private boolean mShowCodeLocationThread = false;
 			private boolean mShowCodeLocationLine = false;
