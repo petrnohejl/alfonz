@@ -32,17 +32,17 @@ ext
 
 dependencies
 {
-	compile "com.android.support:support-fragment:25.0.1"
-	compile "com.android.support:appcompat-v7:25.0.1"
-	compile "com.android.support:support-annotations:25.0.1"
-	compile "eu.inloop:androidviewmodel:1.2.1"
+	compile "com.android.support:support-fragment:25.1.0"
+	compile "com.android.support:appcompat-v7:25.1.0"
+	compile "com.android.support:support-annotations:25.1.0"
+	compile "eu.inloop:androidviewmodel:1.2.3"
 	compile fileTree(dir: "libs", include: ["*.jar"])
 }
 
 android
 {
 	compileSdkVersion 25
-	buildToolsVersion "25.0.1"
+	buildToolsVersion "25.0.2"
 
 	defaultConfig
 	{
