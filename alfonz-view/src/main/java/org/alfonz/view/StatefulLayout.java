@@ -1,4 +1,4 @@
-package org.alfonz.ui.view;
+package org.alfonz.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,8 +7,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
-
-import org.alfonz.ui.R;
 
 import java.util.ArrayList;
 import java.util.List;
