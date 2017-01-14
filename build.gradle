@@ -4,6 +4,8 @@
 //        gradlew bintrayUpload           Upload to Bintray
 //        gradlew :module:install         Build a specific module
 //        gradlew :module:bintrayUpload   Upload a specific module to Bintray
+//
+// New release TO-DO: update version, install, commit, add tag, push, publish to bintray, merge to master
 
 buildscript {
 	repositories {
