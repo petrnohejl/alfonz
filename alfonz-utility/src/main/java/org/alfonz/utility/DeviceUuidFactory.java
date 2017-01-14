@@ -86,10 +86,10 @@ public class DeviceUuidFactory
 	 * <p>
 	 * Works around a bug in Android 2.2 for many devices when using ANDROID_ID directly.<br><br>
 	 * <p>
-	 * Requires Permission: {@link READ_PHONE_STATE}<br><br>
+	 * Requires Permission: {@link android.Manifest.permission#READ_PHONE_STATE READ_PHONE_STATE}<br><br>
 	 *
 	 * @return a UUID that may be used to uniquely identify your device for most purposes.
-	 * @see http://code.google.com/p/android/issues/detail?id=10603
+	 * @see <a href="http://code.google.com/p/android/issues/detail?id=10603">Issue 10603</a>
 	 */
 	public UUID getDeviceUUID()
 	{
