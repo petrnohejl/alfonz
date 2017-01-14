@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<declare-styleable name="MaxWidthLinearLayout">
+		<attr name="maxWidth" format="dimension" />
+	</declare-styleable>
+
+	<declare-styleable name="RotatableImageView">
+		<attr name="angle" format="integer" />
+	</declare-styleable>
+
 	<declare-styleable name="StatefulLayout">
 		<attr name="state" format="enum">
 			<enum name="content" value="0" />
