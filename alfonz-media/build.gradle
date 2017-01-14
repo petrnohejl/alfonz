@@ -32,7 +32,9 @@ ext
 
 dependencies
 {
+	compile "com.android.support:support-fragment:25.1.0"
 	compile fileTree(dir: "libs", include: ["*.jar"])
+	compile project(":alfonz-graphics")
 }
 
 android
