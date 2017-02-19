@@ -1,17 +1,17 @@
 Alfonz
 ======
 
-Mr. Alfonz is here to help you build your Android app, make a development process easier and avoid boilerplate code.
+Mr. Alfonz is here to help you build your Android app, make the development process easier and avoid boilerplate code.
 
 When I develop Android apps, I often repeat the same code. I use the same utilities or helper classes. I decided to pack these classes into a library and that's how Alfonz was born. Alfonz's grandpa is my collection of [templates and utilities](https://github.com/petrnohejl/Android-Templates-And-Utilities).
 
-Alfonz is multi purpose library split into small modules (something like Android Support Library). Some of them depend on other module or 3rd party library (RxJava, Retrofit, OkHttp), but in general I try to keep Alfonz simple and independent on other libs as much as possible.
+Alfonz is a multi purpose library split into small modules (something like Android Support Library). Some of them depend on other modules or 3rd party libraries (RxJava, Retrofit, OkHttp), but in general I try to keep Alfonz simple and independent from other libs as much as possible.
 
 [![Alfonz logo](extras/graphics/alfonz.gif)](https://www.androidify.com/en/#/gallery/ab210bf216670c2d575502f78b920e97)
 
 
 Modules
-=======
+-------
 
 * [adapter](https://github.com/petrnohejl/Alfonz/tree/master/alfonz-adapter) - generic adapters for RecyclerView or ViewPager with data binding support
 * [graphics](https://github.com/petrnohejl/Alfonz/tree/master/alfonz-graphics) - utilities for working with bitmaps and drawables
@@ -20,17 +20,17 @@ Modules
 * [rest](https://github.com/petrnohejl/Alfonz/tree/master/alfonz-rest) - helper classes for managing REST API calls
 * [rx](https://github.com/petrnohejl/Alfonz/tree/master/alfonz-rx) - helper classes for managing RxJava observables and subscriptions
 * [utility](https://github.com/petrnohejl/Alfonz/tree/master/alfonz-utility) - bunch of miscellaneous utilities
-* [view](https://github.com/petrnohejl/Alfonz/tree/master/alfonz-view) - set of special custom views and layouts
+* [view](https://github.com/petrnohejl/Alfonz/tree/master/alfonz-view) - collection of custom views and layouts
 
 
-Samples
-=======
+Examples
+--------
 
-Examples can be found in [samples](https://github.com/petrnohejl/Alfonz/tree/master/samples) app module. You can also check [Stocks project](https://github.com/petrnohejl/Android-Stocks) - experimental Android app with MVVM architecture. It uses most of the Alfonz's modules.
+Examples can be found in the [examples](https://github.com/petrnohejl/Alfonz/tree/master/samples) app module. You can also check [Stocks project](https://github.com/petrnohejl/Android-Stocks) - experimental Android app with MVVM architecture. It uses most of the Alfonz's modules.
 
 
 Download
-========
+--------
 
 ```groovy
 compile "org.alfonz:alfonz-adapter:0.3.0"
@@ -47,13 +47,13 @@ Artifacts are available in [JCenter repository](https://bintray.com/alfonz/maven
 
 
 Developed by
-============
+------------
 
 [Petr Nohejl](http://petrnohejl.cz)
 
 
 License
-=======
+-------
 
     Copyright 2016 Petr Nohejl
 

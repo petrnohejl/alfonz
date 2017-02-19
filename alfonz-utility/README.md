@@ -1,0 +1,277 @@
+Alfonz - Utility Module
+=======================
+
+Bunch of miscellaneous utilities.
+
+
+How to use ContentUtility
+-------------------------
+
+`ContentUtility` is for getting a file path from a Uri which identifies data in the `ContentProvider`.
+
+```java
+Uri uri = Uri.parse(getActivity().getIntent().getDataString());
+String path = ContentUtility.getPath(getContext(), uri);
+```
+
+
+How to use DateConvertor
+------------------------
+
+`DateConvertor` is for converting between different date formats.
+
+```java
+String string = DateConvertor.dateToString(date, "yyyy-MM-dd HH:mm:ss");
+Date date = DateConvertor.stringToDate(string, "yyyy-MM-dd HH:mm:ss");
+Calendar calendar = DateConvertor.dateToCalendar(date);
+Date date = DateConvertor.calendarToDate(calendar);
+Calendar calendar = DateConvertor.stringToCalendar(string, "yyyy-MM-dd HH:mm:ss");
+String string = DateConvertor.calendarToString(calendar, "yyyy-MM-dd HH:mm:ss");
+```
+
+
+How to use DeviceUuidFactory
+----------------------------
+
+`DeviceUuidFactory` returns a unique UUID for the current Android device.
+
+```java
+DeviceUuidFactory deviceUuidFactory = new DeviceUuidFactory(getContext());
+UUID uuid = deviceUuidFactory.getDeviceUUID();
+```
+
+
+How to use DimensionUtility
+---------------------------
+
+`DimensionUtility` is for converting between different dimension units.
+
+```java
+float px = DimensionUtility.dp2px(getContext(), dp);
+float px = DimensionUtility.sp2px(getContext(), sp);
+float dp = DimensionUtility.px2dp(getContext(), px);
+float sp = DimensionUtility.px2sp(getContext(), px);
+```
+
+
+How to use DownloadUtility
+--------------------------
+
+`DownloadUtility` downloads a remote file using `DownloadManager`.
+
+```java
+DownloadUtility.downloadFile(getActivity(), url, fileName);
+```
+
+
+How to use HashUtility
+----------------------
+
+`HashUtility` is for generating MD5 and SHA1 hashes.
+
+```java
+String hash = HashUtility.getMd5(data);
+String hash = HashUtility.getSha1(data);
+```
+
+
+How to use KeyboardUtility
+--------------------------
+
+`KeyboardUtility` is for showing/hiding a system keyboard.
+
+```java
+KeyboardUtility.showKeyboard(view);
+KeyboardUtility.hideKeyboard(view);
+```
+
+
+How to use Logcat
+-----------------
+
+`Logcat` is a logging utility. Log message can show a code location - class, method, line and current thread. Logs can be easily disabled which is recommended for release builds. `Logcat` has to be initialized in `Application` class.
+
+```java
+public class ExampleApplication extends Application
+{
+	@Override
+	public void onCreate()
+	{
+		super.onCreate();
+		Logcat.init(BuildConfig.LOGS, "EXAMPLE");
+	}
+}
+```
+
+```java
+Logcat.d(msg);
+Logcat.e(msg);
+Logcat.i(msg);
+Logcat.v(msg);
+Logcat.w(msg);
+Logcat.wtf(msg);
+Logcat.printStackTrace(throwable);
+```
+
+
+How to use NetworkUtility
+-------------------------
+
+`NetworkUtility` provides info about active network.
+
+```java
+boolean online = NetworkUtility.isOnline(getContext());
+int networkType = NetworkUtility.getType(getContext());
+String networkName = NetworkUtility.getTypeName(getContext());
+```
+
+
+How to use PermissionUtility
+----------------------------
+
+`PermissionUtility` is for checking permissions and showing explanation in a Fragment. The Fragment has to implement `onRequestPermissionsResult()` to handle the result.
+
+```java
+boolean granted = PermissionUtility.check(fragment,
+		Manifest.permission.WRITE_EXTERNAL_STORAGE,
+		R.string.permission_write_external_storage,
+		REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE);
+
+boolean granted = PermissionUtility.check(fragment,
+		new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
+		new int[]{R.string.permission_write_external_storage, R.string.permission_access_location, R.string.permission_access_location},
+		REQUEST_PERMISSION_ALL);
+```
+
+```java
+@Override
+public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
+{
+	switch(requestCode)
+	{
+		case REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE:
+		case REQUEST_PERMISSION_ALL:
+		{
+			if(grantResults.length > 0)
+			{
+				for(int i = 0; i < grantResults.length; i++)
+				{
+					if(grantResults[i] == PackageManager.PERMISSION_GRANTED)
+					{
+						// permission granted
+						String permission = permissions[i];
+						if(permission.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE))
+						{
+							// do something
+						}
+						else if(permission.equals(Manifest.permission.ACCESS_COARSE_LOCATION) ||
+								permission.equals(Manifest.permission.ACCESS_FINE_LOCATION))
+						{
+							// do something
+						}
+					}
+					else
+					{
+						// permission denied
+					}
+				}
+			}
+			else
+			{
+				// all permissions denied
+			}
+			break;
+		}
+	}
+}
+```
+
+
+How to use ResourcesUtility
+---------------------------
+
+`ResourcesUtility` is for retrieving resource values of style attributes.
+
+```java
+int value = ResourcesUtility.getValueOfAttribute(getContext(), R.attr.colorPrimary);
+int color = ResourcesUtility.getColorValueOfAttribute(getContext(), R.attr.colorPrimary);
+float dimen = ResourcesUtility.getDimensionValueOfAttribute(getContext(), R.attr.actionBarSize);
+int dimen = ResourcesUtility.getDimensionPixelSizeValueOfAttribute(getContext(), R.attr.actionBarSize);
+Drawable drawable = ResourcesUtility.getDrawableValueOfAttribute(getContext(), R.attr.icon);
+```
+
+
+How to use StorageUtility
+-------------------------
+
+`StorageUtility` provides methods for getting paths to files, system directories or mounted storages.
+
+```java
+boolean available = StorageUtility.isAvailable();
+boolean writable = StorageUtility.isWritable();
+File storageDir = StorageUtility.getStorageDirectory();
+File picturesStorageDir = StorageUtility.getStorageDirectory(Environment.DIRECTORY_PICTURES);
+File secondaryStorageDir = StorageUtility.getSecondaryStorageDirectory();
+File picturesSecondaryStorageDir = StorageUtility.getSecondaryStorageDirectory(Environment.DIRECTORY_PICTURES);
+File cacheDir = StorageUtility.getApplicationCacheDirectory(getContext());
+File picturesFilesDir = StorageUtility.getApplicationFilesDirectory(getContext(), Environment.DIRECTORY_PICTURES);
+List<File> files = StorageUtility.getFiles(directory, true);
+List<File> images = StorageUtility.getFiles(directory, true, "(.+(\\.(?i)(jpg|jpeg))$)", null);
+Set<String> mounts = StorageUtility.getExternalMounts();
+```
+
+
+How to use StringConvertor
+--------------------------
+
+`StringConvertor` provides methods for string operations.
+
+```java
+String capitalized = StringConvertor.capitalize(text);
+```
+
+
+How to use ValidationUtility
+----------------------------
+
+`ValidationUtility` is for validating different input data.
+
+```java
+boolean valid = ValidationUtility.isEmailValid(email);
+boolean valid = ValidationUtility.isDateValid(date, format);
+```
+
+
+How to use VersionUtility
+-------------------------
+
+`VersionUtility` provides info about app version.
+
+```java
+String name = VersionUtility.getVersionName(getContext());
+int code = VersionUtility.getVersionCode(getContext());
+boolean glEs2 = VersionUtility.isSupportedOpenGlEs2(getContext());
+int comparison = VersionUtility.compareVersions(lastVersion, newVersion);
+```
+
+
+How to use ZipUtility
+---------------------
+
+`ZipUtility` provides methods for working with ZIP file.
+
+```java
+boolean success = ZipUtility.unpackZip(path, zipname);
+```
+
+
+Dependencies
+------------
+
+* Android Support Library
+
+
+Examples and download
+---------------------
+
+See the main [README](https://github.com/petrnohejl/Alfonz/) file.
