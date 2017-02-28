@@ -65,7 +65,7 @@ public class RxManager
 	{
 		return observable
 				.doOnSubscribe(disposable -> addRunningCall(callType))
-				.doOnDispose(() -> removeRunningCall(callType));
+				.doFinally(() -> removeRunningCall(callType));
 	}
 
 
