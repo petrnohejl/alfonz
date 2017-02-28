@@ -29,7 +29,7 @@ public class ProductListAdapter extends SimpleDataBoundRecyclerAdapter<FragmentP
 }
 ```
 
-For multi-type adapters, you also have to specify which layout you want to inflate for a specific item or type. See examples for more info.
+For multi-type adapters, you also have to specify which layout you want to inflate for a specific item or type. See samples for more info.
 
 Create an XML layout, define `view` and `data` variables, use `view` for invoking event callbacks and `data` for accessing data entity from the observable array collection defined in a view model.
 
@@ -106,7 +106,7 @@ Dependencies
 * Data Binding Library
 
 
-Examples and download
----------------------
+Samples and download
+--------------------
 
 See the main [README](https://github.com/petrnohejl/Alfonz/) file.

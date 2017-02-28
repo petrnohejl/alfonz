@@ -258,7 +258,7 @@ Dependencies
 * [AndroidViewModel](https://github.com/inloop/AndroidViewModel)
 
 
-Examples and download
----------------------
+Samples and download
+--------------------
 
 See the main [README](https://github.com/petrnohejl/Alfonz/) file.

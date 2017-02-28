@@ -23,10 +23,10 @@ Modules
 * [view](https://github.com/petrnohejl/Alfonz/tree/master/alfonz-view) - collection of custom views and layouts
 
 
-Examples
---------
+Samples
+-------
 
-Examples can be found in the [examples](https://github.com/petrnohejl/Alfonz/tree/master/samples) app module. You can also check [Stocks project](https://github.com/petrnohejl/Android-Stocks) - experimental Android app with MVVM architecture. It uses most of the Alfonz's modules.
+Samples can be found in the [samples](https://github.com/petrnohejl/Alfonz/tree/master/samples) app module. You can also check [Stocks project](https://github.com/petrnohejl/Android-Stocks) - experimental Android app with MVVM architecture. It uses most of the Alfonz's modules.
 
 
 Download

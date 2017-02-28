@@ -8,13 +8,13 @@ The purpose of this module is to simplify work with REST API using [Retrofit](ht
 * `RestRxManager` which uses RxJava `Observable`
 * `CallManager` which uses `retrofit2.Call`
 
-This document will cover only the first option which is recommended. See the examples or the source code for more info about the second way. `RestRxManager` extends `RxManager` from the Alfonz Rx Module and it uses all the features of this helper class.
+This document will cover only the first option which is recommended. See the samples or the source code for more info about the second way. `RestRxManager` extends `RxManager` from the Alfonz Rx Module and it uses all the features of this helper class.
 
 
 How to use
 ----------
 
-First of all, create a class for building and storing Retrofit instance. I recommend to implement it as a singleton. Then implement Retrofit services and interfaces which will represent your REST API calls. See examples or Retrofit documentation for more info. Methods in the interface have to return `Observable<Response<T>>`. Also define an identifier for each call.
+First of all, create a class for building and storing Retrofit instance. I recommend to implement it as a singleton. Then implement Retrofit services and interfaces which will represent your REST API calls. See samples or Retrofit documentation for more info. Methods in the interface have to return `Observable<Response<T>>`. Also define an identifier for each call.
 
 ```java
 public static final String MESSAGE_CALL_TYPE = "message";
@@ -182,7 +182,7 @@ Dependencies
 * [RxJava](https://github.com/ReactiveX/RxJava)
 
 
-Examples and download
----------------------
+Samples and download
+--------------------
 
 See the main [README](https://github.com/petrnohejl/Alfonz/) file.

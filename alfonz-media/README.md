@@ -93,7 +93,7 @@ Dependencies
 * Android Support Library
 
 
-Examples and download
----------------------
+Samples and download
+--------------------
 
 See the main [README](https://github.com/petrnohejl/Alfonz/) file.
