@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-// date format: http://docs.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html
+// date format: https://developer.android.com/reference/java/text/SimpleDateFormat.html
 public final class DateConvertor
 {
 	private DateConvertor() {}
