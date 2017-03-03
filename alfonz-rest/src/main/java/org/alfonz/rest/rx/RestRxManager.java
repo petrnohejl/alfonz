@@ -53,7 +53,7 @@ public class RestRxManager extends RxManager
 
 	public <T extends Response<?>> Observable<T> setupRestObservableWithSchedulers(Observable<T> restObservable, String callType)
 	{
-		return setupRestObservable(restObservable, callType).compose(SchedulersUtility.applySchedulers());
+		return setupRestObservable(restObservable, callType).compose(SchedulersUtility.applyObservableSchedulers());
 	}
 
 
