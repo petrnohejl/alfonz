@@ -27,42 +27,42 @@
 		</activity>
 
 		<activity
-			android:name=".alfonzadapter.AlfonzAdapterActivity"
+			android:name=".alfonzadapter.AdapterSampleActivity"
 			android:label="@string/title_adapter"
 			android:launchMode="standard" />
 
 		<activity
-			android:name=".alfonzgraphics.AlfonzGraphicsActivity"
+			android:name=".alfonzgraphics.GraphicsSampleActivity"
 			android:label="@string/title_graphics"
 			android:launchMode="standard" />
 
 		<activity
-			android:name=".alfonzmedia.AlfonzMediaActivity"
+			android:name=".alfonzmedia.MediaSampleActivity"
 			android:label="@string/title_media"
 			android:launchMode="standard" />
 
 		<activity
-			android:name=".alfonzmvvm.AlfonzMvvmActivity"
+			android:name=".alfonzmvvm.MvvmSampleActivity"
 			android:label="@string/title_mvvm"
 			android:launchMode="standard" />
 
 		<activity
-			android:name=".alfonzrest.AlfonzRestActivity"
+			android:name=".alfonzrest.RestSampleActivity"
 			android:label="@string/title_rest"
 			android:launchMode="standard" />
 
 		<activity
-			android:name=".alfonzrx.AlfonzRxActivity"
+			android:name=".alfonzrx.RxSampleActivity"
 			android:label="@string/title_rx"
 			android:launchMode="standard" />
 
 		<activity
-			android:name=".alfonzutility.AlfonzUtilityActivity"
+			android:name=".alfonzutility.UtilitySampleActivity"
 			android:label="@string/title_utility"
 			android:launchMode="standard" />
 
 		<activity
-			android:name=".alfonzview.AlfonzViewActivity"
+			android:name=".alfonzview.ViewSampleActivity"
 			android:label="@string/title_view"
 			android:launchMode="standard" />
 

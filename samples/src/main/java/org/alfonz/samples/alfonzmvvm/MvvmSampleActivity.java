@@ -6,14 +6,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import org.alfonz.samples.R;
-import org.alfonz.samples.alfonzadapter.AlfonzAdapterActivity;
 
 
-public class AlfonzMvvmActivity extends AppCompatActivity
+public class MvvmSampleActivity extends AppCompatActivity
 {
 	public static Intent newIntent(Context context)
 	{
-		Intent intent = new Intent(context, AlfonzMvvmActivity.class);
+		Intent intent = new Intent(context, MvvmSampleActivity.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		return intent;
 	}
@@ -23,6 +22,6 @@ public class AlfonzMvvmActivity extends AppCompatActivity
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_alfonz_mvvm);
+		setContentView(R.layout.activity_mvvm_sample);
 	}
 }

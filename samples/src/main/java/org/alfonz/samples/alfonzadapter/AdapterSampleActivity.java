@@ -1,4 +1,4 @@
-package org.alfonz.samples.alfonzrx;
+package org.alfonz.samples.alfonzadapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,14 +6,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import org.alfonz.samples.R;
-import org.alfonz.samples.alfonzadapter.AlfonzAdapterActivity;
 
 
-public class AlfonzRxActivity extends AppCompatActivity
+public class AdapterSampleActivity extends AppCompatActivity
 {
 	public static Intent newIntent(Context context)
 	{
-		Intent intent = new Intent(context, AlfonzRxActivity.class);
+		Intent intent = new Intent(context, AdapterSampleActivity.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		return intent;
 	}
@@ -23,6 +22,6 @@ public class AlfonzRxActivity extends AppCompatActivity
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_alfonz_rx);
+		setContentView(R.layout.activity_adapter_sample);
 	}
 }
