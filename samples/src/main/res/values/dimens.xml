@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<dimen name="global_keyline_16">16dp</dimen>
+	<dimen name="global_keyline_32">32dp</dimen>
+	<dimen name="global_keyline_72">72dp</dimen>
+
+	<dimen name="global_spacing_8">8dp</dimen>
+	<dimen name="global_spacing_16">16dp</dimen>
+	<dimen name="global_spacing_24">24dp</dimen>
+	<dimen name="global_spacing_32">32dp</dimen>
+	<dimen name="global_spacing_48">48dp</dimen>
+	<dimen name="global_spacing_56">56dp</dimen>
+	<dimen name="global_spacing_72">72dp</dimen>
+	<dimen name="global_spacing_128">128dp</dimen>
+</resources>

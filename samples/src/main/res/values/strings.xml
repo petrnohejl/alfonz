@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">Alfonz Samples</string>
+
+	<string name="title_adapter">Adapter\nModule</string>
+	<string name="title_graphics">Graphics\nModule</string>
+	<string name="title_media">Media\nModule</string>
+	<string name="title_mvvm">MVVM\nModule</string>
+	<string name="title_rest">REST\nModule</string>
+	<string name="title_rx">Rx\nModule</string>
+	<string name="title_utility">Utility\nModule</string>
+	<string name="title_view">View\nModule</string>
 </resources>

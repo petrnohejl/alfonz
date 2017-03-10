@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:fillViewport="true">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="@dimen/global_spacing_8"
+		android:orientation="vertical">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<Button
+				android:id="@+id/activity_samples_adapter"
+				android:layout_width="0dp"
+				android:layout_height="@dimen/global_spacing_128"
+				android:layout_weight="1"
+				android:text="@string/title_adapter" />
+
+			<Button
+				android:id="@+id/activity_samples_graphics"
+				android:layout_width="0dp"
+				android:layout_height="@dimen/global_spacing_128"
+				android:layout_weight="1"
+				android:text="@string/title_graphics" />
+
+			<Button
+				android:id="@+id/activity_samples_media"
+				android:layout_width="0dp"
+				android:layout_height="@dimen/global_spacing_128"
+				android:layout_weight="1"
+				android:text="@string/title_media" />
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<Button
+				android:id="@+id/activity_samples_mvvm"
+				android:layout_width="0dp"
+				android:layout_height="@dimen/global_spacing_128"
+				android:layout_weight="1"
+				android:text="@string/title_mvvm" />
+
+			<Button
+				android:id="@+id/activity_samples_rest"
+				android:layout_width="0dp"
+				android:layout_height="@dimen/global_spacing_128"
+				android:layout_weight="1"
+				android:text="@string/title_rest" />
+
+			<Button
+				android:id="@+id/activity_samples_rx"
+				android:layout_width="0dp"
+				android:layout_height="@dimen/global_spacing_128"
+				android:layout_weight="1"
+				android:text="@string/title_rx" />
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<Button
+				android:id="@+id/activity_samples_utility"
+				android:layout_width="0dp"
+				android:layout_height="@dimen/global_spacing_128"
+				android:layout_weight="1"
+				android:text="@string/title_utility" />
+
+			<Button
+				android:id="@+id/activity_samples_view"
+				android:layout_width="0dp"
+				android:layout_height="@dimen/global_spacing_128"
+				android:layout_weight="1"
+				android:text="@string/title_view" />
+
+			<Space
+				android:layout_width="0dp"
+				android:layout_height="@dimen/global_spacing_128"
+				android:layout_weight="1" />
+
+		</LinearLayout>
+	</LinearLayout>
+</ScrollView>
