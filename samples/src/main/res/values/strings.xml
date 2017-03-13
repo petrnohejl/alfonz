@@ -10,4 +10,7 @@
 	<string name="title_rx">Rx\nModule</string>
 	<string name="title_utility">Utility\nModule</string>
 	<string name="title_view">View\nModule</string>
+
+	<string name="placeholder_empty">No data</string>
+	<string name="placeholder_offline">No network</string>
 </resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<style name="Widget.Samples.Toolbar" parent="@style/Widget.AppCompat.Toolbar">
+		<item name="android:background">?attr/colorPrimary</item>
+		<item name="android:theme">@style/ThemeOverlay.AppCompat.Light</item>
+		<item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+	</style>
+
+</resources>

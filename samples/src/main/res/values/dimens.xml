@@ -12,4 +12,12 @@
 	<dimen name="global_spacing_56">56dp</dimen>
 	<dimen name="global_spacing_72">72dp</dimen>
 	<dimen name="global_spacing_128">128dp</dimen>
+
+	<dimen name="global_elevation_2">2dp</dimen>
+	<dimen name="global_elevation_4">4dp</dimen>
+	<dimen name="global_elevation_6">6dp</dimen>
+	<dimen name="global_elevation_8">8dp</dimen>
+	<dimen name="global_elevation_12">12dp</dimen>
+	<dimen name="global_elevation_16">16dp</dimen>
+	<dimen name="global_elevation_24">24dp</dimen>
 </resources>

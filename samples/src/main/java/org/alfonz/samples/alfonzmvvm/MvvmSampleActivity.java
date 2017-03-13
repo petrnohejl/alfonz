@@ -3,12 +3,11 @@ package org.alfonz.samples.alfonzmvvm;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import org.alfonz.samples.R;
 
 
-public class MvvmSampleActivity extends AppCompatActivity
+public class MvvmSampleActivity extends BaseActivity
 {
 	public static Intent newIntent(Context context)
 	{
@@ -23,5 +22,6 @@ public class MvvmSampleActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mvvm_sample);
+		setupActionBar(INDICATOR_TYPE_BACK);
 	}
 }
