@@ -11,6 +11,10 @@
 	<string name="title_utility">Utility\nModule</string>
 	<string name="title_view">View\nModule</string>
 
+	<string name="menu_activity_adapter_sample_list_simple">Simple List</string>
+	<string name="menu_activity_adapter_sample_list_multi">Multi List</string>
+	<string name="menu_activity_adapter_sample_pager">Pager</string>
+
 	<string name="placeholder_empty">No data</string>
 	<string name="placeholder_offline">No network</string>
 </resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<item
+		android:id="@+id/menu_activity_adapter_sample_list_simple"
+		android:title="@string/menu_activity_adapter_sample_list_simple"
+		android:icon="@null"
+		app:showAsAction="never" />
+
+	<item
+		android:id="@+id/menu_activity_adapter_sample_list_multi"
+		android:title="@string/menu_activity_adapter_sample_list_multi"
+		android:icon="@null"
+		app:showAsAction="never" />
+
+	<item
+		android:id="@+id/menu_activity_adapter_sample_pager"
+		android:title="@string/menu_activity_adapter_sample_pager"
+		android:icon="@null"
+		app:showAsAction="never" />
+
+</menu>

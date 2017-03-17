@@ -30,4 +30,5 @@
 			tools:text="Hello" />
 
 	</org.alfonz.view.StatefulLayout>
+
 </layout>

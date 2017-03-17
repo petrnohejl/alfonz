@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+		<import type="org.alfonz.samples.alfonzadapter.utility.BindingUtility.RecyclerLayout" />
+		<import type="org.alfonz.samples.alfonzadapter.utility.BindingUtility.RecyclerDecoration" />
+		<import type="org.alfonz.samples.alfonzadapter.utility.BindingUtility.RecyclerAnimator" />
+		<variable
+			name="view" type="org.alfonz.samples.alfonzadapter.AdapterSampleView" />
+		<variable
+			name="viewModel" type="org.alfonz.samples.alfonzadapter.AdapterSampleViewModel" />
+	</data>
+
+	<android.support.v7.widget.RecyclerView
+		android:id="@+id/fragment_adapter_sample_list_recycler"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:scrollbars="vertical"
+		app:recyclerLayout="@{RecyclerLayout.LINEAR_VERTICAL}"
+		app:recyclerDecoration="@{RecyclerDecoration.LINEAR_DIVIDER}"
+		app:recyclerAnimator="@{RecyclerAnimator.DEFAULT}" />
+
+</layout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+		<variable
+			name="view" type="org.alfonz.samples.alfonzadapter.AdapterSampleView" />
+		<variable
+			name="data" type="String" />
+	</data>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:minHeight="@dimen/global_spacing_48"
+		android:gravity="center_vertical"
+		android:orientation="horizontal"
+		android:background="@drawable/selector_clickable_item_bg"
+		app:onClick="@{() -> view.onItemClick(data)}"
+		app:onLongClick="@{() -> view.onItemLongClick(data)}">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="@dimen/global_keyline_16"
+			android:layout_marginRight="@dimen/global_keyline_16"
+			android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+			android:text="@{data}" />
+
+	</LinearLayout>
+
+</layout>

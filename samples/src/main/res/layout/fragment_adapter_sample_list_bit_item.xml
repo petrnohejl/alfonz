@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<data>
+		<variable
+			name="view" type="org.alfonz.samples.alfonzadapter.AdapterSampleView" />
+		<variable
+			name="data" type="Boolean" />
+	</data>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:minHeight="@dimen/global_spacing_72"
+		android:gravity="center"
+		android:orientation="horizontal"
+		android:background="@android:color/darker_gray">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="@dimen/global_keyline_16"
+			android:layout_marginRight="@dimen/global_keyline_16"
+			android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+			android:text="@{String.valueOf(data)}" />
+
+	</LinearLayout>
+
+</layout>
