@@ -2,6 +2,13 @@
 <resources>
 	<string name="app_name">Alfonz Samples</string>
 
+	<string name="global_network_offline">No Internet connection available</string>
+	<string name="global_network_fail">Communication with server failed</string>
+	<string name="global_network_unknown_host">Cannot establish a connection to the server</string>
+	<string name="global_network_not_found">Resource not found</string>
+	<string name="global_network_timeout">Connection timed out</string>
+	<string name="global_network_parse_fail">Unable to process response from server</string>
+
 	<string name="title_adapter">Adapter\nModule</string>
 	<string name="title_graphics">Graphics\nModule</string>
 	<string name="title_media">Media\nModule</string>
