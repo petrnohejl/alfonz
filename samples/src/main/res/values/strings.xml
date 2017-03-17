@@ -17,4 +17,8 @@
 
 	<string name="placeholder_empty">No data</string>
 	<string name="placeholder_offline">No network</string>
+
+	<string name="fragment_rx_sample_button_run">Run Rx call</string>
+	<string name="fragment_rx_sample_button_terminate">Terminate all calls</string>
+	<string name="fragment_rx_sample_button_is_running">Is running?</string>
 </resources>

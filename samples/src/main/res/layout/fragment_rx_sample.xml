@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<data>
+		<variable
+			name="view" type="org.alfonz.samples.alfonzrx.RxSampleView" />
+		<variable
+			name="viewModel" type="org.alfonz.samples.alfonzrx.RxSampleViewModel" />
+	</data>
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:fillViewport="true">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="@dimen/global_keyline_16"
+			android:orientation="vertical">
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/fragment_rx_sample_button_run"
+				android:onClick="@{() -> view.onButtonRunClick()}" />
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/fragment_rx_sample_button_terminate"
+				android:onClick="@{() -> view.onButtonTerminateClick()}" />
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/fragment_rx_sample_button_is_running"
+				android:onClick="@{() -> view.onButtonIsRunningClick()}" />
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+				android:text="@{viewModel.log}" />
+
+		</LinearLayout>
+	</ScrollView>
+
+</layout>
