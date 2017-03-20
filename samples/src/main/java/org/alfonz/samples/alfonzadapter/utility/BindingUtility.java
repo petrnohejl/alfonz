@@ -1,10 +1,12 @@
 package org.alfonz.samples.alfonzadapter.utility;
 
 import android.databinding.BindingAdapter;
+import android.graphics.Bitmap;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 
 
 public final class BindingUtility
@@ -41,6 +43,13 @@ public final class BindingUtility
 	public static void setOnLongClick(View view, View.OnLongClickListener listener)
 	{
 		view.setOnLongClickListener(listener);
+	}
+
+
+	@BindingAdapter({"imageBitmap"})
+	public static void setImageBitmap(ImageView imageView, Bitmap bitmap)
+	{
+		imageView.setImageBitmap(bitmap);
 	}
 
 

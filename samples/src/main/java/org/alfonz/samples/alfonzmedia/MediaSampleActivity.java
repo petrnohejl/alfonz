@@ -3,12 +3,12 @@ package org.alfonz.samples.alfonzmedia;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import org.alfonz.samples.R;
+import org.alfonz.samples.alfonzmvvm.BaseActivity;
 
 
-public class MediaSampleActivity extends AppCompatActivity
+public class MediaSampleActivity extends BaseActivity
 {
 	public static Intent newIntent(Context context)
 	{
@@ -23,5 +23,6 @@ public class MediaSampleActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_media_sample);
+		setupActionBar(INDICATOR_TYPE_BACK);
 	}
 }

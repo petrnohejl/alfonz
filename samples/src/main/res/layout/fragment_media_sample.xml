@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+		<variable
+			name="view" type="org.alfonz.samples.alfonzmedia.MediaSampleView" />
+		<variable
+			name="viewModel" type="org.alfonz.samples.alfonzmedia.MediaSampleViewModel" />
+	</data>
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:fillViewport="true">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="@dimen/global_keyline_16"
+			android:orientation="vertical">
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/fragment_media_sample_button_play_sound"
+				android:onClick="@{() -> view.onButtonPlaySoundClick()}" />
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/fragment_media_sample_button_stop_sound"
+				android:onClick="@{() -> view.onButtonStopSoundClick()}" />
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/fragment_media_sample_button_pick_image_from_camera"
+				android:onClick="@{() -> view.onButtonPickImageFromCameraClick()}" />
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/fragment_media_sample_button_pick_image_from_gallery"
+				android:onClick="@{() -> view.onButtonPickImageFromGalleryClick()}" />
+
+			<ImageView
+				android:id="@+id/fragment_media_sample_image"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:adjustViewBounds="true"
+				android:scaleType="fitCenter"
+				app:imageBitmap="@{viewModel.bitmap}" />
+
+		</LinearLayout>
+	</ScrollView>
+
+</layout>
