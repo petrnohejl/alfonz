@@ -3,12 +3,12 @@ package org.alfonz.samples.alfonzgraphics;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import org.alfonz.samples.R;
+import org.alfonz.samples.alfonzmvvm.BaseActivity;
 
 
-public class GraphicsSampleActivity extends AppCompatActivity
+public class GraphicsSampleActivity extends BaseActivity
 {
 	public static Intent newIntent(Context context)
 	{
@@ -23,5 +23,6 @@ public class GraphicsSampleActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_graphics_sample);
+		setupActionBar(INDICATOR_TYPE_BACK);
 	}
 }

@@ -49,6 +49,7 @@
 				android:id="@+id/fragment_media_sample_image"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/global_spacing_16"
 				android:adjustViewBounds="true"
 				android:scaleType="fitCenter"
 				app:imageBitmap="@{viewModel.bitmap}" />
