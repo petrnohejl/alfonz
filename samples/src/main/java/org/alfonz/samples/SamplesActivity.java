@@ -21,11 +21,11 @@ public class SamplesActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_samples);
-		bindData();
+		setupButtons();
 	}
 
 
-	private void bindData()
+	private void setupButtons()
 	{
 		Button adapterButton = (Button) findViewById(R.id.activity_samples_adapter);
 		Button graphicsButton = (Button) findViewById(R.id.activity_samples_graphics);

@@ -46,21 +46,21 @@ public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleView, Gra
 	public void onActivityCreated(Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
-		bindData();
+		setupImageViews();
 	}
 
 
-	private void bindData()
+	private void setupImageViews()
 	{
-		bindDataImageBlur();
-		bindDataImageReflection();
-		bindDataImageScaler();
-		bindDataImageCircular();
-		bindDataImageRounded();
+		setupImageViewBlur();
+		setupImageViewReflection();
+		setupImageViewScaler();
+		setupImageViewCircular();
+		setupImageViewRounded();
 	}
 
 
-	private void bindDataImageBlur()
+	private void setupImageViewBlur()
 	{
 		Bitmap originalBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.photo);
 		Bitmap blurredBitmap = BitmapBlur.getBlurredBitmap(getContext(), originalBitmap, 0.5F, 5F);
@@ -69,7 +69,7 @@ public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleView, Gra
 	}
 
 
-	private void bindDataImageReflection()
+	private void setupImageViewReflection()
 	{
 		Bitmap originalBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.photo);
 		Bitmap reflectedBitmap = BitmapReflection.getReflectedBitmap(originalBitmap, 0);
@@ -78,7 +78,7 @@ public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleView, Gra
 	}
 
 
-	private void bindDataImageScaler()
+	private void setupImageViewScaler()
 	{
 		Bitmap originalBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.photo);
 		Bitmap scaledBitmap = BitmapScaler.scaleToFill(originalBitmap, 32, 32);
@@ -87,7 +87,7 @@ public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleView, Gra
 	}
 
 
-	private void bindDataImageCircular()
+	private void setupImageViewCircular()
 	{
 		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.photo);
 		CircularDrawable drawable = new CircularDrawable(bitmap);
@@ -95,7 +95,7 @@ public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleView, Gra
 	}
 
 
-	private void bindDataImageRounded()
+	private void setupImageViewRounded()
 	{
 		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.photo);
 		RoundedDrawable drawable = new RoundedDrawable(bitmap, 32);

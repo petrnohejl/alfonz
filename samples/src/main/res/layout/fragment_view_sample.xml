@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+		<variable
+			name="view" type="org.alfonz.samples.alfonzview.ViewSampleView" />
+		<variable
+			name="viewModel" type="org.alfonz.samples.alfonzview.ViewSampleViewModel" />
+	</data>
+
+	<org.alfonz.view.StatefulLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:animateLayoutChanges="true"
+		app:progressLayout="@layout/placeholder_progress"
+		app:offlineLayout="@layout/placeholder_offline"
+		app:emptyLayout="@layout/placeholder_empty"
+		app:state="@{viewModel.state}">
+
+		<org.alfonz.view.ObservableScrollView
+			android:id="@+id/fragment_view_sample_scrollview"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:fillViewport="true">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="@dimen/global_keyline_16"
+				android:orientation="vertical">
+
+				<org.alfonz.view.AspectRatioImageView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginBottom="@dimen/global_spacing_16"
+					android:adjustViewBounds="true"
+					android:scaleType="fitCenter"
+					android:src="@drawable/photo" />
+
+				<org.alfonz.view.RotatableImageView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginBottom="@dimen/global_spacing_16"
+					android:adjustViewBounds="true"
+					android:scaleType="fitCenter"
+					android:src="@drawable/photo"
+					app:angle="180" />
+
+				<org.alfonz.view.MaxWidthLinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_marginBottom="@dimen/global_spacing_16"
+					android:layout_gravity="center_horizontal"
+					android:orientation="vertical"
+					app:maxWidth="@dimen/global_spacing_72">
+
+					<org.alfonz.view.EllipsizingTextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:maxLines="3"
+						android:ellipsize="marquee"
+						android:text="@{viewModel.message}" />
+
+				</org.alfonz.view.MaxWidthLinearLayout>
+
+				<org.alfonz.view.SelectorFrameLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginBottom="@dimen/global_spacing_16"
+					android:clickable="true"
+					android:listSelector="@drawable/selector_clickable_item_bg">
+
+					<org.alfonz.view.EllipsizingTextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:maxLines="3"
+						android:ellipsize="marquee"
+						android:text="@{viewModel.message}" />
+
+				</org.alfonz.view.SelectorFrameLayout>
+			</LinearLayout>
+		</org.alfonz.view.ObservableScrollView>
+	</org.alfonz.view.StatefulLayout>
+
+</layout>
