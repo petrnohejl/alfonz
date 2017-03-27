@@ -25,6 +25,10 @@
 	<string name="placeholder_empty">No data</string>
 	<string name="placeholder_offline">No network</string>
 
+	<string name="permission_read_external_storage">Permission to read files is required</string>
+	<string name="permission_write_external_storage">Permission to write files is required</string>
+	<string name="permission_access_location">Permission to access your location is required</string>
+
 	<string name="fragment_media_sample_button_play_sound">Play sound</string>
 	<string name="fragment_media_sample_button_stop_sound">Stop sound</string>
 	<string name="fragment_media_sample_button_pick_image_from_camera">Pick image from camera</string>
@@ -33,4 +37,11 @@
 	<string name="fragment_rx_sample_button_run">Run Rx call</string>
 	<string name="fragment_rx_sample_button_terminate">Terminate all calls</string>
 	<string name="fragment_rx_sample_button_is_running">Is running?</string>
+
+	<string name="fragment_utility_sample_show_keyboard_button">Show keyboard</string>
+	<string name="fragment_utility_sample_hide_keyboard_button">Hide keyboard</string>
+	<string name="fragment_utility_sample_permission_button">Ask for permission</string>
+	<string name="fragment_utility_sample_logcat_button">Logcat</string>
+	<string name="fragment_utility_sample_download_button">Download file</string>
+	<string name="fragment_utility_sample_zip_button">Unzip file</string>
 </resources>
