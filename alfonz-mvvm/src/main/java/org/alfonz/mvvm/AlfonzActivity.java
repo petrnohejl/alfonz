@@ -83,7 +83,7 @@ public abstract class AlfonzActivity extends ViewModelBaseEmptyActivity
 
 	public void replaceFragment(Fragment fragment)
 	{
-		replaceFragment(fragment, true, false);
+		replaceFragment(fragment, false, false);
 	}
 
 
