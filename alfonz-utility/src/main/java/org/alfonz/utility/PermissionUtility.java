@@ -15,7 +15,7 @@ public final class PermissionUtility
 	private PermissionUtility() {}
 
 
-	private static boolean check(final Fragment fragment, final String permission, final int explanation, final int requestCode)
+	public static boolean check(final Fragment fragment, final String permission, final int explanation, final int requestCode)
 	{
 		// check permission
 		final int result = ContextCompat.checkSelfPermission(fragment.getActivity(), permission);
@@ -51,7 +51,7 @@ public final class PermissionUtility
 	}
 
 
-	private static boolean check(final Fragment fragment, final String[] permissions, final int[] explanations, final int requestCode)
+	public static boolean check(final Fragment fragment, final String[] permissions, final int[] explanations, final int requestCode)
 	{
 		// check permissions
 		final int[] results = new int[permissions.length];
