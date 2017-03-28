@@ -216,7 +216,7 @@ File picturesSecondaryStorageDir = StorageUtility.getSecondaryStorageDirectory(E
 File cacheDir = StorageUtility.getApplicationCacheDirectory(getContext());
 File picturesFilesDir = StorageUtility.getApplicationFilesDirectory(getContext(), Environment.DIRECTORY_PICTURES);
 List<File> files = StorageUtility.getFiles(directory, true);
-List<File> images = StorageUtility.getFiles(directory, true, "(.+(\\.(?i)(jpg|jpeg))$)", null);
+List<File> images = StorageUtility.getFiles(directory, true, Pattern.compile("(.+(\\.(?i)(jpg|jpeg))$)"), null);
 Set<String> mounts = StorageUtility.getExternalMounts();
 ```
 
