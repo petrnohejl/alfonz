@@ -30,20 +30,19 @@ public class ImagePicker
 
 	private Context mContext;
 	private String mAlbumDirectoryName;
-	private int mImageSize = 640;
+	private int mImageSize;
 	private String mImageFromCameraPath = null;
 
 
 	public ImagePicker(Context context, String albumDirectoryName)
 	{
-		mContext = context;
-		mAlbumDirectoryName = albumDirectoryName;
+		this(context, albumDirectoryName, 640);
 	}
 
 
 	public ImagePicker(Context context, String albumDirectoryName, int imageSize)
 	{
-		mContext = context;
+		mContext = context.getApplicationContext();
 		mAlbumDirectoryName = albumDirectoryName;
 		mImageSize = imageSize;
 	}

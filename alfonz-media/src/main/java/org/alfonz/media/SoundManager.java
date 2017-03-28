@@ -13,9 +13,9 @@ import java.util.Map;
 
 public class SoundManager
 {
-	private Map<String, MediaPlayer> mMediaMap;
 	private Context mContext;
 	private Mode mMode;
+	private Map<String, MediaPlayer> mMediaMap;
 
 
 	public enum Mode
@@ -28,9 +28,9 @@ public class SoundManager
 
 	public SoundManager(Context context, Mode mode)
 	{
-		mMediaMap = new HashMap<>();
-		mContext = context;
+		mContext = context.getApplicationContext();
 		mMode = mode;
+		mMediaMap = new HashMap<>();
 	}
 
 
@@ -42,14 +42,11 @@ public class SoundManager
 
 	public void playAsset(String filename)
 	{
-		// context
-		Context context = mContext.getApplicationContext();
-
 		// get sound
 		AssetFileDescriptor assetFileDescriptor;
 		try
 		{
-			assetFileDescriptor = context.getAssets().openFd(filename);
+			assetFileDescriptor = mContext.getAssets().openFd(filename);
 		}
 		catch(IOException e)
 		{
