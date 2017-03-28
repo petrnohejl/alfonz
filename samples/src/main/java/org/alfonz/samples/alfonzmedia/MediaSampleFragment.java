@@ -12,6 +12,7 @@ import org.alfonz.media.ImagePicker;
 import org.alfonz.media.SoundManager;
 import org.alfonz.samples.R;
 import org.alfonz.samples.alfonzmvvm.BaseFragment;
+import org.alfonz.samples.alfonzutility.utility.PermissionHelper;
 import org.alfonz.samples.databinding.FragmentMediaSampleBinding;
 
 
@@ -97,6 +98,13 @@ public class MediaSampleFragment extends BaseFragment<MediaSampleView, MediaSamp
 
 
 	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
+	{
+		// handle permissions result here
+	}
+
+
+	@Override
 	public void onButtonPlaySoundClick()
 	{
 		mSoundManager.playAsset("sound.mp3");
@@ -113,13 +121,19 @@ public class MediaSampleFragment extends BaseFragment<MediaSampleView, MediaSamp
 	@Override
 	public void onButtonPickImageFromCameraClick()
 	{
-		mImagePicker.pickImageFromCamera(this);
+		if(PermissionHelper.checkPermissionReadExternalStorage(this))
+		{
+			mImagePicker.pickImageFromCamera(this);
+		}
 	}
 
 
 	@Override
 	public void onButtonPickImageFromGalleryClick()
 	{
-		mImagePicker.pickImageFromGallery(this);
+		if(PermissionHelper.checkPermissionReadExternalStorage(this))
+		{
+			mImagePicker.pickImageFromGallery(this);
+		}
 	}
 }

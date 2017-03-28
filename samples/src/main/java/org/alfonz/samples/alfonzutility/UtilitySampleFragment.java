@@ -117,14 +117,20 @@ public class UtilitySampleFragment extends BaseFragment<UtilitySampleView, Utili
 	@Override
 	public void onButtonDownloadClick()
 	{
-		getViewModel().performDownloadUtility();
+		if(PermissionHelper.checkPermissionWriteExternalStorage(this))
+		{
+			getViewModel().performDownloadUtility();
+		}
 	}
 
 
 	@Override
 	public void onButtonZipClick()
 	{
-		getViewModel().performZipUtility();
+		if(PermissionHelper.checkPermissionWriteExternalStorage(this))
+		{
+			getViewModel().performZipUtility();
+		}
 	}
 
 

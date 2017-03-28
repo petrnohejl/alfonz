@@ -13,7 +13,7 @@ Create a new instance of `ImagePicker`. Specify the name of the album directory.
 private ImagePicker mImagePicker = new ImagePicker(getContext(), getString(R.string.app_name));
 ```
 
-Pick an image from camera or gallery when user clicks on a button.
+Pick an image from camera or gallery when user clicks on a button. Note that it requires `READ_EXTERNAL_STORAGE` permission.
 
 ```java
 mImagePicker.pickImageFromCamera(this);

@@ -57,7 +57,7 @@ float sp = DimensionUtility.px2sp(getContext(), px);
 How to use DownloadUtility
 --------------------------
 
-`DownloadUtility` downloads a remote file using `DownloadManager`.
+`DownloadUtility` downloads a remote file using `DownloadManager`. Note that it requires `WRITE_EXTERNAL_STORAGE` permission.
 
 ```java
 DownloadUtility.downloadFile(getActivity(), url, fileName);
@@ -117,7 +117,7 @@ Logcat.printStackTrace(throwable);
 How to use NetworkUtility
 -------------------------
 
-`NetworkUtility` provides info about active network.
+`NetworkUtility` provides info about active network. Note that it requires `ACCESS_NETWORK_STATE` permission.
 
 ```java
 boolean online = NetworkUtility.isOnline(getContext());
@@ -204,7 +204,7 @@ Drawable drawable = ResourcesUtility.getDrawableValueOfAttribute(getContext(), R
 How to use StorageUtility
 -------------------------
 
-`StorageUtility` provides methods for getting paths to files, system directories or mounted storages.
+`StorageUtility` provides methods for getting paths to files, system directories or mounted storages. Note that some methods require `READ_EXTERNAL_STORAGE` permission.
 
 ```java
 boolean available = StorageUtility.isAvailable();
@@ -258,7 +258,7 @@ int comparison = VersionUtility.compareVersions(lastVersion, newVersion);
 How to use ZipUtility
 ---------------------
 
-`ZipUtility` provides methods for working with ZIP file.
+`ZipUtility` provides methods for working with ZIP file. Note that it requires `WRITE_EXTERNAL_STORAGE` permission.
 
 ```java
 boolean success = ZipUtility.unpackZip(path, zipname);
