@@ -187,22 +187,25 @@ public final class StorageUtility
 	private static void walkFiles(File directory, boolean recursive, Pattern fileNameFilter, Pattern directoryNameFilter, List<File> fileList)
 	{
 		File[] list = directory.listFiles();
-		for(int i = 0; i < list.length; i++)
+		if(list != null)
 		{
-			File f = list[i];
-			if(f.isDirectory())
+			for(int i = 0; i < list.length; i++)
 			{
-				if(recursive)
+				File f = list[i];
+				if(f.isDirectory())
 				{
-					if(validateName(f.getName(), directoryNameFilter))
+					if(recursive)
 					{
-						walkFiles(f, recursive, fileNameFilter, directoryNameFilter, fileList);
+						if(validateName(f.getName(), directoryNameFilter))
+						{
+							walkFiles(f, recursive, fileNameFilter, directoryNameFilter, fileList);
+						}
 					}
 				}
-			}
-			else if(validateName(f.getName(), fileNameFilter))
-			{
-				fileList.add(f);
+				else if(validateName(f.getName(), fileNameFilter))
+				{
+					fileList.add(f);
+				}
 			}
 		}
 	}
