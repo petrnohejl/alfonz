@@ -11,8 +11,8 @@ import android.renderscript.ScriptIntrinsicBlur;
 
 public final class BitmapBlur
 {
-	private static final float BITMAP_SCALE = 0.4f;
-	private static final float BLUR_RADIUS = 20f;
+	private static final float BITMAP_SCALE = 0.4F;
+	private static final float BLUR_RADIUS = 20F;
 
 
 	private BitmapBlur() {}
