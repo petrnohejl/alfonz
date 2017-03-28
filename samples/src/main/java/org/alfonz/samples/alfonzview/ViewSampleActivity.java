@@ -23,6 +23,6 @@ public class ViewSampleActivity extends BaseActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_sample);
-		setupActionBar(INDICATOR_TYPE_BACK);
+		setupActionBar(INDICATOR_BACK);
 	}
 }

@@ -27,7 +27,7 @@ public class AdapterSampleActivity extends BaseActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_adapter_sample);
-		setupActionBar(INDICATOR_TYPE_BACK);
+		setupActionBar(INDICATOR_BACK);
 		setupFragment(savedInstanceState);
 	}
 

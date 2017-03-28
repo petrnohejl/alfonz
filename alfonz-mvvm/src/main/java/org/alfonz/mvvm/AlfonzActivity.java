@@ -15,13 +15,13 @@ import eu.inloop.viewmodel.base.ViewModelBaseEmptyActivity;
 
 public abstract class AlfonzActivity extends ViewModelBaseEmptyActivity
 {
-	public static final int INDICATOR_TYPE_NONE = 0;
-	public static final int INDICATOR_TYPE_BACK = 1;
-	public static final int INDICATOR_TYPE_CLOSE = 2;
+	public static final int INDICATOR_NONE = 0;
+	public static final int INDICATOR_BACK = 1;
+	public static final int INDICATOR_CLOSE = 2;
 
 
 	@Retention(RetentionPolicy.SOURCE)
-	@IntDef({INDICATOR_TYPE_NONE, INDICATOR_TYPE_BACK, INDICATOR_TYPE_CLOSE})
+	@IntDef({INDICATOR_NONE, INDICATOR_BACK, INDICATOR_CLOSE})
 	public @interface IndicatorType {}
 
 
@@ -55,17 +55,17 @@ public abstract class AlfonzActivity extends ViewModelBaseEmptyActivity
 			actionBar.setDisplayShowTitleEnabled(true);
 			actionBar.setDisplayShowHomeEnabled(true);
 
-			if(indicatorType == INDICATOR_TYPE_NONE)
+			if(indicatorType == INDICATOR_NONE)
 			{
 				actionBar.setDisplayHomeAsUpEnabled(false);
 				actionBar.setHomeButtonEnabled(false);
 			}
-			else if(indicatorType == INDICATOR_TYPE_BACK)
+			else if(indicatorType == INDICATOR_BACK)
 			{
 				actionBar.setDisplayHomeAsUpEnabled(true);
 				actionBar.setHomeButtonEnabled(true);
 			}
-			else if(indicatorType == INDICATOR_TYPE_CLOSE)
+			else if(indicatorType == INDICATOR_CLOSE)
 			{
 				actionBar.setDisplayHomeAsUpEnabled(true);
 				actionBar.setHomeButtonEnabled(true);

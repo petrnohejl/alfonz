@@ -23,6 +23,6 @@ public class GraphicsSampleActivity extends BaseActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_graphics_sample);
-		setupActionBar(INDICATOR_TYPE_BACK);
+		setupActionBar(INDICATOR_BACK);
 	}
 }
