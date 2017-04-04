@@ -1,5 +1,5 @@
 final VERSION_MAJOR = 0 // max two digits
-final VERSION_MINOR = 3 // max two digits
+final VERSION_MINOR = 4 // max two digits
 final VERSION_PATCH = 0 // max two digits
 final VERSION_BUILD = 0 // max three digits
 
@@ -32,8 +32,8 @@ ext
 
 dependencies
 {
-	compile "com.android.support:support-fragment:25.2.0"
-	compile "com.android.support:design:25.2.0"
+	compile "com.android.support:support-fragment:25.3.0"
+	compile "com.android.support:design:25.3.0"
 	compile fileTree(dir: "libs", include: ["*.jar"])
 }
 

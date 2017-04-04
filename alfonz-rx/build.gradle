@@ -1,5 +1,5 @@
 final VERSION_MAJOR = 0 // max two digits
-final VERSION_MINOR = 3 // max two digits
+final VERSION_MINOR = 4 // max two digits
 final VERSION_PATCH = 0 // max two digits
 final VERSION_BUILD = 0 // max three digits
 
@@ -33,9 +33,9 @@ ext
 
 dependencies
 {
-	compile "com.android.support:support-annotations:25.2.0"
+	compile "com.android.support:support-annotations:25.3.0"
 	compile "io.reactivex.rxjava2:rxandroid:2.0.1"
-	compile "io.reactivex.rxjava2:rxjava:2.0.6"
+	compile "io.reactivex.rxjava2:rxjava:2.0.8"
 	compile fileTree(dir: "libs", include: ["*.jar"])
 }
 

@@ -13,10 +13,10 @@ buildscript {
 		jcenter()
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:2.2.3'
+		classpath 'com.android.tools.build:gradle:2.3.0'
 		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
 		classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
-		classpath 'me.tatarka:gradle-retrolambda:3.4.0'
+		classpath 'me.tatarka:gradle-retrolambda:3.5.0'
 	}
 }
 
