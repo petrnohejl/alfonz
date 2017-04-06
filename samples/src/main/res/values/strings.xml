@@ -40,6 +40,16 @@
 
 	<string name="fragment_utility_sample_show_keyboard_button">Show keyboard</string>
 	<string name="fragment_utility_sample_hide_keyboard_button">Hide keyboard</string>
+	<string name="fragment_utility_sample_start_web_button">Start web activity</string>
+	<string name="fragment_utility_sample_start_store_button">Start store activity</string>
+	<string name="fragment_utility_sample_start_share_button">Start share activity</string>
+	<string name="fragment_utility_sample_start_email_button">Start email activity</string>
+	<string name="fragment_utility_sample_start_sms_button">Start sms activity</string>
+	<string name="fragment_utility_sample_start_call_button">Start call activity</string>
+	<string name="fragment_utility_sample_start_map_coordinates_button">Start map coordinates activity</string>
+	<string name="fragment_utility_sample_start_map_search_button">Start map search activity</string>
+	<string name="fragment_utility_sample_start_navigation_button">Start navigation activity</string>
+	<string name="fragment_utility_sample_start_calendar_button">Start calendar activity</string>
 	<string name="fragment_utility_sample_permission_button">Ask for permission</string>
 	<string name="fragment_utility_sample_logcat_button">Logcat</string>
 	<string name="fragment_utility_sample_download_button">Download file</string>

@@ -75,6 +75,25 @@ String hash = HashUtility.getSha1(data);
 ```
 
 
+How to use IntentUtility
+------------------------
+
+`IntentUtility` simplifies starting implicit intents.
+
+```java
+IntentUtility.startWebActivity(getContext(), uri);
+IntentUtility.startStoreActivity(getContext());
+IntentUtility.startShareActivity(getContext(), subject, text, chooserTitle);
+IntentUtility.startEmailActivity(getContext(), email, subject, text);
+IntentUtility.startSmsActivity(getContext(), phoneNumber, text);
+IntentUtility.startCallActivity(getContext(), phoneNumber);
+IntentUtility.startMapCoordinatesActivity(getContext(), lat, lon, zoom, label);
+IntentUtility.startMapSearchActivity(getContext(), query);
+IntentUtility.startNavigationActivity(getContext(), lat, lon);
+IntentUtility.startCalendarActivity(getContext(), title, description, beginTime, endTime);
+```
+
+
 How to use KeyboardUtility
 --------------------------
 

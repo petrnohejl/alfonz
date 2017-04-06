@@ -40,6 +40,66 @@
 			<Button
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:text="@string/fragment_utility_sample_start_web_button"
+				android:onClick="@{() -> view.onButtonStartWebClick()}" />
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/fragment_utility_sample_start_store_button"
+				android:onClick="@{() -> view.onButtonStartStoreClick()}" />
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/fragment_utility_sample_start_share_button"
+				android:onClick="@{() -> view.onButtonStartShareClick()}" />
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/fragment_utility_sample_start_email_button"
+				android:onClick="@{() -> view.onButtonStartEmailClick()}" />
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/fragment_utility_sample_start_sms_button"
+				android:onClick="@{() -> view.onButtonStartSmsClick()}" />
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/fragment_utility_sample_start_call_button"
+				android:onClick="@{() -> view.onButtonStartCallClick()}" />
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/fragment_utility_sample_start_map_coordinates_button"
+				android:onClick="@{() -> view.onButtonStartMapCoordinatesClick()}" />
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/fragment_utility_sample_start_map_search_button"
+				android:onClick="@{() -> view.onButtonStartMapSearchClick()}" />
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/fragment_utility_sample_start_navigation_button"
+				android:onClick="@{() -> view.onButtonStartNavigationClick()}" />
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/fragment_utility_sample_start_calendar_button"
+				android:onClick="@{() -> view.onButtonStartCalendarClick()}" />
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
 				android:text="@string/fragment_utility_sample_permission_button"
 				android:onClick="@{() -> view.onButtonPermissionClick()}" />
 
