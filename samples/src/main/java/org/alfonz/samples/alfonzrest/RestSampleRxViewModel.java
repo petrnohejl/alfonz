@@ -4,7 +4,6 @@ import android.databinding.ObservableField;
 
 import org.alfonz.rest.rx.RestRxManager;
 import org.alfonz.rx.LoggedObserver;
-import org.alfonz.samples.SamplesApplication;
 import org.alfonz.samples.alfonzmvvm.BaseViewModel;
 import org.alfonz.samples.alfonzrest.entity.RepoEntity;
 import org.alfonz.samples.alfonzrest.rest.RestHttpLogger;
@@ -55,7 +54,7 @@ public class RestSampleRxViewModel extends BaseViewModel<RestSampleView>
 
 	private void loadData()
 	{
-		if(NetworkUtility.isOnline(SamplesApplication.getContext()))
+		if(NetworkUtility.isOnline(getApplicationContext()))
 		{
 			if(!mRestRxManager.isRunning(RepoRxServiceProvider.REPO_CALL_TYPE))
 			{

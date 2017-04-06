@@ -5,7 +5,6 @@ import android.databinding.ObservableField;
 import org.alfonz.rest.HttpException;
 import org.alfonz.rest.call.CallManager;
 import org.alfonz.rest.call.Callback;
-import org.alfonz.samples.SamplesApplication;
 import org.alfonz.samples.alfonzmvvm.BaseViewModel;
 import org.alfonz.samples.alfonzrest.entity.RepoEntity;
 import org.alfonz.samples.alfonzrest.rest.RestHttpLogger;
@@ -54,7 +53,7 @@ public class RestSampleViewModel extends BaseViewModel<RestSampleView>
 
 	private void loadData()
 	{
-		if(NetworkUtility.isOnline(SamplesApplication.getContext()))
+		if(NetworkUtility.isOnline(getApplicationContext()))
 		{
 			String callType = RepoServiceProvider.REPO_CALL_TYPE;
 			if(!mCallManager.hasRunningCall(callType))

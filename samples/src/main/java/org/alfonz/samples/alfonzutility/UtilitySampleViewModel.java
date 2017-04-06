@@ -9,7 +9,6 @@ import android.os.Environment;
 import android.support.annotation.Nullable;
 
 import org.alfonz.samples.R;
-import org.alfonz.samples.SamplesApplication;
 import org.alfonz.samples.alfonzmvvm.BaseViewModel;
 import org.alfonz.utility.ContentUtility;
 import org.alfonz.utility.DateConvertor;
@@ -111,7 +110,7 @@ public class UtilitySampleViewModel extends BaseViewModel<UtilitySampleView>
 
 	public void performDownloadUtility()
 	{
-		DownloadUtility.downloadFile(SamplesApplication.getContext(), "http://github.com/petrnohejl/Alfonz/zipball/master/", "alfonz.zip");
+		DownloadUtility.downloadFile(getApplicationContext(), "http://github.com/petrnohejl/Alfonz/zipball/master/", "alfonz.zip");
 	}
 
 
@@ -144,7 +143,7 @@ public class UtilitySampleViewModel extends BaseViewModel<UtilitySampleView>
 	private void performContentUtility()
 	{
 		Uri uri = Uri.fromFile(Environment.getExternalStorageDirectory());
-		String path = ContentUtility.getPath(SamplesApplication.getContext(), uri);
+		String path = ContentUtility.getPath(getApplicationContext(), uri);
 
 		log(LOG_MESSAGE_CONTENT_UTILITY, path);
 	}
@@ -174,7 +173,7 @@ public class UtilitySampleViewModel extends BaseViewModel<UtilitySampleView>
 
 	private void performDeviceUuidFactory()
 	{
-		DeviceUuidFactory deviceUuidFactory = new DeviceUuidFactory(SamplesApplication.getContext());
+		DeviceUuidFactory deviceUuidFactory = new DeviceUuidFactory(getApplicationContext());
 		UUID uuid = deviceUuidFactory.getDeviceUUID();
 
 		log(LOG_MESSAGE_DEVICE_UUID_FACTORY, uuid.toString());
@@ -183,10 +182,10 @@ public class UtilitySampleViewModel extends BaseViewModel<UtilitySampleView>
 
 	private void performDimensionUtility()
 	{
-		float px1 = DimensionUtility.dp2px(SamplesApplication.getContext(), 100);
-		float px2 = DimensionUtility.sp2px(SamplesApplication.getContext(), 100);
-		float dp = DimensionUtility.px2dp(SamplesApplication.getContext(), 100);
-		float sp = DimensionUtility.px2sp(SamplesApplication.getContext(), 100);
+		float px1 = DimensionUtility.dp2px(getApplicationContext(), 100);
+		float px2 = DimensionUtility.sp2px(getApplicationContext(), 100);
+		float dp = DimensionUtility.px2dp(getApplicationContext(), 100);
+		float sp = DimensionUtility.px2sp(getApplicationContext(), 100);
 
 		log(LOG_MESSAGE_DIMENSION_UTILITY_DP2PX, Float.toString(px1));
 		log(LOG_MESSAGE_DIMENSION_UTILITY_SP2PX, Float.toString(px2));
@@ -207,9 +206,9 @@ public class UtilitySampleViewModel extends BaseViewModel<UtilitySampleView>
 
 	private void performNetworkUtility()
 	{
-		boolean online = NetworkUtility.isOnline(SamplesApplication.getContext());
-		int networkType = NetworkUtility.getType(SamplesApplication.getContext());
-		String networkName = NetworkUtility.getTypeName(SamplesApplication.getContext());
+		boolean online = NetworkUtility.isOnline(getApplicationContext());
+		int networkType = NetworkUtility.getType(getApplicationContext());
+		String networkName = NetworkUtility.getTypeName(getApplicationContext());
 
 		log(LOG_MESSAGE_NETWORK_UTILITY_ONLINE, Boolean.toString(online));
 		log(LOG_MESSAGE_NETWORK_UTILITY_TYPE, networkName + " / " + networkType);
@@ -244,8 +243,8 @@ public class UtilitySampleViewModel extends BaseViewModel<UtilitySampleView>
 		File picturesStorageDir = StorageUtility.getStorageDirectory(Environment.DIRECTORY_PICTURES);
 		File secondaryStorageDir = StorageUtility.getSecondaryStorageDirectory();
 		File picturesSecondaryStorageDir = StorageUtility.getSecondaryStorageDirectory(Environment.DIRECTORY_PICTURES);
-		File cacheDir = StorageUtility.getApplicationCacheDirectory(SamplesApplication.getContext());
-		File picturesFilesDir = StorageUtility.getApplicationFilesDirectory(SamplesApplication.getContext(), Environment.DIRECTORY_PICTURES);
+		File cacheDir = StorageUtility.getApplicationCacheDirectory(getApplicationContext());
+		File picturesFilesDir = StorageUtility.getApplicationFilesDirectory(getApplicationContext(), Environment.DIRECTORY_PICTURES);
 		List<File> files = StorageUtility.getFiles(picturesStorageDir, true);
 		List<File> images = StorageUtility.getFiles(picturesStorageDir, true, Pattern.compile("(.+(\\.(?i)(jpg|jpeg))$)"), null);
 		Set<String> mounts = StorageUtility.getExternalMounts();
@@ -284,9 +283,9 @@ public class UtilitySampleViewModel extends BaseViewModel<UtilitySampleView>
 
 	private void performVersionUtility()
 	{
-		String name = VersionUtility.getVersionName(SamplesApplication.getContext());
-		int code = VersionUtility.getVersionCode(SamplesApplication.getContext());
-		boolean glEs2 = VersionUtility.isSupportedOpenGlEs2(SamplesApplication.getContext());
+		String name = VersionUtility.getVersionName(getApplicationContext());
+		int code = VersionUtility.getVersionCode(getApplicationContext());
+		boolean glEs2 = VersionUtility.isSupportedOpenGlEs2(getApplicationContext());
 		int comparison = VersionUtility.compareVersions("1.0.0", "1.1.0");
 
 		log(LOG_MESSAGE_VERSION_UTILITY_NAME, name);

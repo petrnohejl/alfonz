@@ -2,7 +2,6 @@ package org.alfonz.samples.alfonzmvvm;
 
 import android.databinding.ObservableField;
 
-import org.alfonz.samples.SamplesApplication;
 import org.alfonz.utility.NetworkUtility;
 import org.alfonz.view.StatefulLayout;
 
@@ -33,7 +32,7 @@ public class MvvmSampleViewModel extends BaseViewModel<MvvmSampleView>
 
 	private void loadData()
 	{
-		if(NetworkUtility.isOnline(SamplesApplication.getContext()))
+		if(NetworkUtility.isOnline(getApplicationContext()))
 		{
 			// show progress
 			state.set(StatefulLayout.State.PROGRESS);
