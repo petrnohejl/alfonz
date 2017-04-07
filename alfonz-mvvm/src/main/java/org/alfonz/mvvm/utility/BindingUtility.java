@@ -1,4 +1,4 @@
-package org.alfonz.mvvm;
+package org.alfonz.mvvm.utility;
 
 import android.databinding.BindingAdapter;
 import android.databinding.BindingConversion;
