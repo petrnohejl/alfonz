@@ -1,4 +1,4 @@
-package org.alfonz.samples.alfonzadapter.utility;
+package org.alfonz.adapter.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

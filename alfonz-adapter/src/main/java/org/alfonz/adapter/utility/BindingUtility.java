@@ -1,9 +1,11 @@
-package org.alfonz.samples.alfonzadapter.utility;
+package org.alfonz.adapter.utility;
 
 import android.databinding.BindingAdapter;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import org.alfonz.adapter.widget.LinearDividerItemDecoration;
 
 
 public final class BindingUtility

@@ -5,6 +5,8 @@ Generic adapters for RecyclerView or ViewPager with data binding support.
 
 The purpose of this module is to simplify usage of adapters. You can extend one of the predefined generic adapters. It depends if you want to use it for `RecyclerView` or `ViewPager`, if you have just one type of data or multiple types, if you prefer to use `ArrayList` or `ArrayMap`. The adapters for `RecyclerView` use `OnRebindCallback` for a better performance and correct handling of animations. Implementation of the base recycler adapter was inspired by [android-ui-toolkit-demos](https://github.com/google/android-ui-toolkit-demos/tree/master/DataBinding/DataBoundRecyclerView).
 
+This module also contains a few useful binding adapters for setting up `RecyclerView`. You can find them in `BindingUtility` class.
+
 
 How to use
 ----------
