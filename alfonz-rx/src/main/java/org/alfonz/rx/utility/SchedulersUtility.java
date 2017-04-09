@@ -1,4 +1,4 @@
-package org.alfonz.rx;
+package org.alfonz.rx.utility;
 
 import io.reactivex.CompletableTransformer;
 import io.reactivex.FlowableTransformer;

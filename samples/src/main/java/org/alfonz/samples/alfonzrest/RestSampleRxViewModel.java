@@ -3,7 +3,7 @@ package org.alfonz.samples.alfonzrest;
 import android.databinding.ObservableField;
 
 import org.alfonz.rest.rx.RestRxManager;
-import org.alfonz.rx.LoggedObserver;
+import org.alfonz.rx.AlfonzDisposableObserver;
 import org.alfonz.samples.alfonzmvvm.BaseViewModel;
 import org.alfonz.samples.alfonzrest.entity.RepoEntity;
 import org.alfonz.samples.alfonzrest.rest.RestHttpLogger;
@@ -78,7 +78,7 @@ public class RestSampleRxViewModel extends BaseViewModel<RestSampleView>
 
 	private DisposableObserver<Response<RepoEntity>> createQuoteObserver()
 	{
-		return LoggedObserver.newInstance(
+		return AlfonzDisposableObserver.newInstance(
 				response ->
 				{
 					repo.set(response.body());

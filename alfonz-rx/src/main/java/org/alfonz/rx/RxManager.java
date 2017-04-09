@@ -2,6 +2,8 @@ package org.alfonz.rx;
 
 import android.util.Log;
 
+import org.alfonz.rx.utility.SchedulersUtility;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,7 +62,6 @@ public class RxManager
 	}
 
 
-	// @RxLogObservable // TODO: Frodo 2
 	public <T> Observable<T> setupObservable(Observable<T> observable, String callType)
 	{
 		return observable

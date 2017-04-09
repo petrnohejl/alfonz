@@ -20,7 +20,7 @@ Create a new instance of `Observer`.
 ```java
 private DisposableObserver<String> createHelloObserver()
 {
-	return LoggedObserver.newInstance(
+	return AlfonzDisposableObserver.newInstance(
 			data ->
 			{
 				// onNext

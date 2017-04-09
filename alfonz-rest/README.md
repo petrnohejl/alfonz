@@ -126,7 +126,7 @@ Create a new instance of `Observer`.
 ```java
 private DisposableObserver<Response<MessageEntity>> createMessageObserver()
 {
-	return LoggedObserver.newInstance(
+	return AlfonzDisposableObserver.newInstance(
 			data ->
 			{
 				// show data

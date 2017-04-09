@@ -7,15 +7,14 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.observers.DisposableObserver;
 
 
-// @RxLogSubscriber // TODO: Frodo 2
-public class LoggedObserver<T> extends DisposableObserver<T>
+public class AlfonzDisposableObserver<T> extends DisposableObserver<T>
 {
 	@Nullable private Consumer<T> mOnNextAction;
 	@Nullable private Consumer<Throwable> mOnErrorAction;
 	@Nullable private Action mOnCompleteAction;
 
 
-	private LoggedObserver(@Nullable Consumer<T> onNextAction, @Nullable Consumer<Throwable> onErrorAction, @Nullable Action onCompleteAction)
+	private AlfonzDisposableObserver(@Nullable Consumer<T> onNextAction, @Nullable Consumer<Throwable> onErrorAction, @Nullable Action onCompleteAction)
 	{
 		mOnNextAction = onNextAction;
 		mOnErrorAction = onErrorAction;
@@ -23,27 +22,27 @@ public class LoggedObserver<T> extends DisposableObserver<T>
 	}
 
 
-	public static <T> LoggedObserver<T> newInstance()
+	public static <T> AlfonzDisposableObserver<T> newInstance()
 	{
 		return newInstance(null, null, null);
 	}
 
 
-	public static <T> LoggedObserver<T> newInstance(Consumer<T> onNextAction)
+	public static <T> AlfonzDisposableObserver<T> newInstance(@Nullable Consumer<T> onNextAction)
 	{
 		return newInstance(onNextAction, null, null);
 	}
 
 
-	public static <T> LoggedObserver<T> newInstance(Consumer<T> onNextAction, Consumer<Throwable> onErrorAction)
+	public static <T> AlfonzDisposableObserver<T> newInstance(@Nullable Consumer<T> onNextAction, @Nullable Consumer<Throwable> onErrorAction)
 	{
 		return newInstance(onNextAction, onErrorAction, null);
 	}
 
 
-	public static <T> LoggedObserver<T> newInstance(@Nullable Consumer<T> onNextAction, @Nullable Consumer<Throwable> onErrorAction, @Nullable Action onCompleteAction)
+	public static <T> AlfonzDisposableObserver<T> newInstance(@Nullable Consumer<T> onNextAction, @Nullable Consumer<Throwable> onErrorAction, @Nullable Action onCompleteAction)
 	{
-		return new LoggedObserver<T>(onNextAction, onErrorAction, onCompleteAction);
+		return new AlfonzDisposableObserver<>(onNextAction, onErrorAction, onCompleteAction);
 	}
 
 

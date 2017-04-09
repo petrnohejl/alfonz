@@ -7,7 +7,7 @@ import org.alfonz.rest.HttpException;
 import org.alfonz.rest.HttpLogger;
 import org.alfonz.rest.ResponseHandler;
 import org.alfonz.rx.RxManager;
-import org.alfonz.rx.SchedulersUtility;
+import org.alfonz.rx.utility.SchedulersUtility;
 
 import io.reactivex.Observable;
 import retrofit2.Response;

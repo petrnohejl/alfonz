@@ -4,7 +4,7 @@ import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import org.alfonz.rx.LoggedObserver;
+import org.alfonz.rx.AlfonzDisposableObserver;
 import org.alfonz.rx.RxManager;
 import org.alfonz.samples.alfonzmvvm.BaseViewModel;
 import org.alfonz.utility.DateConvertor;
@@ -77,7 +77,7 @@ public class RxSampleViewModel extends BaseViewModel<RxSampleView>
 
 	private DisposableObserver<String> createHelloObserver()
 	{
-		return LoggedObserver.newInstance(
+		return AlfonzDisposableObserver.newInstance(
 				data ->
 				{
 					// onNext
