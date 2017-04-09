@@ -7,7 +7,10 @@ import org.alfonz.rx.utility.SchedulersUtility;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.reactivex.Completable;
+import io.reactivex.Maybe;
 import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
@@ -73,6 +76,48 @@ public class RxManager
 	public <T> Observable<T> setupObservableWithSchedulers(Observable<T> observable, String callType)
 	{
 		return setupObservable(observable, callType).compose(SchedulersUtility.applyObservableSchedulers());
+	}
+
+
+	public <T> Single<T> setupSingle(Single<T> single, String callType)
+	{
+		return single
+				.doOnSubscribe(disposable -> addRunningCall(callType))
+				.doFinally(() -> removeRunningCall(callType));
+	}
+
+
+	public <T> Single<T> setupSingleWithSchedulers(Single<T> single, String callType)
+	{
+		return setupSingle(single, callType).compose(SchedulersUtility.applySingleSchedulers());
+	}
+
+
+	public Completable setupCompletable(Completable completable, String callType)
+	{
+		return completable
+				.doOnSubscribe(disposable -> addRunningCall(callType))
+				.doFinally(() -> removeRunningCall(callType));
+	}
+
+
+	public Completable setupCompletableWithSchedulers(Completable completable, String callType)
+	{
+		return setupCompletable(completable, callType).compose(SchedulersUtility.applyCompletableSchedulers());
+	}
+
+
+	public <T> Maybe<T> setupMaybe(Maybe<T> maybe, String callType)
+	{
+		return maybe
+				.doOnSubscribe(disposable -> addRunningCall(callType))
+				.doFinally(() -> removeRunningCall(callType));
+	}
+
+
+	public <T> Maybe<T> setupMaybeWithSchedulers(Maybe<T> maybe, String callType)
+	{
+		return setupMaybe(maybe, callType).compose(SchedulersUtility.applyMaybeSchedulers());
 	}
 
 

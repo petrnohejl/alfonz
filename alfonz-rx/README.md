@@ -3,7 +3,7 @@ Alfonz - Rx Module
 
 Helper classes for managing RxJava observables and subscriptions.
 
-The purpose of this module is to simplify work with RxJava. This module provides helpers and utilities for registering and managing Disposables, keeping info about currently running RxJava calls and its types, setting up Observables and Schedulers.
+The purpose of this module is to simplify work with RxJava. This module provides helpers and utilities for registering and managing Disposables, keeping info about currently running RxJava calls and its types, setting up Observables and Schedulers. Specialized reactive base types `Single`, `Completable` and `Maybe` are also supported.
 
 
 How to use
