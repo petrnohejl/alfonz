@@ -156,6 +156,8 @@ private void runMessageCall()
 }
 ```
 
+Note that setup methods in `RestRxManager` which work with `Completable` reactive base type don't use `ResponseHandler` for managing errors and exceptions. It's because `Completable` doesn't provide `Response` object. HTTP errors are handled with `retrofit2.HttpException` in this case.
+
 Don't forget to dispose all the Disposables when you don't need them anymore.
 
 ```java

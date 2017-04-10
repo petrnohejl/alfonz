@@ -9,6 +9,7 @@ import org.alfonz.rest.ResponseHandler;
 import org.alfonz.rx.RxManager;
 import org.alfonz.rx.utility.SchedulersUtility;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.Response;
@@ -83,6 +84,34 @@ public class RestRxManager extends RxManager
 	}
 
 
+	// this method does not use ResponseHandler, because it cannot access Response object
+	// http errors are handled with retrofit2.HttpException
+	public Completable setupRestCompletable(Completable restCompletable, String callType)
+	{
+		return setupCompletable(restCompletable, callType)
+				.doOnComplete(() -> logSuccess(callType))
+				.doOnError(throwable ->
+				{
+					if(throwable instanceof retrofit2.HttpException)
+					{
+						logError((retrofit2.HttpException) throwable, callType);
+					}
+					else
+					{
+						logFail(throwable, callType);
+					}
+				});
+	}
+
+
+	// this method does not use ResponseHandler, because it cannot access Response object
+	// http errors are handled with retrofit2.HttpException
+	public Completable setupRestCompletableWithSchedulers(Completable restCompletable, String callType)
+	{
+		return setupRestCompletable(restCompletable, callType).compose(SchedulersUtility.applyCompletableSchedulers());
+	}
+
+
 	public String getHttpErrorMessage(Throwable throwable)
 	{
 		if(throwable instanceof HttpException)
@@ -93,6 +122,16 @@ public class RestRxManager extends RxManager
 		{
 			throwable.printStackTrace();
 			return mResponseHandler.getFailMessage(throwable);
+		}
+	}
+
+
+	private void logSuccess(String callType)
+	{
+		if(mHttpLogger != null)
+		{
+			String message = String.format("%s call succeed", callType);
+			mHttpLogger.logSuccess(message);
 		}
 	}
 
@@ -116,6 +155,17 @@ public class RestRxManager extends RxManager
 			String status = exception.code() + " " + exception.message();
 			String result = mResponseHandler.getErrorMessage(exception);
 			String message = String.format("%s call err with %s: %s", callType, status, result);
+			mHttpLogger.logError(message);
+		}
+	}
+
+
+	private void logError(retrofit2.HttpException exception, String callType)
+	{
+		if(mHttpLogger != null)
+		{
+			String status = exception.code() + " " + exception.message();
+			String message = String.format("%s call err with %s", callType, status);
 			mHttpLogger.logError(message);
 		}
 	}
