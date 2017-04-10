@@ -14,7 +14,7 @@ This document will cover only the first option which is recommended. See the sam
 How to use
 ----------
 
-First of all, create a class for building and storing Retrofit instance. I recommend to implement it as a singleton. Then implement Retrofit services and interfaces which will represent your REST API calls. See samples or Retrofit documentation for more info. Methods in the interface have to return `Observable<Response<T>>`. Also define an identifier for each call.
+First of all, create a class for building and storing Retrofit instance. I recommend to implement it as a singleton. Then implement Retrofit services and interfaces which will represent your REST API calls. See samples or Retrofit documentation for more info. Methods in the interface have to return `Observable<Response<T>>` or `Single<Response<T>>` or other specialized reactive base type. Also define an identifier for each call.
 
 ```java
 public static final String MESSAGE_CALL_TYPE = "message";
@@ -22,7 +22,7 @@ public static final String MESSAGE_CALL_TYPE = "message";
 public interface ChatService
 {
 	@GET("message/{id}")
-	Observable<Response<MessageEntity>> message(@Path("id") String id, @Query("lang") String lang);
+	Single<Response<MessageEntity>> message(@Path("id") String id, @Query("lang") String lang);
 }
 ```
 
@@ -124,9 +124,9 @@ private RestRxManager mRestRxManager = new RestRxManager(new RestResponseHandler
 Create a new instance of `Observer`.
 
 ```java
-private DisposableObserver<Response<MessageEntity>> createMessageObserver()
+private DisposableSingleObserver<Response<MessageEntity>> createMessageObserver()
 {
-	return AlfonzDisposableObserver.newInstance(
+	return AlfonzDisposableSingleObserver.newInstance(
 			data ->
 			{
 				// show data
@@ -135,26 +135,22 @@ private DisposableObserver<Response<MessageEntity>> createMessageObserver()
 			{
 				// error
 				handleError(mRestRxManager.getHttpErrorMessage(throwable));
-			},
-			() ->
-			{
-				// set state
 			}
 	);
 }
 ```
 
-Run RxJava REST API call. In the following example, we will check if a call of the specific type is already running. If not, we will execute it, otherwise we will do nothing. We will create an `Observable`, set it up with Schedulers, subscribe with the `Observer` and register the `Disposable`. The call is automatically registered on subcribe so we can check which specific calls are currently running. After the RxJava task terminates, the call is automatically unregistered. Disposables are stored in `CompositeDisposable` container. Schedulers should be applied at the end of the stream, right before the `subscribeWith()` is called. `RestRxManager` takes care of handling responses, errors, exceptions and logging results.
+Run RxJava REST API call. In the following example, we will check if a call of the specific type is already running. If not, we will execute it, otherwise we will do nothing. We will create a `Single`, set it up with Schedulers, subscribe with the `Observer` and register the `Disposable`. The call is automatically registered on subcribe so we can check which specific calls are currently running. After the RxJava task terminates, the call is automatically unregistered. Disposables are stored in `CompositeDisposable` container. Schedulers should be applied at the end of the stream, right before the `subscribeWith()` is called. `RestRxManager` takes care of handling responses, errors, exceptions and logging results.
 
 ```java
 private void runMessageCall()
 {
 	if(!mRestRxManager.isRunning(ChatProvider.MESSAGE_CALL_TYPE))
 	{
-		Observable<Response<MessageEntity>> rawObservable = ChatProvider.getService().message("42", "en");
-		Observable<Response<MessageEntity>> observable =
-				mRestRxManager.setupRestObservableWithSchedulers(rawObservable, ChatProvider.MESSAGE_CALL_TYPE);
-		Disposable disposable = observable.subscribeWith(createMessageObserver());
+		Single<Response<MessageEntity>> rawSingle = ChatProvider.getService().message("42", "en");
+		Single<Response<MessageEntity>> single =
+				mRestRxManager.setupRestSingleWithSchedulers(rawSingle, ChatProvider.MESSAGE_CALL_TYPE);
+		Disposable disposable = single.subscribeWith(createMessageObserver());
 		mRestRxManager.registerDisposable(disposable);
 	}
 }

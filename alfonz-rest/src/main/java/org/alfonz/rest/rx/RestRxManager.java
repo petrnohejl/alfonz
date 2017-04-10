@@ -10,6 +10,7 @@ import org.alfonz.rx.RxManager;
 import org.alfonz.rx.utility.SchedulersUtility;
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 
 
@@ -35,7 +36,7 @@ public class RestRxManager extends RxManager
 	public <T extends Response<?>> Observable<T> setupRestObservable(Observable<T> restObservable, String callType)
 	{
 		return setupObservable(restObservable, callType)
-				.flatMap(this::catchHttpError)
+				.flatMap(this::catchObservableHttpError)
 				.doOnNext(response -> logSuccess(response, callType))
 				.doOnError(throwable ->
 				{
@@ -54,6 +55,31 @@ public class RestRxManager extends RxManager
 	public <T extends Response<?>> Observable<T> setupRestObservableWithSchedulers(Observable<T> restObservable, String callType)
 	{
 		return setupRestObservable(restObservable, callType).compose(SchedulersUtility.applyObservableSchedulers());
+	}
+
+
+	public <T extends Response<?>> Single<T> setupRestSingle(Single<T> restSingle, String callType)
+	{
+		return setupSingle(restSingle, callType)
+				.flatMap(this::catchSingleHttpError)
+				.doOnSuccess(response -> logSuccess(response, callType))
+				.doOnError(throwable ->
+				{
+					if(throwable instanceof HttpException)
+					{
+						logError((HttpException) throwable, callType);
+					}
+					else
+					{
+						logFail(throwable, callType);
+					}
+				});
+	}
+
+
+	public <T extends Response<?>> Single<T> setupRestSingleWithSchedulers(Single<T> restSingle, String callType)
+	{
+		return setupRestSingle(restSingle, callType).compose(SchedulersUtility.applySingleSchedulers());
 	}
 
 
@@ -107,7 +133,7 @@ public class RestRxManager extends RxManager
 	}
 
 
-	private <T extends Response<?>> Observable<T> catchHttpError(T response)
+	private <T extends Response<?>> Observable<T> catchObservableHttpError(T response)
 	{
 		if(mResponseHandler.isSuccess(response))
 		{
@@ -116,6 +142,19 @@ public class RestRxManager extends RxManager
 		else
 		{
 			return Observable.error(mResponseHandler.createHttpException(response));
+		}
+	}
+
+
+	private <T extends Response<?>> Single<T> catchSingleHttpError(T response)
+	{
+		if(mResponseHandler.isSuccess(response))
+		{
+			return Single.just(response);
+		}
+		else
+		{
+			return Single.error(mResponseHandler.createHttpException(response));
 		}
 	}
 }

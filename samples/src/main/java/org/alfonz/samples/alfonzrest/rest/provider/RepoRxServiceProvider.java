@@ -3,7 +3,7 @@ package org.alfonz.samples.alfonzrest.rest.provider;
 import org.alfonz.samples.alfonzrest.entity.RepoEntity;
 import org.alfonz.samples.alfonzrest.rest.RetrofitClient;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -19,7 +19,7 @@ public class RepoRxServiceProvider
 	public interface RepoService
 	{
 		@GET("repos/{owner}/{repo}")
-		Observable<Response<RepoEntity>> repo(@Path("owner") String owner, @Path("repo") String repo);
+		Single<Response<RepoEntity>> repo(@Path("owner") String owner, @Path("repo") String repo);
 	}
 
 
