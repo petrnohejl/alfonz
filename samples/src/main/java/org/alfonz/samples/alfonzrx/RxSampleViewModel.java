@@ -14,7 +14,6 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 
 
@@ -56,8 +55,7 @@ public class RxSampleViewModel extends BaseViewModel<RxSampleView>
 
 		Observable<String> rawObservable = Observable.just("Hello").map(s -> String.format("%s %s!", s, name)).delay(2, TimeUnit.SECONDS);
 		Observable<String> observable = mRxManager.setupObservableWithSchedulers(rawObservable, HELLO_CALL_TYPE);
-		Disposable disposable = observable.subscribeWith(createHelloObserver());
-		mRxManager.registerDisposable(disposable);
+		observable.subscribeWith(createHelloObserver());
 	}
 
 

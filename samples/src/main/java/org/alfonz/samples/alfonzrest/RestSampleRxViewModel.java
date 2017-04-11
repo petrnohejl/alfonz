@@ -13,7 +13,6 @@ import org.alfonz.utility.NetworkUtility;
 import org.alfonz.view.StatefulLayout;
 
 import io.reactivex.Single;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableSingleObserver;
 import retrofit2.Response;
 
@@ -64,8 +63,7 @@ public class RestSampleRxViewModel extends BaseViewModel<RestSampleView>
 				// subscribe
 				Single<Response<RepoEntity>> rawSingle = RepoRxServiceProvider.getService().repo("petrnohejl", "Alfonz");
 				Single<Response<RepoEntity>> single = mRestRxManager.setupRestSingleWithSchedulers(rawSingle, RepoRxServiceProvider.REPO_CALL_TYPE);
-				Disposable disposable = single.subscribeWith(createRepoObserver());
-				mRestRxManager.registerDisposable(disposable);
+				single.subscribeWith(createRepoObserver());
 			}
 		}
 		else

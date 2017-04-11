@@ -37,7 +37,7 @@ private DisposableObserver<String> createHelloObserver()
 }
 ```
 
-Run RxJava call. In the following example, we will check if a call of the specific type is already running. If not, we will execute it, otherwise we will do nothing. We will create an `Observable`, set it up with Schedulers, subscribe with the `Observer` and register the `Disposable`. The call is automatically registered on subcribe so we can check which specific calls are currently running. After the RxJava task terminates, the call is automatically unregistered. Disposables are stored in `CompositeDisposable` container. Schedulers should be applied at the end of the stream, right before the `subscribeWith()` is called.
+Run RxJava call. In the following example, we will check if a call of the specific type is already running. If not, we will execute it, otherwise we will do nothing. We will create an `Observable`, set it up with Schedulers and subscribe with the `Observer`. The call is automatically registered on subcribe so we can check which specific calls are currently running. After the RxJava task terminates, the call is automatically unregistered. Disposables are automatically stored in `CompositeDisposable` container. Schedulers should be applied at the end of the stream, right before the `subscribeWith()` is called.
 
 ```java
 private static final String HELLO_CALL_TYPE = "hello";
@@ -48,8 +48,7 @@ private void runHelloCall()
 	{
 		Observable<String> rawObservable = Observable.just("Hello").map(s -> s + " world!");
 		Observable<String> observable = mRxManager.setupObservableWithSchedulers(rawObservable, HELLO_CALL_TYPE);
-		Disposable disposable = observable.subscribeWith(createHelloObserver());
-		mRxManager.registerDisposable(disposable);
+		observable.subscribeWith(createHelloObserver());
 	}
 }
 ```

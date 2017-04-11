@@ -140,7 +140,7 @@ private DisposableSingleObserver<Response<MessageEntity>> createMessageObserver(
 }
 ```
 
-Run RxJava REST API call. In the following example, we will check if a call of the specific type is already running. If not, we will execute it, otherwise we will do nothing. We will create a `Single`, set it up with Schedulers, subscribe with the `Observer` and register the `Disposable`. The call is automatically registered on subcribe so we can check which specific calls are currently running. After the RxJava task terminates, the call is automatically unregistered. Disposables are stored in `CompositeDisposable` container. Schedulers should be applied at the end of the stream, right before the `subscribeWith()` is called. `RestRxManager` takes care of handling responses, errors, exceptions and logging results.
+Run RxJava REST API call. In the following example, we will check if a call of the specific type is already running. If not, we will execute it, otherwise we will do nothing. We will create a `Single`, set it up with Schedulers and subscribe with the `Observer`. The call is automatically registered on subcribe so we can check which specific calls are currently running. After the RxJava task terminates, the call is automatically unregistered. Disposables are automatically stored in `CompositeDisposable` container. Schedulers should be applied at the end of the stream, right before the `subscribeWith()` is called. `RestRxManager` takes care of handling responses, errors, exceptions and logging results.
 
 ```java
 private void runMessageCall()
@@ -150,8 +150,7 @@ private void runMessageCall()
 		Single<Response<MessageEntity>> rawSingle = ChatProvider.getService().message("42", "en");
 		Single<Response<MessageEntity>> single =
 				mRestRxManager.setupRestSingleWithSchedulers(rawSingle, ChatProvider.MESSAGE_CALL_TYPE);
-		Disposable disposable = single.subscribeWith(createMessageObserver());
-		mRestRxManager.registerDisposable(disposable);
+		single.subscribeWith(createMessageObserver());
 	}
 }
 ```

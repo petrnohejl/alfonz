@@ -23,15 +23,75 @@ public class RxManager
 	private Map<String, Short> mRunningCalls = new HashMap<>();
 
 
-	public void registerDisposable(Disposable disposable)
+	public <T> Observable<T> setupObservable(Observable<T> observable, String callType)
 	{
-		mCompositeDisposable.add(disposable);
+		return observable
+				.doOnSubscribe(disposable ->
+				{
+					addRunningCall(callType);
+					registerDisposable(disposable);
+				})
+				.doFinally(() -> removeRunningCall(callType));
 	}
 
 
-	public void unregisterDisposable(Disposable disposable)
+	public <T> Observable<T> setupObservableWithSchedulers(Observable<T> observable, String callType)
 	{
-		mCompositeDisposable.remove(disposable);
+		return setupObservable(observable, callType).compose(SchedulersUtility.applyObservableSchedulers());
+	}
+
+
+	public <T> Single<T> setupSingle(Single<T> single, String callType)
+	{
+		return single
+				.doOnSubscribe(disposable ->
+				{
+					addRunningCall(callType);
+					registerDisposable(disposable);
+				})
+				.doFinally(() -> removeRunningCall(callType));
+	}
+
+
+	public <T> Single<T> setupSingleWithSchedulers(Single<T> single, String callType)
+	{
+		return setupSingle(single, callType).compose(SchedulersUtility.applySingleSchedulers());
+	}
+
+
+	public Completable setupCompletable(Completable completable, String callType)
+	{
+		return completable
+				.doOnSubscribe(disposable ->
+				{
+					addRunningCall(callType);
+					registerDisposable(disposable);
+				})
+				.doFinally(() -> removeRunningCall(callType));
+	}
+
+
+	public Completable setupCompletableWithSchedulers(Completable completable, String callType)
+	{
+		return setupCompletable(completable, callType).compose(SchedulersUtility.applyCompletableSchedulers());
+	}
+
+
+	public <T> Maybe<T> setupMaybe(Maybe<T> maybe, String callType)
+	{
+		return maybe
+				.doOnSubscribe(disposable ->
+				{
+					addRunningCall(callType);
+					registerDisposable(disposable);
+				})
+				.doFinally(() -> removeRunningCall(callType));
+	}
+
+
+	public <T> Maybe<T> setupMaybeWithSchedulers(Maybe<T> maybe, String callType)
+	{
+		return setupMaybe(maybe, callType).compose(SchedulersUtility.applyMaybeSchedulers());
 	}
 
 
@@ -65,59 +125,9 @@ public class RxManager
 	}
 
 
-	public <T> Observable<T> setupObservable(Observable<T> observable, String callType)
+	private void registerDisposable(Disposable disposable)
 	{
-		return observable
-				.doOnSubscribe(disposable -> addRunningCall(callType))
-				.doFinally(() -> removeRunningCall(callType));
-	}
-
-
-	public <T> Observable<T> setupObservableWithSchedulers(Observable<T> observable, String callType)
-	{
-		return setupObservable(observable, callType).compose(SchedulersUtility.applyObservableSchedulers());
-	}
-
-
-	public <T> Single<T> setupSingle(Single<T> single, String callType)
-	{
-		return single
-				.doOnSubscribe(disposable -> addRunningCall(callType))
-				.doFinally(() -> removeRunningCall(callType));
-	}
-
-
-	public <T> Single<T> setupSingleWithSchedulers(Single<T> single, String callType)
-	{
-		return setupSingle(single, callType).compose(SchedulersUtility.applySingleSchedulers());
-	}
-
-
-	public Completable setupCompletable(Completable completable, String callType)
-	{
-		return completable
-				.doOnSubscribe(disposable -> addRunningCall(callType))
-				.doFinally(() -> removeRunningCall(callType));
-	}
-
-
-	public Completable setupCompletableWithSchedulers(Completable completable, String callType)
-	{
-		return setupCompletable(completable, callType).compose(SchedulersUtility.applyCompletableSchedulers());
-	}
-
-
-	public <T> Maybe<T> setupMaybe(Maybe<T> maybe, String callType)
-	{
-		return maybe
-				.doOnSubscribe(disposable -> addRunningCall(callType))
-				.doFinally(() -> removeRunningCall(callType));
-	}
-
-
-	public <T> Maybe<T> setupMaybeWithSchedulers(Maybe<T> maybe, String callType)
-	{
-		return setupMaybe(maybe, callType).compose(SchedulersUtility.applyMaybeSchedulers());
+		mCompositeDisposable.add(disposable);
 	}
 
 
