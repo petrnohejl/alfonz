@@ -55,14 +55,15 @@ public class RestSampleRxViewModel extends BaseViewModel<RestSampleView>
 	{
 		if(NetworkUtility.isOnline(getApplicationContext()))
 		{
-			if(!mRestRxManager.isRunning(RepoRxServiceProvider.REPO_CALL_TYPE))
+			String callType = RepoRxServiceProvider.REPO_CALL_TYPE;
+			if(!mRestRxManager.isRunning(callType))
 			{
 				// show progress
 				state.set(StatefulLayout.State.PROGRESS);
 
 				// subscribe
 				Single<Response<RepoEntity>> rawSingle = RepoRxServiceProvider.getService().repo("petrnohejl", "Alfonz");
-				Single<Response<RepoEntity>> single = mRestRxManager.setupRestSingleWithSchedulers(rawSingle, RepoRxServiceProvider.REPO_CALL_TYPE);
+				Single<Response<RepoEntity>> single = mRestRxManager.setupRestSingleWithSchedulers(rawSingle, callType);
 				single.subscribeWith(createRepoObserver());
 			}
 		}
