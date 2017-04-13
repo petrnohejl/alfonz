@@ -113,7 +113,7 @@ public interface HelloWorldView extends BaseView
 }
 ```
 
-View interface will be implemented by a Fragment. We have to specify which ViewModel class will represent our view-model layer, we have to inflate our binding layout, set View and implement View methods. You can call `getViewModel()` from the Fragment to access a ViewModel. You can get a binding object via `getBinding()` call. View should stay as dumb as possible and should not have any logic.
+View interface will be implemented by a Fragment. We have to specify which ViewModel class will represent our view-model layer, we have to inflate our binding layout and implement View methods. You can call `getViewModel()` from the Fragment to access a ViewModel. You can get a binding object via `getBinding()` call. View should stay as dumb as possible and should not have any logic.
 
 ```java
 public class HelloWorldFragment
@@ -131,13 +131,6 @@ public class HelloWorldFragment
 	public FragmentHelloWorldBinding inflateBindingLayout(LayoutInflater inflater)
 	{
 		return FragmentHelloWorldBinding.inflate(inflater);
-	}
-
-	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-		setModelView(this);
 	}
 
 	@Override

@@ -3,7 +3,6 @@ package org.alfonz.samples.alfonzadapter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
-import android.view.View;
 
 import org.alfonz.samples.alfonzmvvm.BaseFragment;
 import org.alfonz.samples.databinding.FragmentAdapterSampleListBinding;
@@ -32,14 +31,6 @@ public class AdapterSampleListMultiFragment extends BaseFragment<AdapterSampleVi
 	public FragmentAdapterSampleListBinding inflateBindingLayout(LayoutInflater inflater)
 	{
 		return FragmentAdapterSampleListBinding.inflate(inflater);
-	}
-
-
-	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-		setModelView(this);
 	}
 
 

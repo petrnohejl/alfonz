@@ -5,7 +5,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
-import android.view.View;
 
 import org.alfonz.graphics.bitmap.BitmapBlur;
 import org.alfonz.graphics.bitmap.BitmapReflection;
@@ -31,14 +30,6 @@ public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleView, Gra
 	public FragmentGraphicsSampleBinding inflateBindingLayout(LayoutInflater inflater)
 	{
 		return FragmentGraphicsSampleBinding.inflate(inflater);
-	}
-
-
-	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-		setModelView(this);
 	}
 
 
