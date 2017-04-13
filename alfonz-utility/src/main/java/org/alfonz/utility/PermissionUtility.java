@@ -27,17 +27,7 @@ public final class PermissionUtility
 			if(fragment.shouldShowRequestPermissionRationale(permission))
 			{
 				// show explanation
-				Snackbar
-						.make(fragment.getView(), explanation, Snackbar.LENGTH_INDEFINITE)
-						.setAction(android.R.string.ok, new View.OnClickListener()
-						{
-							@Override
-							public void onClick(View v)
-							{
-								// try again
-								fragment.requestPermissions(new String[]{permission}, requestCode);
-							}
-						}).show();
+				showExplanation(fragment, new String[]{permission}, explanation, requestCode);
 			}
 			else
 			{
@@ -82,17 +72,7 @@ public final class PermissionUtility
 				if(fragment.shouldShowRequestPermissionRationale(permissions[i]))
 				{
 					// show explanation
-					Snackbar
-							.make(fragment.getView(), explanations[i], Snackbar.LENGTH_INDEFINITE)
-							.setAction(android.R.string.ok, new View.OnClickListener()
-							{
-								@Override
-								public void onClick(View v)
-								{
-									// try again
-									fragment.requestPermissions(params, requestCode);
-								}
-							}).show();
+					showExplanation(fragment, params, explanations[i], requestCode);
 					explanationShown = true;
 					break;
 				}
@@ -107,5 +87,21 @@ public final class PermissionUtility
 
 		// result
 		return deniedPermissions.isEmpty();
+	}
+
+
+	private static void showExplanation(final Fragment fragment, final String[] permissions, final int explanation, final int requestCode)
+	{
+		Snackbar
+				.make(fragment.getView(), explanation, Snackbar.LENGTH_INDEFINITE)
+				.setAction(android.R.string.ok, new View.OnClickListener()
+				{
+					@Override
+					public void onClick(View v)
+					{
+						// try again
+						fragment.requestPermissions(permissions, requestCode);
+					}
+				}).show();
 	}
 }

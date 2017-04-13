@@ -1,7 +1,6 @@
 package org.alfonz.samples.alfonzutility.utility;
 
 import android.Manifest;
-import android.os.Build;
 import android.support.v4.app.Fragment;
 
 import org.alfonz.samples.R;
@@ -21,8 +20,6 @@ public final class PermissionHelper
 
 	public static boolean checkPermissionReadExternalStorage(final Fragment fragment)
 	{
-		if(Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) return true;
-
 		return PermissionUtility.check(fragment,
 				Manifest.permission.READ_EXTERNAL_STORAGE,
 				R.string.permission_read_external_storage,
