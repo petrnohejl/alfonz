@@ -159,22 +159,24 @@ public class PermissionRationaleHandler implements PermissionManager.RationaleHa
 	public String getRationaleMessage(String permission)
 	{
 		int resId;
-
-		if(Manifest.permission.READ_EXTERNAL_STORAGE.equals(permission))
-			resId = R.string.permission_read_external_storage;
-		else if(Manifest.permission.WRITE_EXTERNAL_STORAGE.equals(permission))
-			resId = R.string.permission_write_external_storage;
-		else
-			resId = R.string.permission_unknown;
-
+		switch(permission)
+		{
+			case Manifest.permission.READ_EXTERNAL_STORAGE:
+				resId = R.string.permission_read_external_storage;
+				break;
+			case Manifest.permission.WRITE_EXTERNAL_STORAGE:
+				resId = R.string.permission_write_external_storage;
+				break;
+			default:
+				resId = R.string.permission_unknown;
+		}
 		return HelloWorldApplication.getContext().getString(resId);
 	}
 
 	@Override
 	public void showRationale(View rootView, String rationaleMessage, PermissionManager.PermissionAction confirmAction)
 	{
-		Snackbar
-				.make(rootView, rationaleMessage, Snackbar.LENGTH_INDEFINITE)
+		Snackbar.make(rootView, rationaleMessage, Snackbar.LENGTH_INDEFINITE)
 				.setAction(android.R.string.ok, view -> confirmAction.run())
 				.show();
 	}

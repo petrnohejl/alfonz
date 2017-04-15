@@ -16,16 +16,23 @@ public class PermissionRationaleHandler implements PermissionManager.RationaleHa
 	{
 		int resId;
 
-		if(Manifest.permission.READ_EXTERNAL_STORAGE.equals(permission))
-			resId = R.string.permission_read_external_storage;
-		else if(Manifest.permission.WRITE_EXTERNAL_STORAGE.equals(permission))
-			resId = R.string.permission_write_external_storage;
-		else if(Manifest.permission.ACCESS_COARSE_LOCATION.equals(permission))
-			resId = R.string.permission_access_location;
-		else if(Manifest.permission.ACCESS_FINE_LOCATION.equals(permission))
-			resId = R.string.permission_access_location;
-		else
-			resId = R.string.permission_unknown;
+		switch(permission)
+		{
+			case Manifest.permission.READ_EXTERNAL_STORAGE:
+				resId = R.string.permission_read_external_storage;
+				break;
+			case Manifest.permission.WRITE_EXTERNAL_STORAGE:
+				resId = R.string.permission_write_external_storage;
+				break;
+			case Manifest.permission.ACCESS_COARSE_LOCATION:
+				resId = R.string.permission_access_location;
+				break;
+			case Manifest.permission.ACCESS_FINE_LOCATION:
+				resId = R.string.permission_access_location;
+				break;
+			default:
+				resId = R.string.permission_unknown;
+		}
 
 		return SamplesApplication.getContext().getString(resId);
 	}

@@ -5,7 +5,7 @@ Helper classes for managing REST API calls.
 
 The purpose of this module is to simplify work with REST API using [Retrofit](https://github.com/square/retrofit) library. This module provides helpers and utilities for handling responses, errors, exceptions and logging results. There are 2 ways how you can manage REST API calls:
 
-* `RestRxManager` which uses RxJava `Observable`
+* `RestRxManager` which uses `io.reactivex.Observable`
 * `CallManager` which uses `retrofit2.Call`
 
 This document will cover only the first option which is recommended. See the samples or the source code for more info about the second way. `RestRxManager` extends `RxManager` from the Alfonz Rx Module and it uses all the features of this helper class.
