@@ -1,19 +1,23 @@
 package org.alfonz.samples.alfonzutility;
 
 import android.Manifest;
-import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 
 import org.alfonz.samples.alfonzmvvm.BaseFragment;
-import org.alfonz.samples.alfonzutility.utility.PermissionHelper;
+import org.alfonz.samples.alfonzutility.utility.PermissionRationaleHandler;
 import org.alfonz.samples.databinding.FragmentUtilitySampleBinding;
 import org.alfonz.utility.IntentUtility;
 import org.alfonz.utility.KeyboardUtility;
+import org.alfonz.utility.PermissionManager;
 
 
 public class UtilitySampleFragment extends BaseFragment<UtilitySampleView, UtilitySampleViewModel, FragmentUtilitySampleBinding> implements UtilitySampleView
 {
+	private PermissionManager mPermissionManager = new PermissionManager(this, new PermissionRationaleHandler());
+
+
 	@Nullable
 	@Override
 	public Class<UtilitySampleViewModel> getViewModelClass()
@@ -30,50 +34,9 @@ public class UtilitySampleFragment extends BaseFragment<UtilitySampleView, Utili
 
 
 	@Override
-	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
 	{
-		switch(requestCode)
-		{
-			case PermissionHelper.REQUEST_PERMISSION_READ_EXTERNAL_STORAGE:
-			case PermissionHelper.REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE:
-			case PermissionHelper.REQUEST_PERMISSION_ACCESS_LOCATION:
-			case PermissionHelper.REQUEST_PERMISSION_ALL:
-			{
-				if(grantResults.length > 0)
-				{
-					for(int i = 0; i < grantResults.length; i++)
-					{
-						if(grantResults[i] == PackageManager.PERMISSION_GRANTED)
-						{
-							// permission granted
-							String permission = permissions[i];
-							if(permission.equals(Manifest.permission.READ_EXTERNAL_STORAGE))
-							{
-								// do something
-							}
-							else if(permission.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE))
-							{
-								// do something
-							}
-							else if(permission.equals(Manifest.permission.ACCESS_COARSE_LOCATION) ||
-									permission.equals(Manifest.permission.ACCESS_FINE_LOCATION))
-							{
-								// do something
-							}
-						}
-						else
-						{
-							// permission denied
-						}
-					}
-				}
-				else
-				{
-					// all permissions denied
-				}
-				break;
-			}
-		}
+		mPermissionManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
 	}
 
 
@@ -164,7 +127,14 @@ public class UtilitySampleFragment extends BaseFragment<UtilitySampleView, Utili
 	@Override
 	public void onButtonPermissionClick()
 	{
-		performPermissionUtility();
+		performPermissionRequest();
+	}
+
+
+	@Override
+	public void onButtonPermissionsClick()
+	{
+		performPermissionsRequest();
 	}
 
 
@@ -178,20 +148,18 @@ public class UtilitySampleFragment extends BaseFragment<UtilitySampleView, Utili
 	@Override
 	public void onButtonDownloadClick()
 	{
-		if(PermissionHelper.checkPermissionWriteExternalStorage(this))
-		{
-			getViewModel().performDownloadUtility();
-		}
+		mPermissionManager.request(
+				Manifest.permission.WRITE_EXTERNAL_STORAGE,
+				() -> getViewModel().performDownloadUtility());
 	}
 
 
 	@Override
 	public void onButtonZipClick()
 	{
-		if(PermissionHelper.checkPermissionWriteExternalStorage(this))
-		{
-			getViewModel().performZipUtility();
-		}
+		mPermissionManager.request(
+				Manifest.permission.WRITE_EXTERNAL_STORAGE,
+				() -> getViewModel().performZipUtility());
 	}
 
 
@@ -267,11 +235,26 @@ public class UtilitySampleFragment extends BaseFragment<UtilitySampleView, Utili
 	}
 
 
-	private void performPermissionUtility()
+	private void performPermissionRequest()
 	{
-		if(PermissionHelper.checkPermissionAll(this))
-		{
-			// do something
-		}
+		mPermissionManager.request(
+				Manifest.permission.READ_EXTERNAL_STORAGE,
+				() -> showToast("Granted"),
+				() -> showToast("Denied"),
+				() -> showToast("Blocked"));
+	}
+
+
+	private void performPermissionsRequest()
+	{
+		String[] permissions = new String[]{
+				Manifest.permission.READ_EXTERNAL_STORAGE,
+				Manifest.permission.WRITE_EXTERNAL_STORAGE,
+				Manifest.permission.ACCESS_COARSE_LOCATION,
+				Manifest.permission.ACCESS_FINE_LOCATION};
+
+		mPermissionManager.request(
+				permissions,
+				permissionsResult -> showToast(String.format("Granted: %b", permissionsResult.isGranted())));
 	}
 }

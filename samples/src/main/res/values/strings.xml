@@ -28,6 +28,7 @@
 	<string name="permission_read_external_storage">Permission to read files is required</string>
 	<string name="permission_write_external_storage">Permission to write files is required</string>
 	<string name="permission_access_location">Permission to access your location is required</string>
+	<string name="permission_unknown">Permission is required</string>
 
 	<string name="fragment_media_sample_button_play_sound">Play sound</string>
 	<string name="fragment_media_sample_button_stop_sound">Stop sound</string>
@@ -51,6 +52,7 @@
 	<string name="fragment_utility_sample_start_navigation_button">Start navigation activity</string>
 	<string name="fragment_utility_sample_start_calendar_button">Start calendar activity</string>
 	<string name="fragment_utility_sample_permission_button">Ask for permission</string>
+	<string name="fragment_utility_sample_permissions_button">Ask for permissions</string>
 	<string name="fragment_utility_sample_logcat_button">Logcat</string>
 	<string name="fragment_utility_sample_download_button">Download file</string>
 	<string name="fragment_utility_sample_zip_button">Unzip file</string>

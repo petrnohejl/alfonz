@@ -18,6 +18,7 @@ public interface UtilitySampleView extends BaseView
 	void onButtonStartNavigationClick();
 	void onButtonStartCalendarClick();
 	void onButtonPermissionClick();
+	void onButtonPermissionsClick();
 	void onButtonLogcatClick();
 	void onButtonDownloadClick();
 	void onButtonZipClick();

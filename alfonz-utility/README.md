@@ -145,64 +145,76 @@ String networkName = NetworkUtility.getTypeName(getContext());
 ```
 
 
-How to use PermissionUtility
+How to use PermissionManager
 ----------------------------
 
-`PermissionUtility` is for checking permissions and showing explanation in a Fragment. The Fragment has to implement `onRequestPermissionsResult()` to handle the result.
+`PermissionManager` is for checking permissions and showing rationale in a Fragment or an Activity.
+
+First implement `RationaleHandler`. Define a rationale message and rationale UI.
 
 ```java
-boolean granted = PermissionUtility.check(fragment,
-		Manifest.permission.WRITE_EXTERNAL_STORAGE,
-		R.string.permission_write_external_storage,
-		REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE);
+public class PermissionRationaleHandler implements PermissionManager.RationaleHandler
+{
+	@Override
+	public String getRationaleMessage(String permission)
+	{
+		int resId;
 
-boolean granted = PermissionUtility.check(fragment,
-		new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
-		new int[]{R.string.permission_write_external_storage, R.string.permission_access_location, R.string.permission_access_location},
-		REQUEST_PERMISSION_ALL);
+		if(Manifest.permission.READ_EXTERNAL_STORAGE.equals(permission))
+			resId = R.string.permission_read_external_storage;
+		else if(Manifest.permission.WRITE_EXTERNAL_STORAGE.equals(permission))
+			resId = R.string.permission_write_external_storage;
+		else
+			resId = R.string.permission_unknown;
+
+		return HelloWorldApplication.getContext().getString(resId);
+	}
+
+	@Override
+	public void showRationale(View rootView, String rationaleMessage, PermissionManager.PermissionAction confirmAction)
+	{
+		Snackbar
+				.make(rootView, rationaleMessage, Snackbar.LENGTH_INDEFINITE)
+				.setAction(android.R.string.ok, view -> confirmAction.run())
+				.show();
+	}
+}
 ```
+
+Now you can use the `PermissionManager` in your Fragment or Activity to manage permission requests.
+
+```java
+private PermissionManager mPermissionManager = new PermissionManager(this, new PermissionRationaleHandler());
+```
+
+Override `onRequestPermissionsResult()` as follows.
 
 ```java
 @Override
-public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
+public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
 {
-	switch(requestCode)
-	{
-		case REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE:
-		case REQUEST_PERMISSION_ALL:
-		{
-			if(grantResults.length > 0)
-			{
-				for(int i = 0; i < grantResults.length; i++)
-				{
-					if(grantResults[i] == PackageManager.PERMISSION_GRANTED)
-					{
-						// permission granted
-						String permission = permissions[i];
-						if(permission.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE))
-						{
-							// do something
-						}
-						else if(permission.equals(Manifest.permission.ACCESS_COARSE_LOCATION) ||
-								permission.equals(Manifest.permission.ACCESS_FINE_LOCATION))
-						{
-							// do something
-						}
-					}
-					else
-					{
-						// permission denied
-					}
-				}
-			}
-			else
-			{
-				// all permissions denied
-			}
-			break;
-		}
-	}
+	mPermissionManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
 }
+```
+
+Call `check` method to check if permission(s) have been granted or denied. Call `request` method to check and eventually request permission(s) to be granted to the app.
+
+```java
+boolean granted = mPermissionManager.check(Manifest.permission.READ_EXTERNAL_STORAGE);
+```
+
+```java
+mPermissionManager.request(
+		Manifest.permission.READ_EXTERNAL_STORAGE,
+		() -> handlePermissionGranted(),
+		() -> handlePermissionDenied(),
+		() -> handlePermissionBlocked());
+```
+
+```java
+mPermissionManager.request(
+		new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
+		permissionsResult -> handlePermissions(permissionsResult));
 ```
 
 

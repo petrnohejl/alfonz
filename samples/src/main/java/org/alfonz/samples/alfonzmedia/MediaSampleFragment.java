@@ -1,9 +1,11 @@
 package org.alfonz.samples.alfonzmedia;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 
@@ -11,14 +13,16 @@ import org.alfonz.media.ImagePicker;
 import org.alfonz.media.SoundManager;
 import org.alfonz.samples.R;
 import org.alfonz.samples.alfonzmvvm.BaseFragment;
-import org.alfonz.samples.alfonzutility.utility.PermissionHelper;
+import org.alfonz.samples.alfonzutility.utility.PermissionRationaleHandler;
 import org.alfonz.samples.databinding.FragmentMediaSampleBinding;
+import org.alfonz.utility.PermissionManager;
 
 
 public class MediaSampleFragment extends BaseFragment<MediaSampleView, MediaSampleViewModel, FragmentMediaSampleBinding> implements MediaSampleView
 {
 	private SoundManager mSoundManager;
 	private ImagePicker mImagePicker;
+	private PermissionManager mPermissionManager;
 
 
 	@Nullable
@@ -42,6 +46,7 @@ public class MediaSampleFragment extends BaseFragment<MediaSampleView, MediaSamp
 		super.onActivityCreated(savedInstanceState);
 		mSoundManager = new SoundManager(getContext(), SoundManager.Mode.PLAY_SINGLE);
 		mImagePicker = new ImagePicker(getContext(), getString(R.string.app_name));
+		mPermissionManager = new PermissionManager(this, new PermissionRationaleHandler());
 	}
 
 
@@ -89,9 +94,9 @@ public class MediaSampleFragment extends BaseFragment<MediaSampleView, MediaSamp
 
 
 	@Override
-	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
 	{
-		// handle permissions result here
+		mPermissionManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
 	}
 
 
@@ -112,19 +117,17 @@ public class MediaSampleFragment extends BaseFragment<MediaSampleView, MediaSamp
 	@Override
 	public void onButtonPickImageFromCameraClick()
 	{
-		if(PermissionHelper.checkPermissionReadExternalStorage(this))
-		{
-			mImagePicker.pickImageFromCamera(this);
-		}
+		mPermissionManager.request(
+				Manifest.permission.READ_EXTERNAL_STORAGE,
+				() -> mImagePicker.pickImageFromCamera(MediaSampleFragment.this));
 	}
 
 
 	@Override
 	public void onButtonPickImageFromGalleryClick()
 	{
-		if(PermissionHelper.checkPermissionReadExternalStorage(this))
-		{
-			mImagePicker.pickImageFromGallery(this);
-		}
+		mPermissionManager.request(
+				Manifest.permission.READ_EXTERNAL_STORAGE,
+				() -> mImagePicker.pickImageFromGallery(MediaSampleFragment.this));
 	}
 }

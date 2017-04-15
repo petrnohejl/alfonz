@@ -106,6 +106,12 @@
 			<Button
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:text="@string/fragment_utility_sample_permissions_button"
+				android:onClick="@{() -> view.onButtonPermissionsClick()}" />
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
 				android:text="@string/fragment_utility_sample_logcat_button"
 				android:onClick="@{() -> view.onButtonLogcatClick()}" />
 
