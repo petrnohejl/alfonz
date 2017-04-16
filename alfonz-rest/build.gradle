@@ -1,5 +1,5 @@
 final VERSION_MAJOR = 0 // max two digits
-final VERSION_MINOR = 4 // max two digits
+final VERSION_MINOR = 5 // max two digits
 final VERSION_PATCH = 0 // max two digits
 final VERSION_BUILD = 0 // max three digits
 
