@@ -264,7 +264,7 @@ public class PermissionManager
 	{
 		if(mActivity != null)
 		{
-			return mActivity.getWindow().getDecorView().getRootView();
+			return mActivity.getWindow().getDecorView().findViewById(android.R.id.content);
 		}
 		else
 		{
