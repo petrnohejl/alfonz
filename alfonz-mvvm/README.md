@@ -17,7 +17,7 @@ This MVVM module is basically a wrapper for [AndroidViewModel](https://github.co
 * UI-related operations which cannot be done via data binding, e.g. show a dialog or a toast
 * Android-related operations which have to be performed from view-model layer, e.g. starting an activity
 
-`AlfonzViewModel` implements `android.databinding.Observable` for registering observable callbacks. It also provides a mechanism for caching UI callbacks when view layer is not temporarily available - for example during device orientation change.
+`AlfonzViewModel` implements `android.databinding.Observable` for registering observable callbacks. It also provides a mechanism for caching UI actions when view layer is not temporarily available - for example during device orientation change.
 
 This module also contains a few useful binding adapters and conversions. You can find them in `BindingUtility` class.
 
@@ -228,13 +228,13 @@ public class HelloWorldViewModel extends BaseViewModel<HelloWorldView>
 }
 ```
 
-If you run a UI callback inside the ViewModel, it is recommended to encapsulate it in `runViewCallback()`. It is a mechanism for caching UI callbacks when view layer is not temporarily available - for example during a device orientation change. Imagine you have a callback which starts a new Activity. When you change the orientation, Activity Context is temporarily not available. If you start a new Activity at that moment, it will throw `NullPointerException`.
+If you run a UI callback inside the ViewModel, it is recommended to encapsulate it in `runViewAction()`. It is a mechanism for caching UI actions when view layer is not temporarily available - for example during a device orientation change. Imagine you have an action which starts a new Activity. When you change the orientation, Activity Context is temporarily not available. If you start a new Activity at that moment, it will throw `NullPointerException`.
 
 ```java
 @Override
 public void onResponse(Call<MessageEntity> call, Response<MessageEntity> response)
 {
-	runViewCallback(new ViewCallback<HelloWorldView>()
+	runViewAction(new ViewAction<HelloWorldView>()
 	{
 		@Override
 		public void run(@NonNull HelloWorldView view)

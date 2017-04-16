@@ -13,10 +13,10 @@ import eu.inloop.viewmodel.AbstractViewModel;
 public abstract class AlfonzViewModel<T extends AlfonzView> extends AbstractViewModel<T> implements Observable
 {
 	private transient PropertyChangeRegistry mObservableCallbacks;
-	private Queue<ViewCallback<T>> mViewCallbackQueue;
+	private Queue<ViewAction<T>> mViewActionQueue;
 
 
-	public interface ViewCallback<T>
+	public interface ViewAction<T>
 	{
 		void run(@NonNull T view);
 	}
@@ -26,7 +26,7 @@ public abstract class AlfonzViewModel<T extends AlfonzView> extends AbstractView
 	public void onBindView(@NonNull T view)
 	{
 		super.onBindView(view);
-		processPendingViewCallbacks(view);
+		processPendingViewActions(view);
 	}
 
 
@@ -69,35 +69,35 @@ public abstract class AlfonzViewModel<T extends AlfonzView> extends AbstractView
 	}
 
 
-	public void runViewCallback(ViewCallback<T> viewCallback)
+	public void runViewAction(ViewAction<T> viewAction)
 	{
 		if(getView() != null)
 		{
-			viewCallback.run(getView());
+			viewAction.run(getView());
 		}
 		else
 		{
-			addPendingViewCallback(viewCallback);
+			addPendingViewAction(viewAction);
 		}
 	}
 
 
-	private synchronized void addPendingViewCallback(ViewCallback<T> viewCallback)
+	private synchronized void addPendingViewAction(ViewAction<T> viewAction)
 	{
-		if(mViewCallbackQueue == null)
+		if(mViewActionQueue == null)
 		{
-			mViewCallbackQueue = new ConcurrentLinkedQueue<>();
+			mViewActionQueue = new ConcurrentLinkedQueue<>();
 		}
-		mViewCallbackQueue.add(viewCallback);
+		mViewActionQueue.add(viewAction);
 	}
 
 
-	private void processPendingViewCallbacks(@NonNull T view)
+	private void processPendingViewActions(@NonNull T view)
 	{
-		while(mViewCallbackQueue != null && !mViewCallbackQueue.isEmpty())
+		while(mViewActionQueue != null && !mViewActionQueue.isEmpty())
 		{
-			ViewCallback<T> viewCallback = mViewCallbackQueue.remove();
-			viewCallback.run(view);
+			ViewAction<T> viewAction = mViewActionQueue.remove();
+			viewAction.run(view);
 		}
 	}
 }
