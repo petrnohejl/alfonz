@@ -1,7 +1,7 @@
 Changelog
 =========
 
-This document list the most important changes in Alfonz library. For more detailed changelog see Git log.
+This document lists the most important changes in Alfonz library. For more detailed changelog see Git log.
 
 
 0.5.0
