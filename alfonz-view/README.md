@@ -81,7 +81,7 @@ How to use custom layouts
 </org.alfonz.view.SelectorFrameLayout>
 ```
 
-`StatefulLayout` is a lightweight version of [StatefulLayout library](https://github.com/jakubkinst/Android-StatefulLayout). It displays and switches between different states of screen.
+`StatefulLayout` is a lightweight version of [StatefulLayout library](https://github.com/jakubkinst/Android-StatefulLayout). It displays and switches between different states of screen. Note that this layout changes a visibility of all direct child views.
 
 ```xml
 <org.alfonz.view.StatefulLayout
