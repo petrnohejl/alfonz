@@ -49,13 +49,15 @@ Artifacts are available in [JCenter repository](https://bintray.com/alfonz/maven
 Developed by
 ------------
 
-[Petr Nohejl](http://petrnohejl.cz)
+[Petr Nohejl](http://petrnohejl.cz)  
+[Tomáš Mlynarič](https://github.com/mlykotom)
 
 
 License
 -------
 
     Copyright 2016 Petr Nohejl
+    Copyright 2016 Tomáš Mlynarič
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
