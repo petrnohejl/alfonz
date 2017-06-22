@@ -9,9 +9,38 @@
 //                    commit, add tag, push, merge to master
 
 buildscript {
+	ext {
+		majorVersion = 0 // max two digits
+		minorVersion = 5 // max two digits
+		patchVersion = 0 // max two digits
+		buildVersion = 0 // max three digits
+
+		androidSupportVersion = "25.4.0"
+		androidViewModelVersion = "1.3.1"
+		rxJavaVersion = "2.1.0"
+		rxAndroidVersion = "2.0.1"
+		okHttpVersion = "3.8.0"
+		retrofitVersion = "2.3.0"
+		gsonVersion = "2.8.1"
+
+		bintrayRepo = "maven"
+		publishedGroupId = "org.alfonz"
+		libraryVersion = "${majorVersion}.${minorVersion}.${patchVersion}"
+		libraryDescription = "Mr. Alfonz is here to help you build your Android app, make a development process easier and avoid boilerplate code."
+		siteUrl = "https://github.com/petrnohejl/Alfonz"
+		gitUrl = "https://github.com/petrnohejl/Alfonz.git"
+		developerId = "alfonz"
+		developerName = "Alfonz"
+		developerEmail = ""
+		licenseName = "The Apache Software License, Version 2.0"
+		licenseUrl = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+		allLicenses = ["Apache-2.0"]
+	}
+
 	repositories {
 		jcenter()
 	}
+
 	dependencies {
 		classpath "com.android.tools.build:gradle:2.3.3"
 		classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3"

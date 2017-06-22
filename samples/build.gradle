@@ -1,22 +1,50 @@
 apply plugin: "com.android.application"
 apply plugin: "me.tatarka.retrolambda"
+apply from: "../utils.gradle"
 
-dependencies
-{
-	compile "com.android.support:support-compat:25.4.0"
-	compile "com.android.support:support-core-utils:25.4.0"
-	compile "com.android.support:support-core-ui:25.4.0"
-	compile "com.android.support:support-fragment:25.4.0"
-	compile "com.android.support:appcompat-v7:25.4.0"
-	compile "com.android.support:recyclerview-v7:25.4.0"
-	compile "com.android.support:support-annotations:25.4.0"
-	compile "com.android.support:design:25.4.0"
-	compile "com.google.code.gson:gson:2.8.1"
-	compile "com.squareup.okhttp3:okhttp:3.8.0"
-	compile "com.squareup.okhttp3:logging-interceptor:3.8.0"
-	compile "com.squareup.retrofit2:retrofit:2.3.0"
-	compile "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
-	compile "com.squareup.retrofit2:converter-gson:2.3.0"
+
+android {
+	compileSdkVersion 25
+	buildToolsVersion "25.0.3"
+
+	defaultConfig {
+		applicationId "org.alfonz.samples"
+		minSdkVersion 16
+		targetSdkVersion 25
+		versionCode getVersionCode(majorVersion, minorVersion, patchVersion, buildVersion)
+		versionName getVersionName(majorVersion, minorVersion, patchVersion)
+		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+	}
+
+	buildTypes {
+		debug {
+			buildConfigField "boolean", "LOGS", "true"
+			buildConfigField "boolean", "DEV_ENVIRONMENT", "true"
+
+			versionNameSuffix "-debug"
+		}
+
+		release {
+			buildConfigField "boolean", "LOGS", "false"
+			buildConfigField "boolean", "DEV_ENVIRONMENT", "false"
+
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+		}
+	}
+
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+
+	dataBinding {
+		enabled = true
+	}
+}
+
+
+dependencies {
 	compile fileTree(dir: "libs", include: ["*.jar"])
 	compile project(":alfonz-adapter")
 	compile project(":alfonz-graphics")
@@ -26,51 +54,18 @@ dependencies
 	compile project(":alfonz-rx")
 	compile project(":alfonz-utility")
 	compile project(":alfonz-view")
-}
-
-android
-{
-	compileSdkVersion 25
-	buildToolsVersion "25.0.3"
-
-	defaultConfig
-	{
-		applicationId "org.alfonz.samples"
-		minSdkVersion 16
-		targetSdkVersion 25
-		versionCode 1
-		versionName "1.0.0"
-		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-	}
-
-	buildTypes
-	{
-		debug
-		{
-			buildConfigField "boolean", "LOGS", "true"
-			buildConfigField "boolean", "DEV_ENVIRONMENT", "true"
-
-			versionNameSuffix "-debug"
-		}
-
-		release
-		{
-			buildConfigField "boolean", "LOGS", "false"
-			buildConfigField "boolean", "DEV_ENVIRONMENT", "false"
-
-			minifyEnabled false
-			proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-		}
-	}
-
-	compileOptions
-	{
-		sourceCompatibility JavaVersion.VERSION_1_8
-		targetCompatibility JavaVersion.VERSION_1_8
-	}
-
-	dataBinding
-	{
-		enabled = true
-	}
+	compile "com.android.support:support-compat:$androidSupportVersion"
+	compile "com.android.support:support-core-utils:$androidSupportVersion"
+	compile "com.android.support:support-core-ui:$androidSupportVersion"
+	compile "com.android.support:support-fragment:$androidSupportVersion"
+	compile "com.android.support:appcompat-v7:$androidSupportVersion"
+	compile "com.android.support:recyclerview-v7:$androidSupportVersion"
+	compile "com.android.support:support-annotations:$androidSupportVersion"
+	compile "com.android.support:design:$androidSupportVersion"
+	compile "com.google.code.gson:gson:$gsonVersion"
+	compile "com.squareup.okhttp3:okhttp:$okHttpVersion"
+	compile "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+	compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+	compile "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+	compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 }
