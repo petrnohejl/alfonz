@@ -83,13 +83,19 @@ public abstract class AlfonzActivity extends ViewModelBaseEmptyActivity
 
 	public void replaceFragment(Fragment fragment)
 	{
-		replaceFragment(fragment, false, false);
+		replaceFragment(fragment, false, false, null);
 	}
 
 
 	public void replaceFragment(Fragment fragment, boolean addToBackStack, boolean allowStateLoss)
 	{
-		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment, fragment);
+		replaceFragment(fragment, addToBackStack, allowStateLoss, null);
+	}
+
+
+	public void replaceFragment(Fragment fragment, boolean addToBackStack, boolean allowStateLoss, @Nullable String tag)
+	{
+		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment, fragment, tag);
 
 		if(addToBackStack)
 		{
