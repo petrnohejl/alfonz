@@ -100,6 +100,12 @@
 			<Button
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:text="@string/fragment_utility_sample_is_callable_button"
+				android:onClick="@{() -> view.onButtonIsCallableClick()}" />
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
 				android:text="@string/fragment_utility_sample_permission_button"
 				android:onClick="@{() -> view.onButtonPermissionClick()}" />
 

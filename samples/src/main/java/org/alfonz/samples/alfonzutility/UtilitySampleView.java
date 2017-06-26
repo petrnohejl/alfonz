@@ -17,6 +17,7 @@ public interface UtilitySampleView extends BaseView
 	void onButtonStartMapSearchClick();
 	void onButtonStartNavigationClick();
 	void onButtonStartCalendarClick();
+	void onButtonIsCallableClick();
 	void onButtonPermissionClick();
 	void onButtonPermissionsClick();
 	void onButtonLogcatClick();

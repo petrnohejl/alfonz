@@ -3,9 +3,12 @@ package org.alfonz.utility;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 
+import java.util.List;
 import java.util.Locale;
 
 
@@ -213,5 +216,12 @@ public final class IntentUtility
 		{
 			e.printStackTrace();
 		}
+	}
+
+
+	public static boolean isCallable(Context context, Intent intent)
+	{
+		List<ResolveInfo> list = context.getApplicationContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+		return list.size() > 0;
 	}
 }
