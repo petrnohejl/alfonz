@@ -16,6 +16,7 @@ Choose an adapter which suits your needs:
 * `SimpleDataBoundPagerAdapter`
 * `SimpleDataBoundRecyclerAdapter`
 * `SimpleMapDataBoundRecyclerAdapter`
+* `MultiDataBoundPagerAdapter`
 * `MultiDataBoundRecyclerAdapter`
 * `MultiMapDataBoundRecyclerAdapter`
 

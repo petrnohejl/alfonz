@@ -8,14 +8,14 @@ import org.alfonz.samples.alfonzmvvm.BaseFragment;
 import org.alfonz.samples.databinding.FragmentAdapterSamplePagerBinding;
 
 
-public class AdapterSamplePagerFragment extends BaseFragment<AdapterSampleView, AdapterSampleViewModel, FragmentAdapterSamplePagerBinding> implements AdapterSampleView
+public class AdapterSamplePagerSimpleFragment extends BaseFragment<AdapterSampleView, AdapterSampleViewModel, FragmentAdapterSamplePagerBinding> implements AdapterSampleView
 {
-	private MessagePagerAdapter mAdapter;
+	private MessagePagerSimpleAdapter mAdapter;
 
 
-	public static AdapterSamplePagerFragment newInstance()
+	public static AdapterSamplePagerSimpleFragment newInstance()
 	{
-		return new AdapterSamplePagerFragment();
+		return new AdapterSamplePagerSimpleFragment();
 	}
 
 
@@ -61,7 +61,7 @@ public class AdapterSamplePagerFragment extends BaseFragment<AdapterSampleView, 
 	{
 		if(mAdapter == null)
 		{
-			mAdapter = new MessagePagerAdapter(this, getViewModel());
+			mAdapter = new MessagePagerSimpleAdapter(this, getViewModel());
 			getBinding().fragmentAdapterSamplePager.setAdapter(mAdapter);
 		}
 	}

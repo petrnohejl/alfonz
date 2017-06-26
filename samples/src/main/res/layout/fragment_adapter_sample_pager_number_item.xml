@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<data>
+		<variable
+			name="view" type="org.alfonz.samples.alfonzadapter.AdapterSampleView" />
+		<variable
+			name="data" type="Integer" />
+	</data>
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:gravity="center"
+		android:background="@android:color/darker_gray"
+		android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+		android:text="@{String.valueOf(data)}" />
+
+</layout>

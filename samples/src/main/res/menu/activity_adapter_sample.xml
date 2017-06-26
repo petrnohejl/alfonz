@@ -16,8 +16,14 @@
 		app:showAsAction="never" />
 
 	<item
-		android:id="@+id/menu_activity_adapter_sample_pager"
-		android:title="@string/menu_activity_adapter_sample_pager"
+		android:id="@+id/menu_activity_adapter_sample_pager_simple"
+		android:title="@string/menu_activity_adapter_sample_pager_simple"
+		android:icon="@null"
+		app:showAsAction="never" />
+
+	<item
+		android:id="@+id/menu_activity_adapter_sample_pager_multi"
+		android:title="@string/menu_activity_adapter_sample_pager_multi"
 		android:icon="@null"
 		app:showAsAction="never" />
 

@@ -58,9 +58,14 @@ public class AdapterSampleActivity extends BaseActivity
 				replaceFragment(listMultiFragment);
 				return true;
 
-			case R.id.menu_activity_adapter_sample_pager:
-				Fragment pagerFragment = AdapterSamplePagerFragment.newInstance();
-				replaceFragment(pagerFragment);
+			case R.id.menu_activity_adapter_sample_pager_simple:
+				Fragment pagerSimpleFragment = AdapterSamplePagerSimpleFragment.newInstance();
+				replaceFragment(pagerSimpleFragment);
+				return true;
+
+			case R.id.menu_activity_adapter_sample_pager_multi:
+				Fragment pagerMultiFragment = AdapterSamplePagerMultiFragment.newInstance();
+				replaceFragment(pagerMultiFragment);
 				return true;
 
 			default:
