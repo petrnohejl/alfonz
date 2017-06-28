@@ -19,6 +19,7 @@ import org.alfonz.utility.HashUtility;
 import org.alfonz.utility.Logcat;
 import org.alfonz.utility.NetworkUtility;
 import org.alfonz.utility.ResourcesUtility;
+import org.alfonz.utility.ServiceUtility;
 import org.alfonz.utility.StorageUtility;
 import org.alfonz.utility.StringConvertor;
 import org.alfonz.utility.ValidationUtility;
@@ -57,6 +58,7 @@ public class UtilitySampleViewModel extends BaseViewModel<UtilitySampleView>
 	private static final String LOG_MESSAGE_RESOURCES_UTILITY_DIMEN = "[ResourcesUtility] dimen: %s";
 	private static final String LOG_MESSAGE_RESOURCES_UTILITY_DIMEN_PIXEL = "[ResourcesUtility] dimen pixel: %s";
 	private static final String LOG_MESSAGE_RESOURCES_UTILITY_DRAWABLE = "[ResourcesUtility] drawable: %s";
+	private static final String LOG_MESSAGE_SERVICE_UTILITY = "[ServiceUtility] running: %s";
 	private static final String LOG_MESSAGE_STORAGE_UTILITY_AVAILABLE = "[StorageUtility] available: %s";
 	private static final String LOG_MESSAGE_STORAGE_UTILITY_WRITABLE = "[StorageUtility] writable: %s";
 	private static final String LOG_MESSAGE_STORAGE_UTILITY_STORAGE_DIR = "[StorageUtility] storage dir: %s";
@@ -133,6 +135,7 @@ public class UtilitySampleViewModel extends BaseViewModel<UtilitySampleView>
 		performHashUtility();
 		performNetworkUtility();
 		performResourcesUtility();
+		performServiceUtility();
 		performStorageUtility();
 		performStringConvertor();
 		performValidationUtility();
@@ -232,6 +235,14 @@ public class UtilitySampleViewModel extends BaseViewModel<UtilitySampleView>
 		log(LOG_MESSAGE_RESOURCES_UTILITY_DIMEN, Float.toString(dimen1));
 		log(LOG_MESSAGE_RESOURCES_UTILITY_DIMEN_PIXEL, Integer.toString(dimen2));
 		log(LOG_MESSAGE_RESOURCES_UTILITY_DRAWABLE, drawable == null ? "null" : drawable.toString());
+	}
+
+
+	private void performServiceUtility()
+	{
+		boolean running = ServiceUtility.isRunning(getApplicationContext(), UtilitySampleService.class);
+
+		log(LOG_MESSAGE_SERVICE_UTILITY, Boolean.toString(running));
 	}
 
 

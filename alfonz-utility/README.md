@@ -235,6 +235,16 @@ Drawable drawable = ResourcesUtility.getDrawableValueOfAttribute(getContext(), R
 ```
 
 
+How to use ServiceUtility
+-------------------------
+
+`ServiceUtility` provides methods for working with Service.
+
+```java
+boolean running = ServiceUtility.isRunning(getContext(), ExampleService.class);
+```
+
+
 How to use StorageUtility
 -------------------------
 

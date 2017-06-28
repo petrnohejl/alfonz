@@ -80,5 +80,9 @@
 			android:launchMode="standard"
 			android:parentActivityName=".SamplesActivity" />
 
+		<service
+			android:name=".alfonzutility.UtilitySampleService"
+			android:label="Utility Sample Service" />
+
 	</application>
 </manifest>
