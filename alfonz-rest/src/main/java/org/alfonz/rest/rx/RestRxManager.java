@@ -126,6 +126,32 @@ public class RestRxManager extends RxManager
 	}
 
 
+	public <T extends Response<?>> Observable<T> catchObservableHttpError(T response)
+	{
+		if(mResponseHandler.isSuccess(response))
+		{
+			return Observable.just(response);
+		}
+		else
+		{
+			return Observable.error(mResponseHandler.createHttpException(response));
+		}
+	}
+
+
+	public <T extends Response<?>> Single<T> catchSingleHttpError(T response)
+	{
+		if(mResponseHandler.isSuccess(response))
+		{
+			return Single.just(response);
+		}
+		else
+		{
+			return Single.error(mResponseHandler.createHttpException(response));
+		}
+	}
+
+
 	private void logSuccess(String callType)
 	{
 		if(mHttpLogger != null)
@@ -179,32 +205,6 @@ public class RestRxManager extends RxManager
 			String exceptionMessage = throwable.getMessage();
 			String message = String.format("%s call fail with %s exception: %s", callType, exceptionName, exceptionMessage);
 			mHttpLogger.logFail(message);
-		}
-	}
-
-
-	private <T extends Response<?>> Observable<T> catchObservableHttpError(T response)
-	{
-		if(mResponseHandler.isSuccess(response))
-		{
-			return Observable.just(response);
-		}
-		else
-		{
-			return Observable.error(mResponseHandler.createHttpException(response));
-		}
-	}
-
-
-	private <T extends Response<?>> Single<T> catchSingleHttpError(T response)
-	{
-		if(mResponseHandler.isSuccess(response))
-		{
-			return Single.just(response);
-		}
-		else
-		{
-			return Single.error(mResponseHandler.createHttpException(response));
 		}
 	}
 }
