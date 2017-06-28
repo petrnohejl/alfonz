@@ -67,7 +67,7 @@ public final class Logcat
 
 	public static void printStackTrace(Throwable throwable)
 	{
-		e(throwable, "");
+		if(sConfig.isEnabled()) Log.e(sConfig.getTag(), getCodeLocation().toString(), throwable);
 	}
 
 
