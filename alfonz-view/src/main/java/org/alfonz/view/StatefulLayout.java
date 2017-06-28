@@ -21,6 +21,7 @@ public class StatefulLayout extends FrameLayout
 	private int mProgressLayoutId;
 	private int mOfflineLayoutId;
 	private int mEmptyLayoutId;
+	private boolean mInvisibleWhenHidden;
 	private List<View> mContentLayoutList;
 	private View mProgressLayout;
 	private View mOfflineLayout;
@@ -79,11 +80,13 @@ public class StatefulLayout extends FrameLayout
 		super(context, attrs, defStyleAttr);
 
 		TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.StatefulLayout);
+
 		if(typedArray.hasValue(R.styleable.StatefulLayout_state))
 		{
 			int initialStateValue = typedArray.getInt(R.styleable.StatefulLayout_state, State.CONTENT.getValue());
 			mInitialState = State.valueToState(initialStateValue);
 		}
+
 		if(typedArray.hasValue(R.styleable.StatefulLayout_progressLayout) &&
 				typedArray.hasValue(R.styleable.StatefulLayout_offlineLayout) &&
 				typedArray.hasValue(R.styleable.StatefulLayout_emptyLayout))
@@ -96,6 +99,9 @@ public class StatefulLayout extends FrameLayout
 		{
 			throw new IllegalArgumentException("Attributes progressLayout, offlineLayout and emptyLayout are mandatory");
 		}
+
+		mInvisibleWhenHidden = typedArray.getBoolean(R.styleable.StatefulLayout_invisibleWhenHidden, false);
+
 		typedArray.recycle();
 	}
 
@@ -138,18 +144,19 @@ public class StatefulLayout extends FrameLayout
 	}
 
 
+	@SuppressWarnings("ResourceType")
 	public void setState(State state)
 	{
 		mState = state;
 
 		for(int i = 0; i < mContentLayoutList.size(); i++)
 		{
-			mContentLayoutList.get(i).setVisibility(state == State.CONTENT ? View.VISIBLE : View.GONE);
+			mContentLayoutList.get(i).setVisibility(determineVisibility(state == State.CONTENT));
 		}
 
-		mProgressLayout.setVisibility(state == State.PROGRESS ? View.VISIBLE : View.GONE);
-		mOfflineLayout.setVisibility(state == State.OFFLINE ? View.VISIBLE : View.GONE);
-		mEmptyLayout.setVisibility(state == State.EMPTY ? View.VISIBLE : View.GONE);
+		mProgressLayout.setVisibility(determineVisibility(state == State.PROGRESS));
+		mOfflineLayout.setVisibility(determineVisibility(state == State.OFFLINE));
+		mEmptyLayout.setVisibility(determineVisibility(state == State.EMPTY));
 
 		if(mOnStateChangeListener != null) mOnStateChangeListener.onStateChange(this, state);
 	}
@@ -202,6 +209,26 @@ public class StatefulLayout extends FrameLayout
 			addView(mEmptyLayout);
 
 			setState(mInitialState);
+		}
+	}
+
+
+	private int determineVisibility(boolean visible)
+	{
+		if(visible)
+		{
+			return View.VISIBLE;
+		}
+		else
+		{
+			if(mInvisibleWhenHidden)
+			{
+				return View.INVISIBLE;
+			}
+			else
+			{
+				return View.GONE;
+			}
 		}
 	}
 }

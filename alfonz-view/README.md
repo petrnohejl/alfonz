@@ -90,7 +90,8 @@ How to use custom layouts
 	app:progressLayout="@layout/placeholder_progress"
 	app:offlineLayout="@layout/placeholder_offline"
 	app:emptyLayout="@layout/placeholder_empty"
-	app:state="@{viewModel.state}">
+	app:state="@{viewModel.state}"
+	app:invisibleWhenHidden="false">
 
 </org.alfonz.view.StatefulLayout>
 ```
