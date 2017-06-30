@@ -22,6 +22,7 @@ buildscript {
 		okHttpVersion = "3.8.0"
 		retrofitVersion = "2.3.0"
 		gsonVersion = "2.8.1"
+		leakCanaryVersion = "1.5.1"
 
 		bintrayRepo = "maven"
 		publishedGroupId = "org.alfonz"

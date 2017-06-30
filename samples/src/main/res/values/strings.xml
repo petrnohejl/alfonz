@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">Alfonz Samples</string>
+	<string name="leak_canary_display_activity_label">Alfonz Leaks</string>
 
 	<string name="global_network_offline">No Internet connection available</string>
 	<string name="global_network_fail">Communication with server failed</string>

@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.widget.Toast;
 
 import org.alfonz.mvvm.AlfonzBindingFragment;
+import org.alfonz.samples.SamplesApplication;
 
 
 public abstract class BaseFragment<T extends BaseView, R extends BaseViewModel<T>, B extends ViewDataBinding> extends AlfonzBindingFragment<T, R, B> implements BaseView
@@ -16,6 +17,17 @@ public abstract class BaseFragment<T extends BaseView, R extends BaseViewModel<T
 	{
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
+	}
+
+
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
+
+		// leak canary watcher
+		SamplesApplication.getRefWatcher().watch(this);
+		if(getActivity().isFinishing()) SamplesApplication.getRefWatcher().watch(getViewModel());
 	}
 
 
