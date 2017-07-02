@@ -26,7 +26,8 @@
 			android:layout_gravity="center"
 			android:textAppearance="@style/TextAppearance.AppCompat.Headline"
 			android:text="@{viewModel.message}"
-			android:onClick="@{() -> view.onClick()}"
+			app:onClick="@{() -> view.onClick()}"
+			app:onLongClick="@{() -> view.onLongClick()}"
 			tools:text="Hello" />
 
 	</org.alfonz.view.StatefulLayout>

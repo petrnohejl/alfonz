@@ -19,7 +19,7 @@ This MVVM module is basically a wrapper for [AndroidViewModel](https://github.co
 
 `AlfonzViewModel` implements `android.databinding.Observable` for registering observable callbacks. It also provides a mechanism for caching UI actions when view layer is not temporarily available - for example during device orientation change.
 
-This module also contains a few useful binding adapters and conversions. You can find them in `BindingUtility` class.
+If you want to have Activity with its own ViewModel, use `AlfonzBindingActivity`. This module also contains a few useful binding adapters and conversions. You can find them in `BindingUtility` class.
 
 
 How to use

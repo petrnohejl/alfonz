@@ -1,5 +1,6 @@
 package org.alfonz.samples.alfonzmvvm;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 
@@ -27,5 +28,14 @@ public class MvvmSampleFragment extends BaseFragment<MvvmSampleView, MvvmSampleV
 	public void onClick()
 	{
 		getViewModel().updateMessage();
+	}
+
+
+	@Override
+	public boolean onLongClick()
+	{
+		Intent intent = MvvmSampleViewModelActivity.newIntent(getActivity());
+		getActivity().startActivity(intent);
+		return true;
 	}
 }
