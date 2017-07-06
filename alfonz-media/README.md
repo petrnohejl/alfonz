@@ -65,7 +65,7 @@ How to use SoundManager
 Create a new instance of `SoundManager`. You can choose which playback mode you prefer to use.
 
 ```java
-private SoundManager mSoundManager = new SoundManager(getContext(), SoundManager.Mode.PLAY_SINGLE);
+private SoundManager mSoundManager = new SoundManager(getContext(), SoundManager.PLAY_SINGLE);
 ```
 
 Play a sound from storage or assets.

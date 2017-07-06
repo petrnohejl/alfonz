@@ -44,7 +44,7 @@ public class MediaSampleFragment extends BaseFragment<MediaSampleView, MediaSamp
 	public void onActivityCreated(Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
-		mSoundManager = new SoundManager(getContext(), SoundManager.Mode.PLAY_SINGLE);
+		mSoundManager = new SoundManager(getContext(), SoundManager.PLAY_SINGLE);
 		mImagePicker = new ImagePicker(getContext(), getString(R.string.app_name));
 		mPermissionManager = new PermissionManager(this, new PermissionRationaleHandler());
 	}

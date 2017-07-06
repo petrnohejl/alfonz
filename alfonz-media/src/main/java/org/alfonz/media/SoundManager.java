@@ -3,8 +3,11 @@ package org.alfonz.media;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
+import android.support.annotation.IntDef;
 
 import java.io.IOException;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -13,20 +16,21 @@ import java.util.Map;
 
 public class SoundManager
 {
+	public static final int PLAY_SINGLE = 0;            // play 1 sound at the moment, immediately stop all currently playing sounds
+	public static final int PLAY_SINGLE_CONTINUE = 1;   // play 1 sound at the moment, if the sound is same as currently playing sound, continue playing
+	public static final int PLAY_MULTIPLE_CONTINUE = 2; // play multiple sounds at the moment, if the sound is same as currently playing sound, continue playing
+
 	private Context mContext;
-	private Mode mMode;
+	@Mode private int mMode;
 	private Map<String, MediaPlayer> mMediaMap;
 
 
-	public enum Mode
-	{
-		PLAY_SINGLE,           // play 1 sound at the moment, immediately stop all currently playing sounds
-		PLAY_SINGLE_CONTINUE,  // play 1 sound at the moment, if the sound is same as currently playing sound, continue playing
-		PLAY_MULTIPLE_CONTINUE // play multiple sounds at the moment, if the sound is same as currently playing sound, continue playing
-	}
+	@Retention(RetentionPolicy.SOURCE)
+	@IntDef({PLAY_SINGLE, PLAY_SINGLE_CONTINUE, PLAY_MULTIPLE_CONTINUE})
+	public @interface Mode {}
 
 
-	public SoundManager(Context context, Mode mode)
+	public SoundManager(Context context, @Mode int mode)
 	{
 		mContext = context.getApplicationContext();
 		mMode = mode;
@@ -82,7 +86,7 @@ public class SoundManager
 	private void playSound(final String path, AssetFileDescriptor assetFileDescriptor)
 	{
 		// stop all currently playing sounds
-		if(mMode.equals(Mode.PLAY_SINGLE))
+		if(mMode == PLAY_SINGLE)
 		{
 			stopAll();
 		}
@@ -94,7 +98,7 @@ public class SoundManager
 		}
 
 		// stop all currently playing sounds
-		if(mMode.equals(Mode.PLAY_SINGLE_CONTINUE))
+		if(mMode == PLAY_SINGLE_CONTINUE)
 		{
 			stopAll();
 		}
