@@ -185,7 +185,7 @@ ViewModel has a following lifecycle:
 ```java
 public class HelloWorldViewModel extends BaseViewModel<HelloWorldView>
 {
-	public final ObservableField<StatefulLayout.State> state = new ObservableField<>();
+	public final ObservableField<Integer> state = new ObservableField<>();
 	public final ObservableField<MessageEntity> message = new ObservableField<>();
 
 	@Override
@@ -205,7 +205,7 @@ public class HelloWorldViewModel extends BaseViewModel<HelloWorldView>
 	private void loadData()
 	{
 		// show progress
-		state.set(StatefulLayout.State.PROGRESS);
+		state.set(StatefulLayout.PROGRESS);
 
 		// load data from data provider...
 	}
@@ -218,11 +218,11 @@ public class HelloWorldViewModel extends BaseViewModel<HelloWorldView>
 		// show content
 		if(message.get() != null)
 		{
-			state.set(StatefulLayout.State.CONTENT);
+			state.set(StatefulLayout.CONTENT);
 		}
 		else
 		{
-			state.set(StatefulLayout.State.EMPTY);
+			state.set(StatefulLayout.EMPTY);
 		}
 	}
 }

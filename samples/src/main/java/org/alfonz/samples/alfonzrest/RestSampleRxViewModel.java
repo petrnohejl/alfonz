@@ -19,7 +19,7 @@ import retrofit2.Response;
 
 public class RestSampleRxViewModel extends BaseViewModel<RestSampleView>
 {
-	public final ObservableField<StatefulLayout.State> state = new ObservableField<>();
+	public final ObservableField<Integer> state = new ObservableField<>();
 	public final ObservableField<RepoEntity> repo = new ObservableField<>();
 
 	private RestRxManager mRestRxManager = new RestRxManager(new RestResponseHandler(), new RestHttpLogger());
@@ -59,7 +59,7 @@ public class RestSampleRxViewModel extends BaseViewModel<RestSampleView>
 			if(!mRestRxManager.isRunning(callType))
 			{
 				// show progress
-				state.set(StatefulLayout.State.PROGRESS);
+				state.set(StatefulLayout.PROGRESS);
 
 				// subscribe
 				Single<Response<RepoEntity>> rawSingle = RepoRxServiceProvider.getService().repo("petrnohejl", "Alfonz");
@@ -70,7 +70,7 @@ public class RestSampleRxViewModel extends BaseViewModel<RestSampleView>
 		else
 		{
 			// show offline
-			state.set(StatefulLayout.State.OFFLINE);
+			state.set(StatefulLayout.OFFLINE);
 		}
 	}
 
@@ -96,11 +96,11 @@ public class RestSampleRxViewModel extends BaseViewModel<RestSampleView>
 	{
 		if(data.get() != null)
 		{
-			state.set(StatefulLayout.State.CONTENT);
+			state.set(StatefulLayout.CONTENT);
 		}
 		else
 		{
-			state.set(StatefulLayout.State.EMPTY);
+			state.set(StatefulLayout.EMPTY);
 		}
 	}
 }

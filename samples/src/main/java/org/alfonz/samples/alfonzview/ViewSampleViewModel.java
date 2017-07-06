@@ -8,7 +8,7 @@ import org.alfonz.view.StatefulLayout;
 
 public class ViewSampleViewModel extends BaseViewModel<ViewSampleView>
 {
-	public final ObservableField<StatefulLayout.State> state = new ObservableField<>();
+	public final ObservableField<Integer> state = new ObservableField<>();
 	public final ObservableField<String> message = new ObservableField<>();
 
 
@@ -26,13 +26,13 @@ public class ViewSampleViewModel extends BaseViewModel<ViewSampleView>
 	{
 		// set message
 		String s = "";
-		for(int i = 0; i<8; i++)
+		for(int i = 0; i < 8; i++)
 		{
 			s += "lorem ipsum dolor sit amet ";
 		}
 		message.set(s.trim());
 
 		// set state
-		state.set(StatefulLayout.State.CONTENT);
+		state.set(StatefulLayout.CONTENT);
 	}
 }

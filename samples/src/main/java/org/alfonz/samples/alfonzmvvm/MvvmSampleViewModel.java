@@ -8,7 +8,7 @@ import org.alfonz.view.StatefulLayout;
 
 public class MvvmSampleViewModel extends BaseViewModel<MvvmSampleView>
 {
-	public final ObservableField<StatefulLayout.State> state = new ObservableField<>();
+	public final ObservableField<Integer> state = new ObservableField<>();
 	public final ObservableField<String> message = new ObservableField<>();
 
 
@@ -35,7 +35,7 @@ public class MvvmSampleViewModel extends BaseViewModel<MvvmSampleView>
 		if(NetworkUtility.isOnline(getApplicationContext()))
 		{
 			// show progress
-			state.set(StatefulLayout.State.PROGRESS);
+			state.set(StatefulLayout.PROGRESS);
 
 			// load data
 			new Thread(new Runnable()
@@ -58,7 +58,7 @@ public class MvvmSampleViewModel extends BaseViewModel<MvvmSampleView>
 		}
 		else
 		{
-			state.set(StatefulLayout.State.OFFLINE);
+			state.set(StatefulLayout.OFFLINE);
 		}
 	}
 
@@ -71,11 +71,11 @@ public class MvvmSampleViewModel extends BaseViewModel<MvvmSampleView>
 		// show content
 		if(message.get() != null)
 		{
-			state.set(StatefulLayout.State.CONTENT);
+			state.set(StatefulLayout.CONTENT);
 		}
 		else
 		{
-			state.set(StatefulLayout.State.EMPTY);
+			state.set(StatefulLayout.EMPTY);
 		}
 	}
 }

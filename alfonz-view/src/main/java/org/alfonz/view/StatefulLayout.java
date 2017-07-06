@@ -3,11 +3,14 @@ package org.alfonz.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.support.annotation.IntDef;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +18,14 @@ import java.util.List;
 // inspired by: https://github.com/jakubkinst/Android-StatefulView
 public class StatefulLayout extends FrameLayout
 {
+	public static final int CONTENT = 0;
+	public static final int PROGRESS = 1;
+	public static final int OFFLINE = 2;
+	public static final int EMPTY = 3;
+
 	private static final String SAVED_STATE = "stateful_layout_state";
 
-	private State mInitialState;
+	@State private int mInitialState;
 	private int mProgressLayoutId;
 	private int mOfflineLayoutId;
 	private int mEmptyLayoutId;
@@ -26,40 +34,18 @@ public class StatefulLayout extends FrameLayout
 	private View mProgressLayout;
 	private View mOfflineLayout;
 	private View mEmptyLayout;
-	private State mState;
+	@State private int mState;
 	private OnStateChangeListener mOnStateChangeListener;
 
 
-	public enum State
-	{
-		CONTENT(0), PROGRESS(1), OFFLINE(2), EMPTY(3);
-
-		private final int mValue;
-
-
-		private State(int value)
-		{
-			mValue = value;
-		}
-
-
-		public static State valueToState(int value)
-		{
-			State[] values = State.values();
-			return values[value];
-		}
-
-
-		public int getValue()
-		{
-			return mValue;
-		}
-	}
+	@Retention(RetentionPolicy.SOURCE)
+	@IntDef({CONTENT, PROGRESS, OFFLINE, EMPTY})
+	public @interface State {}
 
 
 	public interface OnStateChangeListener
 	{
-		void onStateChange(View v, State state);
+		void onStateChange(View v, @State int state);
 	}
 
 
@@ -83,8 +69,8 @@ public class StatefulLayout extends FrameLayout
 
 		if(typedArray.hasValue(R.styleable.StatefulLayout_state))
 		{
-			int initialStateValue = typedArray.getInt(R.styleable.StatefulLayout_state, State.CONTENT.getValue());
-			mInitialState = State.valueToState(initialStateValue);
+			// noinspection ResourceType
+			mInitialState = typedArray.getInt(R.styleable.StatefulLayout_state, CONTENT);
 		}
 
 		if(typedArray.hasValue(R.styleable.StatefulLayout_progressLayout) &&
@@ -116,47 +102,48 @@ public class StatefulLayout extends FrameLayout
 
 	public void showContent()
 	{
-		setState(State.CONTENT);
+		setState(CONTENT);
 	}
 
 
 	public void showProgress()
 	{
-		setState(State.PROGRESS);
+		setState(PROGRESS);
 	}
 
 
 	public void showOffline()
 	{
-		setState(State.OFFLINE);
+		setState(OFFLINE);
 	}
 
 
 	public void showEmpty()
 	{
-		setState(State.EMPTY);
+		setState(EMPTY);
 	}
 
 
-	public State getState()
+	@State
+	public int getState()
 	{
 		return mState;
 	}
 
 
 	@SuppressWarnings("ResourceType")
-	public void setState(State state)
+	public void setState(@State int state)
 	{
 		mState = state;
 
 		for(int i = 0; i < mContentLayoutList.size(); i++)
 		{
-			mContentLayoutList.get(i).setVisibility(determineVisibility(state == State.CONTENT));
+			mContentLayoutList.get(i).setVisibility(determineVisibility(state == CONTENT));
 		}
 
-		mProgressLayout.setVisibility(determineVisibility(state == State.PROGRESS));
-		mOfflineLayout.setVisibility(determineVisibility(state == State.OFFLINE));
-		mEmptyLayout.setVisibility(determineVisibility(state == State.EMPTY));
+		mProgressLayout.setVisibility(determineVisibility(state == PROGRESS));
+		mOfflineLayout.setVisibility(determineVisibility(state == OFFLINE));
+		mEmptyLayout.setVisibility(determineVisibility(state == EMPTY));
 
 		if(mOnStateChangeListener != null) mOnStateChangeListener.onStateChange(this, state);
 	}
@@ -170,20 +157,18 @@ public class StatefulLayout extends FrameLayout
 
 	public void saveInstanceState(Bundle outState)
 	{
-		if(mState != null)
-		{
-			outState.putInt(SAVED_STATE, mState.getValue());
-		}
+		outState.putInt(SAVED_STATE, mState);
 	}
 
 
-	public State restoreInstanceState(Bundle savedInstanceState)
+	@State
+	public int restoreInstanceState(Bundle savedInstanceState)
 	{
-		State state = null;
+		@State int state = CONTENT;
 		if(savedInstanceState != null && savedInstanceState.containsKey(SAVED_STATE))
 		{
-			int value = savedInstanceState.getInt(SAVED_STATE);
-			state = State.valueToState(value);
+			// noinspection ResourceType
+			state = savedInstanceState.getInt(SAVED_STATE);
 			setState(state);
 		}
 		return state;
