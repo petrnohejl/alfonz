@@ -4,9 +4,7 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<data>
-		<import type="org.alfonz.adapter.utility.BindingUtility.RecyclerLayout" />
-		<import type="org.alfonz.adapter.utility.BindingUtility.RecyclerDecoration" />
-		<import type="org.alfonz.adapter.utility.BindingUtility.RecyclerAnimator" />
+		<import type="org.alfonz.adapter.utility.BindingUtility" />
 		<variable
 			name="view" type="org.alfonz.samples.alfonzadapter.AdapterSampleView" />
 		<variable
@@ -18,8 +16,8 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:scrollbars="vertical"
-		app:recyclerLayout="@{RecyclerLayout.LINEAR_VERTICAL}"
-		app:recyclerDecoration="@{RecyclerDecoration.LINEAR_DIVIDER_VERTICAL}"
-		app:recyclerAnimator="@{RecyclerAnimator.DEFAULT}" />
+		app:recyclerLayout="@{BindingUtility.LAYOUT_LINEAR_VERTICAL}"
+		app:recyclerDecoration="@{BindingUtility.DECORATION_LINEAR_DIVIDER_VERTICAL}"
+		app:recyclerAnimator="@{BindingUtility.ANIMATOR_DEFAULT}" />
 
 </layout>
