@@ -20,6 +20,7 @@
 	<string name="title_view">View\nModule</string>
 
 	<string name="menu_activity_adapter_sample_list_simple">Simple List</string>
+	<string name="menu_activity_adapter_sample_grid_simple">Simple Grid</string>
 	<string name="menu_activity_adapter_sample_list_multi">Multi List</string>
 	<string name="menu_activity_adapter_sample_pager_simple">Simple Pager</string>
 	<string name="menu_activity_adapter_sample_pager_multi">Multi Pager</string>

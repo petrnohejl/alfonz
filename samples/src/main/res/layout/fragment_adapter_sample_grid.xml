@@ -14,12 +14,15 @@
 	</data>
 
 	<android.support.v7.widget.RecyclerView
-		android:id="@+id/fragment_adapter_sample_list_recycler"
+		android:id="@+id/fragment_adapter_sample_grid_recycler"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:scrollbars="vertical"
-		app:recyclerLayout="@{RecyclerLayout.LINEAR_VERTICAL}"
-		app:recyclerDecoration="@{RecyclerDecoration.LINEAR_DIVIDER_VERTICAL}"
+		app:recyclerLayout="@{RecyclerLayout.GRID_VERTICAL}"
+		app:recyclerLayoutSpanCount="@{3}"
+		app:recyclerDecoration="@{RecyclerDecoration.GRID_SPACING}"
+		app:recyclerDecorationMargin="@{@dimen/global_spacing_8}"
+		app:recyclerDecorationBoundaryMargin="@{@dimen/global_spacing_8}"
 		app:recyclerAnimator="@{RecyclerAnimator.DEFAULT}" />
 
 </layout>

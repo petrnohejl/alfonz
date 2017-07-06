@@ -10,6 +10,12 @@
 		app:showAsAction="never" />
 
 	<item
+		android:id="@+id/menu_activity_adapter_sample_grid_simple"
+		android:title="@string/menu_activity_adapter_sample_grid_simple"
+		android:icon="@null"
+		app:showAsAction="never" />
+
+	<item
 		android:id="@+id/menu_activity_adapter_sample_list_multi"
 		android:title="@string/menu_activity_adapter_sample_list_multi"
 		android:icon="@null"

@@ -100,6 +100,38 @@ public class ProductListFragment
 }
 ```
 
+There are also a few useful binding adapters for setting up recycler layout, decoration and animator. You can use following XML attributes in your `RecyclerView`:
+
+* `recyclerLayout`
+* `recyclerLayoutSpanCount`
+* `recyclerLayoutSpanSize`
+* `recyclerDecoration`
+* `recyclerDecorationMargin`
+* `recyclerDecorationBoundaryMargin`
+* `recyclerAnimator`
+
+`RecyclerLayout` supports these layout variants:
+
+* `LINEAR_VERTICAL`
+* `LINEAR_HORIZONTAL`
+* `GRID_VERTICAL`
+* `GRID_HORIZONTAL`
+* `STAGGERED_GRID_VERTICAL`
+* `STAGGERED_GRID_HORIZONTAL`
+* `LINEAR_VERTICAL_REVERSE`
+* `LINEAR_HORIZONTAL_REVERSE`
+* `GRID_VERTICAL_REVERSE`
+* `GRID_HORIZONTAL_REVERSE`
+* `STAGGERED_GRID_VERTICAL_REVERSE`
+* `STAGGERED_GRID_HORIZONTAL_REVERSE`
+
+`RecyclerDecoration` provides these decorations:
+
+* `LINEAR_DIVIDER_VERTICAL`
+* `LINEAR_DIVIDER_HORIZONTAL`
+* `GRID_DIVIDER`
+* `GRID_SPACING`
+
 
 Dependencies
 ------------

@@ -245,6 +245,15 @@ public void onResponse(Call<MessageEntity> call, Response<MessageEntity> respons
 }
 ```
 
+There are also a few useful binding adapters. You can use following XML attributes in your views:
+
+* `onClick`
+* `onLongClick`
+* `visible`
+* `invisible`
+* `gone`
+* `imageBitmap`
+
 
 Dependencies
 ------------
