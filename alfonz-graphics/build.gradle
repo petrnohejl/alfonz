@@ -1,38 +1,13 @@
-final VERSION_MAJOR = 0 // max two digits
-final VERSION_MINOR = 5 // max two digits
-final VERSION_PATCH = 0 // max two digits
-final VERSION_BUILD = 0 // max three digits
-
 apply plugin: "com.android.library"
 apply from: "../utils.gradle"
 
-ext {
-	bintrayRepo = "maven"
-	bintrayName = "alfonz-graphics"
 
-	publishedGroupId = "org.alfonz"
+ext {
+	bintrayName = "alfonz-graphics"
 	libraryName = "Alfonz-Graphics"
 	artifact = "alfonz-graphics"
-
-	libraryDescription = "Mr. Alfonz is here to help you build your Android app, make a development process easier and avoid boilerplate code."
-
-	siteUrl = "https://github.com/petrnohejl/Alfonz"
-	gitUrl = "https://github.com/petrnohejl/Alfonz.git"
-
-	libraryVersion = getVersionName(VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH)
-
-	developerId = "alfonz"
-	developerName = "Alfonz"
-	developerEmail = ""
-
-	licenseName = "The Apache Software License, Version 2.0"
-	licenseUrl = "http://www.apache.org/licenses/LICENSE-2.0.txt"
-	allLicenses = ["Apache-2.0"]
 }
 
-dependencies {
-	compile fileTree(dir: "libs", include: ["*.jar"])
-}
 
 android {
 	compileSdkVersion 25
@@ -41,8 +16,8 @@ android {
 	defaultConfig {
 		minSdkVersion 16
 		targetSdkVersion 25
-		versionCode getVersionCode(VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, VERSION_BUILD)
-		versionName getVersionName(VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH)
+		versionCode getVersionCode(majorVersion, minorVersion, patchVersion, buildVersion)
+		versionName getVersionName(majorVersion, minorVersion, patchVersion)
 	}
 
 	buildTypes {
@@ -57,6 +32,12 @@ android {
 		targetCompatibility JavaVersion.VERSION_1_7
 	}
 }
+
+
+dependencies {
+	compile fileTree(dir: "libs", include: ["*.jar"])
+}
+
 
 apply from: "../install.gradle"
 apply from: "../bintray.gradle"
