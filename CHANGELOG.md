@@ -1,20 +1,36 @@
 Changelog
 =========
 
-This document lists the most important changes in Alfonz library. For more detailed changelog see Git log.
+This document lists the most important changes in Alfonz library. For more detailed changelog see a Git log.
+
+
+0.6.0
+-----
+
+* [adapter module] Binding adapters for RecyclerView setting up layout managers and item decorations
+* [adapter module] Use IntDef instead of enum in BindingUtility
+* [adapter module] New MultiDataBoundPagerAdapter
+* [media module] Use IntDef instead of enum in SoundManager
+* [mvvm module] Add Fragment tag in replaceFragment()
+* [mvvm module] New AlfonzBindingActivity
+* [rest module] Make catchObservableHttpError() and catchSingleHttpError() public
+* [utility module] Add isCallable method in IntentUtility
+* [utility module] New ServiceUtility
+* [view module] Add invisibleWhenHidden attribute in StatefulLayout
+* [view module] Use IntDef instead of enum in StatefulLayout
 
 
 0.5.0
 -----
 
-* [rx module] Support for Single, Completable, Maybe
-* [rx module] Rename LoggedObserver to AlfonzDisposableObserver
-* [rx module] Register disposables automatically in RxManager
-* [rest module] Support for Single and Completable
+* [adapter module] New BindingUtility, item decoration
 * [mvvm module] Remove necessity of calling setModelView in a Fragment, it is called in parent AlfonzFragment
 * [mvvm module] Rename ViewCallback to ViewAction, rename runViewCallback() to runViewAction()
 * [mvvm module] New BindingUtility
-* [adapter module] New BindingUtility, item decoration
+* [rest module] Support for Single and Completable
+* [rx module] Support for Single, Completable, Maybe
+* [rx module] Rename LoggedObserver to AlfonzDisposableObserver
+* [rx module] Register disposables automatically in RxManager
 * [utility module] New IntentUtility
 * [utility module] New PermissionManager
 
@@ -22,9 +38,9 @@ This document lists the most important changes in Alfonz library. For more detai
 0.4.0
 -----
 
-* [rx module] Fix removing running calls in RxManager
 * [mvvm module] Don't add a transaction to back stack by default in replaceFragment()
 * [mvvm module] Rename action bar indicator constants
+* [rx module] Fix removing running calls in RxManager
 * [utility module] Use View instead of EditText in KeyboardUtility
 
 
@@ -33,9 +49,9 @@ This document lists the most important changes in Alfonz library. For more detai
 
 * [graphics module] New module
 * [media module] New module
-* [view module] New module
-* [utility module] New utilities
 * [ui module] Remove module
+* [utility module] New utilities
+* [view module] New module
 
 
 0.2.0
