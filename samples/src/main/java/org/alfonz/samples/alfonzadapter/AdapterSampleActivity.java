@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import org.alfonz.mvvm.utility.ToolbarIndicator;
 import org.alfonz.samples.R;
 import org.alfonz.samples.alfonzmvvm.BaseActivity;
 
@@ -27,7 +28,7 @@ public class AdapterSampleActivity extends BaseActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_adapter_sample);
-		setupActionBar(INDICATOR_BACK);
+		setupActionBar(ToolbarIndicator.INDICATOR_BACK);
 		setupFragment(savedInstanceState);
 	}
 
