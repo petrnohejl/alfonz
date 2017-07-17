@@ -41,6 +41,7 @@
 	<string name="fragment_rx_sample_button_run">Run Rx call</string>
 	<string name="fragment_rx_sample_button_terminate">Terminate all calls</string>
 	<string name="fragment_rx_sample_button_is_running">Is running?</string>
+	<string name="fragment_rx_sample_button_event">Send Rx event</string>
 
 	<string name="fragment_utility_sample_show_keyboard_button">Show keyboard</string>
 	<string name="fragment_utility_sample_hide_keyboard_button">Hide keyboard</string>

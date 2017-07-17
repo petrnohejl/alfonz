@@ -5,15 +5,18 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import org.alfonz.rx.AlfonzDisposableObserver;
+import org.alfonz.rx.RxBus;
 import org.alfonz.rx.RxManager;
 import org.alfonz.samples.alfonzmvvm.BaseViewModel;
 import org.alfonz.utility.DateConvertor;
+import org.alfonz.utility.Logcat;
 
 import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
 
 
@@ -31,12 +34,14 @@ public class RxSampleViewModel extends BaseViewModel<RxSampleView>
 	public final ObservableField<String> log = new ObservableField<>();
 
 	private RxManager mRxManager = new RxManager();
+	private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
 
 	@Override
 	public void onCreate(@Nullable Bundle arguments, @Nullable Bundle savedInstanceState)
 	{
 		log.set("");
+		listen();
 	}
 
 
@@ -45,6 +50,7 @@ public class RxSampleViewModel extends BaseViewModel<RxSampleView>
 	{
 		super.onDestroy();
 		mRxManager.disposeAll();
+		mCompositeDisposable.clear();
 	}
 
 
@@ -112,5 +118,17 @@ public class RxSampleViewModel extends BaseViewModel<RxSampleView>
 	private void log(String message, String arg)
 	{
 		log(String.format(message, arg));
+	}
+
+
+	private void listen()
+	{
+		RxBus.getInstance()
+				.onEvent(Long.class)
+				.doOnSubscribe(mCompositeDisposable::add)
+				.subscribe(event ->
+				{
+					Logcat.d("received " + event.toString());
+				});
 	}
 }

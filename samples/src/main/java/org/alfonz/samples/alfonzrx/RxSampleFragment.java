@@ -3,6 +3,7 @@ package org.alfonz.samples.alfonzrx;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 
+import org.alfonz.rx.RxBus;
 import org.alfonz.samples.alfonzmvvm.BaseFragment;
 import org.alfonz.samples.databinding.FragmentRxSampleBinding;
 
@@ -42,5 +43,13 @@ public class RxSampleFragment extends BaseFragment<RxSampleView, RxSampleViewMod
 	public void onButtonIsRunningClick()
 	{
 		getViewModel().isRunning();
+	}
+
+
+	@Override
+	public void onButtonEventClick()
+	{
+		RxBus.getInstance().send(new Long(System.currentTimeMillis()));
+		RxBus.getInstance().send(new String("Dummy"));
 	}
 }

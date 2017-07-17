@@ -38,6 +38,12 @@
 				android:text="@string/fragment_rx_sample_button_is_running"
 				android:onClick="@{() -> view.onButtonIsRunningClick()}" />
 
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/fragment_rx_sample_button_event"
+				android:onClick="@{() -> view.onButtonEventClick()}" />
+
 			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"

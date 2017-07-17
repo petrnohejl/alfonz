@@ -8,4 +8,5 @@ public interface RxSampleView extends BaseView
 	void onButtonRunClick();
 	void onButtonTerminateClick();
 	void onButtonIsRunningClick();
+	void onButtonEventClick();
 }

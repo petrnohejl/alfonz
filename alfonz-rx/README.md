@@ -3,11 +3,11 @@ Alfonz - Rx Module
 
 Helper classes for managing RxJava observables and subscriptions.
 
-The purpose of this module is to simplify work with RxJava. This module provides helpers and utilities for registering and managing Disposables, keeping info about currently running RxJava calls and its types, setting up Observables and Schedulers. Specialized reactive base types `Single`, `Completable` and `Maybe` are also supported.
+The purpose of this module is to simplify work with RxJava. This module provides helpers and utilities for registering and managing Disposables, keeping info about currently running RxJava calls and its types, setting up Observables and Schedulers, working with reactive event bus. Specialized reactive base types `Single`, `Completable` and `Maybe` are also supported.
 
 
-How to use
-----------
+How to use RxManager
+--------------------
 
 Create a new instance of `RxManager` in your ViewModel.
 
@@ -65,12 +65,46 @@ public void onDestroy()
 ```
 
 
+How to use RxBus
+----------------
+
+Register `RxBus` event bus in your ViewModel and listen to specific events.
+
+```java
+RxBus.getInstance()
+		.onEvent(Long.class)
+		.doOnSubscribe(mCompositeDisposable::add)
+		.subscribe(event ->
+		{
+			Logcat.d("received " + event.toString());
+		});
+```
+
+Send events from any part of your app.
+
+```java
+RxBus.getInstance().send(new Long(System.currentTimeMillis()));
+```
+
+Don't forget to dispose all the Disposables when you don't need them anymore.
+
+```java
+@Override
+public void onDestroy()
+{
+	super.onDestroy();
+	mCompositeDisposable.clear();
+}
+```
+
+
 Dependencies
 ------------
 
 * Android Support Library
 * [RxAndroid](https://github.com/ReactiveX/RxAndroid)
 * [RxJava](https://github.com/ReactiveX/RxJava)
+* [RxRelay](https://github.com/JakeWharton/RxRelay)
 
 
 Samples and download
