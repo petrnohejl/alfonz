@@ -14,7 +14,7 @@ import eu.inloop.viewmodel.base.ViewModelBaseEmptyActivity;
 
 public abstract class AlfonzActivity extends ViewModelBaseEmptyActivity
 {
-	@Nullable private Toolbar mToolbar = null;
+	private int mToolbarHashCode = 0;
 
 
 	@Nullable
@@ -47,7 +47,9 @@ public abstract class AlfonzActivity extends ViewModelBaseEmptyActivity
 			toolbar = (Toolbar) findViewById(R.id.toolbar);
 		}
 
-		if(mToolbar != toolbar)
+		int toolbarHashCode = toolbar != null ? toolbar.hashCode() : 0;
+
+		if(mToolbarHashCode != toolbarHashCode)
 		{
 			// this is because if 2 fragments share a toolbar (in activity), it caused bug that back icon was not shown
 			setSupportActionBar(toolbar);
@@ -78,7 +80,7 @@ public abstract class AlfonzActivity extends ViewModelBaseEmptyActivity
 			}
 		}
 
-		mToolbar = toolbar;
+		mToolbarHashCode = toolbarHashCode;
 		return actionBar;
 	}
 
