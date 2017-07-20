@@ -13,52 +13,27 @@ import android.util.Log;
 import android.util.Pair;
 import android.util.TypedValue;
 
-import org.alfonz.mvvm.AlfonzActivity;
 import org.alfonz.mvvm.R;
 
 
 public class ToolbarIndicator
 {
-	public static final String TAG = ToolbarIndicator.class.getSimpleName();
-
 	public static final ToolbarIndicator INDICATOR_NONE = new ToolbarIndicator(0, false, false);
 	public static final ToolbarIndicator INDICATOR_BACK = new ToolbarIndicator(0, true, true);
-	public static ToolbarIndicator INDICATOR_CLOSE = new ToolbarIndicator(R.drawable.ic_close, true, true);
+	public static final ToolbarIndicator INDICATOR_CLOSE = new ToolbarIndicator(R.drawable.ic_close, true, true);
+	private static final String TAG = "ALFONZ";
 
 	@DrawableRes
-	public final int drawableRes;
-	public final boolean isHomeEnabled;
-	public final boolean isHomeAsUpEnabled;
+	private final int mDrawableRes;
+	private final boolean mIsHomeEnabled;
+	private final boolean mIsHomeAsUpEnabled;
 
 
 	public ToolbarIndicator(@DrawableRes int drawableRes, boolean isHomeEnabled, boolean isHomeAsUpEnabled)
 	{
-		this.drawableRes = drawableRes;
-		this.isHomeEnabled = isHomeEnabled;
-		this.isHomeAsUpEnabled = isHomeAsUpEnabled;
-	}
-
-
-	/**
-	 * Handling compatibilty issues
-	 *
-	 * @param type older indicator type which is deprecated
-	 * @return new toolbar indicator type
-	 * @deprecated
-	 */
-	public static ToolbarIndicator fromIndicatorInt(@AlfonzActivity.IndicatorType int type)
-	{
-		switch(type)
-		{
-			case AlfonzActivity.INDICATOR_NONE:
-				return INDICATOR_NONE;
-			case AlfonzActivity.INDICATOR_BACK:
-				return INDICATOR_BACK;
-			case AlfonzActivity.INDICATOR_CLOSE:
-				return INDICATOR_CLOSE;
-		}
-
-		throw new IllegalArgumentException("This indicator type is not supported (type = " + type + ")");
+		mDrawableRes = drawableRes;
+		mIsHomeEnabled = isHomeEnabled;
+		mIsHomeAsUpEnabled = isHomeAsUpEnabled;
 	}
 
 
@@ -86,11 +61,30 @@ public class ToolbarIndicator
 		boolean wasFound = context.getTheme().resolveAttribute(colorAttr, outValue, true);
 		if(outValue.type < TypedValue.TYPE_FIRST_COLOR_INT || outValue.type > TypedValue.TYPE_LAST_COLOR_INT)
 		{
-			Log.w(TAG, "Toolbar theme resource found, but it's not color (the type = " + outValue.type + "). We don't know how to handle it (yet).");
+			String codeLocation = "[" + ToolbarIndicator.class.getSimpleName() + ".getThemeTintColor] ";
+			Log.w(TAG, codeLocation + "Toolbar theme resource found, but it's not color (the type is " + outValue.type + "). We don't know how to handle it (yet).");
 			wasFound = false;
 		}
 
 		return new Pair<>(wasFound, outValue.data);
+	}
+
+
+	public int getDrawableRes()
+	{
+		return mDrawableRes;
+	}
+
+
+	public boolean isHomeEnabled()
+	{
+		return mIsHomeEnabled;
+	}
+
+
+	public boolean isHomeAsUpEnabled()
+	{
+		return mIsHomeAsUpEnabled;
 	}
 
 
@@ -100,7 +94,7 @@ public class ToolbarIndicator
 	 */
 	public Drawable getTintedDrawable(@NonNull Toolbar toolbar)
 	{
-		Drawable drawable = ContextCompat.getDrawable(toolbar.getContext(), drawableRes);
+		Drawable drawable = ContextCompat.getDrawable(toolbar.getContext(), mDrawableRes);
 		Pair<Boolean, Integer> tintResult = getThemeTintColor(toolbar.getContext());
 
 		if(tintResult.first)

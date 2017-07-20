@@ -1,7 +1,6 @@
 package org.alfonz.mvvm;
 
 import android.graphics.drawable.Drawable;
-import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -10,62 +9,12 @@ import android.support.v7.widget.Toolbar;
 
 import org.alfonz.mvvm.utility.ToolbarIndicator;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
 import eu.inloop.viewmodel.base.ViewModelBaseEmptyActivity;
 
 
 public abstract class AlfonzActivity extends ViewModelBaseEmptyActivity
 {
-	/**
-	 * @deprecated Use {@link ToolbarIndicator#INDICATOR_NONE} instead
-	 */
-	public static final int INDICATOR_NONE = 0;
-	/**
-	 * @deprecated Use {@link ToolbarIndicator#INDICATOR_BACK} instead
-	 */
-	public static final int INDICATOR_BACK = 1;
-	/**
-	 * @deprecated Use {@link ToolbarIndicator#INDICATOR_CLOSE} instead
-	 */
-	public static final int INDICATOR_CLOSE = 2;
 	@Nullable private Toolbar mToolbar = null;
-
-
-	@Retention(RetentionPolicy.SOURCE)
-	@IntDef({INDICATOR_NONE, INDICATOR_BACK, INDICATOR_CLOSE})
-	public @interface IndicatorType {}
-
-
-	/**
-	 * @deprecated Use {@link #setupActionBar(ToolbarIndicator)} instead
-	 */
-	@Nullable
-	public ActionBar setupActionBar(@IndicatorType int indicatorType)
-	{
-		return setupActionBar(ToolbarIndicator.fromIndicatorInt(indicatorType), null, null);
-	}
-
-
-	/**
-	 * @deprecated Use {@link #setupActionBar(ToolbarIndicator, CharSequence)} instead
-	 */
-	@Nullable
-	public ActionBar setupActionBar(@IndicatorType int indicatorType, @Nullable CharSequence title)
-	{
-		return setupActionBar(ToolbarIndicator.fromIndicatorInt(indicatorType), title, null);
-	}
-
-
-	/**
-	 * @deprecated Use {@link #setupActionBar(ToolbarIndicator, CharSequence, Toolbar)} instead
-	 */
-	@Nullable
-	public ActionBar setupActionBar(@IndicatorType int indicatorType, @Nullable CharSequence title, @Nullable Toolbar toolbar)
-	{
-		return setupActionBar(ToolbarIndicator.fromIndicatorInt(indicatorType), title, toolbar);
-	}
 
 
 	@Nullable
@@ -110,9 +59,9 @@ public abstract class AlfonzActivity extends ViewModelBaseEmptyActivity
 			actionBar.setDisplayUseLogoEnabled(false);
 			actionBar.setDisplayShowTitleEnabled(true);
 			actionBar.setDisplayShowHomeEnabled(true);
-			actionBar.setDisplayHomeAsUpEnabled(indicator.isHomeAsUpEnabled);
-			actionBar.setHomeButtonEnabled(indicator.isHomeEnabled);
-			if(indicator.drawableRes <= 0)
+			actionBar.setDisplayHomeAsUpEnabled(indicator.isHomeAsUpEnabled());
+			actionBar.setHomeButtonEnabled(indicator.isHomeEnabled());
+			if(indicator.getDrawableRes() <= 0)
 			{
 				actionBar.setHomeAsUpIndicator(null);
 			}
