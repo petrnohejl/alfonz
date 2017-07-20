@@ -8,6 +8,7 @@ import android.support.annotation.StringRes;
 import android.view.LayoutInflater;
 
 import org.alfonz.mvvm.AlfonzBindingActivity;
+import org.alfonz.mvvm.widget.ToolbarIndicator;
 import org.alfonz.samples.databinding.ActivityMvvmSampleViewModelBinding;
 
 
@@ -40,7 +41,7 @@ public class MvvmSampleViewModelActivity extends AlfonzBindingActivity<MvvmSampl
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setupActionBar(INDICATOR_BACK);
+		setupActionBar(ToolbarIndicator.BACK);
 	}
 
 

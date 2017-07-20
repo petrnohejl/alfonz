@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 
-import org.alfonz.mvvm.utility.ToolbarIndicator;
+import org.alfonz.mvvm.widget.ToolbarIndicator;
 
 import eu.inloop.viewmodel.base.ViewModelBaseEmptyActivity;
 
@@ -32,11 +32,11 @@ public abstract class AlfonzActivity extends ViewModelBaseEmptyActivity
 
 
 	/**
-	 * Setups main toolbar as ActionBar. Tries to tints navigation icon based on toolbar's theme
+	 * Setup main toolbar as ActionBar. Try to tint navigation icon based on toolbar's theme.
 	 *
-	 * @param indicator navigation icon (NONE, BACK or CLOSE are predefined). Uses toolbar theme color for tinting.
-	 * @param title     to be shown as on ActionBar. If null specified, title is not changed! (use empty string to clear)
-	 * @param toolbar   may be null, in that case it is searched for R.id.toolbar
+	 * @param indicator navigation icon (NONE, BACK, CLOSE are predefined). Uses toolbar theme color for tinting.
+	 * @param title     to be shown as in ActionBar. If it is null, title is not changed! Use empty string to clear it.
+	 * @param toolbar   may be null, in that case it is looking for R.id.toolbar.
 	 * @return initilized ActionBar or null
 	 */
 	@Nullable
@@ -47,11 +47,11 @@ public abstract class AlfonzActivity extends ViewModelBaseEmptyActivity
 			toolbar = (Toolbar) findViewById(R.id.toolbar);
 		}
 
+		// this check is here because if 2 fragments with different indicators share a toolbar in activity,
+		// it caused bug that back icon was not shown
 		int toolbarHashCode = toolbar != null ? toolbar.hashCode() : 0;
-
 		if(mToolbarHashCode != toolbarHashCode)
 		{
-			// this is because if 2 fragments share a toolbar (in activity), it caused bug that back icon was not shown
 			setSupportActionBar(toolbar);
 		}
 
@@ -63,13 +63,13 @@ public abstract class AlfonzActivity extends ViewModelBaseEmptyActivity
 			actionBar.setDisplayShowHomeEnabled(true);
 			actionBar.setDisplayHomeAsUpEnabled(indicator.isHomeAsUpEnabled());
 			actionBar.setHomeButtonEnabled(indicator.isHomeEnabled());
-			if(indicator.getDrawableRes() <= 0)
+
+			if(indicator.getDrawableRes() == 0)
 			{
 				actionBar.setHomeAsUpIndicator(null);
 			}
 			else
 			{
-				// tries to tint drawable if found style from toolbar
 				Drawable iconDrawable = indicator.getTintedDrawable(toolbar);
 				actionBar.setHomeAsUpIndicator(iconDrawable);
 			}

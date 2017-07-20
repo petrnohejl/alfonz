@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import org.alfonz.mvvm.utility.ToolbarIndicator;
+import org.alfonz.mvvm.widget.ToolbarIndicator;
 import org.alfonz.samples.R;
 
 
@@ -23,6 +23,6 @@ public class MvvmSampleActivity extends BaseActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mvvm_sample);
-		setupActionBar(ToolbarIndicator.INDICATOR_BACK);
+		setupActionBar(ToolbarIndicator.BACK);
 	}
 }

@@ -78,7 +78,7 @@ public class HelloWorldActivity extends BaseActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_hello_world);
-		setupActionBar(INDICATOR_BACK);
+		setupActionBar(ToolbarIndicator.BACK);
 	}
 }
 ```
