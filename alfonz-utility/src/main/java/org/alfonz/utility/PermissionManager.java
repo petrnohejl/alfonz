@@ -20,8 +20,6 @@ public class PermissionManager
 	private static final int REQUEST_CODE_PERMISSION = 1;
 	private static final int REQUEST_CODE_PERMISSIONS = 2;
 
-	private Activity mActivity;
-	private Fragment mFragment;
 	private RationaleHandler mRationaleHandler;
 	private PermissionCallback mPermissionCallback;
 	private PermissionsCallback mPermissionsCallback;
@@ -30,177 +28,283 @@ public class PermissionManager
 	public interface RationaleHandler
 	{
 		String getRationaleMessage(String permission);
-		void showRationale(View rootView, String rationaleMessage, PermissionAction confirmAction);
+		void showRationale(View rootView, String rationaleMessage, ConfirmAction confirmAction);
 	}
 
 
-	public interface PermissionAction
+	public interface ConfirmAction
 	{
 		void run();
 	}
 
 
-	public interface PermissionCallback
+	public interface PermissionAction<T>
 	{
-		void onPermissionGranted();
-		void onPermissionDenied();
-		void onPermissionBlocked();
+		void run(@NonNull T requestable);
 	}
 
 
-	public interface PermissionsCallback
+	public interface PermissionCallback<T>
 	{
-		void onPermissionsResult(PermissionsResult permissionsResult);
+		void onPermissionGranted(@NonNull T requestable);
+		void onPermissionDenied(@NonNull T requestable);
+		void onPermissionBlocked(@NonNull T requestable);
 	}
 
 
-	public PermissionManager(@NonNull Activity activity, @NonNull RationaleHandler rationaleHandler)
+	public interface PermissionsCallback<T>
 	{
-		mActivity = activity;
+		void onPermissionsResult(@NonNull T requestable, @NonNull PermissionsResult permissionsResult);
+	}
+
+
+	private interface PermissionRequestable<T>
+	{
+		T getRequestable();
+		Context getContext();
+		View getRootView();
+		boolean shouldShowRationale(String permission);
+		void requestPermission(String permission);
+		void requestPermissions(String[] permissions);
+	}
+
+
+	public PermissionManager(@NonNull RationaleHandler rationaleHandler)
+	{
 		mRationaleHandler = rationaleHandler;
 	}
 
 
-	public PermissionManager(@NonNull Fragment fragment, @NonNull RationaleHandler rationaleHandler)
+	public boolean check(Activity activity, String permission)
 	{
-		mFragment = fragment;
-		mRationaleHandler = rationaleHandler;
+		return check(new ActivityRequestable<>(activity), permission);
 	}
 
 
-	public boolean check(String permission)
+	public boolean check(Fragment fragment, String permission)
 	{
-		int result = ContextCompat.checkSelfPermission(getContext(), permission);
+		return check(new FragmentRequestable<>(fragment), permission);
+	}
+
+
+	public PermissionsResult check(Activity activity, String... permissions)
+	{
+		return check(new ActivityRequestable<>(activity), permissions);
+	}
+
+
+	public PermissionsResult check(Fragment fragment, String... permissions)
+	{
+		return check(new FragmentRequestable<>(fragment), permissions);
+	}
+
+
+	public <T extends Activity> void request(T activity, String permission, PermissionAction<T> grantedAction)
+	{
+		request(new ActivityRequestable<>(activity), permission, grantedAction);
+	}
+
+
+	public <T extends Fragment> void request(T fragment, String permission, PermissionAction<T> grantedAction)
+	{
+		request(new FragmentRequestable<>(fragment), permission, grantedAction);
+	}
+
+
+	public <T extends Activity> void request(T activity, String permission, PermissionAction<T> grantedAction, PermissionAction<T> deniedAction)
+	{
+		request(new ActivityRequestable<>(activity), permission, grantedAction, deniedAction);
+	}
+
+
+	public <T extends Fragment> void request(T fragment, String permission, PermissionAction<T> grantedAction, PermissionAction<T> deniedAction)
+	{
+		request(new FragmentRequestable<>(fragment), permission, grantedAction, deniedAction);
+	}
+
+
+	public <T extends Activity> void request(T activity, String permission, PermissionAction<T> grantedAction, PermissionAction<T> deniedAction, PermissionAction<T> blockedAction)
+	{
+		request(new ActivityRequestable<>(activity), permission, grantedAction, deniedAction, blockedAction);
+	}
+
+
+	public <T extends Fragment> void request(T fragment, String permission, PermissionAction<T> grantedAction, PermissionAction<T> deniedAction, PermissionAction<T> blockedAction)
+	{
+		request(new FragmentRequestable<>(fragment), permission, grantedAction, deniedAction, blockedAction);
+	}
+
+
+	public <T extends Activity> void request(T activity, String permission, PermissionCallback<T> permissionCallback)
+	{
+		request(new ActivityRequestable<>(activity), permission, permissionCallback);
+	}
+
+
+	public <T extends Fragment> void request(T fragment, String permission, PermissionCallback<T> permissionCallback)
+	{
+		request(new FragmentRequestable<>(fragment), permission, permissionCallback);
+	}
+
+
+	public <T extends Activity> void request(T activity, String[] permissions, PermissionsCallback<T> permissionsCallback)
+	{
+		request(new ActivityRequestable<>(activity), permissions, permissionsCallback);
+	}
+
+
+	public <T extends Fragment> void request(T fragment, String[] permissions, PermissionsCallback<T> permissionsCallback)
+	{
+		request(new FragmentRequestable<>(fragment), permissions, permissionsCallback);
+	}
+
+
+	public <T extends Activity> void onRequestPermissionsResult(T activity, int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+	{
+		onRequestPermissionsResult(new ActivityRequestable<>(activity), requestCode, permissions, grantResults);
+	}
+
+
+	public <T extends Fragment> void onRequestPermissionsResult(T fragment, int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+	{
+		onRequestPermissionsResult(new FragmentRequestable<>(fragment), requestCode, permissions, grantResults);
+	}
+
+
+	private boolean check(PermissionRequestable permissionRequestable, String permission)
+	{
+		int result = ContextCompat.checkSelfPermission(permissionRequestable.getContext(), permission);
 		return result == PackageManager.PERMISSION_GRANTED;
 	}
 
 
-	public PermissionsResult check(String... permissions)
+	private PermissionsResult check(PermissionRequestable permissionRequestable, String... permissions)
 	{
 		Map<String, Boolean> resultMap = new HashMap<>();
 		for(String permission : permissions)
 		{
-			int result = ContextCompat.checkSelfPermission(getContext(), permission);
+			int result = ContextCompat.checkSelfPermission(permissionRequestable.getContext(), permission);
 			resultMap.put(permission, result == PackageManager.PERMISSION_GRANTED);
 		}
 		return new PermissionsResult(resultMap);
 	}
 
 
-	public void request(final String permission, final PermissionAction grantedAction)
+	private <T> void request(PermissionRequestable<T> permissionRequestable, String permission, final PermissionAction<T> grantedAction)
 	{
-		request(permission, new PermissionCallback()
+		request(permissionRequestable, permission, new PermissionCallback<T>()
 		{
 			@Override
-			public void onPermissionGranted()
+			public void onPermissionGranted(@NonNull T requestable)
 			{
-				grantedAction.run();
+				grantedAction.run(requestable);
 			}
 
 
 			@Override
-			public void onPermissionDenied() {}
+			public void onPermissionDenied(@NonNull T requestable) {}
 
 
 			@Override
-			public void onPermissionBlocked() {}
+			public void onPermissionBlocked(@NonNull T requestable) {}
 		});
 	}
 
 
-	public void request(final String permission, final PermissionAction grantedAction, final PermissionAction deniedAction)
+	private <T> void request(PermissionRequestable<T> permissionRequestable, String permission, final PermissionAction<T> grantedAction, final PermissionAction<T> deniedAction)
 	{
-		request(permission, new PermissionCallback()
+		request(permissionRequestable, permission, new PermissionCallback<T>()
 		{
 			@Override
-			public void onPermissionGranted()
+			public void onPermissionGranted(@NonNull T requestable)
 			{
-				grantedAction.run();
+				grantedAction.run(requestable);
 			}
 
 
 			@Override
-			public void onPermissionDenied()
+			public void onPermissionDenied(@NonNull T requestable)
 			{
-				deniedAction.run();
+				deniedAction.run(requestable);
 			}
 
 
 			@Override
-			public void onPermissionBlocked() {}
+			public void onPermissionBlocked(@NonNull T requestable) {}
 		});
 	}
 
 
-	public void request(final String permission, final PermissionAction grantedAction, final PermissionAction deniedAction, final PermissionAction blockedAction)
+	private <T> void request(PermissionRequestable<T> permissionRequestable, String permission, final PermissionAction<T> grantedAction, final PermissionAction<T> deniedAction, final PermissionAction<T> blockedAction)
 	{
-		request(permission, new PermissionCallback()
+		request(permissionRequestable, permission, new PermissionCallback<T>()
 		{
 			@Override
-			public void onPermissionGranted()
+			public void onPermissionGranted(@NonNull T requestable)
 			{
-				grantedAction.run();
+				grantedAction.run(requestable);
 			}
 
 
 			@Override
-			public void onPermissionDenied()
+			public void onPermissionDenied(@NonNull T requestable)
 			{
-				deniedAction.run();
+				deniedAction.run(requestable);
 			}
 
 
 			@Override
-			public void onPermissionBlocked()
+			public void onPermissionBlocked(@NonNull T requestable)
 			{
-				blockedAction.run();
+				blockedAction.run(requestable);
 			}
 		});
 	}
 
 
-	public void request(String permission, PermissionCallback permissionCallback)
+	private <T> void request(PermissionRequestable<T> permissionRequestable, String permission, PermissionCallback<T> permissionCallback)
 	{
-		if(check(permission))
+		if(check(permissionRequestable, permission))
 		{
-			permissionCallback.onPermissionGranted();
+			permissionCallback.onPermissionGranted(permissionRequestable.getRequestable());
 		}
 		else
 		{
-			if(shouldShowRationale(permission))
+			if(permissionRequestable.shouldShowRationale(permission))
 			{
 				mRationaleHandler.showRationale(
-						getRootView(),
+						permissionRequestable.getRootView(),
 						mRationaleHandler.getRationaleMessage(permission),
-						createRationaleConfirmAction(permission, permissionCallback));
+						createRationaleConfirmAction(permissionRequestable, permission, permissionCallback));
 			}
 			else
 			{
-				requestPermission(permission, permissionCallback);
+				mPermissionCallback = permissionCallback;
+				permissionRequestable.requestPermission(permission);
 			}
 		}
 	}
 
 
-	public void request(String[] permissions, PermissionsCallback permissionsCallback)
+	private <T> void request(PermissionRequestable<T> permissionRequestable, String[] permissions, PermissionsCallback<T> permissionsCallback)
 	{
-		PermissionsResult permissionsResult = check(permissions);
+		PermissionsResult permissionsResult = check(permissionRequestable, permissions);
 
 		if(permissionsResult.isGranted())
 		{
-			permissionsCallback.onPermissionsResult(permissionsResult);
+			permissionsCallback.onPermissionsResult(permissionRequestable.getRequestable(), permissionsResult);
 		}
 		else
 		{
 			boolean rationaleShown = false;
 			for(String permission : permissions)
 			{
-				if(shouldShowRationale(permission))
+				if(permissionRequestable.shouldShowRationale(permission))
 				{
 					mRationaleHandler.showRationale(
-							getRootView(),
+							permissionRequestable.getRootView(),
 							mRationaleHandler.getRationaleMessage(permission),
-							createRationaleConfirmAction(permissionsResult.getDeniedPermissions(), permissionsCallback));
+							createRationaleConfirmAction(permissionRequestable, permissionsResult.getDeniedPermissions(), permissionsCallback));
 					rationaleShown = true;
 					break;
 				}
@@ -208,13 +312,15 @@ public class PermissionManager
 
 			if(!rationaleShown)
 			{
-				requestPermissions(permissionsResult.getDeniedPermissions(), permissionsCallback);
+				mPermissionsCallback = permissionsCallback;
+				permissionRequestable.requestPermissions(permissionsResult.getDeniedPermissions());
 			}
 		}
 	}
 
 
-	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+	@SuppressWarnings("unchecked")
+	private <T> void onRequestPermissionsResult(PermissionRequestable<T> permissionRequestable, int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
 	{
 		if(mPermissionCallback != null && requestCode == REQUEST_CODE_PERMISSION)
 		{
@@ -222,17 +328,17 @@ public class PermissionManager
 			{
 				if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
 				{
-					mPermissionCallback.onPermissionGranted();
+					mPermissionCallback.onPermissionGranted(permissionRequestable.getRequestable());
 				}
 				else
 				{
-					if(shouldShowRationale(permissions[0]))
+					if(permissionRequestable.shouldShowRationale(permissions[0]))
 					{
-						mPermissionCallback.onPermissionDenied();
+						mPermissionCallback.onPermissionDenied(permissionRequestable.getRequestable());
 					}
 					else
 					{
-						mPermissionCallback.onPermissionBlocked();
+						mPermissionCallback.onPermissionBlocked(permissionRequestable.getRequestable());
 					}
 				}
 			}
@@ -241,102 +347,35 @@ public class PermissionManager
 
 		else if(mPermissionsCallback != null && requestCode == REQUEST_CODE_PERMISSIONS)
 		{
-			mPermissionsCallback.onPermissionsResult(new PermissionsResult(permissions, grantResults));
+			mPermissionsCallback.onPermissionsResult(permissionRequestable.getRequestable(), new PermissionsResult(permissions, grantResults));
 			mPermissionsCallback = null;
 		}
 	}
 
 
-	private Context getContext()
+	private ConfirmAction createRationaleConfirmAction(final PermissionRequestable permissionRequestable, final String permission, final PermissionCallback permissionCallback)
 	{
-		if(mActivity != null)
-		{
-			return mActivity.getApplicationContext();
-		}
-		else
-		{
-			return mFragment.getActivity().getApplicationContext();
-		}
-	}
-
-
-	private View getRootView()
-	{
-		if(mActivity != null)
-		{
-			return mActivity.getWindow().getDecorView().findViewById(android.R.id.content);
-		}
-		else
-		{
-			return mFragment.getView();
-		}
-	}
-
-
-	private boolean shouldShowRationale(String permission)
-	{
-		if(mActivity != null)
-		{
-			return ActivityCompat.shouldShowRequestPermissionRationale(mActivity, permission);
-		}
-		else
-		{
-			return mFragment.shouldShowRequestPermissionRationale(permission);
-		}
-	}
-
-
-	private void requestPermission(String permission, PermissionCallback permissionCallback)
-	{
-		mPermissionCallback = permissionCallback;
-
-		if(mActivity != null)
-		{
-			ActivityCompat.requestPermissions(mActivity, new String[]{permission}, REQUEST_CODE_PERMISSION);
-		}
-		else
-		{
-			mFragment.requestPermissions(new String[]{permission}, REQUEST_CODE_PERMISSION);
-		}
-	}
-
-
-	private void requestPermissions(String[] permissions, PermissionsCallback permissionsCallback)
-	{
-		mPermissionsCallback = permissionsCallback;
-
-		if(mActivity != null)
-		{
-			ActivityCompat.requestPermissions(mActivity, permissions, REQUEST_CODE_PERMISSIONS);
-		}
-		else
-		{
-			mFragment.requestPermissions(permissions, REQUEST_CODE_PERMISSIONS);
-		}
-	}
-
-
-	private PermissionAction createRationaleConfirmAction(final String permission, final PermissionCallback permissionCallback)
-	{
-		return new PermissionAction()
+		return new ConfirmAction()
 		{
 			@Override
 			public void run()
 			{
-				requestPermission(permission, permissionCallback);
+				mPermissionCallback = permissionCallback;
+				permissionRequestable.requestPermission(permission);
 			}
 		};
 	}
 
 
-	private PermissionAction createRationaleConfirmAction(final String[] permissions, final PermissionsCallback permissionsCallback)
+	private ConfirmAction createRationaleConfirmAction(final PermissionRequestable permissionRequestable, final String[] permissions, final PermissionsCallback permissionsCallback)
 	{
-		return new PermissionAction()
+		return new ConfirmAction()
 		{
 			@Override
 			public void run()
 			{
-				requestPermissions(permissions, permissionsCallback);
+				mPermissionsCallback = permissionsCallback;
+				permissionRequestable.requestPermissions(permissions);
 			}
 		};
 	}
@@ -396,6 +435,114 @@ public class PermissionManager
 				}
 			}
 			return denied.toArray(new String[denied.size()]);
+		}
+	}
+
+
+	private static class ActivityRequestable<T extends Activity> implements PermissionRequestable<T>
+	{
+		private T mActivity;
+
+
+		public ActivityRequestable(T activity)
+		{
+			mActivity = activity;
+		}
+
+
+		@Override
+		public T getRequestable()
+		{
+			return mActivity;
+		}
+
+
+		@Override
+		public Context getContext()
+		{
+			return mActivity.getApplicationContext();
+		}
+
+
+		@Override
+		public View getRootView()
+		{
+			return mActivity.getWindow().getDecorView().findViewById(android.R.id.content);
+		}
+
+
+		@Override
+		public boolean shouldShowRationale(String permission)
+		{
+			return ActivityCompat.shouldShowRequestPermissionRationale(mActivity, permission);
+		}
+
+
+		@Override
+		public void requestPermission(String permission)
+		{
+			ActivityCompat.requestPermissions(mActivity, new String[]{permission}, REQUEST_CODE_PERMISSION);
+		}
+
+
+		@Override
+		public void requestPermissions(String[] permissions)
+		{
+			ActivityCompat.requestPermissions(mActivity, permissions, REQUEST_CODE_PERMISSIONS);
+		}
+	}
+
+
+	private static class FragmentRequestable<T extends Fragment> implements PermissionRequestable<T>
+	{
+		private T mFragment;
+
+
+		public FragmentRequestable(T fragment)
+		{
+			mFragment = fragment;
+		}
+
+
+		@Override
+		public T getRequestable()
+		{
+			return mFragment;
+		}
+
+
+		@Override
+		public Context getContext()
+		{
+			return mFragment.getActivity().getApplicationContext();
+		}
+
+
+		@Override
+		public View getRootView()
+		{
+			return mFragment.getView();
+		}
+
+
+		@Override
+		public boolean shouldShowRationale(String permission)
+		{
+			return mFragment.shouldShowRequestPermissionRationale(permission);
+		}
+
+
+		@Override
+		public void requestPermission(String permission)
+		{
+			mFragment.requestPermissions(new String[]{permission}, REQUEST_CODE_PERMISSION);
+		}
+
+
+		@Override
+		public void requestPermissions(String[] permissions)
+		{
+			mFragment.requestPermissions(permissions, REQUEST_CODE_PERMISSIONS);
 		}
 	}
 }

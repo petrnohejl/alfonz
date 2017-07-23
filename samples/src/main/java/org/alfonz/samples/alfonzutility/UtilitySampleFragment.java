@@ -9,18 +9,13 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 
 import org.alfonz.samples.alfonzmvvm.BaseFragment;
-import org.alfonz.samples.alfonzutility.utility.PermissionRationaleHandler;
 import org.alfonz.samples.databinding.FragmentUtilitySampleBinding;
 import org.alfonz.utility.IntentUtility;
 import org.alfonz.utility.KeyboardUtility;
-import org.alfonz.utility.PermissionManager;
 
 
 public class UtilitySampleFragment extends BaseFragment<UtilitySampleView, UtilitySampleViewModel, FragmentUtilitySampleBinding> implements UtilitySampleView
 {
-	private PermissionManager mPermissionManager = new PermissionManager(this, new PermissionRationaleHandler());
-
-
 	@Nullable
 	@Override
 	public Class<UtilitySampleViewModel> getViewModelClass()
@@ -47,7 +42,7 @@ public class UtilitySampleFragment extends BaseFragment<UtilitySampleView, Utili
 	@Override
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
 	{
-		mPermissionManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		getViewModel().permissionManager.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
 	}
 
 
@@ -166,18 +161,20 @@ public class UtilitySampleFragment extends BaseFragment<UtilitySampleView, Utili
 	@Override
 	public void onButtonDownloadClick()
 	{
-		mPermissionManager.request(
+		getViewModel().permissionManager.request(
+				this,
 				Manifest.permission.WRITE_EXTERNAL_STORAGE,
-				() -> getViewModel().performDownloadUtility());
+				requestable -> requestable.getViewModel().performDownloadUtility());
 	}
 
 
 	@Override
 	public void onButtonZipClick()
 	{
-		mPermissionManager.request(
+		getViewModel().permissionManager.request(
+				this,
 				Manifest.permission.WRITE_EXTERNAL_STORAGE,
-				() -> getViewModel().performZipUtility());
+				requestable -> requestable.getViewModel().performZipUtility());
 	}
 
 
@@ -263,11 +260,12 @@ public class UtilitySampleFragment extends BaseFragment<UtilitySampleView, Utili
 
 	private void performPermissionRequest()
 	{
-		mPermissionManager.request(
+		getViewModel().permissionManager.request(
+				this,
 				Manifest.permission.READ_EXTERNAL_STORAGE,
-				() -> showToast("Granted"),
-				() -> showToast("Denied"),
-				() -> showToast("Blocked"));
+				requestable -> requestable.showToast("Granted"),
+				requestable -> requestable.showToast("Denied"),
+				requestable -> requestable.showToast("Blocked"));
 	}
 
 
@@ -279,8 +277,9 @@ public class UtilitySampleFragment extends BaseFragment<UtilitySampleView, Utili
 				Manifest.permission.ACCESS_COARSE_LOCATION,
 				Manifest.permission.ACCESS_FINE_LOCATION};
 
-		mPermissionManager.request(
+		getViewModel().permissionManager.request(
+				this,
 				permissions,
-				permissionsResult -> showToast(String.format("Granted: %b", permissionsResult.isGranted())));
+				(requestable, permissionsResult) -> requestable.showToast(String.format("Granted: %b", permissionsResult.isGranted())));
 	}
 }

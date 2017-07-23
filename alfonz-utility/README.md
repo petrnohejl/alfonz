@@ -175,7 +175,7 @@ public class PermissionRationaleHandler implements PermissionManager.RationaleHa
 	}
 
 	@Override
-	public void showRationale(View rootView, String rationaleMessage, PermissionManager.PermissionAction confirmAction)
+	public void showRationale(View rootView, String rationaleMessage, PermissionManager.ConfirmAction confirmAction)
 	{
 		Snackbar.make(rootView, rationaleMessage, Snackbar.LENGTH_INDEFINITE)
 				.setAction(android.R.string.ok, view -> confirmAction.run())
@@ -184,10 +184,10 @@ public class PermissionRationaleHandler implements PermissionManager.RationaleHa
 }
 ```
 
-Now you can use the `PermissionManager` in your Fragment or Activity to manage permission requests.
+Now you can use the `PermissionManager` in your Fragment or Activity to manage permission requests. It is recommended to define it in ViewModel so permission callback can survive orientation changes. You can easily access the manager from Fragment or Activity if you define it as a public final attribute.
 
 ```java
-private PermissionManager mPermissionManager = new PermissionManager(this, new PermissionRationaleHandler());
+public final PermissionManager permissionManager = new PermissionManager(new PermissionRationaleHandler());
 ```
 
 Override `onRequestPermissionsResult()` as follows.
@@ -196,29 +196,33 @@ Override `onRequestPermissionsResult()` as follows.
 @Override
 public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
 {
-	mPermissionManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
+	getViewModel().permissionManager.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
 }
 ```
 
 Call `check` method to check if permission(s) have been granted or denied. Call `request` method to check and eventually request permission(s) to be granted to the app.
 
 ```java
-boolean granted = mPermissionManager.check(Manifest.permission.READ_EXTERNAL_STORAGE);
+boolean granted = getViewModel().permissionManager.check(this, Manifest.permission.READ_EXTERNAL_STORAGE);
 ```
 
 ```java
-mPermissionManager.request(
+getViewModel().permissionManager.request(
+		this,
 		Manifest.permission.READ_EXTERNAL_STORAGE,
-		() -> handlePermissionGranted(),
-		() -> handlePermissionDenied(),
-		() -> handlePermissionBlocked());
+		requestable -> requestable.handlePermissionGranted(),
+		requestable -> requestable.handlePermissionDenied(),
+		requestable -> requestable.handlePermissionBlocked());
 ```
 
 ```java
-mPermissionManager.request(
+getViewModel().permissionManager.request(
+		this,
 		new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
-		permissionsResult -> handlePermissions(permissionsResult));
+		(requestable, permissionsResult) -> requestable.handlePermissions(permissionsResult));
 ```
+
+Requestable variable in the lambda expression represents current instance of Fragment or Activity which has been passed in `onRequestPermissionsResult()` method.
 
 
 How to use ResourcesUtility

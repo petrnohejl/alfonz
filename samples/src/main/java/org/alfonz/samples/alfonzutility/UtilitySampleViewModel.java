@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 
 import org.alfonz.samples.R;
 import org.alfonz.samples.alfonzmvvm.BaseViewModel;
+import org.alfonz.samples.alfonzutility.utility.PermissionRationaleHandler;
 import org.alfonz.utility.ContentUtility;
 import org.alfonz.utility.DateConvertor;
 import org.alfonz.utility.DeviceUuidFactory;
@@ -18,6 +19,7 @@ import org.alfonz.utility.DownloadUtility;
 import org.alfonz.utility.HashUtility;
 import org.alfonz.utility.Logcat;
 import org.alfonz.utility.NetworkUtility;
+import org.alfonz.utility.PermissionManager;
 import org.alfonz.utility.ResourcesUtility;
 import org.alfonz.utility.ServiceUtility;
 import org.alfonz.utility.StorageUtility;
@@ -79,6 +81,8 @@ public class UtilitySampleViewModel extends BaseViewModel<UtilitySampleView>
 	private static final String LOG_MESSAGE_VERSION_UTILITY_COMPARISON = "[VersionUtility] comparison: %s";
 
 	public final ObservableField<String> log = new ObservableField<>();
+
+	public final PermissionManager permissionManager = new PermissionManager(new PermissionRationaleHandler());
 
 
 	@Override

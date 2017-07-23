@@ -39,7 +39,7 @@ public class PermissionRationaleHandler implements PermissionManager.RationaleHa
 
 
 	@Override
-	public void showRationale(View rootView, String rationaleMessage, PermissionManager.PermissionAction confirmAction)
+	public void showRationale(View rootView, String rationaleMessage, PermissionManager.ConfirmAction confirmAction)
 	{
 		Snackbar
 				.make(rootView, rationaleMessage, Snackbar.LENGTH_INDEFINITE)

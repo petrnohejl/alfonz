@@ -7,22 +7,20 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 
 import org.alfonz.media.ImagePicker;
 import org.alfonz.media.SoundManager;
 import org.alfonz.samples.R;
 import org.alfonz.samples.alfonzmvvm.BaseFragment;
-import org.alfonz.samples.alfonzutility.utility.PermissionRationaleHandler;
 import org.alfonz.samples.databinding.FragmentMediaSampleBinding;
-import org.alfonz.utility.PermissionManager;
 
 
 public class MediaSampleFragment extends BaseFragment<MediaSampleView, MediaSampleViewModel, FragmentMediaSampleBinding> implements MediaSampleView
 {
 	private SoundManager mSoundManager;
 	private ImagePicker mImagePicker;
-	private PermissionManager mPermissionManager;
 
 
 	@Nullable
@@ -46,7 +44,6 @@ public class MediaSampleFragment extends BaseFragment<MediaSampleView, MediaSamp
 		super.onActivityCreated(savedInstanceState);
 		mSoundManager = new SoundManager(getContext(), SoundManager.PLAY_SINGLE);
 		mImagePicker = new ImagePicker(getContext(), getString(R.string.app_name));
-		mPermissionManager = new PermissionManager(this, new PermissionRationaleHandler());
 	}
 
 
@@ -96,7 +93,7 @@ public class MediaSampleFragment extends BaseFragment<MediaSampleView, MediaSamp
 	@Override
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
 	{
-		mPermissionManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		getViewModel().permissionManager.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
 	}
 
 
@@ -117,17 +114,31 @@ public class MediaSampleFragment extends BaseFragment<MediaSampleView, MediaSamp
 	@Override
 	public void onButtonPickImageFromCameraClick()
 	{
-		mPermissionManager.request(
+		getViewModel().permissionManager.request(
+				this,
 				Manifest.permission.READ_EXTERNAL_STORAGE,
-				() -> mImagePicker.pickImageFromCamera(MediaSampleFragment.this));
+				requestable -> requestable.pickImageFromCamera(requestable));
 	}
 
 
 	@Override
 	public void onButtonPickImageFromGalleryClick()
 	{
-		mPermissionManager.request(
+		getViewModel().permissionManager.request(
+				this,
 				Manifest.permission.READ_EXTERNAL_STORAGE,
-				() -> mImagePicker.pickImageFromGallery(MediaSampleFragment.this));
+				requestable -> requestable.pickImageFromGallery(requestable));
+	}
+
+
+	public void pickImageFromCamera(Fragment fragment)
+	{
+		mImagePicker.pickImageFromCamera(fragment);
+	}
+
+
+	public void pickImageFromGallery(Fragment fragment)
+	{
+		mImagePicker.pickImageFromGallery(fragment);
 	}
 }
