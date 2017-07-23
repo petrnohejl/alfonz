@@ -13,50 +13,33 @@ Create a new instance of `ImagePicker`. Specify the name of the album directory.
 private ImagePicker mImagePicker = new ImagePicker(getContext(), getString(R.string.app_name));
 ```
 
-Pick an image from camera or gallery when user clicks on a button. Note that it requires `READ_EXTERNAL_STORAGE` permission.
-
-```java
-mImagePicker.pickImageFromCamera(this);
-mImagePicker.pickImageFromGallery(this);
-```
-
-Handle Activity result and get the bitmap.
+Override `onActivityResult()` as follows.
 
 ```java
 @Override
-public void onActivityResult(final int requestCode, final int resultCode, final Intent data)
+public void onActivityResult(int requestCode, int resultCode, Intent data)
 {
-	if(resultCode == Activity.RESULT_OK)
-	{
-		switch(requestCode)
-		{
-			case ImagePicker.ACTION_PICK_IMAGE_FROM_CAMERA:
-			{
-				Bitmap bitmap = mImagePicker.handleImageFromCamera();
-				if(bitmap != null)
-				{
-					// do something with the bitmap
-				}
-				break;
-			}
-
-			case ImagePicker.ACTION_PICK_IMAGE_FROM_GALLERY:
-			{
-				Bitmap bitmap = mImagePicker.handleImageFromGallery(data);
-				if(bitmap != null)
-				{
-					// do something with the bitmap
-				}
-				break;
-			}
-		}
-	}
-	else if(resultCode == Activity.RESULT_CANCELED)
-	{
-		// canceled
-	}
+	mImagePicker.onActivityResult(this, requestCode, resultCode, data);
 }
 ```
+
+Pick an image from camera or gallery when user clicks on a button. Note that it requires `READ_EXTERNAL_STORAGE` permission.
+
+```java
+mImagePicker.pickImageFromCamera(
+		this,
+		(pickable, bitmap, path) -> pickable.handleImagePicked(bitmap, path),
+		pickable -> pickable.handleImageCanceled());
+```
+
+```java
+mImagePicker.pickImageFromGallery(
+		this,
+		(pickable, bitmap, path) -> pickable.handleImagePicked(bitmap, path),
+		pickable -> pickable.handleImageCanceled());
+```
+
+Pickable variable in the lambda expression represents current instance of Fragment or Activity which has been passed in `onActivityResult()` method.
 
 
 How to use SoundManager

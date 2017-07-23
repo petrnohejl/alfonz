@@ -1,13 +1,10 @@
 package org.alfonz.samples.alfonzmedia;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 
 import org.alfonz.media.ImagePicker;
@@ -56,37 +53,9 @@ public class MediaSampleFragment extends BaseFragment<MediaSampleView, MediaSamp
 
 
 	@Override
-	public void onActivityResult(final int requestCode, final int resultCode, final Intent data)
+	public void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-		if(resultCode == Activity.RESULT_OK)
-		{
-			switch(requestCode)
-			{
-				case ImagePicker.ACTION_PICK_IMAGE_FROM_CAMERA:
-				{
-					Bitmap bitmap = mImagePicker.handleImageFromCamera();
-					if(bitmap != null)
-					{
-						getViewModel().updateBitmap(bitmap);
-					}
-					break;
-				}
-
-				case ImagePicker.ACTION_PICK_IMAGE_FROM_GALLERY:
-				{
-					Bitmap bitmap = mImagePicker.handleImageFromGallery(data);
-					if(bitmap != null)
-					{
-						getViewModel().updateBitmap(bitmap);
-					}
-					break;
-				}
-			}
-		}
-		else if(resultCode == Activity.RESULT_CANCELED)
-		{
-			// canceled
-		}
+		mImagePicker.onActivityResult(this, requestCode, resultCode, data);
 	}
 
 
@@ -131,14 +100,20 @@ public class MediaSampleFragment extends BaseFragment<MediaSampleView, MediaSamp
 	}
 
 
-	public void pickImageFromCamera(Fragment fragment)
+	public void pickImageFromCamera(MediaSampleFragment fragment)
 	{
-		mImagePicker.pickImageFromCamera(fragment);
+		mImagePicker.pickImageFromCamera(
+				fragment,
+				(pickable, bitmap, path) -> pickable.getViewModel().updateBitmap(bitmap),
+				pickable -> pickable.showToast("Canceled"));
 	}
 
 
-	public void pickImageFromGallery(Fragment fragment)
+	public void pickImageFromGallery(MediaSampleFragment fragment)
 	{
-		mImagePicker.pickImageFromGallery(fragment);
+		mImagePicker.pickImageFromGallery(
+				fragment,
+				(pickable, bitmap, path) -> pickable.getViewModel().updateBitmap(bitmap),
+				pickable -> pickable.showToast("Canceled"));
 	}
 }

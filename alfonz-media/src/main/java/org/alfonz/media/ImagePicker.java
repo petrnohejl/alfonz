@@ -1,5 +1,6 @@
 package org.alfonz.media;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,7 +11,9 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.Pair;
 import android.util.Log;
 
 import org.alfonz.graphics.bitmap.BitmapScaler;
@@ -19,19 +22,46 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 
 public class ImagePicker
 {
-	public static final int ACTION_PICK_IMAGE_FROM_CAMERA = 0;
-	public static final int ACTION_PICK_IMAGE_FROM_GALLERY = 1;
-
+	private static final int REQUEST_CODE_CAMERA = 1;
+	private static final int REQUEST_CODE_GALLERY = 2;
 	private static final String TAG = "ALFONZ";
 
-	private Context mContext;
-	private String mAlbumDirectoryName;
-	private int mImageSize;
-	private String mImageFromCameraPath = null;
+	private final Context mContext;
+	private final String mAlbumDirectoryName;
+	private final int mImageSize;
+	private ImagePickerCallback mImagePickerCallback;
+	private String mImageFromCameraPath;
+
+
+	public interface PickedAction<T>
+	{
+		void run(@NonNull T pickable, @NonNull Bitmap bitmap, @NonNull String path);
+	}
+
+
+	public interface CanceledAction<T>
+	{
+		void run(@NonNull T pickable);
+	}
+
+
+	public interface ImagePickerCallback<T>
+	{
+		void onImagePicked(@NonNull T pickable, @NonNull Bitmap bitmap, @NonNull String path);
+		void onImageCanceled(@NonNull T pickable);
+	}
+
+
+	private interface ImagePickable<T>
+	{
+		T getPickable();
+		void startActivityForResult(Intent intent, int requestCode);
+	}
 
 
 	public ImagePicker(Context context, String albumDirectoryName)
@@ -48,14 +78,171 @@ public class ImagePicker
 	}
 
 
-	public void pickImageFromCamera(Fragment fragment)
+	public <T extends Activity> void pickImageFromCamera(T activity, PickedAction<T> pickedAction)
 	{
-		File file;
+		pickImageFromCamera(new ActivityPickable<>(activity), pickedAction);
+	}
+
+
+	public <T extends Fragment> void pickImageFromCamera(T fragment, PickedAction<T> pickedAction)
+	{
+		pickImageFromCamera(new FragmentPickable<>(fragment), pickedAction);
+	}
+
+
+	public <T extends Activity> void pickImageFromCamera(T activity, PickedAction<T> pickedAction, CanceledAction<T> canceledAction)
+	{
+		pickImageFromCamera(new ActivityPickable<>(activity), pickedAction, canceledAction);
+	}
+
+
+	public <T extends Fragment> void pickImageFromCamera(T fragment, PickedAction<T> pickedAction, CanceledAction<T> canceledAction)
+	{
+		pickImageFromCamera(new FragmentPickable<>(fragment), pickedAction, canceledAction);
+	}
+
+
+	public <T extends Activity> void pickImageFromCamera(T activity, ImagePickerCallback<T> imagePickerCallback)
+	{
+		pickImageFromCamera(new ActivityPickable<>(activity), imagePickerCallback);
+	}
+
+
+	public <T extends Fragment> void pickImageFromCamera(T fragment, ImagePickerCallback<T> imagePickerCallback)
+	{
+		pickImageFromCamera(new FragmentPickable<>(fragment), imagePickerCallback);
+	}
+
+
+	public <T extends Activity> void pickImageFromGallery(T activity, PickedAction<T> pickedAction)
+	{
+		pickImageFromGallery(new ActivityPickable<>(activity), pickedAction);
+	}
+
+
+	public <T extends Fragment> void pickImageFromGallery(T fragment, PickedAction<T> pickedAction)
+	{
+		pickImageFromGallery(new FragmentPickable<>(fragment), pickedAction);
+	}
+
+
+	public <T extends Activity> void pickImageFromGallery(T activity, PickedAction<T> pickedAction, CanceledAction<T> canceledAction)
+	{
+		pickImageFromGallery(new ActivityPickable<>(activity), pickedAction, canceledAction);
+	}
+
+
+	public <T extends Fragment> void pickImageFromGallery(T fragment, PickedAction<T> pickedAction, CanceledAction<T> canceledAction)
+	{
+		pickImageFromGallery(new FragmentPickable<>(fragment), pickedAction, canceledAction);
+	}
+
+
+	public <T extends Activity> void pickImageFromGallery(T activity, ImagePickerCallback<T> imagePickerCallback)
+	{
+		pickImageFromGallery(new ActivityPickable<>(activity), imagePickerCallback);
+	}
+
+
+	public <T extends Fragment> void pickImageFromGallery(T fragment, ImagePickerCallback<T> imagePickerCallback)
+	{
+		pickImageFromGallery(new FragmentPickable<>(fragment), imagePickerCallback);
+	}
+
+
+	public <T extends Activity> void onActivityResult(T activity, int requestCode, int resultCode, Intent data)
+	{
+		onActivityResult(new ActivityPickable<>(activity), requestCode, resultCode, data);
+	}
+
+
+	public <T extends Fragment> void onActivityResult(T fragment, int requestCode, int resultCode, Intent data)
+	{
+		onActivityResult(new FragmentPickable<>(fragment), requestCode, resultCode, data);
+	}
+
+
+	private <T> void pickImageFromCamera(ImagePickable<T> imagePickable, final PickedAction<T> pickedAction)
+	{
+		pickImageFromCamera(imagePickable, new ImagePickerCallback<T>()
+		{
+			@Override
+			public void onImagePicked(@NonNull T pickable, @NonNull Bitmap bitmap, @NonNull String path)
+			{
+				pickedAction.run(pickable, bitmap, path);
+			}
+
+
+			@Override
+			public void onImageCanceled(@NonNull T pickable) {}
+		});
+	}
+
+
+	private <T> void pickImageFromGallery(ImagePickable<T> imagePickable, final PickedAction<T> pickedAction)
+	{
+		pickImageFromGallery(imagePickable, new ImagePickerCallback<T>()
+		{
+			@Override
+			public void onImagePicked(@NonNull T pickable, @NonNull Bitmap bitmap, @NonNull String path)
+			{
+				pickedAction.run(pickable, bitmap, path);
+			}
+
+
+			@Override
+			public void onImageCanceled(@NonNull T pickable) {}
+		});
+	}
+
+
+	private <T> void pickImageFromCamera(ImagePickable<T> imagePickable, final PickedAction<T> pickedAction, final CanceledAction<T> canceledAction)
+	{
+		pickImageFromCamera(imagePickable, new ImagePickerCallback<T>()
+		{
+			@Override
+			public void onImagePicked(@NonNull T pickable, @NonNull Bitmap bitmap, @NonNull String path)
+			{
+				pickedAction.run(pickable, bitmap, path);
+			}
+
+
+			@Override
+			public void onImageCanceled(@NonNull T pickable)
+			{
+				canceledAction.run(pickable);
+			}
+		});
+	}
+
+
+	private <T> void pickImageFromGallery(ImagePickable<T> imagePickable, final PickedAction<T> pickedAction, final CanceledAction<T> canceledAction)
+	{
+		pickImageFromGallery(imagePickable, new ImagePickerCallback<T>()
+		{
+			@Override
+			public void onImagePicked(@NonNull T pickable, @NonNull Bitmap bitmap, @NonNull String path)
+			{
+				pickedAction.run(pickable, bitmap, path);
+			}
+
+
+			@Override
+			public void onImageCanceled(@NonNull T pickable)
+			{
+				canceledAction.run(pickable);
+			}
+		});
+	}
+
+
+	private <T> void pickImageFromCamera(ImagePickable<T> imagePickable, ImagePickerCallback<T> imagePickerCallback)
+	{
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
 		try
 		{
-			file = createImageFile(mAlbumDirectoryName);
+			File file = createImageFile(mAlbumDirectoryName);
 			mImageFromCameraPath = file.getAbsolutePath();
 			intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
 		}
@@ -65,37 +252,83 @@ public class ImagePicker
 			mImageFromCameraPath = null;
 		}
 
-		fragment.startActivityForResult(intent, ACTION_PICK_IMAGE_FROM_CAMERA);
+		mImagePickerCallback = imagePickerCallback;
+		imagePickable.startActivityForResult(intent, REQUEST_CODE_CAMERA);
 	}
 
 
-	public void pickImageFromGallery(Fragment fragment)
+	private <T> void pickImageFromGallery(ImagePickable<T> imagePickable, ImagePickerCallback<T> imagePickerCallback)
 	{
 		Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 		intent.setType("image/jpeg");
-		fragment.startActivityForResult(intent, ACTION_PICK_IMAGE_FROM_GALLERY);
+
+		mImagePickerCallback = imagePickerCallback;
+		imagePickable.startActivityForResult(intent, REQUEST_CODE_GALLERY);
 	}
 
 
-	public Bitmap handleImageFromCamera()
+	@SuppressWarnings("unchecked")
+	private <T> void onActivityResult(ImagePickable<T> imagePickable, int requestCode, int resultCode, Intent data)
+	{
+		if(mImagePickerCallback != null)
+		{
+			if(resultCode == Activity.RESULT_OK)
+			{
+				switch(requestCode)
+				{
+					case REQUEST_CODE_CAMERA:
+					{
+						Pair<Bitmap, String> result = handleImageFromCamera();
+						Bitmap bitmap = result.first;
+						String path = result.second;
+						if(bitmap != null && path != null)
+						{
+							mImagePickerCallback.onImagePicked(imagePickable.getPickable(), bitmap, path);
+						}
+						break;
+					}
+
+					case REQUEST_CODE_GALLERY:
+					{
+						Pair<Bitmap, String> result = handleImageFromGallery(data);
+						Bitmap bitmap = result.first;
+						String path = result.second;
+						if(bitmap != null && path != null)
+						{
+							mImagePickerCallback.onImagePicked(imagePickable.getPickable(), bitmap, path);
+						}
+						break;
+					}
+				}
+			}
+			else if(resultCode == Activity.RESULT_CANCELED)
+			{
+				mImagePickerCallback.onImageCanceled(imagePickable.getPickable());
+			}
+			mImagePickerCallback = null;
+		}
+	}
+
+
+	private Pair<Bitmap, String> handleImageFromCamera()
 	{
 		Bitmap bitmap = null;
+		String imageFromCameraPath = mImageFromCameraPath;
 
-		if(mImageFromCameraPath != null)
+		if(imageFromCameraPath != null)
 		{
-			addImageToGallery(mImageFromCameraPath);
-			bitmap = handleImage(mImageFromCameraPath);
+			addImageToGallery(imageFromCameraPath);
+			bitmap = handleImage(imageFromCameraPath);
 			mImageFromCameraPath = null;
 		}
 
-		return bitmap;
+		return new Pair<>(bitmap, imageFromCameraPath);
 	}
 
 
-	public Bitmap handleImageFromGallery(Intent data)
+	private Pair<Bitmap, String> handleImageFromGallery(Intent data)
 	{
 		Bitmap bitmap = null;
-
 		Uri imageFromGalleryUri = data.getData();
 		String imageFromGalleryPath = getPathFromUri(imageFromGalleryUri);
 
@@ -104,17 +337,16 @@ public class ImagePicker
 			bitmap = handleImage(imageFromGalleryPath);
 		}
 
-		return bitmap;
+		return new Pair<>(bitmap, imageFromGalleryPath);
 	}
 
 
 	private File createImageFile(String albumDirectoryName) throws IOException
 	{
-		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-		String imageFileName = "IMG_" + timeStamp + "_";
+		String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
+		String imageFileName = "IMG_" + timestamp + "_";
 		File albumFile = getAlbumDirectory(albumDirectoryName);
-		File imageFile = File.createTempFile(imageFileName, ".jpg", albumFile);
-		return imageFile;
+		return File.createTempFile(imageFileName, ".jpg", albumFile);
 	}
 
 
@@ -124,15 +356,12 @@ public class ImagePicker
 		if(Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()))
 		{
 			storageDirectory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), albumDirectoryName);
-			if(storageDirectory != null)
+			if(!storageDirectory.mkdirs())
 			{
-				if(!storageDirectory.mkdirs())
+				if(!storageDirectory.exists())
 				{
-					if(!storageDirectory.exists())
-					{
-						Log.e(TAG, "failed to create album directory");
-						return null;
-					}
+					Log.e(TAG, "failed to create album directory");
+					return null;
 				}
 			}
 		}
@@ -151,12 +380,13 @@ public class ImagePicker
 		{
 			String[] projection = {MediaStore.Images.Media.DATA};
 			Cursor cursor = mContext.getContentResolver().query(uri, projection, null, null, null);
-			if(cursor.moveToFirst())
+			if(cursor != null)
 			{
+				cursor.moveToFirst();
 				int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 				path = cursor.getString(columnIndex);
+				cursor.close();
 			}
-			cursor.close();
 		}
 		return path;
 	}
@@ -164,11 +394,14 @@ public class ImagePicker
 
 	private void addImageToGallery(String imageFromCameraPath)
 	{
-		Intent intent = new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE");
+		Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
 		File file = new File(imageFromCameraPath);
 		Uri uri = Uri.fromFile(file);
 		intent.setData(uri);
-		if(mContext != null) mContext.sendBroadcast(intent);
+		if(mContext != null)
+		{
+			mContext.sendBroadcast(intent);
+		}
 	}
 
 
@@ -181,7 +414,6 @@ public class ImagePicker
 		// set bitmap options to scale the image decode target
 		bitmapOptions.inJustDecodeBounds = false;
 		bitmapOptions.inSampleSize = 4;
-		bitmapOptions.inPurgeable = true;
 
 		// decode the JPEG file into a bitmap
 		Bitmap originalBitmap = null;
@@ -198,7 +430,10 @@ public class ImagePicker
 		}
 		finally
 		{
-			if(originalBitmap != null) originalBitmap.recycle();
+			if(originalBitmap != null)
+			{
+				originalBitmap.recycle();
+			}
 		}
 
 		// handle bitmap rotation
@@ -216,7 +451,7 @@ public class ImagePicker
 
 	private int getBitmapRotation(String imagePath)
 	{
-		int rotation = 0;
+		int rotation;
 		switch(getExifOrientation(imagePath))
 		{
 			case ExifInterface.ORIENTATION_ROTATE_90:
@@ -252,5 +487,57 @@ public class ImagePicker
 			e.printStackTrace();
 		}
 		return orientation;
+	}
+
+
+	private static class ActivityPickable<T extends Activity> implements ImagePickable<T>
+	{
+		private T mActivity;
+
+
+		public ActivityPickable(T activity)
+		{
+			mActivity = activity;
+		}
+
+
+		@Override
+		public T getPickable()
+		{
+			return mActivity;
+		}
+
+
+		@Override
+		public void startActivityForResult(Intent intent, int requestCode)
+		{
+			mActivity.startActivityForResult(intent, requestCode);
+		}
+	}
+
+
+	private static class FragmentPickable<T extends Fragment> implements ImagePickable<T>
+	{
+		private T mFragment;
+
+
+		public FragmentPickable(T fragment)
+		{
+			mFragment = fragment;
+		}
+
+
+		@Override
+		public T getPickable()
+		{
+			return mFragment;
+		}
+
+
+		@Override
+		public void startActivityForResult(Intent intent, int requestCode)
+		{
+			mFragment.startActivityForResult(intent, requestCode);
+		}
 	}
 }
