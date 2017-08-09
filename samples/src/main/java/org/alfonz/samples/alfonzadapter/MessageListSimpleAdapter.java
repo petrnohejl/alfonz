@@ -2,10 +2,9 @@ package org.alfonz.samples.alfonzadapter;
 
 import org.alfonz.adapter.SimpleDataBoundRecyclerAdapter;
 import org.alfonz.samples.R;
-import org.alfonz.samples.databinding.FragmentAdapterSampleListMessageItemBinding;
 
 
-public class MessageListSimpleAdapter extends SimpleDataBoundRecyclerAdapter<FragmentAdapterSampleListMessageItemBinding>
+public class MessageListSimpleAdapter extends SimpleDataBoundRecyclerAdapter
 {
 	public MessageListSimpleAdapter(AdapterSampleView view, AdapterSampleViewModel viewModel)
 	{

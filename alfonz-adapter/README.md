@@ -23,7 +23,7 @@ Choose an adapter which suits your needs:
 Create a class, extend the generic adapter and call `super` in the constructor. Pass item layout, view (view layer in MVVM) and observable array collection in the `super`. Adapter will inflate the layout for an item and bind the view and the data into `BR.view` and `BR.data` variables.
 
 ```java
-public class ProductListAdapter extends SimpleDataBoundRecyclerAdapter<FragmentProductListItemBinding>
+public class ProductListAdapter extends SimpleDataBoundRecyclerAdapter
 {
 	public ProductListAdapter(ProductListView view, ProductListViewModel viewModel)
 	{

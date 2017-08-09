@@ -1,13 +1,12 @@
 package org.alfonz.adapter;
 
 import android.databinding.ObservableArrayList;
-import android.databinding.ViewDataBinding;
 import android.support.annotation.LayoutRes;
 
 import java.util.List;
 
 
-public class SimpleDataBoundRecyclerAdapter<T extends ViewDataBinding> extends BaseDataBoundRecyclerAdapter<T>
+public class SimpleDataBoundRecyclerAdapter extends BaseDataBoundRecyclerAdapter
 {
 	@LayoutRes private int mLayoutId;
 	private AdapterView mView;

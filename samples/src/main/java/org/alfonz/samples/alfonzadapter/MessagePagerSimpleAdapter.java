@@ -2,10 +2,9 @@ package org.alfonz.samples.alfonzadapter;
 
 import org.alfonz.adapter.SimpleDataBoundPagerAdapter;
 import org.alfonz.samples.R;
-import org.alfonz.samples.databinding.FragmentAdapterSamplePagerMessageItemBinding;
 
 
-public class MessagePagerSimpleAdapter extends SimpleDataBoundPagerAdapter<FragmentAdapterSamplePagerMessageItemBinding>
+public class MessagePagerSimpleAdapter extends SimpleDataBoundPagerAdapter
 {
 	public MessagePagerSimpleAdapter(AdapterSampleView view, AdapterSampleViewModel viewModel)
 	{

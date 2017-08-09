@@ -8,12 +8,11 @@ import android.support.annotation.LayoutRes;
 import java.lang.ref.WeakReference;
 
 
-public class SimpleDataBoundPagerAdapter<T extends ViewDataBinding> extends BaseDataBoundPagerAdapter<T>
+public class SimpleDataBoundPagerAdapter extends BaseDataBoundPagerAdapter
 {
 	@LayoutRes private int mLayoutId;
 	private AdapterView mView;
 	private ObservableArrayList<?> mItems;
-	private OnListChangedCallback<T> mOnListChangedCallback;
 
 
 	public SimpleDataBoundPagerAdapter(@LayoutRes int layoutId, AdapterView view, ObservableArrayList<?> items)
@@ -22,13 +21,12 @@ public class SimpleDataBoundPagerAdapter<T extends ViewDataBinding> extends Base
 		mView = view;
 		mItems = items;
 
-		mOnListChangedCallback = new OnListChangedCallback<>(this);
-		mItems.addOnListChangedCallback(mOnListChangedCallback);
+		mItems.addOnListChangedCallback(new OnListChangedCallback(this));
 	}
 
 
 	@Override
-	protected void bindItem(T binding, int position)
+	protected void bindItem(ViewDataBinding binding, int position)
 	{
 		binding.setVariable(BR.view, mView);
 		binding.setVariable(BR.data, mItems.get(position));
@@ -49,12 +47,12 @@ public class SimpleDataBoundPagerAdapter<T extends ViewDataBinding> extends Base
 	}
 
 
-	private static class OnListChangedCallback<T extends ViewDataBinding> extends ObservableList.OnListChangedCallback<ObservableList<?>>
+	private static class OnListChangedCallback extends ObservableList.OnListChangedCallback<ObservableList<?>>
 	{
-		private final WeakReference<SimpleDataBoundPagerAdapter<T>> mAdapter;
+		private final WeakReference<SimpleDataBoundPagerAdapter> mAdapter;
 
 
-		public OnListChangedCallback(SimpleDataBoundPagerAdapter<T> adapter)
+		public OnListChangedCallback(SimpleDataBoundPagerAdapter adapter)
 		{
 			mAdapter = new WeakReference<>(adapter);
 		}
