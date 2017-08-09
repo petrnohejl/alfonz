@@ -5,20 +5,18 @@ import android.databinding.ObservableList;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.LayoutRes;
 
-import org.alfonz.mvvm.AlfonzView;
-
 import java.lang.ref.WeakReference;
 
 
 public class SimpleDataBoundPagerAdapter<T extends ViewDataBinding> extends BaseDataBoundPagerAdapter<T>
 {
 	@LayoutRes private int mLayoutId;
-	private AlfonzView mView;
+	private AdapterView mView;
 	private ObservableArrayList<?> mItems;
 	private OnListChangedCallback<T> mOnListChangedCallback;
 
 
-	public SimpleDataBoundPagerAdapter(@LayoutRes int layoutId, AlfonzView view, ObservableArrayList<?> items)
+	public SimpleDataBoundPagerAdapter(@LayoutRes int layoutId, AdapterView view, ObservableArrayList<?> items)
 	{
 		mLayoutId = layoutId;
 		mView = view;

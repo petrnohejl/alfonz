@@ -4,19 +4,17 @@ import android.databinding.ObservableArrayList;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.LayoutRes;
 
-import org.alfonz.mvvm.AlfonzView;
-
 import java.util.List;
 
 
 public class SimpleDataBoundRecyclerAdapter<T extends ViewDataBinding> extends BaseDataBoundRecyclerAdapter<T>
 {
 	@LayoutRes private int mLayoutId;
-	private AlfonzView mView;
+	private AdapterView mView;
 	private ObservableArrayList<?> mItems;
 
 
-	public SimpleDataBoundRecyclerAdapter(@LayoutRes int layoutId, AlfonzView view, ObservableArrayList<?> items)
+	public SimpleDataBoundRecyclerAdapter(@LayoutRes int layoutId, AdapterView view, ObservableArrayList<?> items)
 	{
 		mLayoutId = layoutId;
 		mView = view;

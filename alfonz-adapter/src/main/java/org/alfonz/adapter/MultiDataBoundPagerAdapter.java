@@ -4,19 +4,17 @@ import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 import android.databinding.ViewDataBinding;
 
-import org.alfonz.mvvm.AlfonzView;
-
 import java.lang.ref.WeakReference;
 
 
 public abstract class MultiDataBoundPagerAdapter extends BaseDataBoundPagerAdapter
 {
-	private AlfonzView mView;
+	private AdapterView mView;
 	private ObservableArrayList<?>[] mItems;
 	private OnListChangedCallback mOnListChangedCallback;
 
 
-	public MultiDataBoundPagerAdapter(AlfonzView view, ObservableArrayList<?>... items)
+	public MultiDataBoundPagerAdapter(AdapterView view, ObservableArrayList<?>... items)
 	{
 		mView = view;
 		mItems = items;

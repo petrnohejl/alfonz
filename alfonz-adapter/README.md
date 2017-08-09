@@ -63,7 +63,7 @@ Create an XML layout, define `view` and `data` variables, use `view` for invokin
 Create a new instance of the adapter and set it in your RecyclerView. Implement event callbacks in the MVVM view layer - it is usually Fragment.
 
 ```java
-public interface ProductListView extends BaseView
+public interface ProductListView extends BaseView, AdapterView
 {
 	void onItemClick(ProductEntity product);
 }
@@ -140,7 +140,6 @@ There are also a few useful binding adapters for setting up recycler layout, dec
 Dependencies
 ------------
 
-* Alfonz MVVM Module
 * Android Support Library
 * Data Binding Library
 

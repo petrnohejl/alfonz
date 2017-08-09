@@ -2,18 +2,16 @@ package org.alfonz.adapter;
 
 import android.databinding.ObservableArrayMap;
 
-import org.alfonz.mvvm.AlfonzView;
-
 import java.util.List;
 
 
 public abstract class MultiMapDataBoundRecyclerAdapter extends BaseDataBoundRecyclerAdapter
 {
-	private AlfonzView mView;
+	private AdapterView mView;
 	private ObservableArrayMap<?, ?>[] mItems;
 
 
-	public MultiMapDataBoundRecyclerAdapter(AlfonzView view, ObservableArrayMap<?, ?>... items)
+	public MultiMapDataBoundRecyclerAdapter(AdapterView view, ObservableArrayMap<?, ?>... items)
 	{
 		mView = view;
 		mItems = items;

@@ -4,19 +4,17 @@ import android.databinding.ObservableArrayMap;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.LayoutRes;
 
-import org.alfonz.mvvm.AlfonzView;
-
 import java.util.List;
 
 
 public class SimpleMapDataBoundRecyclerAdapter<T extends ViewDataBinding> extends BaseDataBoundRecyclerAdapter<T>
 {
 	@LayoutRes private int mLayoutId;
-	private AlfonzView mView;
+	private AdapterView mView;
 	private ObservableArrayMap<?, ?> mItems;
 
 
-	public SimpleMapDataBoundRecyclerAdapter(@LayoutRes int layoutId, AlfonzView view, ObservableArrayMap<?, ?> items)
+	public SimpleMapDataBoundRecyclerAdapter(@LayoutRes int layoutId, AdapterView view, ObservableArrayMap<?, ?> items)
 	{
 		mLayoutId = layoutId;
 		mView = view;
