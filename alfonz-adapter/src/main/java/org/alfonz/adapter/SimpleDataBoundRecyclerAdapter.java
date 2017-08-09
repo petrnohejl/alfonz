@@ -9,7 +9,7 @@ import org.alfonz.mvvm.AlfonzView;
 import java.util.List;
 
 
-public abstract class SimpleDataBoundRecyclerAdapter<T extends ViewDataBinding> extends BaseDataBoundRecyclerAdapter<T>
+public class SimpleDataBoundRecyclerAdapter<T extends ViewDataBinding> extends BaseDataBoundRecyclerAdapter<T>
 {
 	@LayoutRes private int mLayoutId;
 	private AlfonzView mView;

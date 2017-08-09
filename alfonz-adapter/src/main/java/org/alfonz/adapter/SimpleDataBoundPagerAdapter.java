@@ -10,7 +10,7 @@ import org.alfonz.mvvm.AlfonzView;
 import java.lang.ref.WeakReference;
 
 
-public abstract class SimpleDataBoundPagerAdapter<T extends ViewDataBinding> extends BaseDataBoundPagerAdapter<T>
+public class SimpleDataBoundPagerAdapter<T extends ViewDataBinding> extends BaseDataBoundPagerAdapter<T>
 {
 	@LayoutRes private int mLayoutId;
 	private AlfonzView mView;
