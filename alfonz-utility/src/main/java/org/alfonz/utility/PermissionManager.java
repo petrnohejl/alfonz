@@ -101,25 +101,25 @@ public class PermissionManager
 
 	public <T extends Activity> void request(T activity, String permission, PermissionAction<T> grantedAction)
 	{
-		request(new ActivityRequestable<>(activity), permission, grantedAction);
+		request(new ActivityRequestable<>(activity), permission, grantedAction, null, null);
 	}
 
 
 	public <T extends Fragment> void request(T fragment, String permission, PermissionAction<T> grantedAction)
 	{
-		request(new FragmentRequestable<>(fragment), permission, grantedAction);
+		request(new FragmentRequestable<>(fragment), permission, grantedAction, null, null);
 	}
 
 
 	public <T extends Activity> void request(T activity, String permission, PermissionAction<T> grantedAction, PermissionAction<T> deniedAction)
 	{
-		request(new ActivityRequestable<>(activity), permission, grantedAction, deniedAction);
+		request(new ActivityRequestable<>(activity), permission, grantedAction, deniedAction, null);
 	}
 
 
 	public <T extends Fragment> void request(T fragment, String permission, PermissionAction<T> grantedAction, PermissionAction<T> deniedAction)
 	{
-		request(new FragmentRequestable<>(fragment), permission, grantedAction, deniedAction);
+		request(new FragmentRequestable<>(fragment), permission, grantedAction, deniedAction, null);
 	}
 
 
@@ -190,51 +190,6 @@ public class PermissionManager
 	}
 
 
-	private <T> void request(PermissionRequestable<T> permissionRequestable, String permission, final PermissionAction<T> grantedAction)
-	{
-		request(permissionRequestable, permission, new PermissionCallback<T>()
-		{
-			@Override
-			public void onPermissionGranted(@NonNull T requestable)
-			{
-				grantedAction.run(requestable);
-			}
-
-
-			@Override
-			public void onPermissionDenied(@NonNull T requestable) {}
-
-
-			@Override
-			public void onPermissionBlocked(@NonNull T requestable) {}
-		});
-	}
-
-
-	private <T> void request(PermissionRequestable<T> permissionRequestable, String permission, final PermissionAction<T> grantedAction, final PermissionAction<T> deniedAction)
-	{
-		request(permissionRequestable, permission, new PermissionCallback<T>()
-		{
-			@Override
-			public void onPermissionGranted(@NonNull T requestable)
-			{
-				grantedAction.run(requestable);
-			}
-
-
-			@Override
-			public void onPermissionDenied(@NonNull T requestable)
-			{
-				deniedAction.run(requestable);
-			}
-
-
-			@Override
-			public void onPermissionBlocked(@NonNull T requestable) {}
-		});
-	}
-
-
 	private <T> void request(PermissionRequestable<T> permissionRequestable, String permission, final PermissionAction<T> grantedAction, final PermissionAction<T> deniedAction, final PermissionAction<T> blockedAction)
 	{
 		request(permissionRequestable, permission, new PermissionCallback<T>()
@@ -242,21 +197,21 @@ public class PermissionManager
 			@Override
 			public void onPermissionGranted(@NonNull T requestable)
 			{
-				grantedAction.run(requestable);
+				if(grantedAction != null) grantedAction.run(requestable);
 			}
 
 
 			@Override
 			public void onPermissionDenied(@NonNull T requestable)
 			{
-				deniedAction.run(requestable);
+				if(deniedAction != null) deniedAction.run(requestable);
 			}
 
 
 			@Override
 			public void onPermissionBlocked(@NonNull T requestable)
 			{
-				blockedAction.run(requestable);
+				if(blockedAction != null) blockedAction.run(requestable);
 			}
 		});
 	}
