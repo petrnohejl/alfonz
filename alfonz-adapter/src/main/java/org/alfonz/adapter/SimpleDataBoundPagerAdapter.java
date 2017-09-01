@@ -4,6 +4,7 @@ import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 
 import java.lang.ref.WeakReference;
 
@@ -26,7 +27,7 @@ public class SimpleDataBoundPagerAdapter extends BaseDataBoundPagerAdapter
 
 
 	@Override
-	protected void bindItem(ViewDataBinding binding, int position)
+	protected void bindItem(@NonNull ViewDataBinding binding, int position)
 	{
 		binding.setVariable(BR.view, mView);
 		binding.setVariable(BR.data, mItems.get(position));
@@ -49,7 +50,7 @@ public class SimpleDataBoundPagerAdapter extends BaseDataBoundPagerAdapter
 
 	private static class OnListChangedCallback extends ObservableList.OnListChangedCallback<ObservableList<?>>
 	{
-		private final WeakReference<SimpleDataBoundPagerAdapter> mAdapter;
+		@NonNull private final WeakReference<SimpleDataBoundPagerAdapter> mAdapter;
 
 
 		public OnListChangedCallback(SimpleDataBoundPagerAdapter adapter)

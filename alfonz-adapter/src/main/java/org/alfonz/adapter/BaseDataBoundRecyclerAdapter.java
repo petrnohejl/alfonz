@@ -20,6 +20,7 @@ import android.databinding.OnRebindCallback;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.CallSuper;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
@@ -57,7 +58,7 @@ public abstract class BaseDataBoundRecyclerAdapter<T extends ViewDataBinding> ex
 	private final OnRebindCallback mOnRebindCallback = new OnRebindCallback()
 	{
 		@Override
-		public boolean onPreBind(ViewDataBinding binding)
+		public boolean onPreBind(@NonNull ViewDataBinding binding)
 		{
 			if(mRecyclerView == null || mRecyclerView.isComputingLayout())
 			{
@@ -99,7 +100,7 @@ public abstract class BaseDataBoundRecyclerAdapter<T extends ViewDataBinding> ex
 
 
 	@Override
-	public final void onBindViewHolder(BaseDataBoundRecyclerViewHolder<T> holder, int position, List<Object> payloads)
+	public final void onBindViewHolder(@NonNull BaseDataBoundRecyclerViewHolder<T> holder, int position, @NonNull List<Object> payloads)
 	{
 		// when a VH is rebound to the same item, we don't have to call the setters
 		if(payloads.isEmpty() || hasNonDataBindingInvalidate(payloads))
@@ -138,7 +139,7 @@ public abstract class BaseDataBoundRecyclerAdapter<T extends ViewDataBinding> ex
 	}
 
 
-	private boolean hasNonDataBindingInvalidate(List<Object> payloads)
+	private boolean hasNonDataBindingInvalidate(@NonNull List<Object> payloads)
 	{
 		for(Object payload : payloads)
 		{

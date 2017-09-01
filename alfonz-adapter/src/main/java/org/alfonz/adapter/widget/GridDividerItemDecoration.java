@@ -20,7 +20,7 @@ public class GridDividerItemDecoration extends RecyclerView.ItemDecoration
 	private int mMargin;
 
 
-	public GridDividerItemDecoration(Context context, int margin)
+	public GridDividerItemDecoration(@NonNull Context context, int margin)
 	{
 		final TypedArray typedArray = context.obtainStyledAttributes(ATTRS);
 		mDivider = typedArray.getDrawable(0);
@@ -30,14 +30,14 @@ public class GridDividerItemDecoration extends RecyclerView.ItemDecoration
 
 
 	@Override
-	public void getItemOffsets(Rect outRect, View view, RecyclerView recyclerView, RecyclerView.State state)
+	public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView recyclerView, RecyclerView.State state)
 	{
 		outRect.set(mMargin, mMargin, mMargin, mMargin);
 	}
 
 
 	@Override
-	public void onDrawOver(Canvas canvas, RecyclerView recyclerView, RecyclerView.State state)
+	public void onDrawOver(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView, RecyclerView.State state)
 	{
 		if(recyclerView.getLayoutManager() == null)
 		{
@@ -55,7 +55,7 @@ public class GridDividerItemDecoration extends RecyclerView.ItemDecoration
 	}
 
 
-	private void drawVertical(Canvas canvas, RecyclerView recyclerView)
+	private void drawVertical(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView)
 	{
 		final int top = recyclerView.getPaddingTop();
 		final int bottom = recyclerView.getHeight() - recyclerView.getPaddingBottom();
@@ -74,7 +74,7 @@ public class GridDividerItemDecoration extends RecyclerView.ItemDecoration
 	}
 
 
-	private void drawHorizontal(Canvas canvas, RecyclerView recyclerView)
+	private void drawHorizontal(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView)
 	{
 		if(recyclerView.getChildCount() == 0)
 		{
@@ -107,7 +107,7 @@ public class GridDividerItemDecoration extends RecyclerView.ItemDecoration
 	}
 
 
-	private boolean isVertical(RecyclerView recyclerView)
+	private boolean isVertical(@NonNull RecyclerView recyclerView)
 	{
 		if(recyclerView.getLayoutManager() instanceof GridLayoutManager)
 		{
@@ -121,7 +121,7 @@ public class GridDividerItemDecoration extends RecyclerView.ItemDecoration
 	}
 
 
-	private boolean isReverse(RecyclerView recyclerView)
+	private boolean isReverse(@NonNull RecyclerView recyclerView)
 	{
 		if(recyclerView.getLayoutManager() instanceof GridLayoutManager)
 		{

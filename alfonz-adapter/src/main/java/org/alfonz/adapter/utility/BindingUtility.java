@@ -2,6 +2,7 @@ package org.alfonz.adapter.utility;
 
 import android.databinding.BindingAdapter;
 import android.support.annotation.IntDef;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
@@ -79,7 +80,7 @@ public final class BindingUtility
 
 
 	@BindingAdapter(value = {"recyclerLayout", "recyclerLayoutSpanCount", "recyclerLayoutSpanSize"}, requireAll = false)
-	public static void setRecyclerLayout(RecyclerView recyclerView, @RecyclerLayout int recyclerLayout, int spanCount, float spanSize)
+	public static void setRecyclerLayout(@NonNull RecyclerView recyclerView, @RecyclerLayout int recyclerLayout, int spanCount, float spanSize)
 	{
 		// noinspection ResourceType
 		if(recyclerLayout == 0)
@@ -133,7 +134,7 @@ public final class BindingUtility
 
 
 	@BindingAdapter(value = {"recyclerDecoration", "recyclerDecorationMargin", "recyclerDecorationBoundaryMargin"}, requireAll = false)
-	public static void setRecyclerDecoration(RecyclerView recyclerView, @RecyclerDecoration int recyclerDecoration, float margin, float boundaryMargin)
+	public static void setRecyclerDecoration(@NonNull RecyclerView recyclerView, @RecyclerDecoration int recyclerDecoration, float margin, float boundaryMargin)
 	{
 		// noinspection ResourceType
 		if(recyclerDecoration == 0)
@@ -169,7 +170,7 @@ public final class BindingUtility
 
 
 	@BindingAdapter({"recyclerAnimator"})
-	public static void setRecyclerAnimator(RecyclerView recyclerView, @RecyclerAnimator int recyclerAnimator)
+	public static void setRecyclerAnimator(@NonNull RecyclerView recyclerView, @RecyclerAnimator int recyclerAnimator)
 	{
 		RecyclerView.ItemAnimator itemAnimator;
 
@@ -186,7 +187,7 @@ public final class BindingUtility
 	}
 
 
-	private static int calculateGridSpanCount(RecyclerView recyclerView, int spanCount, float spanSize, boolean vertical)
+	private static int calculateGridSpanCount(@NonNull RecyclerView recyclerView, int spanCount, float spanSize, boolean vertical)
 	{
 		if(spanCount == 0 && spanSize == 0)
 		{

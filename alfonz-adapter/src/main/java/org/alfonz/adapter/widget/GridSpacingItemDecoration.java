@@ -1,6 +1,7 @@
 package org.alfonz.adapter.widget;
 
 import android.graphics.Rect;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -28,7 +29,7 @@ public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration
 
 
 	@Override
-	public void getItemOffsets(Rect outRect, View view, RecyclerView recyclerView, RecyclerView.State state)
+	public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView recyclerView, RecyclerView.State state)
 	{
 		super.getItemOffsets(outRect, view, recyclerView, state);
 
@@ -42,7 +43,7 @@ public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration
 	}
 
 
-	private void calculateOutRect(Rect outRect, int position, int itemCount, int spanCount, boolean vertical, boolean reverse)
+	private void calculateOutRect(@NonNull Rect outRect, int position, int itemCount, int spanCount, boolean vertical, boolean reverse)
 	{
 		// start offset
 		if(position < spanCount)
@@ -109,7 +110,7 @@ public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration
 	}
 
 
-	private boolean isVertical(RecyclerView recyclerView)
+	private boolean isVertical(@NonNull RecyclerView recyclerView)
 	{
 		if(recyclerView.getLayoutManager() instanceof GridLayoutManager)
 		{
@@ -128,7 +129,7 @@ public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration
 	}
 
 
-	private boolean isReverse(RecyclerView recyclerView)
+	private boolean isReverse(@NonNull RecyclerView recyclerView)
 	{
 		if(recyclerView.getLayoutManager() instanceof GridLayoutManager)
 		{
@@ -147,7 +148,7 @@ public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration
 	}
 
 
-	private int getSpanCount(RecyclerView recyclerView)
+	private int getSpanCount(@NonNull RecyclerView recyclerView)
 	{
 		if(recyclerView.getLayoutManager() instanceof GridLayoutManager)
 		{

@@ -3,6 +3,7 @@ package org.alfonz.adapter;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,7 @@ public abstract class BaseDataBoundPagerAdapter<T extends ViewDataBinding> exten
 
 
 	@Override
-	public Object instantiateItem(ViewGroup container, int position)
+	public Object instantiateItem(@NonNull ViewGroup container, int position)
 	{
 		T binding = DataBindingUtil.inflate(LayoutInflater.from(container.getContext()), getItemLayoutId(position), container, false);
 		bindItem(binding, position);
@@ -30,7 +31,7 @@ public abstract class BaseDataBoundPagerAdapter<T extends ViewDataBinding> exten
 
 
 	@Override
-	public void destroyItem(ViewGroup container, int position, Object object)
+	public void destroyItem(@NonNull ViewGroup container, int position, Object object)
 	{
 		container.removeView((View) object);
 	}

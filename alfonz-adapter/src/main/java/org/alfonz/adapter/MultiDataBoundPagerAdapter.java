@@ -3,6 +3,8 @@ package org.alfonz.adapter;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 import android.databinding.ViewDataBinding;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.lang.ref.WeakReference;
 
@@ -28,7 +30,7 @@ public abstract class MultiDataBoundPagerAdapter extends BaseDataBoundPagerAdapt
 
 
 	@Override
-	protected void bindItem(ViewDataBinding binding, int position)
+	protected void bindItem(@NonNull ViewDataBinding binding, int position)
 	{
 		binding.setVariable(BR.view, mView);
 		binding.setVariable(BR.data, getItem(position));
@@ -47,6 +49,7 @@ public abstract class MultiDataBoundPagerAdapter extends BaseDataBoundPagerAdapt
 	}
 
 
+	@Nullable
 	public Object getItem(int position)
 	{
 		int counter = 0;
@@ -65,7 +68,7 @@ public abstract class MultiDataBoundPagerAdapter extends BaseDataBoundPagerAdapt
 
 	private static class OnListChangedCallback extends ObservableList.OnListChangedCallback<ObservableList<?>>
 	{
-		private final WeakReference<MultiDataBoundPagerAdapter> mAdapter;
+		@NonNull private final WeakReference<MultiDataBoundPagerAdapter> mAdapter;
 
 
 		public OnListChangedCallback(MultiDataBoundPagerAdapter adapter)

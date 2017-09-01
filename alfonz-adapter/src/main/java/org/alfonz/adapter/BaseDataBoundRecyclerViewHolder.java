@@ -19,6 +19,7 @@ package org.alfonz.adapter;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -31,10 +32,10 @@ import android.view.ViewGroup;
  */
 public class BaseDataBoundRecyclerViewHolder<T extends ViewDataBinding> extends RecyclerView.ViewHolder
 {
-	public final T binding;
+	@NonNull public final T binding;
 
 
-	public BaseDataBoundRecyclerViewHolder(T binding)
+	public BaseDataBoundRecyclerViewHolder(@NonNull T binding)
 	{
 		super(binding.getRoot());
 		this.binding = binding;
@@ -51,7 +52,8 @@ public class BaseDataBoundRecyclerViewHolder<T extends ViewDataBinding> extends 
 	 * @param <T>      The type of the Binding class that will be generated for the <code>layoutId</code>.
 	 * @return A new ViewHolder that has a reference to the binding class
 	 */
-	public static <T extends ViewDataBinding> BaseDataBoundRecyclerViewHolder<T> create(ViewGroup parent, @LayoutRes int layoutId)
+	@NonNull
+	public static <T extends ViewDataBinding> BaseDataBoundRecyclerViewHolder<T> create(@NonNull ViewGroup parent, @LayoutRes int layoutId)
 	{
 		T binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), layoutId, parent, false);
 		return new BaseDataBoundRecyclerViewHolder<>(binding);

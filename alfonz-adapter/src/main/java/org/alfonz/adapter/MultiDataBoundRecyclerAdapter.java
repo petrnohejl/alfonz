@@ -1,6 +1,8 @@
 package org.alfonz.adapter;
 
 import android.databinding.ObservableArrayList;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.util.List;
 
@@ -19,7 +21,7 @@ public abstract class MultiDataBoundRecyclerAdapter extends BaseDataBoundRecycle
 
 
 	@Override
-	protected void bindItem(BaseDataBoundRecyclerViewHolder holder, int position, List payloads)
+	protected void bindItem(@NonNull BaseDataBoundRecyclerViewHolder holder, int position, List payloads)
 	{
 		holder.binding.setVariable(BR.view, mView);
 		holder.binding.setVariable(BR.data, getItem(position));
@@ -38,6 +40,7 @@ public abstract class MultiDataBoundRecyclerAdapter extends BaseDataBoundRecycle
 	}
 
 
+	@Nullable
 	public Object getItem(int position)
 	{
 		int counter = 0;
