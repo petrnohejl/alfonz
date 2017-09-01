@@ -1,5 +1,7 @@
 package org.alfonz.utility;
 
+import android.support.annotation.NonNull;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,7 +18,7 @@ public final class ZipUtility
 	private ZipUtility() {}
 
 
-	public static boolean unpackZip(String path, String zipname)
+	public static boolean unpackZip(@NonNull String path, @NonNull String zipname)
 	{
 		InputStream inputStream;
 		ZipInputStream zipInputStream;

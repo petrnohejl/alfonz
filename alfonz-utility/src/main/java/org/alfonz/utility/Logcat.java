@@ -1,5 +1,6 @@
 package org.alfonz.utility;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 
@@ -11,67 +12,67 @@ public final class Logcat
 	private Logcat() {}
 
 
-	public static void init(Config config)
+	public static void init(@NonNull Config config)
 	{
 		sConfig = config;
 	}
 
 
-	public static void init(boolean enabled, String tag)
+	public static void init(boolean enabled, @NonNull String tag)
 	{
 		sConfig = new Config.Builder().setEnabled(enabled).setTag(tag).build();
 	}
 
 
-	public static void d(String msg, Object... args)
+	public static void d(@NonNull String msg, Object... args)
 	{
 		if(sConfig.isEnabled()) Log.d(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args));
 	}
 
 
-	public static void e(String msg, Object... args)
+	public static void e(@NonNull String msg, Object... args)
 	{
 		if(sConfig.isEnabled()) Log.e(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args));
 	}
 
 
-	public static void e(Throwable throwable, String msg, Object... args)
+	public static void e(@NonNull Throwable throwable, @NonNull String msg, Object... args)
 	{
 		if(sConfig.isEnabled()) Log.e(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args), throwable);
 	}
 
 
-	public static void i(String msg, Object... args)
+	public static void i(@NonNull String msg, Object... args)
 	{
 		if(sConfig.isEnabled()) Log.i(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args));
 	}
 
 
-	public static void v(String msg, Object... args)
+	public static void v(@NonNull String msg, Object... args)
 	{
 		if(sConfig.isEnabled()) Log.v(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args));
 	}
 
 
-	public static void w(String msg, Object... args)
+	public static void w(@NonNull String msg, Object... args)
 	{
 		if(sConfig.isEnabled()) Log.w(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args));
 	}
 
 
-	public static void wtf(String msg, Object... args)
+	public static void wtf(@NonNull String msg, Object... args)
 	{
 		if(sConfig.isEnabled()) Log.wtf(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args));
 	}
 
 
-	public static void printStackTrace(Throwable throwable)
+	public static void printStackTrace(@NonNull Throwable throwable)
 	{
 		if(sConfig.isEnabled()) Log.e(sConfig.getTag(), getCodeLocation().toString(), throwable);
 	}
 
 
-	private static String formatMessage(String msg, Object... args)
+	private static String formatMessage(@NonNull String msg, Object... args)
 	{
 		return args.length == 0 ? msg : String.format(msg, args);
 	}
@@ -150,6 +151,7 @@ public final class Logcat
 			private boolean mShowCodeLocationLine = false;
 
 
+			@NonNull
 			public Builder setEnabled(boolean enabled)
 			{
 				mEnabled = enabled;
@@ -157,6 +159,7 @@ public final class Logcat
 			}
 
 
+			@NonNull
 			public Builder setTag(String tag)
 			{
 				mTag = tag;
@@ -164,6 +167,7 @@ public final class Logcat
 			}
 
 
+			@NonNull
 			public Builder setShowCodeLocation(boolean showCodeLocation)
 			{
 				mShowCodeLocation = showCodeLocation;
@@ -171,6 +175,7 @@ public final class Logcat
 			}
 
 
+			@NonNull
 			public Builder setShowCodeLocationThread(boolean showCodeLocationThread)
 			{
 				mShowCodeLocationThread = showCodeLocationThread;
@@ -178,6 +183,7 @@ public final class Logcat
 			}
 
 
+			@NonNull
 			public Builder setShowCodeLocationLine(boolean showCodeLocationLine)
 			{
 				mShowCodeLocationLine = showCodeLocationLine;
@@ -185,6 +191,7 @@ public final class Logcat
 			}
 
 
+			@NonNull
 			public Config build()
 			{
 				return new Config(mEnabled, mTag, mShowCodeLocation, mShowCodeLocationThread, mShowCodeLocationLine);

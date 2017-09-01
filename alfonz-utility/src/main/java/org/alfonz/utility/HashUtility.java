@@ -1,5 +1,7 @@
 package org.alfonz.utility;
 
+import android.support.annotation.NonNull;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -11,7 +13,7 @@ public final class HashUtility
 	private HashUtility() {}
 
 
-	public static String getMd5(byte[] data)
+	public static String getMd5(@NonNull byte[] data)
 	{
 		try
 		{
@@ -32,7 +34,7 @@ public final class HashUtility
 	}
 
 
-	public static String getMd5(String data)
+	public static String getMd5(@NonNull String data)
 	{
 		try
 		{
@@ -46,7 +48,7 @@ public final class HashUtility
 	}
 
 
-	public static String getSha1(byte[] data)
+	public static String getSha1(@NonNull byte[] data)
 	{
 		try
 		{
@@ -63,7 +65,7 @@ public final class HashUtility
 	}
 
 
-	public static String getSha1(String data)
+	public static String getSha1(@NonNull String data)
 	{
 		try
 		{
@@ -77,7 +79,7 @@ public final class HashUtility
 	}
 
 
-	private static String byteToHex(final byte[] hash)
+	private static String byteToHex(@NonNull final byte[] hash)
 	{
 		Formatter formatter = new Formatter();
 		for(byte b : hash)

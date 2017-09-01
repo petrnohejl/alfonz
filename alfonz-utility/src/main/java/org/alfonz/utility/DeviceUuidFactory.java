@@ -3,6 +3,7 @@ package org.alfonz.utility;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.provider.Settings.Secure;
+import android.support.annotation.NonNull;
 import android.telephony.TelephonyManager;
 
 import java.io.UnsupportedEncodingException;
@@ -18,7 +19,7 @@ public class DeviceUuidFactory
 	protected static volatile UUID sUuid;
 
 
-	public DeviceUuidFactory(Context context)
+	public DeviceUuidFactory(@NonNull Context context)
 	{
 		if(sUuid == null)
 		{

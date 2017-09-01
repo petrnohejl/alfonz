@@ -1,12 +1,14 @@
 package org.alfonz.utility;
 
+import android.support.annotation.NonNull;
+
 
 public final class StringConvertor
 {
 	private StringConvertor() {}
 
 
-	public static String capitalize(String str)
+	public static String capitalize(@NonNull String str)
 	{
 		char[] chars = str.toLowerCase().toCharArray();
 		boolean found = false;

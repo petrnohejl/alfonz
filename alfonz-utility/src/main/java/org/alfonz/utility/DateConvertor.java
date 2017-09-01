@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 
 // date format: https://developer.android.com/reference/java/text/SimpleDateFormat.html
@@ -17,7 +18,7 @@ public final class DateConvertor
 		String str = null;
 		if(date != null)
 		{
-			SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+			SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.US);
 			str = dateFormat.format(date);
 		}
 		return str;
@@ -29,7 +30,7 @@ public final class DateConvertor
 		Date date = null;
 		if(str != null)
 		{
-			SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+			SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.US);
 			try { date = dateFormat.parse(str); }
 			catch(ParseException e) { e.printStackTrace(); }
 		}

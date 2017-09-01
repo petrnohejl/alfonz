@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -27,8 +28,8 @@ public class PermissionManager
 
 	public interface RationaleHandler
 	{
-		String getRationaleMessage(String permission);
-		void showRationale(View rootView, String rationaleMessage, ConfirmAction confirmAction);
+		String getRationaleMessage(@NonNull String permission);
+		void showRationale(@NonNull View rootView, @NonNull String rationaleMessage, @NonNull ConfirmAction confirmAction);
 	}
 
 
@@ -75,110 +76,112 @@ public class PermissionManager
 	}
 
 
-	public boolean check(Activity activity, String permission)
+	public boolean check(@NonNull Activity activity, @NonNull String permission)
 	{
 		return check(new ActivityRequestable<>(activity), permission);
 	}
 
 
-	public boolean check(Fragment fragment, String permission)
+	public boolean check(@NonNull Fragment fragment, @NonNull String permission)
 	{
 		return check(new FragmentRequestable<>(fragment), permission);
 	}
 
 
-	public PermissionsResult check(Activity activity, String... permissions)
+	@NonNull
+	public PermissionsResult check(@NonNull Activity activity, @NonNull String... permissions)
 	{
 		return check(new ActivityRequestable<>(activity), permissions);
 	}
 
 
-	public PermissionsResult check(Fragment fragment, String... permissions)
+	@NonNull
+	public PermissionsResult check(@NonNull Fragment fragment, @NonNull String... permissions)
 	{
 		return check(new FragmentRequestable<>(fragment), permissions);
 	}
 
 
-	public <T extends Activity> void request(T activity, String permission, PermissionAction<T> grantedAction)
+	public <T extends Activity> void request(@NonNull T activity, @NonNull String permission, @NonNull PermissionAction<T> grantedAction)
 	{
 		request(new ActivityRequestable<>(activity), permission, grantedAction, null, null);
 	}
 
 
-	public <T extends Fragment> void request(T fragment, String permission, PermissionAction<T> grantedAction)
+	public <T extends Fragment> void request(@NonNull T fragment, @NonNull String permission, @NonNull PermissionAction<T> grantedAction)
 	{
 		request(new FragmentRequestable<>(fragment), permission, grantedAction, null, null);
 	}
 
 
-	public <T extends Activity> void request(T activity, String permission, PermissionAction<T> grantedAction, PermissionAction<T> deniedAction)
+	public <T extends Activity> void request(@NonNull T activity, @NonNull String permission, @NonNull PermissionAction<T> grantedAction, @NonNull PermissionAction<T> deniedAction)
 	{
 		request(new ActivityRequestable<>(activity), permission, grantedAction, deniedAction, null);
 	}
 
 
-	public <T extends Fragment> void request(T fragment, String permission, PermissionAction<T> grantedAction, PermissionAction<T> deniedAction)
+	public <T extends Fragment> void request(@NonNull T fragment, @NonNull String permission, @NonNull PermissionAction<T> grantedAction, @NonNull PermissionAction<T> deniedAction)
 	{
 		request(new FragmentRequestable<>(fragment), permission, grantedAction, deniedAction, null);
 	}
 
 
-	public <T extends Activity> void request(T activity, String permission, PermissionAction<T> grantedAction, PermissionAction<T> deniedAction, PermissionAction<T> blockedAction)
+	public <T extends Activity> void request(@NonNull T activity, @NonNull String permission, @NonNull PermissionAction<T> grantedAction, @NonNull PermissionAction<T> deniedAction, @NonNull PermissionAction<T> blockedAction)
 	{
 		request(new ActivityRequestable<>(activity), permission, grantedAction, deniedAction, blockedAction);
 	}
 
 
-	public <T extends Fragment> void request(T fragment, String permission, PermissionAction<T> grantedAction, PermissionAction<T> deniedAction, PermissionAction<T> blockedAction)
+	public <T extends Fragment> void request(@NonNull T fragment, @NonNull String permission, @NonNull PermissionAction<T> grantedAction, @NonNull PermissionAction<T> deniedAction, @NonNull PermissionAction<T> blockedAction)
 	{
 		request(new FragmentRequestable<>(fragment), permission, grantedAction, deniedAction, blockedAction);
 	}
 
 
-	public <T extends Activity> void request(T activity, String permission, PermissionCallback<T> permissionCallback)
+	public <T extends Activity> void request(@NonNull T activity, @NonNull String permission, @NonNull PermissionCallback<T> permissionCallback)
 	{
 		request(new ActivityRequestable<>(activity), permission, permissionCallback);
 	}
 
 
-	public <T extends Fragment> void request(T fragment, String permission, PermissionCallback<T> permissionCallback)
+	public <T extends Fragment> void request(@NonNull T fragment, @NonNull String permission, @NonNull PermissionCallback<T> permissionCallback)
 	{
 		request(new FragmentRequestable<>(fragment), permission, permissionCallback);
 	}
 
 
-	public <T extends Activity> void request(T activity, String[] permissions, PermissionsCallback<T> permissionsCallback)
+	public <T extends Activity> void request(@NonNull T activity, @NonNull String[] permissions, @NonNull PermissionsCallback<T> permissionsCallback)
 	{
 		request(new ActivityRequestable<>(activity), permissions, permissionsCallback);
 	}
 
 
-	public <T extends Fragment> void request(T fragment, String[] permissions, PermissionsCallback<T> permissionsCallback)
+	public <T extends Fragment> void request(@NonNull T fragment, @NonNull String[] permissions, @NonNull PermissionsCallback<T> permissionsCallback)
 	{
 		request(new FragmentRequestable<>(fragment), permissions, permissionsCallback);
 	}
 
 
-	public <T extends Activity> void onRequestPermissionsResult(T activity, int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+	public <T extends Activity> void onRequestPermissionsResult(@NonNull T activity, int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
 	{
 		onRequestPermissionsResult(new ActivityRequestable<>(activity), requestCode, permissions, grantResults);
 	}
 
 
-	public <T extends Fragment> void onRequestPermissionsResult(T fragment, int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+	public <T extends Fragment> void onRequestPermissionsResult(@NonNull T fragment, int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
 	{
 		onRequestPermissionsResult(new FragmentRequestable<>(fragment), requestCode, permissions, grantResults);
 	}
 
 
-	private boolean check(PermissionRequestable permissionRequestable, String permission)
+	private boolean check(@NonNull PermissionRequestable permissionRequestable, @NonNull String permission)
 	{
 		int result = ContextCompat.checkSelfPermission(permissionRequestable.getContext(), permission);
 		return result == PackageManager.PERMISSION_GRANTED;
 	}
 
 
-	private PermissionsResult check(PermissionRequestable permissionRequestable, String... permissions)
+	private PermissionsResult check(@NonNull PermissionRequestable permissionRequestable, @NonNull String... permissions)
 	{
 		Map<String, Boolean> resultMap = new HashMap<>();
 		for(String permission : permissions)
@@ -190,7 +193,7 @@ public class PermissionManager
 	}
 
 
-	private <T> void request(PermissionRequestable<T> permissionRequestable, String permission, final PermissionAction<T> grantedAction, final PermissionAction<T> deniedAction, final PermissionAction<T> blockedAction)
+	private <T> void request(@NonNull PermissionRequestable<T> permissionRequestable, @NonNull String permission, @Nullable final PermissionAction<T> grantedAction, @Nullable final PermissionAction<T> deniedAction, @Nullable final PermissionAction<T> blockedAction)
 	{
 		request(permissionRequestable, permission, new PermissionCallback<T>()
 		{
@@ -217,7 +220,7 @@ public class PermissionManager
 	}
 
 
-	private <T> void request(PermissionRequestable<T> permissionRequestable, String permission, PermissionCallback<T> permissionCallback)
+	private <T> void request(@NonNull PermissionRequestable<T> permissionRequestable, @NonNull String permission, @NonNull PermissionCallback<T> permissionCallback)
 	{
 		if(check(permissionRequestable, permission))
 		{
@@ -241,7 +244,7 @@ public class PermissionManager
 	}
 
 
-	private <T> void request(PermissionRequestable<T> permissionRequestable, String[] permissions, PermissionsCallback<T> permissionsCallback)
+	private <T> void request(@NonNull PermissionRequestable<T> permissionRequestable, @NonNull String[] permissions, @NonNull PermissionsCallback<T> permissionsCallback)
 	{
 		PermissionsResult permissionsResult = check(permissionRequestable, permissions);
 
@@ -275,7 +278,7 @@ public class PermissionManager
 
 
 	@SuppressWarnings("unchecked")
-	private <T> void onRequestPermissionsResult(PermissionRequestable<T> permissionRequestable, int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+	private <T> void onRequestPermissionsResult(@NonNull PermissionRequestable<T> permissionRequestable, int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
 	{
 		if(mPermissionCallback != null && requestCode == REQUEST_CODE_PERMISSION)
 		{
@@ -308,7 +311,8 @@ public class PermissionManager
 	}
 
 
-	private ConfirmAction createRationaleConfirmAction(final PermissionRequestable permissionRequestable, final String permission, final PermissionCallback permissionCallback)
+	@NonNull
+	private ConfirmAction createRationaleConfirmAction(@NonNull final PermissionRequestable permissionRequestable, @NonNull final String permission, @NonNull final PermissionCallback permissionCallback)
 	{
 		return new ConfirmAction()
 		{
@@ -322,7 +326,8 @@ public class PermissionManager
 	}
 
 
-	private ConfirmAction createRationaleConfirmAction(final PermissionRequestable permissionRequestable, final String[] permissions, final PermissionsCallback permissionsCallback)
+	@NonNull
+	private ConfirmAction createRationaleConfirmAction(@NonNull final PermissionRequestable permissionRequestable, @NonNull final String[] permissions, @NonNull final PermissionsCallback permissionsCallback)
 	{
 		return new ConfirmAction()
 		{
@@ -341,13 +346,13 @@ public class PermissionManager
 		private final Map<String, Boolean> mResultMap;
 
 
-		public PermissionsResult(Map<String, Boolean> resultMap)
+		public PermissionsResult(@NonNull Map<String, Boolean> resultMap)
 		{
 			mResultMap = resultMap;
 		}
 
 
-		public PermissionsResult(String[] permissions, int[] grantResults)
+		public PermissionsResult(@NonNull String[] permissions, @NonNull int[] grantResults)
 		{
 			mResultMap = new HashMap<>();
 			for(int i = 0; i < permissions.length; i++)
@@ -369,7 +374,7 @@ public class PermissionManager
 		}
 
 
-		public boolean isGranted(String... permissions)
+		public boolean isGranted(@NonNull String... permissions)
 		{
 			for(String permission : permissions)
 			{
@@ -399,7 +404,7 @@ public class PermissionManager
 		private T mActivity;
 
 
-		public ActivityRequestable(T activity)
+		public ActivityRequestable(@NonNull T activity)
 		{
 			mActivity = activity;
 		}
@@ -453,7 +458,7 @@ public class PermissionManager
 		private T mFragment;
 
 
-		public FragmentRequestable(T fragment)
+		public FragmentRequestable(@NonNull T fragment)
 		{
 			mFragment = fragment;
 		}

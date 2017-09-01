@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 import android.util.TypedValue;
 
 
@@ -12,7 +13,7 @@ public final class ResourcesUtility
 	private ResourcesUtility() {}
 
 
-	public static int getValueOfAttribute(Context context, int attr)
+	public static int getValueOfAttribute(@NonNull Context context, int attr)
 	{
 		TypedValue typedValue = new TypedValue();
 		Resources.Theme theme = context.getTheme();
@@ -21,7 +22,7 @@ public final class ResourcesUtility
 	}
 
 
-	public static int getColorValueOfAttribute(Context context, int attr)
+	public static int getColorValueOfAttribute(@NonNull Context context, int attr)
 	{
 		TypedArray typedArray = context.obtainStyledAttributes(null, new int[]{attr}, 0, 0);
 		int value = typedArray.getColor(0, 0);
@@ -30,7 +31,7 @@ public final class ResourcesUtility
 	}
 
 
-	public static float getDimensionValueOfAttribute(Context context, int attr)
+	public static float getDimensionValueOfAttribute(@NonNull Context context, int attr)
 	{
 		TypedArray typedArray = context.obtainStyledAttributes(null, new int[]{attr}, 0, 0);
 		float value = typedArray.getDimension(0, 0);
@@ -39,7 +40,7 @@ public final class ResourcesUtility
 	}
 
 
-	public static int getDimensionPixelSizeValueOfAttribute(Context context, int attr)
+	public static int getDimensionPixelSizeValueOfAttribute(@NonNull Context context, int attr)
 	{
 		TypedArray typedArray = context.obtainStyledAttributes(null, new int[]{attr}, 0, 0);
 		int value = typedArray.getDimensionPixelSize(0, 0);
@@ -48,7 +49,7 @@ public final class ResourcesUtility
 	}
 
 
-	public static Drawable getDrawableValueOfAttribute(Context context, int attr)
+	public static Drawable getDrawableValueOfAttribute(@NonNull Context context, int attr)
 	{
 		TypedArray typedArray = context.obtainStyledAttributes(null, new int[]{attr}, 0, 0);
 		Drawable value = typedArray.getDrawable(0);

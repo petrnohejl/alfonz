@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.pm.ConfigurationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 
 public final class VersionUtility
@@ -12,7 +14,7 @@ public final class VersionUtility
 	private VersionUtility() {}
 
 
-	public static String getVersionName(Context context)
+	public static String getVersionName(@NonNull Context context)
 	{
 		try
 		{
@@ -26,7 +28,7 @@ public final class VersionUtility
 	}
 
 
-	public static int getVersionCode(Context context)
+	public static int getVersionCode(@NonNull Context context)
 	{
 		try
 		{
@@ -40,7 +42,7 @@ public final class VersionUtility
 	}
 
 
-	public static boolean isSupportedOpenGlEs2(Context context)
+	public static boolean isSupportedOpenGlEs2(@NonNull Context context)
 	{
 		ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
 		ConfigurationInfo configurationInfo = activityManager.getDeviceConfigurationInfo();
@@ -56,7 +58,7 @@ public final class VersionUtility
 	 * @param v2 second version string.
 	 * @return 0 if the versions are equal, 1 if version v1 is before version v2, -1 if version v1 is after version v2, -2 if version format is invalid.
 	 */
-	public static int compareVersions(String v1, String v2)
+	public static int compareVersions(@Nullable String v1, @Nullable String v2)
 	{
 		if(v1 == null || v2 == null || v1.trim().equals("") || v2.trim().equals("")) return -2;
 		else if(v1.equals(v2)) return 0;

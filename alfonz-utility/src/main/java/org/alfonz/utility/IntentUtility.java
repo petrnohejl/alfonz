@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public final class IntentUtility
 	private IntentUtility() {}
 
 
-	public static void startWebActivity(Context context, String uri)
+	public static void startWebActivity(@NonNull Context context, @NonNull String uri)
 	{
 		try
 		{
@@ -31,20 +32,20 @@ public final class IntentUtility
 	}
 
 
-	public static void startStoreActivity(Context context)
+	public static void startStoreActivity(@NonNull Context context)
 	{
 		String uri = String.format("https://play.google.com/store/apps/details?id=%s", context.getPackageName());
 		startWebActivity(context, uri);
 	}
 
 
-	public static void startShareActivity(Context context, String subject, String text)
+	public static void startShareActivity(@NonNull Context context, @NonNull String subject, @NonNull String text)
 	{
 		startShareActivity(context, subject, text, null);
 	}
 
 
-	public static void startShareActivity(Context context, String subject, String text, @Nullable String chooserTitle)
+	public static void startShareActivity(@NonNull Context context, @NonNull String subject, @NonNull String text, @Nullable String chooserTitle)
 	{
 		try
 		{
@@ -69,19 +70,19 @@ public final class IntentUtility
 	}
 
 
-	public static void startEmailActivity(Context context, String email)
+	public static void startEmailActivity(@NonNull Context context, @NonNull String email)
 	{
 		startEmailActivity(context, email, null, null);
 	}
 
 
-	public static void startEmailActivity(Context context, String email, @Nullable String subject)
+	public static void startEmailActivity(@NonNull Context context, @NonNull String email, @Nullable String subject)
 	{
 		startEmailActivity(context, email, subject, null);
 	}
 
 
-	public static void startEmailActivity(Context context, String email, @Nullable String subject, @Nullable String text)
+	public static void startEmailActivity(@NonNull Context context, @NonNull String email, @Nullable String subject, @Nullable String text)
 	{
 		try
 		{
@@ -98,13 +99,13 @@ public final class IntentUtility
 	}
 
 
-	public static void startSmsActivity(Context context, String phoneNumber)
+	public static void startSmsActivity(@NonNull Context context, @NonNull String phoneNumber)
 	{
 		startSmsActivity(context, phoneNumber, null);
 	}
 
 
-	public static void startSmsActivity(Context context, String phoneNumber, @Nullable String text)
+	public static void startSmsActivity(@NonNull Context context, @NonNull String phoneNumber, @Nullable String text)
 	{
 		try
 		{
@@ -121,7 +122,7 @@ public final class IntentUtility
 	}
 
 
-	public static void startCallActivity(Context context, String phoneNumber)
+	public static void startCallActivity(@NonNull Context context, @NonNull String phoneNumber)
 	{
 		try
 		{
@@ -136,13 +137,13 @@ public final class IntentUtility
 	}
 
 
-	public static void startMapCoordinatesActivity(Context context, double lat, double lon, String label)
+	public static void startMapCoordinatesActivity(@NonNull Context context, double lat, double lon, String label)
 	{
 		startMapCoordinatesActivity(context, lat, lon, 16, label);
 	}
 
 
-	public static void startMapCoordinatesActivity(Context context, double lat, double lon, int zoom, String label)
+	public static void startMapCoordinatesActivity(@NonNull Context context, double lat, double lon, int zoom, String label)
 	{
 		try
 		{
@@ -158,7 +159,7 @@ public final class IntentUtility
 	}
 
 
-	public static void startMapSearchActivity(Context context, String query)
+	public static void startMapSearchActivity(@NonNull Context context, @NonNull String query)
 	{
 		try
 		{
@@ -173,7 +174,7 @@ public final class IntentUtility
 	}
 
 
-	public static void startNavigationActivity(Context context, double lat, double lon)
+	public static void startNavigationActivity(@NonNull Context context, double lat, double lon)
 	{
 		try
 		{
@@ -188,19 +189,19 @@ public final class IntentUtility
 	}
 
 
-	public static void startCalendarActivity(Context context, String title)
+	public static void startCalendarActivity(@NonNull Context context, @NonNull String title)
 	{
 		startCalendarActivity(context, title, null, -1, -1);
 	}
 
 
-	public static void startCalendarActivity(Context context, String title, long beginTime, long endTime)
+	public static void startCalendarActivity(@NonNull Context context, @NonNull String title, long beginTime, long endTime)
 	{
 		startCalendarActivity(context, title, null, beginTime, endTime);
 	}
 
 
-	public static void startCalendarActivity(Context context, String title, @Nullable String description, long beginTime, long endTime)
+	public static void startCalendarActivity(@NonNull Context context, @NonNull String title, @Nullable String description, long beginTime, long endTime)
 	{
 		try
 		{
@@ -219,7 +220,7 @@ public final class IntentUtility
 	}
 
 
-	public static boolean isCallable(Context context, Intent intent)
+	public static boolean isCallable(@NonNull Context context, @NonNull Intent intent)
 	{
 		List<ResolveInfo> list = context.getApplicationContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
 		return list.size() > 0;

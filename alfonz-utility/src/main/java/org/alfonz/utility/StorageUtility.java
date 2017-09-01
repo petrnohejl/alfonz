@@ -2,6 +2,8 @@ package org.alfonz.utility;
 
 import android.content.Context;
 import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,12 +45,13 @@ public final class StorageUtility
 
 
 	// publicDirectory can be for example Environment.DIRECTORY_PICTURES
-	public static File getStorageDirectory(String publicDirectory)
+	public static File getStorageDirectory(@NonNull String publicDirectory)
 	{
 		return Environment.getExternalStoragePublicDirectory(publicDirectory);
 	}
 
 
+	@Nullable
 	public static File getSecondaryStorageDirectory()
 	{
 		return getSecondaryStorageDirectory(null);
@@ -56,7 +59,8 @@ public final class StorageUtility
 
 
 	// publicDirectory can be for example Environment.DIRECTORY_PICTURES
-	public static File getSecondaryStorageDirectory(String publicDirectory)
+	@Nullable
+	public static File getSecondaryStorageDirectory(@Nullable String publicDirectory)
 	{
 		File result = null;
 		File primary = getStorageDirectory();
@@ -101,19 +105,22 @@ public final class StorageUtility
 	}
 
 
-	public static File getApplicationCacheDirectory(Context context)
+	@Nullable
+	public static File getApplicationCacheDirectory(@NonNull Context context)
 	{
 		return context.getExternalCacheDir();
 	}
 
 
 	// type can be for example Environment.DIRECTORY_PICTURES
-	public static File getApplicationFilesDirectory(Context context, String type)
+	@Nullable
+	public static File getApplicationFilesDirectory(@NonNull Context context, @NonNull String type)
 	{
 		return context.getExternalFilesDir(type);
 	}
 
 
+	@NonNull
 	public static List<File> getFiles(File directory, boolean recursive)
 	{
 		List<File> fileList = new ArrayList<>();
@@ -126,6 +133,7 @@ public final class StorageUtility
 
 
 	// pattern can be for example "(.+(\\.(?i)(jpg|jpeg))$)"
+	@NonNull
 	public static List<File> getFiles(File directory, boolean recursive, Pattern fileNameFilter, Pattern directoryNameFilter)
 	{
 		List<File> fileList = new ArrayList<>();
@@ -138,6 +146,7 @@ public final class StorageUtility
 
 
 	// source: http://stackoverflow.com/questions/11281010/how-can-i-get-external-sd-card-path-for-android-4-0
+	@NonNull
 	public static Set<String> getExternalMounts()
 	{
 		final Set<String> externalMounts = new HashSet<>();
@@ -157,7 +166,7 @@ public final class StorageUtility
 			}
 			is.close();
 		}
-		catch(final Exception e)
+		catch(@NonNull final Exception e)
 		{
 			e.printStackTrace();
 		}

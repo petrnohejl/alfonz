@@ -1,6 +1,7 @@
 package org.alfonz.samples.alfonzutility.utility;
 
 import android.Manifest;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 
@@ -12,7 +13,7 @@ import org.alfonz.utility.PermissionManager;
 public class PermissionRationaleHandler implements PermissionManager.RationaleHandler
 {
 	@Override
-	public String getRationaleMessage(String permission)
+	public String getRationaleMessage(@NonNull String permission)
 	{
 		int resId;
 
@@ -39,7 +40,7 @@ public class PermissionRationaleHandler implements PermissionManager.RationaleHa
 
 
 	@Override
-	public void showRationale(View rootView, String rationaleMessage, PermissionManager.ConfirmAction confirmAction)
+	public void showRationale(@NonNull View rootView, @NonNull String rationaleMessage, @NonNull PermissionManager.ConfirmAction confirmAction)
 	{
 		Snackbar
 				.make(rootView, rationaleMessage, Snackbar.LENGTH_INDEFINITE)
