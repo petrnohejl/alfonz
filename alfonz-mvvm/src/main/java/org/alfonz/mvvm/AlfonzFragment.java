@@ -1,6 +1,7 @@
 package org.alfonz.mvvm;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import eu.inloop.viewmodel.base.ViewModelBaseFragment;
@@ -24,6 +25,7 @@ public abstract class AlfonzFragment<T extends AlfonzView, R extends AlfonzViewM
 	}
 
 
+	@NonNull
 	public AlfonzActivity getAlfonzActivity()
 	{
 		return (AlfonzActivity) getActivity();

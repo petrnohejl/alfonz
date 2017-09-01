@@ -3,6 +3,7 @@ package org.alfonz.mvvm.utility;
 import android.databinding.BindingAdapter;
 import android.databinding.BindingConversion;
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -13,42 +14,42 @@ public final class BindingUtility
 
 
 	@BindingAdapter({"onClick"})
-	public static void setOnClick(View view, View.OnClickListener listener)
+	public static void setOnClick(@NonNull View view, View.OnClickListener listener)
 	{
 		view.setOnClickListener(listener);
 	}
 
 
 	@BindingAdapter({"onLongClick"})
-	public static void setOnLongClick(View view, View.OnLongClickListener listener)
+	public static void setOnLongClick(@NonNull View view, View.OnLongClickListener listener)
 	{
 		view.setOnLongClickListener(listener);
 	}
 
 
 	@BindingAdapter({"visible"})
-	public static void setVisible(View view, boolean visible)
+	public static void setVisible(@NonNull View view, boolean visible)
 	{
 		view.setVisibility(visible ? View.VISIBLE : View.GONE);
 	}
 
 
 	@BindingAdapter({"invisible"})
-	public static void setInvisible(View view, boolean invisible)
+	public static void setInvisible(@NonNull View view, boolean invisible)
 	{
 		view.setVisibility(invisible ? View.INVISIBLE : View.VISIBLE);
 	}
 
 
 	@BindingAdapter({"gone"})
-	public static void setGone(View view, boolean gone)
+	public static void setGone(@NonNull View view, boolean gone)
 	{
 		view.setVisibility(gone ? View.GONE : View.VISIBLE);
 	}
 
 
 	@BindingAdapter({"imageBitmap"})
-	public static void setImageBitmap(ImageView imageView, Bitmap bitmap)
+	public static void setImageBitmap(@NonNull ImageView imageView, Bitmap bitmap)
 	{
 		imageView.setImageBitmap(bitmap);
 	}

@@ -1,5 +1,6 @@
 package org.alfonz.samples.alfonzrest;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 
@@ -18,7 +19,7 @@ public class RestSampleFragment extends BaseFragment<RestSampleView, RestSampleR
 
 
 	@Override
-	public FragmentRestSampleBinding inflateBindingLayout(LayoutInflater inflater)
+	public FragmentRestSampleBinding inflateBindingLayout(@NonNull LayoutInflater inflater)
 	{
 		return FragmentRestSampleBinding.inflate(inflater);
 	}

@@ -2,6 +2,7 @@ package org.alfonz.mvvm;
 
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,7 @@ public abstract class AlfonzBindingFragment<T extends AlfonzView, R extends Alfo
 	private B mBinding;
 
 
-	public abstract B inflateBindingLayout(LayoutInflater inflater);
+	public abstract B inflateBindingLayout(@NonNull LayoutInflater inflater);
 
 
 	@Override
@@ -30,7 +31,7 @@ public abstract class AlfonzBindingFragment<T extends AlfonzView, R extends Alfo
 	}
 
 
-	private B setupBinding(LayoutInflater inflater)
+	private B setupBinding(@NonNull LayoutInflater inflater)
 	{
 		B binding = inflateBindingLayout(inflater);
 		binding.setVariable(BR.view, this);

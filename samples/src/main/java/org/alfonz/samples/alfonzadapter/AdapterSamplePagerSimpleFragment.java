@@ -1,6 +1,7 @@
 package org.alfonz.samples.alfonzadapter;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 
@@ -28,7 +29,7 @@ public class AdapterSamplePagerSimpleFragment extends BaseFragment<AdapterSample
 
 
 	@Override
-	public FragmentAdapterSamplePagerBinding inflateBindingLayout(LayoutInflater inflater)
+	public FragmentAdapterSamplePagerBinding inflateBindingLayout(@NonNull LayoutInflater inflater)
 	{
 		return FragmentAdapterSamplePagerBinding.inflate(inflater);
 	}

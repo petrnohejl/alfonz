@@ -3,6 +3,7 @@ package org.alfonz.samples.alfonzmvvm;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.view.LayoutInflater;
@@ -31,7 +32,7 @@ public class MvvmSampleViewModelActivity extends AlfonzBindingActivity<MvvmSampl
 
 
 	@Override
-	public ActivityMvvmSampleViewModelBinding inflateBindingLayout(LayoutInflater inflater)
+	public ActivityMvvmSampleViewModelBinding inflateBindingLayout(@NonNull LayoutInflater inflater)
 	{
 		return ActivityMvvmSampleViewModelBinding.inflate(inflater);
 	}

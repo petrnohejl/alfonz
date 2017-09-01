@@ -29,7 +29,7 @@ public class MediaSampleFragment extends BaseFragment<MediaSampleView, MediaSamp
 
 
 	@Override
-	public FragmentMediaSampleBinding inflateBindingLayout(LayoutInflater inflater)
+	public FragmentMediaSampleBinding inflateBindingLayout(@NonNull LayoutInflater inflater)
 	{
 		return FragmentMediaSampleBinding.inflate(inflater);
 	}

@@ -31,7 +31,7 @@ public abstract class AlfonzViewModel<T extends AlfonzView> extends AbstractView
 
 
 	@Override
-	public synchronized void addOnPropertyChangedCallback(OnPropertyChangedCallback callback)
+	public synchronized void addOnPropertyChangedCallback(@NonNull OnPropertyChangedCallback callback)
 	{
 		if(mObservableCallbacks == null)
 		{
@@ -42,7 +42,7 @@ public abstract class AlfonzViewModel<T extends AlfonzView> extends AbstractView
 
 
 	@Override
-	public synchronized void removeOnPropertyChangedCallback(OnPropertyChangedCallback callback)
+	public synchronized void removeOnPropertyChangedCallback(@NonNull OnPropertyChangedCallback callback)
 	{
 		if(mObservableCallbacks != null)
 		{
@@ -69,7 +69,7 @@ public abstract class AlfonzViewModel<T extends AlfonzView> extends AbstractView
 	}
 
 
-	public void runViewAction(ViewAction<T> viewAction)
+	public void runViewAction(@NonNull ViewAction<T> viewAction)
 	{
 		if(getView() != null)
 		{
@@ -82,7 +82,7 @@ public abstract class AlfonzViewModel<T extends AlfonzView> extends AbstractView
 	}
 
 
-	private synchronized void addPendingViewAction(ViewAction<T> viewAction)
+	private synchronized void addPendingViewAction(@NonNull ViewAction<T> viewAction)
 	{
 		if(mViewActionQueue == null)
 		{

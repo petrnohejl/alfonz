@@ -1,5 +1,6 @@
 package org.alfonz.samples.alfonzrx;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 
@@ -19,7 +20,7 @@ public class RxSampleFragment extends BaseFragment<RxSampleView, RxSampleViewMod
 
 
 	@Override
-	public FragmentRxSampleBinding inflateBindingLayout(LayoutInflater inflater)
+	public FragmentRxSampleBinding inflateBindingLayout(@NonNull LayoutInflater inflater)
 	{
 		return FragmentRxSampleBinding.inflate(inflater);
 	}

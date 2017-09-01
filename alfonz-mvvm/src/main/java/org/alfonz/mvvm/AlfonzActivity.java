@@ -1,6 +1,7 @@
 package org.alfonz.mvvm;
 
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -18,14 +19,14 @@ public abstract class AlfonzActivity extends ViewModelBaseEmptyActivity
 
 
 	@Nullable
-	public ActionBar setupActionBar(ToolbarIndicator indicator)
+	public ActionBar setupActionBar(@NonNull ToolbarIndicator indicator)
 	{
 		return setupActionBar(indicator, null, null);
 	}
 
 
 	@Nullable
-	public ActionBar setupActionBar(ToolbarIndicator indicator, @Nullable CharSequence title)
+	public ActionBar setupActionBar(@NonNull ToolbarIndicator indicator, @Nullable CharSequence title)
 	{
 		return setupActionBar(indicator, title, null);
 	}
@@ -40,7 +41,7 @@ public abstract class AlfonzActivity extends ViewModelBaseEmptyActivity
 	 * @return initilized ActionBar or null
 	 */
 	@Nullable
-	public ActionBar setupActionBar(ToolbarIndicator indicator, @Nullable CharSequence title, @Nullable Toolbar toolbar)
+	public ActionBar setupActionBar(@NonNull ToolbarIndicator indicator, @Nullable CharSequence title, @Nullable Toolbar toolbar)
 	{
 		if(toolbar == null)
 		{
@@ -85,19 +86,19 @@ public abstract class AlfonzActivity extends ViewModelBaseEmptyActivity
 	}
 
 
-	public void replaceFragment(Fragment fragment)
+	public void replaceFragment(@NonNull Fragment fragment)
 	{
 		replaceFragment(fragment, false, false, null);
 	}
 
 
-	public void replaceFragment(Fragment fragment, boolean addToBackStack, boolean allowStateLoss)
+	public void replaceFragment(@NonNull Fragment fragment, boolean addToBackStack, boolean allowStateLoss)
 	{
 		replaceFragment(fragment, addToBackStack, allowStateLoss, null);
 	}
 
 
-	public void replaceFragment(Fragment fragment, boolean addToBackStack, boolean allowStateLoss, @Nullable String tag)
+	public void replaceFragment(@NonNull Fragment fragment, boolean addToBackStack, boolean allowStateLoss, @Nullable String tag)
 	{
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment, fragment, tag);
 

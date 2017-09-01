@@ -19,7 +19,7 @@ public abstract class AlfonzBindingActivity<T extends AlfonzView, R extends Alfo
 	private B mBinding;
 
 
-	public abstract B inflateBindingLayout(LayoutInflater inflater);
+	public abstract B inflateBindingLayout(@NonNull LayoutInflater inflater);
 
 
 	@CallSuper
@@ -132,7 +132,7 @@ public abstract class AlfonzBindingActivity<T extends AlfonzView, R extends Alfo
 	}
 
 
-	private B setupBinding(LayoutInflater inflater)
+	private B setupBinding(@NonNull LayoutInflater inflater)
 	{
 		B binding = inflateBindingLayout(inflater);
 		binding.setVariable(BR.view, this);

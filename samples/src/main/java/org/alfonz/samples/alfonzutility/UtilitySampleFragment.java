@@ -25,7 +25,7 @@ public class UtilitySampleFragment extends BaseFragment<UtilitySampleView, Utili
 
 
 	@Override
-	public FragmentUtilitySampleBinding inflateBindingLayout(LayoutInflater inflater)
+	public FragmentUtilitySampleBinding inflateBindingLayout(@NonNull LayoutInflater inflater)
 	{
 		return FragmentUtilitySampleBinding.inflate(inflater);
 	}
