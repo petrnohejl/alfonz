@@ -54,7 +54,7 @@ imageView.setImageDrawable(drawable);
 Dependencies
 ------------
 
-* No dependencies
+* Android Support Library
 
 
 Samples and download

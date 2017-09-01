@@ -7,6 +7,7 @@ import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+import android.support.annotation.NonNull;
 
 
 public final class BitmapBlur
@@ -18,13 +19,13 @@ public final class BitmapBlur
 	private BitmapBlur() {}
 
 
-	public static Bitmap getBlurredBitmap(Context context, Bitmap bitmap)
+	public static Bitmap getBlurredBitmap(@NonNull Context context, @NonNull Bitmap bitmap)
 	{
 		return getBlurredBitmap(context, bitmap, BITMAP_SCALE, BLUR_RADIUS);
 	}
 
 
-	public static Bitmap getBlurredBitmap(Context context, Bitmap bitmap, float scale, float radius)
+	public static Bitmap getBlurredBitmap(@NonNull Context context, @NonNull Bitmap bitmap, float scale, float radius)
 	{
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
 		{

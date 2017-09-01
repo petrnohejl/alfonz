@@ -1,6 +1,7 @@
 package org.alfonz.graphics.bitmap;
 
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 
 
 public final class BitmapScaler
@@ -9,36 +10,36 @@ public final class BitmapScaler
 
 
 	// scale and keep aspect ratio
-	public static Bitmap scaleToFitWidth(Bitmap b, int width)
+	public static Bitmap scaleToFitWidth(@NonNull Bitmap bitmap, int width)
 	{
-		float factor = width / (float) b.getWidth();
-		return Bitmap.createScaledBitmap(b, width, (int) (b.getHeight() * factor), true);
+		float factor = width / (float) bitmap.getWidth();
+		return Bitmap.createScaledBitmap(bitmap, width, (int) (bitmap.getHeight() * factor), true);
 	}
 
 
 	// scale and keep aspect ratio
-	public static Bitmap scaleToFitHeight(Bitmap b, int height)
+	public static Bitmap scaleToFitHeight(@NonNull Bitmap bitmap, int height)
 	{
-		float factor = height / (float) b.getHeight();
-		return Bitmap.createScaledBitmap(b, (int) (b.getWidth() * factor), height, true);
+		float factor = height / (float) bitmap.getHeight();
+		return Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * factor), height, true);
 	}
 
 
 	// scale and keep aspect ratio
-	public static Bitmap scaleToFill(Bitmap b, int width, int height)
+	public static Bitmap scaleToFill(@NonNull Bitmap bitmap, int width, int height)
 	{
-		float factorH = height / (float) b.getWidth();
-		float factorW = width / (float) b.getWidth();
+		float factorH = height / (float) bitmap.getWidth();
+		float factorW = width / (float) bitmap.getWidth();
 		float factorToUse = (factorH > factorW) ? factorW : factorH;
-		return Bitmap.createScaledBitmap(b, (int) (b.getWidth() * factorToUse), (int) (b.getHeight() * factorToUse), true);
+		return Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * factorToUse), (int) (bitmap.getHeight() * factorToUse), true);
 	}
 
 
 	// scale and don't keep aspect ratio
-	public static Bitmap strechToFill(Bitmap b, int width, int height)
+	public static Bitmap strechToFill(@NonNull Bitmap bitmap, int width, int height)
 	{
-		float factorH = height / (float) b.getHeight();
-		float factorW = width / (float) b.getWidth();
-		return Bitmap.createScaledBitmap(b, (int) (b.getWidth() * factorW), (int) (b.getHeight() * factorH), true);
+		float factorH = height / (float) bitmap.getHeight();
+		float factorW = width / (float) bitmap.getWidth();
+		return Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * factorW), (int) (bitmap.getHeight() * factorH), true);
 	}
 }

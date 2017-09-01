@@ -10,6 +10,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 
 
 public class CircularDrawable extends Drawable
@@ -24,25 +25,25 @@ public class CircularDrawable extends Drawable
 	private Paint mBorderPaint;
 
 
-	public CircularDrawable(Bitmap bitmap)
+	public CircularDrawable(@NonNull Bitmap bitmap)
 	{
 		this(bitmap, bitmap.getWidth() < bitmap.getHeight() ? bitmap.getWidth() : bitmap.getHeight(), 0F, 0F, 0);
 	}
 
 
-	public CircularDrawable(Bitmap bitmap, float diameter)
+	public CircularDrawable(@NonNull Bitmap bitmap, float diameter)
 	{
 		this(bitmap, diameter, 0F, 0F, 0);
 	}
 
 
-	public CircularDrawable(Bitmap bitmap, float borderWidth, float borderGap, int borderColor)
+	public CircularDrawable(@NonNull Bitmap bitmap, float borderWidth, float borderGap, int borderColor)
 	{
 		this(bitmap, bitmap.getWidth() < bitmap.getHeight() ? bitmap.getWidth() : bitmap.getHeight(), borderWidth, borderGap, borderColor);
 	}
 
 
-	public CircularDrawable(Bitmap bitmap, float diameter, float borderWidth, float borderGap, int borderColor)
+	public CircularDrawable(@NonNull Bitmap bitmap, float diameter, float borderWidth, float borderGap, int borderColor)
 	{
 		mBitmap = bitmap;
 		mDiameter = diameter;
@@ -87,7 +88,7 @@ public class CircularDrawable extends Drawable
 
 
 	@Override
-	public void draw(Canvas canvas)
+	public void draw(@NonNull Canvas canvas)
 	{
 		if(mBorderPaint != null)
 		{

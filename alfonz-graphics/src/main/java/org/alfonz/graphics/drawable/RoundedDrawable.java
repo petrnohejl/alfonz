@@ -10,6 +10,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 
 
 public class RoundedDrawable extends Drawable
@@ -22,13 +23,13 @@ public class RoundedDrawable extends Drawable
 	private RectF mRect = new RectF();
 
 
-	public RoundedDrawable(Bitmap bitmap, float cornerRadius)
+	public RoundedDrawable(@NonNull Bitmap bitmap, float cornerRadius)
 	{
 		this(bitmap, cornerRadius, 0);
 	}
 
 
-	public RoundedDrawable(Bitmap bitmap, float cornerRadius, int margin)
+	public RoundedDrawable(@NonNull Bitmap bitmap, float cornerRadius, int margin)
 	{
 		mBitmap = bitmap;
 		mCornerRadius = cornerRadius;
@@ -43,7 +44,7 @@ public class RoundedDrawable extends Drawable
 
 
 	@Override
-	protected void onBoundsChange(Rect bounds)
+	protected void onBoundsChange(@NonNull Rect bounds)
 	{
 		super.onBoundsChange(bounds);
 		mRect.set(mMargin, mMargin, bounds.width() - mMargin, bounds.height() - mMargin);
@@ -51,7 +52,7 @@ public class RoundedDrawable extends Drawable
 
 
 	@Override
-	public void draw(Canvas canvas)
+	public void draw(@NonNull Canvas canvas)
 	{
 		canvas.drawRoundRect(mRect, mCornerRadius, mCornerRadius, mPaint);
 	}

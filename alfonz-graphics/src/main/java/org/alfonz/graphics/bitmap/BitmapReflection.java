@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader;
+import android.support.annotation.NonNull;
 
 
 public final class BitmapReflection
@@ -15,7 +16,7 @@ public final class BitmapReflection
 	private BitmapReflection() {}
 
 
-	public static Bitmap getReflectedBitmap(Bitmap bitmap, int gap)
+	public static Bitmap getReflectedBitmap(@NonNull Bitmap bitmap, int gap)
 	{
 		int width = bitmap.getWidth();
 		int height = bitmap.getHeight();
@@ -44,7 +45,7 @@ public final class BitmapReflection
 	}
 
 
-	public static Bitmap getReflection(Bitmap bitmap)
+	public static Bitmap getReflection(@NonNull Bitmap bitmap)
 	{
 		int width = bitmap.getWidth();
 		int height = bitmap.getHeight();
