@@ -34,7 +34,7 @@ public class RestRxManager extends RxManager
 	}
 
 
-	public <T extends Response<?>> Observable<T> setupRestObservable(Observable<T> restObservable, String callType)
+	public <T extends Response<?>> Observable<T> setupRestObservable(@NonNull Observable<T> restObservable, @NonNull String callType)
 	{
 		return setupObservable(restObservable, callType)
 				.flatMap(this::catchObservableHttpError)
@@ -53,13 +53,13 @@ public class RestRxManager extends RxManager
 	}
 
 
-	public <T extends Response<?>> Observable<T> setupRestObservableWithSchedulers(Observable<T> restObservable, String callType)
+	public <T extends Response<?>> Observable<T> setupRestObservableWithSchedulers(@NonNull Observable<T> restObservable, @NonNull String callType)
 	{
 		return setupRestObservable(restObservable, callType).compose(SchedulersUtility.applyObservableSchedulers());
 	}
 
 
-	public <T extends Response<?>> Single<T> setupRestSingle(Single<T> restSingle, String callType)
+	public <T extends Response<?>> Single<T> setupRestSingle(@NonNull Single<T> restSingle, @NonNull String callType)
 	{
 		return setupSingle(restSingle, callType)
 				.flatMap(this::catchSingleHttpError)
@@ -78,7 +78,7 @@ public class RestRxManager extends RxManager
 	}
 
 
-	public <T extends Response<?>> Single<T> setupRestSingleWithSchedulers(Single<T> restSingle, String callType)
+	public <T extends Response<?>> Single<T> setupRestSingleWithSchedulers(@NonNull Single<T> restSingle, @NonNull String callType)
 	{
 		return setupRestSingle(restSingle, callType).compose(SchedulersUtility.applySingleSchedulers());
 	}
@@ -86,7 +86,7 @@ public class RestRxManager extends RxManager
 
 	// this method does not use ResponseHandler, because it cannot access Response object
 	// http errors are handled with retrofit2.HttpException
-	public Completable setupRestCompletable(Completable restCompletable, String callType)
+	public Completable setupRestCompletable(@NonNull Completable restCompletable, @NonNull String callType)
 	{
 		return setupCompletable(restCompletable, callType)
 				.doOnComplete(() -> logSuccess(callType))
@@ -106,13 +106,13 @@ public class RestRxManager extends RxManager
 
 	// this method does not use ResponseHandler, because it cannot access Response object
 	// http errors are handled with retrofit2.HttpException
-	public Completable setupRestCompletableWithSchedulers(Completable restCompletable, String callType)
+	public Completable setupRestCompletableWithSchedulers(@NonNull Completable restCompletable, @NonNull String callType)
 	{
 		return setupRestCompletable(restCompletable, callType).compose(SchedulersUtility.applyCompletableSchedulers());
 	}
 
 
-	public String getHttpErrorMessage(Throwable throwable)
+	public String getHttpErrorMessage(@NonNull Throwable throwable)
 	{
 		if(throwable instanceof HttpException)
 		{
@@ -126,7 +126,7 @@ public class RestRxManager extends RxManager
 	}
 
 
-	public <T extends Response<?>> Observable<T> catchObservableHttpError(T response)
+	public <T extends Response<?>> Observable<T> catchObservableHttpError(@NonNull T response)
 	{
 		if(mResponseHandler.isSuccess(response))
 		{
@@ -139,7 +139,7 @@ public class RestRxManager extends RxManager
 	}
 
 
-	public <T extends Response<?>> Single<T> catchSingleHttpError(T response)
+	public <T extends Response<?>> Single<T> catchSingleHttpError(@NonNull T response)
 	{
 		if(mResponseHandler.isSuccess(response))
 		{
@@ -152,7 +152,7 @@ public class RestRxManager extends RxManager
 	}
 
 
-	private void logSuccess(String callType)
+	private void logSuccess(@NonNull String callType)
 	{
 		if(mHttpLogger != null)
 		{
@@ -162,7 +162,7 @@ public class RestRxManager extends RxManager
 	}
 
 
-	private void logSuccess(Response<?> response, String callType)
+	private void logSuccess(@NonNull Response<?> response, @NonNull String callType)
 	{
 		if(mHttpLogger != null)
 		{
@@ -174,7 +174,7 @@ public class RestRxManager extends RxManager
 	}
 
 
-	private void logError(HttpException exception, String callType)
+	private void logError(@NonNull HttpException exception, @NonNull String callType)
 	{
 		if(mHttpLogger != null)
 		{
@@ -186,7 +186,7 @@ public class RestRxManager extends RxManager
 	}
 
 
-	private void logError(retrofit2.HttpException exception, String callType)
+	private void logError(@NonNull retrofit2.HttpException exception, @NonNull String callType)
 	{
 		if(mHttpLogger != null)
 		{
@@ -197,7 +197,7 @@ public class RestRxManager extends RxManager
 	}
 
 
-	private void logFail(Throwable throwable, String callType)
+	private void logFail(@NonNull Throwable throwable, @NonNull String callType)
 	{
 		if(mHttpLogger != null)
 		{

@@ -1,6 +1,7 @@
 package org.alfonz.samples.alfonzrest;
 
 import android.databinding.ObservableField;
+import android.support.annotation.NonNull;
 
 import org.alfonz.rest.HttpException;
 import org.alfonz.rest.call.CallManager;
@@ -97,7 +98,7 @@ public class RestSampleViewModel extends BaseViewModel<RestSampleView>
 
 
 		@Override
-		public void onSuccess(Call<RepoEntity> call, Response<RepoEntity> response)
+		public void onSuccess(@NonNull Call<RepoEntity> call, @NonNull Response<RepoEntity> response)
 		{
 			repo.set(response.body());
 			setState(repo);
@@ -105,7 +106,7 @@ public class RestSampleViewModel extends BaseViewModel<RestSampleView>
 
 
 		@Override
-		public void onError(Call<RepoEntity> call, HttpException exception)
+		public void onError(@NonNull Call<RepoEntity> call, @NonNull HttpException exception)
 		{
 			handleError(mCallManager.getHttpErrorMessage(exception));
 			setState(repo);
@@ -113,7 +114,7 @@ public class RestSampleViewModel extends BaseViewModel<RestSampleView>
 
 
 		@Override
-		public void onFail(Call<RepoEntity> call, Throwable throwable)
+		public void onFail(@NonNull Call<RepoEntity> call, @NonNull Throwable throwable)
 		{
 			handleError(mCallManager.getHttpErrorMessage(throwable));
 			setState(repo);

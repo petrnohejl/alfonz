@@ -1,5 +1,7 @@
 package org.alfonz.rest.call;
 
+import android.support.annotation.NonNull;
+
 import org.alfonz.rest.HttpException;
 
 import retrofit2.Call;
@@ -11,23 +13,23 @@ public abstract class Callback<T> implements retrofit2.Callback<T>
 	private CallManager mCallManager;
 
 
-	public Callback(CallManager callManager)
+	public Callback(@NonNull CallManager callManager)
 	{
 		mCallManager = callManager;
 	}
 
 
-	public abstract void onSuccess(Call<T> call, Response<T> response);
+	public abstract void onSuccess(@NonNull Call<T> call, @NonNull Response<T> response);
 
 
-	public abstract void onError(Call<T> call, HttpException exception);
+	public abstract void onError(@NonNull Call<T> call, @NonNull HttpException exception);
 
 
-	public abstract void onFail(Call<T> call, Throwable throwable);
+	public abstract void onFail(@NonNull Call<T> call, @NonNull Throwable throwable);
 
 
 	@Override
-	public void onResponse(Call<T> call, Response<T> response)
+	public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response)
 	{
 		if(mCallManager.getResponseHandler().isSuccess(response))
 		{
@@ -55,7 +57,7 @@ public abstract class Callback<T> implements retrofit2.Callback<T>
 
 
 	@Override
-	public void onFailure(Call<T> call, Throwable throwable)
+	public void onFailure(@NonNull Call<T> call, @NonNull Throwable throwable)
 	{
 		// log
 		logFail(throwable, mCallManager.getCallType(this));
@@ -68,7 +70,7 @@ public abstract class Callback<T> implements retrofit2.Callback<T>
 	}
 
 
-	private void logSuccess(Response<T> response, String callType)
+	private void logSuccess(@NonNull Response<T> response, @NonNull String callType)
 	{
 		if(mCallManager.getHttpLogger() != null)
 		{
@@ -80,7 +82,7 @@ public abstract class Callback<T> implements retrofit2.Callback<T>
 	}
 
 
-	private void logError(HttpException exception, String callType)
+	private void logError(@NonNull HttpException exception, @NonNull String callType)
 	{
 		if(mCallManager.getHttpLogger() != null)
 		{
@@ -92,7 +94,7 @@ public abstract class Callback<T> implements retrofit2.Callback<T>
 	}
 
 
-	private void logFail(Throwable throwable, String callType)
+	private void logFail(@NonNull Throwable throwable, @NonNull String callType)
 	{
 		if(mCallManager.getHttpLogger() != null)
 		{

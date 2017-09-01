@@ -27,7 +27,7 @@ public class CallManager extends BaseCallManager
 	}
 
 
-	public String getHttpErrorMessage(Throwable throwable)
+	public String getHttpErrorMessage(@NonNull Throwable throwable)
 	{
 		if(throwable instanceof HttpException)
 		{

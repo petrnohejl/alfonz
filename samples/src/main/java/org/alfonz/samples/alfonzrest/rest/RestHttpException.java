@@ -1,5 +1,7 @@
 package org.alfonz.samples.alfonzrest.rest;
 
+import android.support.annotation.NonNull;
+
 import org.alfonz.rest.HttpException;
 import org.alfonz.samples.alfonzrest.entity.ErrorEntity;
 
@@ -20,7 +22,7 @@ public class RestHttpException extends HttpException
 
 
 	@Override
-	public Object parseError(Response<?> response)
+	public Object parseError(@NonNull Response<?> response)
 	{
 		try
 		{

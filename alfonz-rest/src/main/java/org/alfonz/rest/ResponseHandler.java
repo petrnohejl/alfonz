@@ -1,12 +1,14 @@
 package org.alfonz.rest;
 
+import android.support.annotation.NonNull;
+
 import retrofit2.Response;
 
 
 public interface ResponseHandler
 {
-	boolean isSuccess(Response<?> response);
-	String getErrorMessage(HttpException exception);
-	String getFailMessage(Throwable throwable);
-	HttpException createHttpException(Response<?> response);
+	boolean isSuccess(@NonNull Response<?> response);
+	String getErrorMessage(@NonNull HttpException exception);
+	String getFailMessage(@NonNull Throwable throwable);
+	HttpException createHttpException(@NonNull Response<?> response);
 }

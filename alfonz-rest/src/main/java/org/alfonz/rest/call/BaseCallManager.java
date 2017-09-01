@@ -1,5 +1,6 @@
 package org.alfonz.rest.call;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.util.HashMap;
@@ -17,7 +18,7 @@ class BaseCallManager
 	private Map<Integer, String> mTypes = new HashMap<>();
 
 
-	public <T> void enqueueCall(Call<T> call, Callback<T> callback, String callType)
+	public <T> void enqueueCall(@NonNull Call<T> call, @NonNull Callback<T> callback, @NonNull String callType)
 	{
 		mCalls.put(callback.hashCode(), call);
 		mTypes.put(callback.hashCode(), callType);
@@ -25,20 +26,20 @@ class BaseCallManager
 	}
 
 
-	public void finishCall(Callback callback)
+	public void finishCall(@NonNull Callback callback)
 	{
 		mCalls.remove(callback.hashCode());
 		mTypes.remove(callback.hashCode());
 	}
 
 
-	public <T> Call<T> getCall(Callback<T> callback)
+	public <T> Call<T> getCall(@NonNull Callback<T> callback)
 	{
 		return mCalls.get(callback.hashCode());
 	}
 
 
-	public String getCallType(Callback callback)
+	public String getCallType(@NonNull Callback callback)
 	{
 		return mTypes.get(callback.hashCode());
 	}
@@ -50,7 +51,7 @@ class BaseCallManager
 	}
 
 
-	public boolean hasRunningCall(String callType)
+	public boolean hasRunningCall(@NonNull String callType)
 	{
 		return mTypes.containsValue(callType);
 	}
