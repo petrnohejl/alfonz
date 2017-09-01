@@ -1,5 +1,7 @@
 package org.alfonz.rx.utility;
 
+import android.support.annotation.NonNull;
+
 import io.reactivex.CompletableTransformer;
 import io.reactivex.FlowableTransformer;
 import io.reactivex.MaybeTransformer;
@@ -21,6 +23,7 @@ public final class SchedulersUtility
 	private SchedulersUtility() {}
 
 
+	@NonNull
 	@SuppressWarnings("unchecked")
 	public static <T> ObservableTransformer<T, T> applyObservableSchedulers()
 	{
@@ -32,6 +35,7 @@ public final class SchedulersUtility
 	}
 
 
+	@NonNull
 	@SuppressWarnings("unchecked")
 	public static <T> SingleTransformer<T, T> applySingleSchedulers()
 	{
@@ -43,7 +47,8 @@ public final class SchedulersUtility
 	}
 
 
-	public static <T> CompletableTransformer applyCompletableSchedulers()
+	@NonNull
+	public static CompletableTransformer applyCompletableSchedulers()
 	{
 		if(sSchedulersCompletableTransformer == null)
 		{
@@ -53,6 +58,7 @@ public final class SchedulersUtility
 	}
 
 
+	@NonNull
 	@SuppressWarnings("unchecked")
 	public static <T> MaybeTransformer<T, T> applyMaybeSchedulers()
 	{
@@ -64,6 +70,7 @@ public final class SchedulersUtility
 	}
 
 
+	@NonNull
 	@SuppressWarnings("unchecked")
 	public static <T> FlowableTransformer<T, T> applyFlowableSchedulers()
 	{

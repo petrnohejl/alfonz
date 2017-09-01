@@ -1,5 +1,6 @@
 package org.alfonz.rx;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.alfonz.rx.utility.SchedulersUtility;
@@ -23,7 +24,7 @@ public class RxManager
 	private Map<String, Short> mRunningCalls = new HashMap<>();
 
 
-	public <T> Observable<T> setupObservable(Observable<T> observable, String callType)
+	public <T> Observable<T> setupObservable(@NonNull Observable<T> observable, @NonNull String callType)
 	{
 		return observable
 				.doOnSubscribe(disposable ->
@@ -35,13 +36,13 @@ public class RxManager
 	}
 
 
-	public <T> Observable<T> setupObservableWithSchedulers(Observable<T> observable, String callType)
+	public <T> Observable<T> setupObservableWithSchedulers(@NonNull Observable<T> observable, @NonNull String callType)
 	{
 		return setupObservable(observable, callType).compose(SchedulersUtility.applyObservableSchedulers());
 	}
 
 
-	public <T> Single<T> setupSingle(Single<T> single, String callType)
+	public <T> Single<T> setupSingle(@NonNull Single<T> single, @NonNull String callType)
 	{
 		return single
 				.doOnSubscribe(disposable ->
@@ -53,13 +54,13 @@ public class RxManager
 	}
 
 
-	public <T> Single<T> setupSingleWithSchedulers(Single<T> single, String callType)
+	public <T> Single<T> setupSingleWithSchedulers(@NonNull Single<T> single, @NonNull String callType)
 	{
 		return setupSingle(single, callType).compose(SchedulersUtility.applySingleSchedulers());
 	}
 
 
-	public Completable setupCompletable(Completable completable, String callType)
+	public Completable setupCompletable(@NonNull Completable completable, @NonNull String callType)
 	{
 		return completable
 				.doOnSubscribe(disposable ->
@@ -71,13 +72,13 @@ public class RxManager
 	}
 
 
-	public Completable setupCompletableWithSchedulers(Completable completable, String callType)
+	public Completable setupCompletableWithSchedulers(@NonNull Completable completable, @NonNull String callType)
 	{
 		return setupCompletable(completable, callType).compose(SchedulersUtility.applyCompletableSchedulers());
 	}
 
 
-	public <T> Maybe<T> setupMaybe(Maybe<T> maybe, String callType)
+	public <T> Maybe<T> setupMaybe(@NonNull Maybe<T> maybe, @NonNull String callType)
 	{
 		return maybe
 				.doOnSubscribe(disposable ->
@@ -89,7 +90,7 @@ public class RxManager
 	}
 
 
-	public <T> Maybe<T> setupMaybeWithSchedulers(Maybe<T> maybe, String callType)
+	public <T> Maybe<T> setupMaybeWithSchedulers(@NonNull Maybe<T> maybe, @NonNull String callType)
 	{
 		return setupMaybe(maybe, callType).compose(SchedulersUtility.applyMaybeSchedulers());
 	}
@@ -102,7 +103,7 @@ public class RxManager
 	}
 
 
-	public boolean isRunning(String callType)
+	public boolean isRunning(@NonNull String callType)
 	{
 		return mRunningCalls.containsKey(callType);
 	}
@@ -125,13 +126,13 @@ public class RxManager
 	}
 
 
-	private void registerDisposable(Disposable disposable)
+	private void registerDisposable(@NonNull Disposable disposable)
 	{
 		mCompositeDisposable.add(disposable);
 	}
 
 
-	private synchronized void addRunningCall(String callType)
+	private synchronized void addRunningCall(@NonNull String callType)
 	{
 		short count = 0;
 		if(mRunningCalls.containsKey(callType))
@@ -142,7 +143,7 @@ public class RxManager
 	}
 
 
-	private synchronized void removeRunningCall(String callType)
+	private synchronized void removeRunningCall(@NonNull String callType)
 	{
 		Short count = mRunningCalls.get(callType);
 		if(count == null) return;

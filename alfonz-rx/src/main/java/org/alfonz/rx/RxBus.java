@@ -46,6 +46,7 @@ public class RxBus
 	}
 
 
+	@NonNull
 	public Observable<Object> toObservable()
 	{
 		return mBus;
