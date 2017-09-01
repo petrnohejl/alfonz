@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
 import android.util.Log;
@@ -64,13 +65,13 @@ public class ImagePicker
 	}
 
 
-	public ImagePicker(Context context, String albumDirectoryName)
+	public ImagePicker(@NonNull Context context, @NonNull String albumDirectoryName)
 	{
 		this(context, albumDirectoryName, 640);
 	}
 
 
-	public ImagePicker(Context context, String albumDirectoryName, int imageSize)
+	public ImagePicker(@NonNull Context context, @NonNull String albumDirectoryName, int imageSize)
 	{
 		mContext = context.getApplicationContext();
 		mAlbumDirectoryName = albumDirectoryName;
@@ -78,91 +79,91 @@ public class ImagePicker
 	}
 
 
-	public <T extends Activity> void pickImageFromCamera(T activity, PickedAction<T> pickedAction)
+	public <T extends Activity> void pickImageFromCamera(@NonNull T activity, @NonNull PickedAction<T> pickedAction)
 	{
 		pickImageFromCamera(new ActivityPickable<>(activity), pickedAction);
 	}
 
 
-	public <T extends Fragment> void pickImageFromCamera(T fragment, PickedAction<T> pickedAction)
+	public <T extends Fragment> void pickImageFromCamera(@NonNull T fragment, @NonNull PickedAction<T> pickedAction)
 	{
 		pickImageFromCamera(new FragmentPickable<>(fragment), pickedAction);
 	}
 
 
-	public <T extends Activity> void pickImageFromCamera(T activity, PickedAction<T> pickedAction, CanceledAction<T> canceledAction)
+	public <T extends Activity> void pickImageFromCamera(@NonNull T activity, @NonNull PickedAction<T> pickedAction, @NonNull CanceledAction<T> canceledAction)
 	{
 		pickImageFromCamera(new ActivityPickable<>(activity), pickedAction, canceledAction);
 	}
 
 
-	public <T extends Fragment> void pickImageFromCamera(T fragment, PickedAction<T> pickedAction, CanceledAction<T> canceledAction)
+	public <T extends Fragment> void pickImageFromCamera(@NonNull T fragment, @NonNull PickedAction<T> pickedAction, @NonNull CanceledAction<T> canceledAction)
 	{
 		pickImageFromCamera(new FragmentPickable<>(fragment), pickedAction, canceledAction);
 	}
 
 
-	public <T extends Activity> void pickImageFromCamera(T activity, ImagePickerCallback<T> imagePickerCallback)
+	public <T extends Activity> void pickImageFromCamera(@NonNull T activity, @NonNull ImagePickerCallback<T> imagePickerCallback)
 	{
 		pickImageFromCamera(new ActivityPickable<>(activity), imagePickerCallback);
 	}
 
 
-	public <T extends Fragment> void pickImageFromCamera(T fragment, ImagePickerCallback<T> imagePickerCallback)
+	public <T extends Fragment> void pickImageFromCamera(@NonNull T fragment, @NonNull ImagePickerCallback<T> imagePickerCallback)
 	{
 		pickImageFromCamera(new FragmentPickable<>(fragment), imagePickerCallback);
 	}
 
 
-	public <T extends Activity> void pickImageFromGallery(T activity, PickedAction<T> pickedAction)
+	public <T extends Activity> void pickImageFromGallery(@NonNull T activity, @NonNull PickedAction<T> pickedAction)
 	{
 		pickImageFromGallery(new ActivityPickable<>(activity), pickedAction);
 	}
 
 
-	public <T extends Fragment> void pickImageFromGallery(T fragment, PickedAction<T> pickedAction)
+	public <T extends Fragment> void pickImageFromGallery(@NonNull T fragment, @NonNull PickedAction<T> pickedAction)
 	{
 		pickImageFromGallery(new FragmentPickable<>(fragment), pickedAction);
 	}
 
 
-	public <T extends Activity> void pickImageFromGallery(T activity, PickedAction<T> pickedAction, CanceledAction<T> canceledAction)
+	public <T extends Activity> void pickImageFromGallery(@NonNull T activity, @NonNull PickedAction<T> pickedAction, @NonNull CanceledAction<T> canceledAction)
 	{
 		pickImageFromGallery(new ActivityPickable<>(activity), pickedAction, canceledAction);
 	}
 
 
-	public <T extends Fragment> void pickImageFromGallery(T fragment, PickedAction<T> pickedAction, CanceledAction<T> canceledAction)
+	public <T extends Fragment> void pickImageFromGallery(@NonNull T fragment, @NonNull PickedAction<T> pickedAction, @NonNull CanceledAction<T> canceledAction)
 	{
 		pickImageFromGallery(new FragmentPickable<>(fragment), pickedAction, canceledAction);
 	}
 
 
-	public <T extends Activity> void pickImageFromGallery(T activity, ImagePickerCallback<T> imagePickerCallback)
+	public <T extends Activity> void pickImageFromGallery(@NonNull T activity, @NonNull ImagePickerCallback<T> imagePickerCallback)
 	{
 		pickImageFromGallery(new ActivityPickable<>(activity), imagePickerCallback);
 	}
 
 
-	public <T extends Fragment> void pickImageFromGallery(T fragment, ImagePickerCallback<T> imagePickerCallback)
+	public <T extends Fragment> void pickImageFromGallery(@NonNull T fragment, @NonNull ImagePickerCallback<T> imagePickerCallback)
 	{
 		pickImageFromGallery(new FragmentPickable<>(fragment), imagePickerCallback);
 	}
 
 
-	public <T extends Activity> void onActivityResult(T activity, int requestCode, int resultCode, Intent data)
+	public <T extends Activity> void onActivityResult(@NonNull T activity, int requestCode, int resultCode, @NonNull Intent data)
 	{
 		onActivityResult(new ActivityPickable<>(activity), requestCode, resultCode, data);
 	}
 
 
-	public <T extends Fragment> void onActivityResult(T fragment, int requestCode, int resultCode, Intent data)
+	public <T extends Fragment> void onActivityResult(@NonNull T fragment, int requestCode, int resultCode, @NonNull Intent data)
 	{
 		onActivityResult(new FragmentPickable<>(fragment), requestCode, resultCode, data);
 	}
 
 
-	private <T> void pickImageFromCamera(ImagePickable<T> imagePickable, final PickedAction<T> pickedAction)
+	private <T> void pickImageFromCamera(@NonNull ImagePickable<T> imagePickable, @NonNull final PickedAction<T> pickedAction)
 	{
 		pickImageFromCamera(imagePickable, new ImagePickerCallback<T>()
 		{
@@ -179,7 +180,7 @@ public class ImagePicker
 	}
 
 
-	private <T> void pickImageFromGallery(ImagePickable<T> imagePickable, final PickedAction<T> pickedAction)
+	private <T> void pickImageFromGallery(@NonNull ImagePickable<T> imagePickable, @NonNull final PickedAction<T> pickedAction)
 	{
 		pickImageFromGallery(imagePickable, new ImagePickerCallback<T>()
 		{
@@ -196,7 +197,7 @@ public class ImagePicker
 	}
 
 
-	private <T> void pickImageFromCamera(ImagePickable<T> imagePickable, final PickedAction<T> pickedAction, final CanceledAction<T> canceledAction)
+	private <T> void pickImageFromCamera(@NonNull ImagePickable<T> imagePickable, @NonNull final PickedAction<T> pickedAction, @NonNull final CanceledAction<T> canceledAction)
 	{
 		pickImageFromCamera(imagePickable, new ImagePickerCallback<T>()
 		{
@@ -216,7 +217,7 @@ public class ImagePicker
 	}
 
 
-	private <T> void pickImageFromGallery(ImagePickable<T> imagePickable, final PickedAction<T> pickedAction, final CanceledAction<T> canceledAction)
+	private <T> void pickImageFromGallery(@NonNull ImagePickable<T> imagePickable, @NonNull final PickedAction<T> pickedAction, @NonNull final CanceledAction<T> canceledAction)
 	{
 		pickImageFromGallery(imagePickable, new ImagePickerCallback<T>()
 		{
@@ -236,7 +237,7 @@ public class ImagePicker
 	}
 
 
-	private <T> void pickImageFromCamera(ImagePickable<T> imagePickable, ImagePickerCallback<T> imagePickerCallback)
+	private <T> void pickImageFromCamera(@NonNull ImagePickable<T> imagePickable, @NonNull ImagePickerCallback<T> imagePickerCallback)
 	{
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
@@ -257,7 +258,7 @@ public class ImagePicker
 	}
 
 
-	private <T> void pickImageFromGallery(ImagePickable<T> imagePickable, ImagePickerCallback<T> imagePickerCallback)
+	private <T> void pickImageFromGallery(@NonNull ImagePickable<T> imagePickable, @NonNull ImagePickerCallback<T> imagePickerCallback)
 	{
 		Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 		intent.setType("image/jpeg");
@@ -268,7 +269,7 @@ public class ImagePicker
 
 
 	@SuppressWarnings("unchecked")
-	private <T> void onActivityResult(ImagePickable<T> imagePickable, int requestCode, int resultCode, Intent data)
+	private <T> void onActivityResult(@NonNull ImagePickable<T> imagePickable, int requestCode, int resultCode, @NonNull Intent data)
 	{
 		if(mImagePickerCallback != null)
 		{
@@ -310,6 +311,7 @@ public class ImagePicker
 	}
 
 
+	@NonNull
 	private Pair<Bitmap, String> handleImageFromCamera()
 	{
 		Bitmap bitmap = null;
@@ -326,7 +328,8 @@ public class ImagePicker
 	}
 
 
-	private Pair<Bitmap, String> handleImageFromGallery(Intent data)
+	@NonNull
+	private Pair<Bitmap, String> handleImageFromGallery(@NonNull Intent data)
 	{
 		Bitmap bitmap = null;
 		Uri imageFromGalleryUri = data.getData();
@@ -341,7 +344,7 @@ public class ImagePicker
 	}
 
 
-	private File createImageFile(String albumDirectoryName) throws IOException
+	private File createImageFile(@NonNull String albumDirectoryName) throws IOException
 	{
 		String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
 		String imageFileName = "IMG_" + timestamp + "_";
@@ -350,7 +353,7 @@ public class ImagePicker
 	}
 
 
-	private File getAlbumDirectory(String albumDirectoryName)
+	private File getAlbumDirectory(@NonNull String albumDirectoryName)
 	{
 		File storageDirectory = null;
 		if(Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()))
@@ -373,7 +376,8 @@ public class ImagePicker
 	}
 
 
-	private String getPathFromUri(Uri uri)
+	@Nullable
+	private String getPathFromUri(@NonNull Uri uri)
 	{
 		String path = null;
 		if(mContext != null)
@@ -392,7 +396,7 @@ public class ImagePicker
 	}
 
 
-	private void addImageToGallery(String imageFromCameraPath)
+	private void addImageToGallery(@NonNull String imageFromCameraPath)
 	{
 		Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
 		File file = new File(imageFromCameraPath);
@@ -495,7 +499,7 @@ public class ImagePicker
 		private T mActivity;
 
 
-		public ActivityPickable(T activity)
+		public ActivityPickable(@NonNull T activity)
 		{
 			mActivity = activity;
 		}
@@ -521,7 +525,7 @@ public class ImagePicker
 		private T mFragment;
 
 
-		public FragmentPickable(T fragment)
+		public FragmentPickable(@NonNull T fragment)
 		{
 			mFragment = fragment;
 		}

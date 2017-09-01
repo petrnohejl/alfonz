@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.support.annotation.IntDef;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.io.IOException;
 import java.lang.annotation.Retention;
@@ -30,7 +32,7 @@ public class SoundManager
 	public @interface Mode {}
 
 
-	public SoundManager(Context context, @Mode int mode)
+	public SoundManager(@NonNull Context context, @Mode int mode)
 	{
 		mContext = context.getApplicationContext();
 		mMode = mode;
@@ -38,13 +40,13 @@ public class SoundManager
 	}
 
 
-	public void play(String path)
+	public void play(@NonNull String path)
 	{
 		playSound(path, null);
 	}
 
 
-	public void playAsset(String filename)
+	public void playAsset(@NonNull String filename)
 	{
 		// get sound
 		AssetFileDescriptor assetFileDescriptor;
@@ -83,7 +85,7 @@ public class SoundManager
 	}
 
 
-	private void playSound(final String path, AssetFileDescriptor assetFileDescriptor)
+	private void playSound(@NonNull final String path, @Nullable AssetFileDescriptor assetFileDescriptor)
 	{
 		// stop all currently playing sounds
 		if(mMode == PLAY_SINGLE)
@@ -122,7 +124,7 @@ public class SoundManager
 
 			mediaPlayer.prepareAsync();
 		}
-		catch(IllegalArgumentException | IllegalStateException | IOException e)
+		catch(@NonNull IllegalArgumentException | IllegalStateException | IOException e)
 		{
 			e.printStackTrace();
 			return;
@@ -132,7 +134,7 @@ public class SoundManager
 		mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener()
 		{
 			@Override
-			public void onPrepared(MediaPlayer mediaPlayer)
+			public void onPrepared(@NonNull MediaPlayer mediaPlayer)
 			{
 				mediaPlayer.start();
 			}
@@ -142,7 +144,7 @@ public class SoundManager
 		mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
 		{
 			@Override
-			public void onCompletion(MediaPlayer mediaPlayer)
+			public void onCompletion(@Nullable MediaPlayer mediaPlayer)
 			{
 				mMediaMap.remove(path);
 				if(mediaPlayer != null)

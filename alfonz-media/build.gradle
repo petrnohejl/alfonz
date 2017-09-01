@@ -38,6 +38,7 @@ dependencies {
 	compile fileTree(dir: "libs", include: ["*.jar"])
 	compile project(":alfonz-graphics")
 	compile "com.android.support:support-fragment:$androidSupportVersion"
+	compile "com.android.support:support-annotations:$androidSupportVersion"
 }
 
 
