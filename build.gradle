@@ -20,7 +20,7 @@
 buildscript {
 	ext {
 		majorVersion = 0 // max two digits
-		minorVersion = 6 // max two digits
+		minorVersion = 7 // max two digits
 		patchVersion = 0 // max two digits
 		buildVersion = 0 // max three digits
 

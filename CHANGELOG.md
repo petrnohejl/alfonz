@@ -4,6 +4,19 @@ Changelog
 This document lists the most important changes in Alfonz library. For more detailed changelog see a Git log.
 
 
+0.7.0
+-----
+
+* [adapter module] Simple data bound adapters are no longer abstract
+* [adapter module] AdapterView interface for handling event callbacks, remove dependency on MVVM module
+* [adapter module] Remove useless type parameters
+* [media module] Add ImagePickerCallback in ImagePicker
+* [mvvm module] Add ToolbarIndicator
+* [rx module] New RxBus
+* [utility module] Add PermissionRequestable in PermissionManager to persist callback and handle orientation change properly
+* [all modules] Infer nullity
+
+
 0.6.0
 -----
 
