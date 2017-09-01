@@ -128,7 +128,7 @@ public class HelloWorldFragment
 	}
 
 	@Override
-	public FragmentHelloWorldBinding inflateBindingLayout(LayoutInflater inflater)
+	public FragmentHelloWorldBinding inflateBindingLayout(@NonNull LayoutInflater inflater)
 	{
 		return FragmentHelloWorldBinding.inflate(inflater);
 	}

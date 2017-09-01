@@ -39,7 +39,7 @@ public class RestHttpException extends HttpException
 	}
 
 	@Override
-	public Object parseError(Response<?> response)
+	public Object parseError(@NonNull Response<?> response)
 	{
 		try
 		{
@@ -64,26 +64,26 @@ Now implement `ResponseHandler`. Define a successful response, error message, fa
 public class RestResponseHandler implements ResponseHandler
 {
 	@Override
-	public boolean isSuccess(Response<?> response)
+	public boolean isSuccess(@NonNull Response<?> response)
 	{
 		return response.isSuccessful();
 	}
 
 	@Override
-	public String getErrorMessage(HttpException exception)
+	public String getErrorMessage(@NonNull HttpException exception)
 	{
 		ErrorEntity error = (ErrorEntity) exception.error();
 		return error.getMessage();
 	}
 
 	@Override
-	public String getFailMessage(Throwable throwable)
+	public String getFailMessage(@NonNull Throwable throwable)
 	{
 		return throwable.getMessage();
 	}
 
 	@Override
-	public HttpException createHttpException(Response<?> response)
+	public HttpException createHttpException(@NonNull Response<?> response)
 	{
 		return new RestHttpException(response);
 	}
@@ -96,19 +96,19 @@ You can also implement `HttpLogger` for logging success, error and fail states o
 public class RestHttpLogger implements HttpLogger
 {
 	@Override
-	public void logSuccess(String message)
+	public void logSuccess(@NonNull String message)
 	{
 		Logcat.d(message);
 	}
 
 	@Override
-	public void logError(String message)
+	public void logError(@NonNull String message)
 	{
 		Logcat.d(message);
 	}
 
 	@Override
-	public void logFail(String message)
+	public void logFail(@NonNull String message)
 	{
 		Logcat.e(message);
 	}

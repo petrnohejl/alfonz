@@ -157,7 +157,7 @@ First implement `RationaleHandler`. Define a rationale message and rationale UI.
 public class PermissionRationaleHandler implements PermissionManager.RationaleHandler
 {
 	@Override
-	public String getRationaleMessage(String permission)
+	public String getRationaleMessage(@NonNull String permission)
 	{
 		int resId;
 		switch(permission)
@@ -175,7 +175,7 @@ public class PermissionRationaleHandler implements PermissionManager.RationaleHa
 	}
 
 	@Override
-	public void showRationale(View rootView, String rationaleMessage, PermissionManager.ConfirmAction confirmAction)
+	public void showRationale(@NonNull View rootView, @NonNull String rationaleMessage, @NonNull PermissionManager.ConfirmAction confirmAction)
 	{
 		Snackbar.make(rootView, rationaleMessage, Snackbar.LENGTH_INDEFINITE)
 				.setAction(android.R.string.ok, view -> confirmAction.run())
