@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
@@ -18,19 +19,19 @@ public class SelectorFrameLayout extends FrameLayout
 	private final Drawable mSelector;
 
 
-	public SelectorFrameLayout(Context context)
+	public SelectorFrameLayout(@NonNull Context context)
 	{
 		this(context, null);
 	}
 
 
-	public SelectorFrameLayout(Context context, AttributeSet attrs)
+	public SelectorFrameLayout(@NonNull Context context, AttributeSet attrs)
 	{
 		this(context, attrs, 0);
 	}
 
 
-	public SelectorFrameLayout(Context context, AttributeSet attrs, int defStyleAttr)
+	public SelectorFrameLayout(@NonNull Context context, AttributeSet attrs, int defStyleAttr)
 	{
 		super(context, attrs, defStyleAttr);
 

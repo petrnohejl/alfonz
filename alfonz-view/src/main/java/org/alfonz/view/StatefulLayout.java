@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.IntDef;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,19 +51,19 @@ public class StatefulLayout extends FrameLayout
 	}
 
 
-	public StatefulLayout(Context context)
+	public StatefulLayout(@NonNull Context context)
 	{
 		this(context, null);
 	}
 
 
-	public StatefulLayout(Context context, AttributeSet attrs)
+	public StatefulLayout(@NonNull Context context, AttributeSet attrs)
 	{
 		this(context, attrs, 0);
 	}
 
 
-	public StatefulLayout(Context context, AttributeSet attrs, int defStyleAttr)
+	public StatefulLayout(@NonNull Context context, AttributeSet attrs, int defStyleAttr)
 	{
 		super(context, attrs, defStyleAttr);
 
@@ -155,14 +157,14 @@ public class StatefulLayout extends FrameLayout
 	}
 
 
-	public void saveInstanceState(Bundle outState)
+	public void saveInstanceState(@NonNull Bundle outState)
 	{
 		outState.putInt(SAVED_STATE, mState);
 	}
 
 
 	@State
-	public int restoreInstanceState(Bundle savedInstanceState)
+	public int restoreInstanceState(@Nullable Bundle savedInstanceState)
 	{
 		@State int state = CONTENT;
 		if(savedInstanceState != null && savedInstanceState.containsKey(SAVED_STATE))

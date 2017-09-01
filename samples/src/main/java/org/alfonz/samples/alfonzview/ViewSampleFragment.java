@@ -41,7 +41,7 @@ public class ViewSampleFragment extends BaseFragment<ViewSampleView, ViewSampleV
 		getBinding().fragmentViewSampleScrollview.setOnScrollViewListener(new ObservableScrollView.OnScrollViewListener()
 		{
 			@Override
-			public void onScrollChanged(ObservableScrollView scrollView, int x, int y, int oldx, int oldy)
+			public void onScrollChanged(@NonNull ObservableScrollView scrollView, int x, int y, int oldx, int oldy)
 			{
 				Logcat.d("%d", y);
 			}

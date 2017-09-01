@@ -2,6 +2,7 @@ package org.alfonz.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
@@ -12,14 +13,14 @@ public class MaxWidthLinearLayout extends LinearLayout
 	private int mMaxWidth;
 
 
-	public MaxWidthLinearLayout(Context context)
+	public MaxWidthLinearLayout(@NonNull Context context)
 	{
 		super(context);
 		mMaxWidth = 0;
 	}
 
 
-	public MaxWidthLinearLayout(Context context, AttributeSet attrs)
+	public MaxWidthLinearLayout(@NonNull Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
 		TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MaxWidthLinearLayout);

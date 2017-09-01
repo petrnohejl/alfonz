@@ -20,6 +20,7 @@ package org.alfonz.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.support.annotation.NonNull;
 import android.text.Layout;
 import android.text.Layout.Alignment;
 import android.text.StaticLayout;
@@ -59,19 +60,19 @@ public class EllipsizingTextView extends TextView
 	}
 
 
-	public EllipsizingTextView(Context context)
+	public EllipsizingTextView(@NonNull Context context)
 	{
 		this(context, null);
 	}
 
 
-	public EllipsizingTextView(Context context, AttributeSet attrs)
+	public EllipsizingTextView(@NonNull Context context, AttributeSet attrs)
 	{
 		this(context, attrs, 0);
 	}
 
 
-	public EllipsizingTextView(Context context, AttributeSet attrs, int defStyle)
+	public EllipsizingTextView(@NonNull Context context, AttributeSet attrs, int defStyle)
 	{
 		super(context, attrs, defStyle);
 		super.setEllipsize(null);

@@ -3,6 +3,7 @@ package org.alfonz.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
@@ -18,14 +19,14 @@ public class RotatableImageView extends ImageView
 	}
 
 
-	public RotatableImageView(Context context, AttributeSet attrs)
+	public RotatableImageView(@NonNull Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
 		loadAttributes(context, attrs);
 	}
 
 
-	public RotatableImageView(Context context, AttributeSet attrs, int defStyle)
+	public RotatableImageView(@NonNull Context context, AttributeSet attrs, int defStyle)
 	{
 		super(context, attrs, defStyle);
 		loadAttributes(context, attrs);

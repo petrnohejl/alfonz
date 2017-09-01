@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
@@ -18,19 +19,19 @@ public class SelectorLinearLayout extends LinearLayout
 	private final Drawable mSelector;
 
 
-	public SelectorLinearLayout(Context context)
+	public SelectorLinearLayout(@NonNull Context context)
 	{
 		this(context, null);
 	}
 
 
-	public SelectorLinearLayout(Context context, AttributeSet attrs)
+	public SelectorLinearLayout(@NonNull Context context, AttributeSet attrs)
 	{
 		this(context, attrs, 0);
 	}
 
 
-	public SelectorLinearLayout(Context context, AttributeSet attrs, int defStyleAttr)
+	public SelectorLinearLayout(@NonNull Context context, AttributeSet attrs, int defStyleAttr)
 	{
 		super(context, attrs, defStyleAttr);
 

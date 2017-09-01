@@ -1,6 +1,7 @@
 package org.alfonz.view;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.ScrollView;
 
@@ -13,23 +14,23 @@ public class ObservableScrollView extends ScrollView
 
 	public interface OnScrollViewListener
 	{
-		void onScrollChanged(ObservableScrollView scrollView, int x, int y, int oldx, int oldy);
+		void onScrollChanged(@NonNull ObservableScrollView scrollView, int x, int y, int oldx, int oldy);
 	}
 
 
-	public ObservableScrollView(Context context)
+	public ObservableScrollView(@NonNull Context context)
 	{
 		super(context);
 	}
 
 
-	public ObservableScrollView(Context context, AttributeSet attrs)
+	public ObservableScrollView(@NonNull Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
 	}
 
 
-	public ObservableScrollView(Context context, AttributeSet attrs, int defStyle)
+	public ObservableScrollView(@NonNull Context context, AttributeSet attrs, int defStyle)
 	{
 		super(context, attrs, defStyle);
 	}
@@ -46,7 +47,7 @@ public class ObservableScrollView extends ScrollView
 	}
 
 
-	public void setOnScrollViewListener(OnScrollViewListener onScrollViewListener)
+	public void setOnScrollViewListener(@NonNull OnScrollViewListener onScrollViewListener)
 	{
 		mOnScrollViewListener = onScrollViewListener;
 	}

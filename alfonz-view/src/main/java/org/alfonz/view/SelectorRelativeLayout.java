@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
@@ -18,19 +19,19 @@ public class SelectorRelativeLayout extends RelativeLayout
 	private final Drawable mSelector;
 
 
-	public SelectorRelativeLayout(Context context)
+	public SelectorRelativeLayout(@NonNull Context context)
 	{
 		this(context, null);
 	}
 
 
-	public SelectorRelativeLayout(Context context, AttributeSet attrs)
+	public SelectorRelativeLayout(@NonNull Context context, AttributeSet attrs)
 	{
 		this(context, attrs, 0);
 	}
 
 
-	public SelectorRelativeLayout(Context context, AttributeSet attrs, int defStyleAttr)
+	public SelectorRelativeLayout(@NonNull Context context, AttributeSet attrs, int defStyleAttr)
 	{
 		super(context, attrs, defStyleAttr);
 
