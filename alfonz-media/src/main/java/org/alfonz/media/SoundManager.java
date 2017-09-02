@@ -6,12 +6,12 @@ import android.media.MediaPlayer;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.util.ArrayMap;
 
 import java.io.IOException;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -36,7 +36,7 @@ public class SoundManager
 	{
 		mContext = context.getApplicationContext();
 		mMode = mode;
-		mMediaMap = new HashMap<>();
+		mMediaMap = new ArrayMap<>();
 	}
 
 

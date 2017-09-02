@@ -1,11 +1,11 @@
 package org.alfonz.rx;
 
 import android.support.annotation.NonNull;
+import android.support.v4.util.ArrayMap;
 import android.util.Log;
 
 import org.alfonz.rx.utility.SchedulersUtility;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import io.reactivex.Completable;
@@ -21,7 +21,7 @@ public class RxManager
 	private static final String TAG = "ALFONZ";
 
 	private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
-	private Map<String, Short> mRunningCalls = new HashMap<>();
+	private Map<String, Short> mRunningCalls = new ArrayMap<>();
 
 
 	public <T> Observable<T> setupObservable(@NonNull Observable<T> observable, @NonNull String callType)

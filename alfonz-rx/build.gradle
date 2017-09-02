@@ -37,6 +37,7 @@ android {
 
 dependencies {
 	compile fileTree(dir: "libs", include: ["*.jar"])
+	compile "com.android.support:support-core-utils:$androidSupportVersion"
 	compile "com.android.support:support-annotations:$androidSupportVersion"
 	compile "com.jakewharton.rxrelay2:rxrelay:$rxRelayVersion"
 	compile "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"

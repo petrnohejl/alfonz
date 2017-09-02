@@ -4,12 +4,12 @@ import android.content.Context;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.util.ArraySet;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -149,7 +149,7 @@ public final class StorageUtility
 	@NonNull
 	public static Set<String> getExternalMounts()
 	{
-		final Set<String> externalMounts = new HashSet<>();
+		final Set<String> externalMounts = new ArraySet<>();
 		String regex = "(?i).*vold.*(vfat|ntfs|exfat|fat32|ext3|ext4).*rw.*";
 		String mountOutput = "";
 

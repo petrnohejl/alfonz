@@ -8,10 +8,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.util.ArrayMap;
+import android.support.v4.util.ArraySet;
 import android.view.View;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -183,7 +183,7 @@ public class PermissionManager
 
 	private PermissionsResult check(@NonNull PermissionRequestable permissionRequestable, @NonNull String... permissions)
 	{
-		Map<String, Boolean> resultMap = new HashMap<>();
+		Map<String, Boolean> resultMap = new ArrayMap<>();
 		for(String permission : permissions)
 		{
 			int result = ContextCompat.checkSelfPermission(permissionRequestable.getContext(), permission);
@@ -354,7 +354,7 @@ public class PermissionManager
 
 		public PermissionsResult(@NonNull String[] permissions, @NonNull int[] grantResults)
 		{
-			mResultMap = new HashMap<>();
+			mResultMap = new ArrayMap<>();
 			for(int i = 0; i < permissions.length; i++)
 			{
 				mResultMap.put(permissions[i], grantResults[i] == PackageManager.PERMISSION_GRANTED);
@@ -386,7 +386,7 @@ public class PermissionManager
 
 		private String[] getDeniedPermissions()
 		{
-			Set<String> denied = new HashSet<>();
+			Set<String> denied = new ArraySet<>();
 			for(Map.Entry<String, Boolean> entry : mResultMap.entrySet())
 			{
 				if(!entry.getValue())

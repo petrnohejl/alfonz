@@ -1,9 +1,9 @@
 package org.alfonz.rest.call;
 
 import android.support.annotation.NonNull;
+import android.support.v4.util.ArrayMap;
 import android.util.Log;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -14,8 +14,8 @@ class BaseCallManager
 {
 	private static final String TAG = "ALFONZ";
 
-	private Map<Integer, Call> mCalls = new HashMap<>();
-	private Map<Integer, String> mTypes = new HashMap<>();
+	private Map<Integer, Call> mCalls = new ArrayMap<>();
+	private Map<Integer, String> mTypes = new ArrayMap<>();
 
 
 	public <T> void enqueueCall(@NonNull Call<T> call, @NonNull Callback<T> callback, @NonNull String callType)
