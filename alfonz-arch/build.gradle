@@ -1,0 +1,53 @@
+apply plugin: "com.android.library"
+apply from: "../utils.gradle"
+
+
+ext {
+	bintrayName = "alfonz-arch"
+	libraryName = "Alfonz-Arch"
+	artifact = "alfonz-arch"
+}
+
+
+android {
+	compileSdkVersion 26
+	buildToolsVersion "26.0.1"
+
+	defaultConfig {
+		minSdkVersion 16
+		targetSdkVersion 26
+		versionCode getVersionCode(majorVersion, minorVersion, patchVersion, buildVersion)
+		versionName getVersionName(majorVersion, minorVersion, patchVersion)
+	}
+
+	buildTypes {
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+		}
+	}
+
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_7
+		targetCompatibility JavaVersion.VERSION_1_7
+	}
+
+	dataBinding {
+		enabled = true
+	}
+}
+
+
+dependencies {
+	compile fileTree(dir: "libs", include: ["*.jar"])
+	compile "android.arch.lifecycle:runtime:$androidArchVersion"
+	compile "android.arch.lifecycle:extensions:$androidArchVersion"
+	compile "com.android.support:support-fragment:$androidSupportVersion"
+	compile "com.android.support:appcompat-v7:$androidSupportVersion"
+	compile "com.android.support:support-annotations:$androidSupportVersion"
+	annotationProcessor "android.arch.lifecycle:compiler:$androidArchVersion"
+}
+
+
+apply from: "../install.gradle"
+apply from: "../bintray.gradle"

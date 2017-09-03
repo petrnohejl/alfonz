@@ -14,9 +14,10 @@ Modules
 -------
 
 * [adapter](https://github.com/petrnohejl/Alfonz/tree/master/alfonz-adapter) - generic adapters for RecyclerView or ViewPager with data binding support
+* [arch](https://github.com/petrnohejl/Alfonz/tree/master/alfonz-arch) - base classes for MVVM architecture (based on Architecture Components)
 * [graphics](https://github.com/petrnohejl/Alfonz/tree/master/alfonz-graphics) - utilities for working with bitmaps and drawables
 * [media](https://github.com/petrnohejl/Alfonz/tree/master/alfonz-media) - utilities for working with images, sounds and videos
-* [mvvm](https://github.com/petrnohejl/Alfonz/tree/master/alfonz-mvvm) - base classes for MVVM architecture
+* [mvvm](https://github.com/petrnohejl/Alfonz/tree/master/alfonz-mvvm) - base classes for MVVM architecture (based on AndroidViewModel)
 * [rest](https://github.com/petrnohejl/Alfonz/tree/master/alfonz-rest) - helper classes for managing REST API calls
 * [rx](https://github.com/petrnohejl/Alfonz/tree/master/alfonz-rx) - helper classes for managing RxJava observables and subscriptions
 * [utility](https://github.com/petrnohejl/Alfonz/tree/master/alfonz-utility) - bunch of miscellaneous utilities
@@ -34,6 +35,7 @@ Download
 
 ```groovy
 compile "org.alfonz:alfonz-adapter:0.7.0"
+compile "org.alfonz:alfonz-arch:0.7.0"
 compile "org.alfonz:alfonz-graphics:0.7.0"
 compile "org.alfonz:alfonz-media:0.7.0"
 compile "org.alfonz:alfonz-mvvm:0.7.0"

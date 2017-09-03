@@ -38,6 +38,18 @@
 			android:parentActivityName=".SamplesActivity" />
 
 		<activity
+			android:name=".alfonzarch.ArchSampleActivity"
+			android:label="@string/title_arch"
+			android:launchMode="standard"
+			android:parentActivityName=".SamplesActivity" />
+
+		<activity
+			android:name=".alfonzarch.ArchSampleViewModelActivity"
+			android:label="ArchSampleViewModelActivity"
+			android:launchMode="standard"
+			android:parentActivityName=".SamplesActivity" />
+
+		<activity
 			android:name=".alfonzgraphics.GraphicsSampleActivity"
 			android:label="@string/title_graphics"
 			android:launchMode="standard"

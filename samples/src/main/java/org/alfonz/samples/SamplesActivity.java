@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 import org.alfonz.samples.alfonzadapter.AdapterSampleActivity;
+import org.alfonz.samples.alfonzarch.ArchSampleActivity;
 import org.alfonz.samples.alfonzgraphics.GraphicsSampleActivity;
 import org.alfonz.samples.alfonzmedia.MediaSampleActivity;
 import org.alfonz.samples.alfonzmvvm.MvvmSampleActivity;
@@ -28,6 +29,7 @@ public class SamplesActivity extends AppCompatActivity
 	private void setupButtons()
 	{
 		Button adapterButton = findViewById(R.id.activity_samples_adapter);
+		Button archButton = findViewById(R.id.activity_samples_arch);
 		Button graphicsButton = findViewById(R.id.activity_samples_graphics);
 		Button mediaButton = findViewById(R.id.activity_samples_media);
 		Button mvvmButton = findViewById(R.id.activity_samples_mvvm);
@@ -37,6 +39,7 @@ public class SamplesActivity extends AppCompatActivity
 		Button viewButton = findViewById(R.id.activity_samples_view);
 
 		adapterButton.setOnClickListener(view -> startActivity(AdapterSampleActivity.newIntent(SamplesActivity.this)));
+		archButton.setOnClickListener(view -> startActivity(ArchSampleActivity.newIntent(SamplesActivity.this)));
 		graphicsButton.setOnClickListener(view -> startActivity(GraphicsSampleActivity.newIntent(SamplesActivity.this)));
 		mediaButton.setOnClickListener(view -> startActivity(MediaSampleActivity.newIntent(SamplesActivity.this)));
 		mvvmButton.setOnClickListener(view -> startActivity(MvvmSampleActivity.newIntent(SamplesActivity.this)));

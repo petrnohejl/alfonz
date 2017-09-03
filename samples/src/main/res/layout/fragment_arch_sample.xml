@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+		<variable
+			name="view" type="org.alfonz.samples.alfonzarch.ArchSampleView" />
+		<variable
+			name="viewModel" type="org.alfonz.samples.alfonzarch.ArchSampleViewModel" />
+	</data>
+
+	<org.alfonz.view.StatefulLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:animateLayoutChanges="true"
+		app:progressLayout="@layout/placeholder_progress"
+		app:offlineLayout="@layout/placeholder_offline"
+		app:emptyLayout="@layout/placeholder_empty"
+		app:state="@{viewModel.state}">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+			android:text="@{viewModel.message}"
+			app:onClick="@{() -> view.onClick()}"
+			app:onLongClick="@{() -> view.onLongClick()}"
+			tools:text="Hello" />
+
+	</org.alfonz.view.StatefulLayout>
+
+</layout>

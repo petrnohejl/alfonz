@@ -24,6 +24,7 @@ buildscript {
 		patchVersion = 0 // max two digits
 		buildVersion = 0 // max three digits
 
+		androidArchVersion = "1.0.0-alpha9"
 		androidSupportVersion = "26.0.2"
 		androidViewModelVersion = "1.3.3"
 		gsonVersion = "2.8.1"

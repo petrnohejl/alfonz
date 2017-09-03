@@ -11,6 +11,7 @@
 	<string name="global_network_parse_fail">Unable to process response from server</string>
 
 	<string name="title_adapter">Adapter\nModule</string>
+	<string name="title_arch">Arch\nModule</string>
 	<string name="title_graphics">Graphics\nModule</string>
 	<string name="title_media">Media\nModule</string>
 	<string name="title_mvvm">MVVM\nModule</string>

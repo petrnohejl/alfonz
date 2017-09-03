@@ -47,6 +47,7 @@ android {
 dependencies {
 	compile fileTree(dir: "libs", include: ["*.jar"])
 	compile project(":alfonz-adapter")
+	compile project(":alfonz-arch")
 	compile project(":alfonz-graphics")
 	compile project(":alfonz-media")
 	compile project(":alfonz-mvvm")

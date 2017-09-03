@@ -1,7 +1,7 @@
 Alfonz - MVVM Module
 ====================
 
-Base classes for MVVM architecture.
+Base classes for MVVM architecture (based on AndroidViewModel).
 
 The purpose of this module is to simplify implementation of MVVM architecture. MVVM binder is based on Data Binding Library from Google. This module provides 4 abstract base elements (Activity, Fragment, View, ViewModel) which make up view and view-model layers of MVVM architecture.
 
