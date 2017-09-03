@@ -45,7 +45,7 @@ public abstract class AlfonzActivity extends ViewModelBaseEmptyActivity
 	{
 		if(toolbar == null)
 		{
-			toolbar = (Toolbar) findViewById(R.id.toolbar);
+			toolbar = findViewById(R.id.toolbar);
 		}
 
 		// this check is here because if 2 fragments with different indicators share a toolbar in activity,

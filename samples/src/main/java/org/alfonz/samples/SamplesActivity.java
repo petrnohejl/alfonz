@@ -27,14 +27,14 @@ public class SamplesActivity extends AppCompatActivity
 
 	private void setupButtons()
 	{
-		Button adapterButton = (Button) findViewById(R.id.activity_samples_adapter);
-		Button graphicsButton = (Button) findViewById(R.id.activity_samples_graphics);
-		Button mediaButton = (Button) findViewById(R.id.activity_samples_media);
-		Button mvvmButton = (Button) findViewById(R.id.activity_samples_mvvm);
-		Button restButton = (Button) findViewById(R.id.activity_samples_rest);
-		Button rxButton = (Button) findViewById(R.id.activity_samples_rx);
-		Button utilityButton = (Button) findViewById(R.id.activity_samples_utility);
-		Button viewButton = (Button) findViewById(R.id.activity_samples_view);
+		Button adapterButton = findViewById(R.id.activity_samples_adapter);
+		Button graphicsButton = findViewById(R.id.activity_samples_graphics);
+		Button mediaButton = findViewById(R.id.activity_samples_media);
+		Button mvvmButton = findViewById(R.id.activity_samples_mvvm);
+		Button restButton = findViewById(R.id.activity_samples_rest);
+		Button rxButton = findViewById(R.id.activity_samples_rx);
+		Button utilityButton = findViewById(R.id.activity_samples_utility);
+		Button viewButton = findViewById(R.id.activity_samples_view);
 
 		adapterButton.setOnClickListener(view -> startActivity(AdapterSampleActivity.newIntent(SamplesActivity.this)));
 		graphicsButton.setOnClickListener(view -> startActivity(GraphicsSampleActivity.newIntent(SamplesActivity.this)));
