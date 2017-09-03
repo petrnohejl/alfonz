@@ -25,7 +25,8 @@ public class ArchSampleViewModelActivity extends AlfonzBindingActivity<ArchSampl
 	@Override
 	public ArchSampleViewModel setupViewModel()
 	{
-		ArchSampleViewModel viewModel = ViewModelProviders.of(this).get(ArchSampleViewModel.class);
+		ArchSampleViewModelFactory factory = new ArchSampleViewModelFactory(getIntent().getExtras());
+		ArchSampleViewModel viewModel = ViewModelProviders.of(this, factory).get(ArchSampleViewModel.class);
 		getLifecycle().addObserver(viewModel);
 		return viewModel;
 	}

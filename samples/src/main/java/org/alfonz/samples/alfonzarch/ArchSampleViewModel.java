@@ -4,6 +4,7 @@ import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.OnLifecycleEvent;
 import android.databinding.ObservableField;
+import android.os.Bundle;
 
 import org.alfonz.utility.NetworkUtility;
 import org.alfonz.view.StatefulLayout;
@@ -13,6 +14,11 @@ public class ArchSampleViewModel extends BaseViewModel implements LifecycleObser
 {
 	public final ObservableField<Integer> state = new ObservableField<>();
 	public final ObservableField<String> message = new ObservableField<>();
+
+
+	public ArchSampleViewModel(Bundle extras)
+	{
+	}
 
 
 	@OnLifecycleEvent(Lifecycle.Event.ON_START)
