@@ -6,6 +6,7 @@ ext {
 	bintrayName = "alfonz-arch"
 	libraryName = "Alfonz-Arch"
 	artifact = "alfonz-arch"
+	libraryVersion = "0.8.0-beta.1"
 }
 
 
@@ -16,8 +17,8 @@ android {
 	defaultConfig {
 		minSdkVersion 16
 		targetSdkVersion 26
-		versionCode getVersionCode(majorVersion, minorVersion, patchVersion, buildVersion)
-		versionName getVersionName(majorVersion, minorVersion, patchVersion)
+		versionCode 800000
+		versionName "0.8.0-beta.1"
 	}
 
 	buildTypes {

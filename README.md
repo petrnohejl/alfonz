@@ -35,7 +35,7 @@ Download
 
 ```groovy
 compile "org.alfonz:alfonz-adapter:0.7.0"
-compile "org.alfonz:alfonz-arch:0.7.0"
+compile "org.alfonz:alfonz-arch:0.8.0-beta.1"
 compile "org.alfonz:alfonz-graphics:0.7.0"
 compile "org.alfonz:alfonz-media:0.7.0"
 compile "org.alfonz:alfonz-mvvm:0.7.0"
