@@ -76,29 +76,48 @@ public class PermissionManager
 	}
 
 
-	public boolean check(@NonNull Activity activity, @NonNull String permission)
+	public static boolean check(@NonNull Activity activity, @NonNull String permission)
 	{
 		return check(new ActivityRequestable<>(activity), permission);
 	}
 
 
-	public boolean check(@NonNull Fragment fragment, @NonNull String permission)
+	public static boolean check(@NonNull Fragment fragment, @NonNull String permission)
 	{
 		return check(new FragmentRequestable<>(fragment), permission);
 	}
 
 
 	@NonNull
-	public PermissionsResult check(@NonNull Activity activity, @NonNull String... permissions)
+	public static PermissionsResult check(@NonNull Activity activity, @NonNull String... permissions)
 	{
 		return check(new ActivityRequestable<>(activity), permissions);
 	}
 
 
 	@NonNull
-	public PermissionsResult check(@NonNull Fragment fragment, @NonNull String... permissions)
+	public static PermissionsResult check(@NonNull Fragment fragment, @NonNull String... permissions)
 	{
 		return check(new FragmentRequestable<>(fragment), permissions);
+	}
+
+
+	private static boolean check(@NonNull PermissionRequestable permissionRequestable, @NonNull String permission)
+	{
+		int result = ContextCompat.checkSelfPermission(permissionRequestable.getContext(), permission);
+		return result == PackageManager.PERMISSION_GRANTED;
+	}
+
+
+	private static PermissionsResult check(@NonNull PermissionRequestable permissionRequestable, @NonNull String... permissions)
+	{
+		Map<String, Boolean> resultMap = new ArrayMap<>();
+		for(String permission : permissions)
+		{
+			int result = ContextCompat.checkSelfPermission(permissionRequestable.getContext(), permission);
+			resultMap.put(permission, result == PackageManager.PERMISSION_GRANTED);
+		}
+		return new PermissionsResult(resultMap);
 	}
 
 
@@ -171,25 +190,6 @@ public class PermissionManager
 	public <T extends Fragment> void onRequestPermissionsResult(@NonNull T fragment, int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
 	{
 		onRequestPermissionsResult(new FragmentRequestable<>(fragment), requestCode, permissions, grantResults);
-	}
-
-
-	private boolean check(@NonNull PermissionRequestable permissionRequestable, @NonNull String permission)
-	{
-		int result = ContextCompat.checkSelfPermission(permissionRequestable.getContext(), permission);
-		return result == PackageManager.PERMISSION_GRANTED;
-	}
-
-
-	private PermissionsResult check(@NonNull PermissionRequestable permissionRequestable, @NonNull String... permissions)
-	{
-		Map<String, Boolean> resultMap = new ArrayMap<>();
-		for(String permission : permissions)
-		{
-			int result = ContextCompat.checkSelfPermission(permissionRequestable.getContext(), permission);
-			resultMap.put(permission, result == PackageManager.PERMISSION_GRANTED);
-		}
-		return new PermissionsResult(resultMap);
 	}
 
 
