@@ -1,6 +1,6 @@
 package org.alfonz.arch.event;
 
 
-public class Event
+public abstract class Event
 {
 }
