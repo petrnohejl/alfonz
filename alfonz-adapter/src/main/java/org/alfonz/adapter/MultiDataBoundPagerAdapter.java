@@ -5,6 +5,7 @@ import android.databinding.ObservableList;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import java.lang.ref.WeakReference;
 
@@ -32,8 +33,10 @@ public abstract class MultiDataBoundPagerAdapter extends BaseDataBoundPagerAdapt
 	@Override
 	protected void bindItem(@NonNull ViewDataBinding binding, int position)
 	{
+		Object item = getItem(position);
 		binding.setVariable(BR.view, mView);
-		binding.setVariable(BR.data, getItem(position));
+		binding.setVariable(BR.data, item);
+		binding.getRoot().setTag(item);
 	}
 
 
@@ -46,6 +49,29 @@ public abstract class MultiDataBoundPagerAdapter extends BaseDataBoundPagerAdapt
 			size += list.size();
 		}
 		return size;
+	}
+
+
+	@Override
+	public int getItemPosition(Object object)
+	{
+		Object item = ((View) object).getTag();
+		if(mItems != null)
+		{
+			int counter = 0;
+			for(ObservableArrayList<?> list : mItems)
+			{
+				for(int i = 0; i < list.size(); i++)
+				{
+					if(item == list.get(i))
+					{
+						return counter;
+					}
+					counter++;
+				}
+			}
+		}
+		return POSITION_NONE;
 	}
 
 
