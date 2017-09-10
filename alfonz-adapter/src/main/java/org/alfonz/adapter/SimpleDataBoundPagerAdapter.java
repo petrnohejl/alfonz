@@ -1,13 +1,12 @@
 package org.alfonz.adapter;
 
 import android.databinding.ObservableArrayList;
-import android.databinding.ObservableList;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.view.View;
 
-import java.lang.ref.WeakReference;
+import org.alfonz.adapter.callback.OnPagerListChangedCallback;
 
 
 public class SimpleDataBoundPagerAdapter extends BaseDataBoundPagerAdapter
@@ -23,7 +22,7 @@ public class SimpleDataBoundPagerAdapter extends BaseDataBoundPagerAdapter
 		mView = view;
 		mItems = items;
 
-		mItems.addOnListChangedCallback(new OnListChangedCallback(this));
+		mItems.addOnListChangedCallback(new OnPagerListChangedCallback(this));
 	}
 
 
@@ -66,61 +65,5 @@ public class SimpleDataBoundPagerAdapter extends BaseDataBoundPagerAdapter
 			}
 		}
 		return POSITION_NONE;
-	}
-
-
-	private static class OnListChangedCallback extends ObservableList.OnListChangedCallback<ObservableList<?>>
-	{
-		@NonNull private final WeakReference<SimpleDataBoundPagerAdapter> mAdapter;
-
-
-		public OnListChangedCallback(SimpleDataBoundPagerAdapter adapter)
-		{
-			mAdapter = new WeakReference<>(adapter);
-		}
-
-
-		@Override
-		public void onChanged(ObservableList<?> sender)
-		{
-			onUpdate();
-		}
-
-
-		@Override
-		public void onItemRangeChanged(ObservableList<?> sender, int positionStart, int itemCount)
-		{
-			onUpdate();
-		}
-
-
-		@Override
-		public void onItemRangeInserted(ObservableList<?> sender, int positionStart, int itemCount)
-		{
-			onUpdate();
-		}
-
-
-		@Override
-		public void onItemRangeMoved(ObservableList<?> sender, int fromPosition, int toPosition, int itemCount)
-		{
-			onUpdate();
-		}
-
-
-		@Override
-		public void onItemRangeRemoved(ObservableList<?> sender, int positionStart, int itemCount)
-		{
-			onUpdate();
-		}
-
-
-		private void onUpdate()
-		{
-			if(mAdapter.get() != null)
-			{
-				mAdapter.get().notifyDataSetChanged();
-			}
-		}
 	}
 }

@@ -1,20 +1,18 @@
 package org.alfonz.adapter;
 
 import android.databinding.ObservableArrayList;
-import android.databinding.ObservableList;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import java.lang.ref.WeakReference;
+import org.alfonz.adapter.callback.OnPagerListChangedCallback;
 
 
 public abstract class MultiDataBoundPagerAdapter extends BaseDataBoundPagerAdapter
 {
 	private AdapterView mView;
 	private ObservableArrayList<?>[] mItems;
-	private OnListChangedCallback mOnListChangedCallback;
 
 
 	public MultiDataBoundPagerAdapter(AdapterView view, ObservableArrayList<?>... items)
@@ -22,10 +20,10 @@ public abstract class MultiDataBoundPagerAdapter extends BaseDataBoundPagerAdapt
 		mView = view;
 		mItems = items;
 
-		mOnListChangedCallback = new OnListChangedCallback(this);
+		OnPagerListChangedCallback callback = new OnPagerListChangedCallback(this);
 		for(ObservableArrayList<?> list : mItems)
 		{
-			list.addOnListChangedCallback(mOnListChangedCallback);
+			list.addOnListChangedCallback(callback);
 		}
 	}
 
@@ -89,61 +87,5 @@ public abstract class MultiDataBoundPagerAdapter extends BaseDataBoundPagerAdapt
 			counter += list.size();
 		}
 		return null;
-	}
-
-
-	private static class OnListChangedCallback extends ObservableList.OnListChangedCallback<ObservableList<?>>
-	{
-		@NonNull private final WeakReference<MultiDataBoundPagerAdapter> mAdapter;
-
-
-		public OnListChangedCallback(MultiDataBoundPagerAdapter adapter)
-		{
-			mAdapter = new WeakReference<>(adapter);
-		}
-
-
-		@Override
-		public void onChanged(ObservableList<?> sender)
-		{
-			onUpdate();
-		}
-
-
-		@Override
-		public void onItemRangeChanged(ObservableList<?> sender, int positionStart, int itemCount)
-		{
-			onUpdate();
-		}
-
-
-		@Override
-		public void onItemRangeInserted(ObservableList<?> sender, int positionStart, int itemCount)
-		{
-			onUpdate();
-		}
-
-
-		@Override
-		public void onItemRangeMoved(ObservableList<?> sender, int fromPosition, int toPosition, int itemCount)
-		{
-			onUpdate();
-		}
-
-
-		@Override
-		public void onItemRangeRemoved(ObservableList<?> sender, int positionStart, int itemCount)
-		{
-			onUpdate();
-		}
-
-
-		private void onUpdate()
-		{
-			if(mAdapter.get() != null)
-			{
-				mAdapter.get().notifyDataSetChanged();
-			}
-		}
 	}
 }

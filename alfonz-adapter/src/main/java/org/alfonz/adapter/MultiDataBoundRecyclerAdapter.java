@@ -3,6 +3,9 @@ package org.alfonz.adapter;
 import android.databinding.ObservableArrayList;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
+
+import org.alfonz.adapter.callback.RecyclerListChangedCallbackHolder;
 
 import java.util.List;
 
@@ -11,6 +14,7 @@ public abstract class MultiDataBoundRecyclerAdapter extends BaseDataBoundRecycle
 {
 	private AdapterView mView;
 	private ObservableArrayList<?>[] mItems;
+	private RecyclerListChangedCallbackHolder mCallbackHolder = new RecyclerListChangedCallbackHolder();
 
 
 	public MultiDataBoundRecyclerAdapter(AdapterView view, ObservableArrayList<?>... items)
@@ -37,6 +41,22 @@ public abstract class MultiDataBoundRecyclerAdapter extends BaseDataBoundRecycle
 			size += list.size();
 		}
 		return size;
+	}
+
+
+	@Override
+	public void onAttachedToRecyclerView(RecyclerView recyclerView)
+	{
+		super.onAttachedToRecyclerView(recyclerView);
+		mCallbackHolder.register(this, mItems);
+	}
+
+
+	@Override
+	public void onDetachedFromRecyclerView(RecyclerView recyclerView)
+	{
+		super.onDetachedFromRecyclerView(recyclerView);
+		mCallbackHolder.unregister(mItems);
 	}
 
 

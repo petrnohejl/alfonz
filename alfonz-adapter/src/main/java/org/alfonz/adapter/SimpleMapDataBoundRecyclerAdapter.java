@@ -3,6 +3,9 @@ package org.alfonz.adapter;
 import android.databinding.ObservableArrayMap;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+
+import org.alfonz.adapter.callback.RecyclerMapChangedCallbackHolder;
 
 import java.util.List;
 
@@ -12,6 +15,7 @@ public class SimpleMapDataBoundRecyclerAdapter extends BaseDataBoundRecyclerAdap
 	@LayoutRes private int mLayoutId;
 	private AdapterView mView;
 	private ObservableArrayMap<?, ?> mItems;
+	private RecyclerMapChangedCallbackHolder mCallbackHolder = new RecyclerMapChangedCallbackHolder();
 
 
 	public SimpleMapDataBoundRecyclerAdapter(@LayoutRes int layoutId, AdapterView view, ObservableArrayMap<?, ?> items)
@@ -41,5 +45,21 @@ public class SimpleMapDataBoundRecyclerAdapter extends BaseDataBoundRecyclerAdap
 	public int getItemCount()
 	{
 		return mItems.size();
+	}
+
+
+	@Override
+	public void onAttachedToRecyclerView(RecyclerView recyclerView)
+	{
+		super.onAttachedToRecyclerView(recyclerView);
+		mCallbackHolder.register(this, mItems);
+	}
+
+
+	@Override
+	public void onDetachedFromRecyclerView(RecyclerView recyclerView)
+	{
+		super.onDetachedFromRecyclerView(recyclerView);
+		mCallbackHolder.unregister(mItems);
 	}
 }
