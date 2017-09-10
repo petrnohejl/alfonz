@@ -23,6 +23,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import java.util.List;
@@ -48,6 +49,7 @@ public abstract class BaseDataBoundRecyclerAdapter<T extends ViewDataBinding> ex
 	private static final Object DB_PAYLOAD = new Object();
 	@Nullable
 	private RecyclerView mRecyclerView;
+	private LayoutInflater mLayoutInflater;
 
 
 	/**
@@ -93,7 +95,12 @@ public abstract class BaseDataBoundRecyclerAdapter<T extends ViewDataBinding> ex
 	@CallSuper
 	public BaseDataBoundRecyclerViewHolder<T> onCreateViewHolder(ViewGroup parent, int viewType)
 	{
-		BaseDataBoundRecyclerViewHolder<T> vh = BaseDataBoundRecyclerViewHolder.create(parent, viewType);
+		if(mLayoutInflater == null)
+		{
+			mLayoutInflater = LayoutInflater.from(parent.getContext());
+		}
+
+		BaseDataBoundRecyclerViewHolder<T> vh = BaseDataBoundRecyclerViewHolder.create(mLayoutInflater, parent, viewType);
 		vh.binding.addOnRebindCallback(mOnRebindCallback);
 		return vh;
 	}
@@ -129,6 +136,7 @@ public abstract class BaseDataBoundRecyclerAdapter<T extends ViewDataBinding> ex
 	public void onDetachedFromRecyclerView(RecyclerView recyclerView)
 	{
 		mRecyclerView = null;
+		mLayoutInflater = null;
 	}
 
 

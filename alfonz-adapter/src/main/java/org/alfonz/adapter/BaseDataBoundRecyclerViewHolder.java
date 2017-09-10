@@ -47,15 +47,16 @@ public class BaseDataBoundRecyclerViewHolder<T extends ViewDataBinding> extends 
 	 * <p>
 	 * The provided layout must be using data binding.
 	 *
+	 * @param inflater The LayoutInflater
 	 * @param parent   The RecyclerView
 	 * @param layoutId The layout id that should be inflated. Must use data binding
 	 * @param <T>      The type of the Binding class that will be generated for the <code>layoutId</code>.
 	 * @return A new ViewHolder that has a reference to the binding class
 	 */
 	@NonNull
-	public static <T extends ViewDataBinding> BaseDataBoundRecyclerViewHolder<T> create(@NonNull ViewGroup parent, @LayoutRes int layoutId)
+	public static <T extends ViewDataBinding> BaseDataBoundRecyclerViewHolder<T> create(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent, @LayoutRes int layoutId)
 	{
-		T binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), layoutId, parent, false);
+		T binding = DataBindingUtil.inflate(inflater, layoutId, parent, false);
 		return new BaseDataBoundRecyclerViewHolder<>(binding);
 	}
 }

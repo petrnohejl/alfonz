@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 
 public abstract class BaseDataBoundPagerAdapter<T extends ViewDataBinding> extends PagerAdapter
 {
+	private LayoutInflater mLayoutInflater;
+
+
 	protected abstract void bindItem(T binding, int position);
 
 
@@ -22,7 +25,12 @@ public abstract class BaseDataBoundPagerAdapter<T extends ViewDataBinding> exten
 	@Override
 	public Object instantiateItem(@NonNull ViewGroup container, int position)
 	{
-		T binding = DataBindingUtil.inflate(LayoutInflater.from(container.getContext()), getItemLayoutId(position), container, false);
+		if(mLayoutInflater == null)
+		{
+			mLayoutInflater = LayoutInflater.from(container.getContext());
+		}
+
+		T binding = DataBindingUtil.inflate(mLayoutInflater, getItemLayoutId(position), container, false);
 		bindItem(binding, position);
 		binding.executePendingBindings();
 		container.addView(binding.getRoot());
