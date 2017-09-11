@@ -34,6 +34,9 @@
 	<string name="permission_access_location">Permission to access your location is required</string>
 	<string name="permission_unknown">Permission is required</string>
 
+	<string name="fragment_adapter_sample_hello">Hello %1$s</string>
+	<string name="fragment_adapter_sample_goodbye">Goodbye %1$s</string>
+
 	<string name="fragment_media_sample_button_play_sound">Play sound</string>
 	<string name="fragment_media_sample_button_stop_sound">Stop sound</string>
 	<string name="fragment_media_sample_button_pick_image_from_camera">Pick image from camera</string>
