@@ -1,6 +1,6 @@
 package org.alfonz.adapter;
 
-import android.databinding.ObservableArrayList;
+import android.databinding.ObservableList;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -14,11 +14,11 @@ public class SimpleDataBoundRecyclerAdapter extends BaseDataBoundRecyclerAdapter
 {
 	@LayoutRes private int mLayoutId;
 	private AdapterView mView;
-	private ObservableArrayList<?> mItems;
+	private ObservableList<?> mItems;
 	private RecyclerListChangedCallbackHolder mCallbackHolder = new RecyclerListChangedCallbackHolder();
 
 
-	public SimpleDataBoundRecyclerAdapter(@LayoutRes int layoutId, AdapterView view, ObservableArrayList<?> items)
+	public SimpleDataBoundRecyclerAdapter(@LayoutRes int layoutId, AdapterView view, ObservableList<?> items)
 	{
 		mLayoutId = layoutId;
 		mView = view;

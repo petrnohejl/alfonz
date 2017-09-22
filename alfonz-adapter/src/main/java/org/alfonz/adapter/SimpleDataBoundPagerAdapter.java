@@ -1,6 +1,6 @@
 package org.alfonz.adapter;
 
-import android.databinding.ObservableArrayList;
+import android.databinding.ObservableList;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -13,10 +13,11 @@ public class SimpleDataBoundPagerAdapter extends BaseDataBoundPagerAdapter
 {
 	@LayoutRes private int mLayoutId;
 	private AdapterView mView;
-	private ObservableArrayList<?> mItems;
+	private ObservableList<?> mItems;
 
 
-	public SimpleDataBoundPagerAdapter(@LayoutRes int layoutId, AdapterView view, ObservableArrayList<?> items)
+	@SuppressWarnings("unchecked")
+	public SimpleDataBoundPagerAdapter(@LayoutRes int layoutId, AdapterView view, ObservableList<?> items)
 	{
 		mLayoutId = layoutId;
 		mView = view;

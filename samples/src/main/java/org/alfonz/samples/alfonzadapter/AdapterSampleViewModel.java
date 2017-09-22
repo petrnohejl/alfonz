@@ -1,6 +1,7 @@
 package org.alfonz.samples.alfonzadapter;
 
 import android.databinding.ObservableArrayList;
+import android.databinding.ObservableList;
 
 import org.alfonz.samples.alfonzmvvm.BaseViewModel;
 
@@ -10,9 +11,9 @@ import java.util.Locale;
 
 public class AdapterSampleViewModel extends BaseViewModel<AdapterSampleView>
 {
-	public final ObservableArrayList<String> messages = new ObservableArrayList<>();
-	public final ObservableArrayList<Integer> numbers = new ObservableArrayList<>();
-	public final ObservableArrayList<Boolean> bits = new ObservableArrayList<>();
+	public final ObservableList<String> messages = new ObservableArrayList<>();
+	public final ObservableList<Integer> numbers = new ObservableArrayList<>();
+	public final ObservableList<Boolean> bits = new ObservableArrayList<>();
 
 	private int mCounter = 0;
 
