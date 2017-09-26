@@ -6,6 +6,8 @@ import android.databinding.ObservableList;
 import org.alfonz.samples.alfonzmvvm.BaseViewModel;
 
 import java.text.DateFormatSymbols;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -54,10 +56,12 @@ public class AdapterSampleViewModel extends BaseViewModel<AdapterSampleView>
 	private void loadMessages()
 	{
 		String[] months = new DateFormatSymbols().getMonths();
+		List<String> list = new ArrayList<>();
 		for(int i = 0; i < months.length; i++)
 		{
-			messages.add(createMessage(months[i]));
+			list.add(createMessage(months[i]));
 		}
+		messages.addAll(list);
 	}
 
 
@@ -66,21 +70,25 @@ public class AdapterSampleViewModel extends BaseViewModel<AdapterSampleView>
 		int a = 0;
 		int b = 1;
 
+		List<Integer> list = new ArrayList<>();
 		for(int i = 0; i < 16; i++)
 		{
-			numbers.add(a);
+			list.add(a);
 			a = a + b;
 			b = a - b;
 		}
+		numbers.addAll(list);
 	}
 
 
 	private void loadBits()
 	{
+		List<Boolean> list = new ArrayList<>();
 		for(int i = 0; i < 6; i++)
 		{
-			bits.add(i % 2 == 0);
+			list.add(i % 2 == 0);
 		}
+		bits.addAll(list);
 	}
 
 

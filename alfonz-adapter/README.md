@@ -20,7 +20,7 @@ Choose an adapter which suits your needs:
 * `MultiDataBoundRecyclerAdapter`
 * `MultiMapDataBoundRecyclerAdapter`
 
-Create a class, extend the generic adapter and call `super` in the constructor. Pass item layout, view (view layer in MVVM) and observable array collection in the `super`. Adapter will inflate the layout for an item and bind the view and the data into `BR.view` and `BR.data` variables.
+Simple-type adapters can be used directly - just create a new instance. Multi-type adapters are abstract. Create a class, extend the generic adapter and call `super` in the constructor. Pass item layout, view (view layer in MVVM) and observable array collection in the `super`. Adapter will inflate the layout for an item and bind the view and the data into `BR.view` and `BR.data` variables.
 
 ```java
 public class ProductListAdapter extends SimpleDataBoundRecyclerAdapter
@@ -63,7 +63,7 @@ Create an XML layout, define `view` and `data` variables, use `view` for invokin
 Create a new instance of the adapter and set it in your RecyclerView. Implement event callbacks in the MVVM view layer - it is usually Fragment.
 
 ```java
-public interface ProductListView extends BaseView, AdapterView
+public interface ProductListView extends AlfonzView, AdapterView
 {
 	void onItemClick(ProductEntity product);
 }
@@ -99,6 +99,8 @@ public class ProductListFragment
 	}
 }
 ```
+
+When you are adding multiple new items in ObservableList, always do it in a transaction with `addAll()`. Keep in mind, that using `add()` would invoke `OnListChangedCallback` callback in the generic adapter and `notifyItemRangeInserted()` for each item which is pretty inefficient.
 
 There are also a few useful binding adapters for setting up recycler layout, decoration and animator. You can use following XML attributes in your `RecyclerView`:
 
