@@ -40,7 +40,6 @@ public class AdapterSampleListSimpleFragment extends BaseFragment<AdapterSampleV
 	public void onActivityCreated(Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
-		getBinding().executePendingBindings(); // set layout manager in recycler via binding adapter
 		setupAdapter();
 	}
 
