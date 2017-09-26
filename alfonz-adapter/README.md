@@ -102,6 +102,8 @@ public class ProductListFragment
 
 When you are adding multiple new items in ObservableList, always do it in a transaction with `addAll()`. Keep in mind, that using `add()` would invoke `OnListChangedCallback` callback in the generic adapter and `notifyItemRangeInserted()` for each item which is pretty inefficient.
 
+If you want to use `setHasStableIds()` with `getItemId()` in a recycler adapter or `getPageTitle()` in a pager adapter, just extend the generic adapter and implement these methods as usual.
+
 There are also a few useful binding adapters for setting up recycler layout, decoration and animator. You can use following XML attributes in your `RecyclerView`:
 
 * `recyclerLayout`
