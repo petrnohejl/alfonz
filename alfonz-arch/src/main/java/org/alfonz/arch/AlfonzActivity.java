@@ -1,7 +1,5 @@
 package org.alfonz.arch;
 
-import android.arch.lifecycle.LifecycleRegistry;
-import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,18 +12,9 @@ import android.support.v7.widget.Toolbar;
 import org.alfonz.arch.widget.ToolbarIndicator;
 
 
-public abstract class AlfonzActivity extends AppCompatActivity implements LifecycleRegistryOwner
+public abstract class AlfonzActivity extends AppCompatActivity
 {
 	private int mToolbarHashCode = 0;
-	private LifecycleRegistry mLifecycleRegistry = new LifecycleRegistry(this);
-
-
-	@NonNull
-	@Override
-	public LifecycleRegistry getLifecycle()
-	{
-		return mLifecycleRegistry;
-	}
 
 
 	@Nullable
