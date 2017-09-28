@@ -44,6 +44,7 @@ dependencies {
 	compile "com.android.support:support-core-ui:$androidSupportVersion"
 	compile "com.android.support:recyclerview-v7:$androidSupportVersion"
 	compile "com.android.support:support-annotations:$androidSupportVersion"
+	compile "com.android.support:support-v4:$androidSupportVersion" // https://stackoverflow.com/questions/41568032/android-data-binding-dependency-conflict-with-the-support-library
 }
 
 
