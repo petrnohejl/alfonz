@@ -1,9 +1,12 @@
 package org.alfonz.samples.alfonzadapter;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.OnLifecycleEvent;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 
-import org.alfonz.samples.alfonzmvvm.BaseViewModel;
+import org.alfonz.samples.alfonzarch.BaseViewModel;
 
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
@@ -11,7 +14,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class AdapterSampleViewModel extends BaseViewModel<AdapterSampleView>
+public class AdapterSampleViewModel extends BaseViewModel implements LifecycleObserver
 {
 	public final ObservableList<String> messages = new ObservableArrayList<>();
 	public final ObservableList<Integer> numbers = new ObservableArrayList<>();
@@ -20,11 +23,9 @@ public class AdapterSampleViewModel extends BaseViewModel<AdapterSampleView>
 	private int mCounter = 0;
 
 
-	@Override
+	@OnLifecycleEvent(Lifecycle.Event.ON_START)
 	public void onStart()
 	{
-		super.onStart();
-
 		// load data
 		if(messages.isEmpty()) loadData();
 	}

@@ -1,21 +1,20 @@
 package org.alfonz.samples.alfonzrx;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 
 import org.alfonz.rx.RxBus;
-import org.alfonz.samples.alfonzmvvm.BaseFragment;
+import org.alfonz.samples.alfonzarch.BaseFragment;
 import org.alfonz.samples.databinding.FragmentRxSampleBinding;
 
 
-public class RxSampleFragment extends BaseFragment<RxSampleView, RxSampleViewModel, FragmentRxSampleBinding> implements RxSampleView
+public class RxSampleFragment extends BaseFragment<RxSampleViewModel, FragmentRxSampleBinding> implements RxSampleView
 {
-	@Nullable
 	@Override
-	public Class<RxSampleViewModel> getViewModelClass()
+	public RxSampleViewModel setupViewModel()
 	{
-		return RxSampleViewModel.class;
+		return ViewModelProviders.of(this).get(RxSampleViewModel.class);
 	}
 
 

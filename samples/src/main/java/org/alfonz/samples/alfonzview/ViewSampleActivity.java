@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import org.alfonz.mvvm.widget.ToolbarIndicator;
+import org.alfonz.arch.widget.ToolbarIndicator;
 import org.alfonz.samples.R;
-import org.alfonz.samples.alfonzmvvm.BaseActivity;
+import org.alfonz.samples.alfonzarch.BaseActivity;
 
 
 public class ViewSampleActivity extends BaseActivity

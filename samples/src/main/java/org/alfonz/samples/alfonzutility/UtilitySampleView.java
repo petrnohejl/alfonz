@@ -1,9 +1,9 @@
 package org.alfonz.samples.alfonzutility;
 
-import org.alfonz.samples.alfonzmvvm.BaseView;
+import org.alfonz.arch.AlfonzView;
 
 
-public interface UtilitySampleView extends BaseView
+public interface UtilitySampleView extends AlfonzView
 {
 	void onButtonShowKeyboardClick();
 	void onButtonHideKeyboardClick();

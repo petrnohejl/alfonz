@@ -1,16 +1,16 @@
 package org.alfonz.samples.alfonzadapter;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 
 import org.alfonz.samples.R;
-import org.alfonz.samples.alfonzmvvm.BaseFragment;
+import org.alfonz.samples.alfonzarch.BaseFragment;
 import org.alfonz.samples.databinding.FragmentAdapterSamplePagerBinding;
 
 
-public class AdapterSamplePagerMultiFragment extends BaseFragment<AdapterSampleView, AdapterSampleViewModel, FragmentAdapterSamplePagerBinding> implements AdapterSampleView
+public class AdapterSamplePagerMultiFragment extends BaseFragment<AdapterSampleViewModel, FragmentAdapterSamplePagerBinding> implements AdapterSampleView
 {
 	private MessagePagerMultiAdapter mAdapter;
 
@@ -21,11 +21,12 @@ public class AdapterSamplePagerMultiFragment extends BaseFragment<AdapterSampleV
 	}
 
 
-	@Nullable
 	@Override
-	public Class<AdapterSampleViewModel> getViewModelClass()
+	public AdapterSampleViewModel setupViewModel()
 	{
-		return AdapterSampleViewModel.class;
+		AdapterSampleViewModel viewModel = ViewModelProviders.of(this).get(AdapterSampleViewModel.class);
+		getLifecycle().addObserver(viewModel);
+		return viewModel;
 	}
 
 

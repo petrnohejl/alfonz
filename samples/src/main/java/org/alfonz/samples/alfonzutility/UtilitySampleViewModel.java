@@ -4,12 +4,11 @@ import android.content.Context;
 import android.databinding.ObservableField;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.Nullable;
 
 import org.alfonz.samples.R;
-import org.alfonz.samples.alfonzmvvm.BaseViewModel;
+import org.alfonz.samples.alfonzarch.BaseViewModel;
+import org.alfonz.samples.alfonzarch.event.ToastEvent;
 import org.alfonz.samples.alfonzutility.utility.PermissionRationaleHandler;
 import org.alfonz.utility.ContentUtility;
 import org.alfonz.utility.DateConvertor;
@@ -37,7 +36,7 @@ import java.util.UUID;
 import java.util.regex.Pattern;
 
 
-public class UtilitySampleViewModel extends BaseViewModel<UtilitySampleView>
+public class UtilitySampleViewModel extends BaseViewModel
 {
 	private static final String LOG_MESSAGE_CONTENT_UTILITY = "[ContentUtility] uri to path: %s";
 	private static final String LOG_MESSAGE_DATE_CONVERTOR_D2S = "[DateConvertor] date to str: %s";
@@ -85,20 +84,9 @@ public class UtilitySampleViewModel extends BaseViewModel<UtilitySampleView>
 	public final PermissionManager permissionManager = new PermissionManager(new PermissionRationaleHandler());
 
 
-	@Override
-	public void onCreate(@Nullable Bundle arguments, @Nullable Bundle savedInstanceState)
+	public UtilitySampleViewModel()
 	{
 		log.set("");
-	}
-
-
-	@Override
-	public void onStart()
-	{
-		super.onStart();
-
-		// perform utilities
-		if(log.get().isEmpty()) performUtilities();
 	}
 
 
@@ -126,11 +114,11 @@ public class UtilitySampleViewModel extends BaseViewModel<UtilitySampleView>
 		String zipname = "alfonz.zip";
 
 		boolean success = ZipUtility.unpackZip(path, zipname);
-		getView().showToast("success: " + success);
+		sendEvent(new ToastEvent("success: " + success));
 	}
 
 
-	private void performUtilities()
+	public void performUtilities(Context context)
 	{
 		performContentUtility();
 		performDateConvertor();
@@ -138,7 +126,7 @@ public class UtilitySampleViewModel extends BaseViewModel<UtilitySampleView>
 		performDimensionUtility();
 		performHashUtility();
 		performNetworkUtility();
-		performResourcesUtility();
+		performResourcesUtility(context);
 		performServiceUtility();
 		performStorageUtility();
 		performStringConvertor();
@@ -222,11 +210,10 @@ public class UtilitySampleViewModel extends BaseViewModel<UtilitySampleView>
 	}
 
 
-	private void performResourcesUtility()
+	private void performResourcesUtility(Context context)
 	{
 		// don't access the activity context from view model, it is dangerous and dirty
 		// I do it just to make this sample code simpler and more clear
-		Context context = ((UtilitySampleFragment) getView()).getActivity();
 
 		int value = ResourcesUtility.getValueOfAttribute(context, R.attr.colorPrimary);
 		int color = ResourcesUtility.getColorValueOfAttribute(context, R.attr.colorPrimary);

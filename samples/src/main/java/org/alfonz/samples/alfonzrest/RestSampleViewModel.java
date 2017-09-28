@@ -1,12 +1,15 @@
 package org.alfonz.samples.alfonzrest;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.OnLifecycleEvent;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 
 import org.alfonz.rest.HttpException;
 import org.alfonz.rest.call.CallManager;
 import org.alfonz.rest.call.Callback;
-import org.alfonz.samples.alfonzmvvm.BaseViewModel;
+import org.alfonz.samples.alfonzarch.BaseViewModel;
 import org.alfonz.samples.alfonzrest.entity.RepoEntity;
 import org.alfonz.samples.alfonzrest.rest.RestHttpLogger;
 import org.alfonz.samples.alfonzrest.rest.RestResponseHandler;
@@ -18,7 +21,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 
-public class RestSampleViewModel extends BaseViewModel<RestSampleView>
+public class RestSampleViewModel extends BaseViewModel implements LifecycleObserver
 {
 	public final ObservableField<Integer> state = new ObservableField<>();
 	public final ObservableField<RepoEntity> repo = new ObservableField<>();
@@ -26,20 +29,18 @@ public class RestSampleViewModel extends BaseViewModel<RestSampleView>
 	private CallManager mCallManager = new CallManager(new RestResponseHandler(), new RestHttpLogger());
 
 
-	@Override
+	@OnLifecycleEvent(Lifecycle.Event.ON_START)
 	public void onStart()
 	{
-		super.onStart();
-
 		// load data
 		if(repo.get() == null) loadData();
 	}
 
 
 	@Override
-	public void onDestroy()
+	public void onCleared()
 	{
-		super.onDestroy();
+		super.onCleared();
 
 		// cancel async tasks
 		if(mCallManager != null) mCallManager.cancelRunningCalls();

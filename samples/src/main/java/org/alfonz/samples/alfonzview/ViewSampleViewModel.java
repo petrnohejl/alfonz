@@ -1,22 +1,23 @@
 package org.alfonz.samples.alfonzview;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.OnLifecycleEvent;
 import android.databinding.ObservableField;
 
-import org.alfonz.samples.alfonzmvvm.BaseViewModel;
+import org.alfonz.samples.alfonzarch.BaseViewModel;
 import org.alfonz.view.StatefulLayout;
 
 
-public class ViewSampleViewModel extends BaseViewModel<ViewSampleView>
+public class ViewSampleViewModel extends BaseViewModel implements LifecycleObserver
 {
 	public final ObservableField<Integer> state = new ObservableField<>();
 	public final ObservableField<String> message = new ObservableField<>();
 
 
-	@Override
+	@OnLifecycleEvent(Lifecycle.Event.ON_START)
 	public void onStart()
 	{
-		super.onStart();
-
 		// load data
 		if(message.get() == null) loadData();
 	}

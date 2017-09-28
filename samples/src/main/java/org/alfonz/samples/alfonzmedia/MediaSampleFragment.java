@@ -1,30 +1,29 @@
 package org.alfonz.samples.alfonzmedia;
 
 import android.Manifest;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 
 import org.alfonz.media.ImagePicker;
 import org.alfonz.media.SoundManager;
 import org.alfonz.samples.R;
-import org.alfonz.samples.alfonzmvvm.BaseFragment;
+import org.alfonz.samples.alfonzarch.BaseFragment;
 import org.alfonz.samples.databinding.FragmentMediaSampleBinding;
 
 
-public class MediaSampleFragment extends BaseFragment<MediaSampleView, MediaSampleViewModel, FragmentMediaSampleBinding> implements MediaSampleView
+public class MediaSampleFragment extends BaseFragment<MediaSampleViewModel, FragmentMediaSampleBinding> implements MediaSampleView
 {
 	private SoundManager mSoundManager;
 	private ImagePicker mImagePicker;
 
 
-	@Nullable
 	@Override
-	public Class<MediaSampleViewModel> getViewModelClass()
+	public MediaSampleViewModel setupViewModel()
 	{
-		return MediaSampleViewModel.class;
+		return ViewModelProviders.of(this).get(MediaSampleViewModel.class);
 	}
 
 

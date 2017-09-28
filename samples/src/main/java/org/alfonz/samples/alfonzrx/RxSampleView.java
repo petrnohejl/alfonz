@@ -1,9 +1,9 @@
 package org.alfonz.samples.alfonzrx;
 
-import org.alfonz.samples.alfonzmvvm.BaseView;
+import org.alfonz.arch.AlfonzView;
 
 
-public interface RxSampleView extends BaseView
+public interface RxSampleView extends AlfonzView
 {
 	void onButtonRunClick();
 	void onButtonTerminateClick();

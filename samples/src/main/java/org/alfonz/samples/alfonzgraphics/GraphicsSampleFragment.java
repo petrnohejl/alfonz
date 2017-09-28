@@ -1,10 +1,10 @@
 package org.alfonz.samples.alfonzgraphics;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 
 import org.alfonz.graphics.bitmap.BitmapBlur;
@@ -13,17 +13,16 @@ import org.alfonz.graphics.bitmap.BitmapScaler;
 import org.alfonz.graphics.drawable.CircularDrawable;
 import org.alfonz.graphics.drawable.RoundedDrawable;
 import org.alfonz.samples.R;
-import org.alfonz.samples.alfonzmvvm.BaseFragment;
+import org.alfonz.samples.alfonzarch.BaseFragment;
 import org.alfonz.samples.databinding.FragmentGraphicsSampleBinding;
 
 
-public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleView, GraphicsSampleViewModel, FragmentGraphicsSampleBinding> implements GraphicsSampleView
+public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleViewModel, FragmentGraphicsSampleBinding> implements GraphicsSampleView
 {
-	@Nullable
 	@Override
-	public Class<GraphicsSampleViewModel> getViewModelClass()
+	public GraphicsSampleViewModel setupViewModel()
 	{
-		return GraphicsSampleViewModel.class;
+		return ViewModelProviders.of(this).get(GraphicsSampleViewModel.class);
 	}
 
 

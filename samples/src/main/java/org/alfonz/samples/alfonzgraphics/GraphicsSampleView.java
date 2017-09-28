@@ -1,8 +1,8 @@
 package org.alfonz.samples.alfonzgraphics;
 
-import org.alfonz.samples.alfonzmvvm.BaseView;
+import org.alfonz.arch.AlfonzView;
 
 
-public interface GraphicsSampleView extends BaseView
+public interface GraphicsSampleView extends AlfonzView
 {
 }

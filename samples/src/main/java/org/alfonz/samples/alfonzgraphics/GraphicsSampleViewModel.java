@@ -1,8 +1,8 @@
 package org.alfonz.samples.alfonzgraphics;
 
-import org.alfonz.samples.alfonzmvvm.BaseViewModel;
+import org.alfonz.samples.alfonzarch.BaseViewModel;
 
 
-public class GraphicsSampleViewModel extends BaseViewModel<GraphicsSampleView>
+public class GraphicsSampleViewModel extends BaseViewModel
 {
 }

@@ -8,9 +8,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import org.alfonz.mvvm.widget.ToolbarIndicator;
+import org.alfonz.arch.widget.ToolbarIndicator;
 import org.alfonz.samples.R;
-import org.alfonz.samples.alfonzmvvm.BaseActivity;
+import org.alfonz.samples.alfonzarch.BaseActivity;
 
 
 public class AdapterSampleActivity extends BaseActivity

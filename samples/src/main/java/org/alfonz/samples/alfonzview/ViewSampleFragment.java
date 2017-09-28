@@ -1,23 +1,24 @@
 package org.alfonz.samples.alfonzview;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 
-import org.alfonz.samples.alfonzmvvm.BaseFragment;
+import org.alfonz.samples.alfonzarch.BaseFragment;
 import org.alfonz.samples.databinding.FragmentViewSampleBinding;
 import org.alfonz.utility.Logcat;
 import org.alfonz.view.ObservableScrollView;
 
 
-public class ViewSampleFragment extends BaseFragment<ViewSampleView, ViewSampleViewModel, FragmentViewSampleBinding> implements ViewSampleView
+public class ViewSampleFragment extends BaseFragment<ViewSampleViewModel, FragmentViewSampleBinding> implements ViewSampleView
 {
-	@Nullable
 	@Override
-	public Class<ViewSampleViewModel> getViewModelClass()
+	public ViewSampleViewModel setupViewModel()
 	{
-		return ViewSampleViewModel.class;
+		ViewSampleViewModel viewModel = ViewModelProviders.of(this).get(ViewSampleViewModel.class);
+		getLifecycle().addObserver(viewModel);
+		return viewModel;
 	}
 
 

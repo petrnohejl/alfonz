@@ -1,9 +1,9 @@
 package org.alfonz.samples.alfonzmedia;
 
-import org.alfonz.samples.alfonzmvvm.BaseView;
+import org.alfonz.arch.AlfonzView;
 
 
-public interface MediaSampleView extends BaseView
+public interface MediaSampleView extends AlfonzView
 {
 	void onButtonPlaySoundClick();
 	void onButtonStopSoundClick();

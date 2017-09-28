@@ -1,13 +1,11 @@
 package org.alfonz.samples.alfonzrx;
 
 import android.databinding.ObservableField;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import org.alfonz.rx.AlfonzDisposableObserver;
 import org.alfonz.rx.RxBus;
 import org.alfonz.rx.RxManager;
-import org.alfonz.samples.alfonzmvvm.BaseViewModel;
+import org.alfonz.samples.alfonzarch.BaseViewModel;
 import org.alfonz.utility.DateConvertor;
 import org.alfonz.utility.Logcat;
 
@@ -20,7 +18,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
 
 
-public class RxSampleViewModel extends BaseViewModel<RxSampleView>
+public class RxSampleViewModel extends BaseViewModel
 {
 	private static final String HELLO_CALL_TYPE = "hello";
 	private static final String LOG_MESSAGE_RUN = "run: %s";
@@ -37,8 +35,7 @@ public class RxSampleViewModel extends BaseViewModel<RxSampleView>
 	private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
 
-	@Override
-	public void onCreate(@Nullable Bundle arguments, @Nullable Bundle savedInstanceState)
+	public RxSampleViewModel()
 	{
 		log.set("");
 		listen();
@@ -46,9 +43,9 @@ public class RxSampleViewModel extends BaseViewModel<RxSampleView>
 
 
 	@Override
-	public void onDestroy()
+	public void onCleared()
 	{
-		super.onDestroy();
+		super.onCleared();
 		mRxManager.disposeAll();
 		mCompositeDisposable.clear();
 	}
