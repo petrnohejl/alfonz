@@ -1,5 +1,7 @@
-Alfonz - MVVM Module
-====================
+Alfonz - MVVM Module [deprecated]
+=================================
+
+This module is deprecated. Use [Arch module](https://github.com/petrnohejl/Alfonz/tree/master/alfonz-arch) instead.
 
 Base classes for MVVM architecture (based on AndroidViewModel).
 
