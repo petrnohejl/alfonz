@@ -41,6 +41,7 @@ public class AdapterSampleListMultiFragment extends BaseFragment<AdapterSampleVi
 	public void onActivityCreated(Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
+		getBinding().executePendingBindings(); // helps to reload recycler scroll position after orientation change
 		setupAdapter();
 	}
 
