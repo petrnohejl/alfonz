@@ -10,6 +10,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import eu.inloop.viewmodel.AbstractViewModel;
 
 
+@Deprecated
 public abstract class AlfonzViewModel<T extends AlfonzView> extends AbstractViewModel<T> implements Observable
 {
 	private transient PropertyChangeRegistry mObservableCallbacks;

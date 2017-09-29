@@ -13,6 +13,7 @@ import org.alfonz.mvvm.widget.ToolbarIndicator;
 import eu.inloop.viewmodel.base.ViewModelBaseEmptyActivity;
 
 
+@Deprecated
 public abstract class AlfonzActivity extends ViewModelBaseEmptyActivity
 {
 	private int mToolbarHashCode = 0;

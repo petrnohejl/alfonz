@@ -13,6 +13,7 @@ import eu.inloop.viewmodel.ViewModelHelper;
 import eu.inloop.viewmodel.binding.ViewModelBindingConfig;
 
 
+@Deprecated
 public abstract class AlfonzBindingActivity<T extends AlfonzView, R extends AlfonzViewModel<T>, B extends ViewDataBinding> extends AlfonzActivity implements AlfonzView
 {
 	private final ViewModelHelper<T, R> mViewModelHelper = new ViewModelHelper<>();

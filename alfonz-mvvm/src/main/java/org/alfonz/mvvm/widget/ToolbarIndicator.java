@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import org.alfonz.mvvm.R;
 
 
+@Deprecated
 public class ToolbarIndicator
 {
 	public static final ToolbarIndicator NONE = new ToolbarIndicator(0, false, false);

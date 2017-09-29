@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+@Deprecated
 public abstract class AlfonzBindingFragment<T extends AlfonzView, R extends AlfonzViewModel<T>, B extends ViewDataBinding> extends AlfonzFragment<T, R> implements AlfonzView
 {
 	private B mBinding;

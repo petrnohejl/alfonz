@@ -1,4 +1,4 @@
-Alfonz - MVVM Module [deprecated]
+Alfonz - MVVM Module [DEPRECATED]
 =================================
 
 This module is deprecated. Use [Arch module](https://github.com/petrnohejl/Alfonz/tree/master/alfonz-arch) instead.
