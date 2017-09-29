@@ -64,6 +64,8 @@ public void onDestroy()
 }
 ```
 
+If you would call `isRunning()` right after `runHelloCall()` in the previous example, it might return false. It's because the call is considered as running after you actually subscribe which could happen a few milliseconds after calling the `isRunning()`. Keep in mind that you are usually subscribing on another thread. Use `isPending()` to find if there is any call pending. Use `!mRxManager.isPending() && !mRxManager.isRunning()` to make sure that a specific call has not been executed yet.
+
 
 How to use RxBus
 ----------------

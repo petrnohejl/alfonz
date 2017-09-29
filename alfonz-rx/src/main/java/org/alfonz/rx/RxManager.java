@@ -21,14 +21,17 @@ public class RxManager
 	private static final String TAG = "ALFONZ";
 
 	private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
+	private Map<String, Short> mPendingCalls = new ArrayMap<>();
 	private Map<String, Short> mRunningCalls = new ArrayMap<>();
 
 
 	public <T> Observable<T> setupObservable(@NonNull Observable<T> observable, @NonNull String callType)
 	{
+		addPendingCall(callType);
 		return observable
 				.doOnSubscribe(disposable ->
 				{
+					removePendingCall(callType);
 					addRunningCall(callType);
 					registerDisposable(disposable);
 				})
@@ -44,9 +47,11 @@ public class RxManager
 
 	public <T> Single<T> setupSingle(@NonNull Single<T> single, @NonNull String callType)
 	{
+		addPendingCall(callType);
 		return single
 				.doOnSubscribe(disposable ->
 				{
+					removePendingCall(callType);
 					addRunningCall(callType);
 					registerDisposable(disposable);
 				})
@@ -62,9 +67,11 @@ public class RxManager
 
 	public Completable setupCompletable(@NonNull Completable completable, @NonNull String callType)
 	{
+		addPendingCall(callType);
 		return completable
 				.doOnSubscribe(disposable ->
 				{
+					removePendingCall(callType);
 					addRunningCall(callType);
 					registerDisposable(disposable);
 				})
@@ -80,9 +87,11 @@ public class RxManager
 
 	public <T> Maybe<T> setupMaybe(@NonNull Maybe<T> maybe, @NonNull String callType)
 	{
+		addPendingCall(callType);
 		return maybe
 				.doOnSubscribe(disposable ->
 				{
+					removePendingCall(callType);
 					addRunningCall(callType);
 					registerDisposable(disposable);
 				})
@@ -99,7 +108,14 @@ public class RxManager
 	public void disposeAll()
 	{
 		mCompositeDisposable.clear();
+		mPendingCalls.clear();
 		mRunningCalls.clear();
+	}
+
+
+	public boolean isPending(@NonNull String callType)
+	{
+		return mPendingCalls.containsKey(callType);
 	}
 
 
@@ -109,19 +125,32 @@ public class RxManager
 	}
 
 
-	public void printAll()
+	public synchronized void printAll()
 	{
 		String codeLocation = "[" + RxManager.class.getSimpleName() + ".printAll] ";
 
-		if(mRunningCalls.isEmpty())
+		if(mPendingCalls.isEmpty())
 		{
-			Log.d(TAG, codeLocation + "empty");
-			return;
+			Log.d(TAG, codeLocation + "no pending calls");
+		}
+		else
+		{
+			for(Map.Entry<String, Short> entry : mPendingCalls.entrySet())
+			{
+				Log.d(TAG, codeLocation + entry.getKey() + ": " + entry.getValue() + " pending");
+			}
 		}
 
-		for(Map.Entry<String, Short> entry : mRunningCalls.entrySet())
+		if(mRunningCalls.isEmpty())
 		{
-			Log.d(TAG, codeLocation + entry.getKey() + ": " + entry.getValue());
+			Log.d(TAG, codeLocation + "no running calls");
+		}
+		else
+		{
+			for(Map.Entry<String, Short> entry : mRunningCalls.entrySet())
+			{
+				Log.d(TAG, codeLocation + entry.getKey() + ": " + entry.getValue() + " running");
+			}
 		}
 	}
 
@@ -129,6 +158,33 @@ public class RxManager
 	private void registerDisposable(@NonNull Disposable disposable)
 	{
 		mCompositeDisposable.add(disposable);
+	}
+
+
+	private synchronized void addPendingCall(@NonNull String callType)
+	{
+		short count = 0;
+		if(mPendingCalls.containsKey(callType))
+		{
+			count = mPendingCalls.get(callType);
+		}
+		mPendingCalls.put(callType, ++count);
+	}
+
+
+	private synchronized void removePendingCall(@NonNull String callType)
+	{
+		Short count = mPendingCalls.get(callType);
+		if(count == null) return;
+
+		if(count > 1)
+		{
+			mPendingCalls.put(callType, --count);
+		}
+		else
+		{
+			mPendingCalls.remove(callType);
+		}
 	}
 
 
