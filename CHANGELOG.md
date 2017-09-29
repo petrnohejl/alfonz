@@ -4,6 +4,17 @@ Changelog
 This document lists the most important changes in Alfonz library. For more detailed changelog see a Git log.
 
 
+0.8.0
+-----
+
+* [adapter module] Add adapter callbacks to observable collections bound to generic adapters and automatically notify adapters about changes
+* [adapter module] Implement getItemPosition() to fix updating pager adapter with notifyDataSetChanged()
+* [arch module] New module
+* [mvvm module] MVVM module is deprecated, use Arch module instead
+* [rx module] Add isPending() method in RxManager to find if there is any call pending
+* [utility module] Make check methods in PermissionManager static
+
+
 0.7.0
 -----
 
