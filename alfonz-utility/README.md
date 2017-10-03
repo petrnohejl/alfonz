@@ -203,7 +203,7 @@ public void onRequestPermissionsResult(int requestCode, @NonNull String[] permis
 Call `check` method to check if permission(s) have been granted or denied. Call `request` method to check and eventually request permission(s) to be granted to the app.
 
 ```java
-boolean granted = PermissionManager.check(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+boolean granted = PermissionManager.check(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
 ```
 
 ```java

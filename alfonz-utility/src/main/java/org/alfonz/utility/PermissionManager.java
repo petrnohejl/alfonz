@@ -76,45 +76,20 @@ public class PermissionManager
 	}
 
 
-	public static boolean check(@NonNull Activity activity, @NonNull String permission)
+	public static boolean check(@NonNull Context context, @NonNull String permission)
 	{
-		return check(new ActivityRequestable<>(activity), permission);
-	}
-
-
-	public static boolean check(@NonNull Fragment fragment, @NonNull String permission)
-	{
-		return check(new FragmentRequestable<>(fragment), permission);
-	}
-
-
-	@NonNull
-	public static PermissionsResult check(@NonNull Activity activity, @NonNull String... permissions)
-	{
-		return check(new ActivityRequestable<>(activity), permissions);
-	}
-
-
-	@NonNull
-	public static PermissionsResult check(@NonNull Fragment fragment, @NonNull String... permissions)
-	{
-		return check(new FragmentRequestable<>(fragment), permissions);
-	}
-
-
-	private static boolean check(@NonNull PermissionRequestable permissionRequestable, @NonNull String permission)
-	{
-		int result = ContextCompat.checkSelfPermission(permissionRequestable.getContext(), permission);
+		int result = ContextCompat.checkSelfPermission(context, permission);
 		return result == PackageManager.PERMISSION_GRANTED;
 	}
 
 
-	private static PermissionsResult check(@NonNull PermissionRequestable permissionRequestable, @NonNull String... permissions)
+	@NonNull
+	public static PermissionsResult check(@NonNull Context context, @NonNull String... permissions)
 	{
 		Map<String, Boolean> resultMap = new ArrayMap<>();
 		for(String permission : permissions)
 		{
-			int result = ContextCompat.checkSelfPermission(permissionRequestable.getContext(), permission);
+			int result = ContextCompat.checkSelfPermission(context, permission);
 			resultMap.put(permission, result == PackageManager.PERMISSION_GRANTED);
 		}
 		return new PermissionsResult(resultMap);
@@ -222,7 +197,7 @@ public class PermissionManager
 
 	private <T> void request(@NonNull PermissionRequestable<T> permissionRequestable, @NonNull String permission, @NonNull PermissionCallback<T> permissionCallback)
 	{
-		if(check(permissionRequestable, permission))
+		if(check(permissionRequestable.getContext(), permission))
 		{
 			permissionCallback.onPermissionGranted(permissionRequestable.getRequestable());
 		}
@@ -246,7 +221,7 @@ public class PermissionManager
 
 	private <T> void request(@NonNull PermissionRequestable<T> permissionRequestable, @NonNull String[] permissions, @NonNull PermissionsCallback<T> permissionsCallback)
 	{
-		PermissionsResult permissionsResult = check(permissionRequestable, permissions);
+		PermissionsResult permissionsResult = check(permissionRequestable.getContext(), permissions);
 
 		if(permissionsResult.isGranted())
 		{
