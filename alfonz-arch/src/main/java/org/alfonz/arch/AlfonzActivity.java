@@ -37,7 +37,7 @@ public abstract class AlfonzActivity extends AppCompatActivity
 	 * @param indicator navigation icon (NONE, BACK, CLOSE are predefined). Uses toolbar theme color for tinting.
 	 * @param title     to be shown as in ActionBar. If it is null, title is not changed! Use empty string to clear it.
 	 * @param toolbar   may be null, in that case it is looking for R.id.toolbar.
-	 * @return initilized ActionBar or null
+	 * @return initialized ActionBar or null
 	 */
 	@Nullable
 	public ActionBar setupActionBar(@NonNull ToolbarIndicator indicator, @Nullable CharSequence title, @Nullable Toolbar toolbar)
@@ -45,12 +45,15 @@ public abstract class AlfonzActivity extends AppCompatActivity
 		if(toolbar == null)
 		{
 			toolbar = findViewById(R.id.toolbar);
+			if(toolbar == null)
+			{
+				throw new IllegalStateException("Toolbar not found. Add Toolbar with R.id.toolbar identifier in the activity layout or pass Toolbar as a parameter.");
+			}
 		}
 
 		// this check is here because if 2 fragments with different indicators share a toolbar in activity,
 		// it caused bug that back icon was not shown
-		int toolbarHashCode = toolbar != null ? toolbar.hashCode() : 0;
-		if(mToolbarHashCode != toolbarHashCode)
+		if(mToolbarHashCode != toolbar.hashCode())
 		{
 			setSupportActionBar(toolbar);
 		}
@@ -80,7 +83,7 @@ public abstract class AlfonzActivity extends AppCompatActivity
 			}
 		}
 
-		mToolbarHashCode = toolbarHashCode;
+		mToolbarHashCode = toolbar.hashCode();
 		return actionBar;
 	}
 
