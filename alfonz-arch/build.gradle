@@ -10,12 +10,12 @@ ext {
 
 
 android {
-	compileSdkVersion 26
-	buildToolsVersion "26.0.2"
+	compileSdkVersion 27
+	buildToolsVersion "27.0.2"
 
 	defaultConfig {
 		minSdkVersion 16
-		targetSdkVersion 26
+		targetSdkVersion 27
 		versionCode getVersionCode(majorVersion, minorVersion, patchVersion, buildVersion)
 		versionName getVersionName(majorVersion, minorVersion, patchVersion)
 	}
@@ -40,12 +40,13 @@ android {
 
 dependencies {
 	implementation fileTree(dir: "libs", include: ["*.jar"])
-	implementation "android.arch.lifecycle:runtime:$androidArchVersion"
-	implementation "android.arch.lifecycle:extensions:$androidArchBetaVersion"
+	implementation "android.arch.lifecycle:runtime:$androidArchRuntimeVersion"
+	implementation "android.arch.lifecycle:extensions:$androidArchVersion"
 	implementation "com.android.support:support-fragment:$androidSupportVersion"
 	implementation "com.android.support:appcompat-v7:$androidSupportVersion"
 	implementation "com.android.support:support-annotations:$androidSupportVersion"
-	annotationProcessor "android.arch.lifecycle:compiler:$androidArchBetaVersion"
+	implementation "com.android.support:support-v4:$androidSupportVersion" // https://stackoverflow.com/questions/41568032/android-data-binding-dependency-conflict-with-the-support-library
+	annotationProcessor "android.arch.lifecycle:compiler:$androidArchVersion"
 }
 
 
