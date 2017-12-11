@@ -1,5 +1,4 @@
 apply plugin: "com.android.library"
-apply plugin: "me.tatarka.retrolambda"
 apply from: "../utils.gradle"
 
 
@@ -36,12 +35,13 @@ android {
 
 
 dependencies {
-	compile fileTree(dir: "libs", include: ["*.jar"])
-	compile project(":alfonz-rx")
-	compile "com.android.support:support-annotations:$androidSupportVersion"
-	compile "com.squareup.okhttp3:okhttp:$okHttpVersion"
-	compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
-	compile "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+	implementation fileTree(dir: "libs", include: ["*.jar"])
+	implementation project(":alfonz-rx")
+	implementation "com.android.support:support-core-utils:$androidSupportVersion"
+	implementation "com.android.support:support-annotations:$androidSupportVersion"
+	implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
+	implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+	implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
 }
 
 

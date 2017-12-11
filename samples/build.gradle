@@ -1,5 +1,4 @@
 apply plugin: "com.android.application"
-apply plugin: "me.tatarka.retrolambda"
 apply from: "../utils.gradle"
 
 
@@ -45,31 +44,33 @@ android {
 
 
 dependencies {
-	compile fileTree(dir: "libs", include: ["*.jar"])
-	compile project(":alfonz-adapter")
-	compile project(":alfonz-arch")
-	compile project(":alfonz-graphics")
-	compile project(":alfonz-media")
-	compile project(":alfonz-mvvm")
-	compile project(":alfonz-rest")
-	compile project(":alfonz-rx")
-	compile project(":alfonz-utility")
-	compile project(":alfonz-view")
-	compile "com.android.support:support-compat:$androidSupportVersion"
-	compile "com.android.support:support-core-utils:$androidSupportVersion"
-	compile "com.android.support:support-core-ui:$androidSupportVersion"
-	compile "com.android.support:support-fragment:$androidSupportVersion"
-	compile "com.android.support:appcompat-v7:$androidSupportVersion"
-	compile "com.android.support:recyclerview-v7:$androidSupportVersion"
-	compile "com.android.support:support-annotations:$androidSupportVersion"
-	compile "com.android.support:design:$androidSupportVersion"
-	compile "com.google.code.gson:gson:$gsonVersion"
-	compile "com.squareup.okhttp3:okhttp:$okHttpVersion"
-	compile "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
-	compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
-	compile "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
-	compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-	debugCompile "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
-	releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
-	testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+	implementation fileTree(dir: "libs", include: ["*.jar"])
+	implementation project(":alfonz-adapter")
+	implementation project(":alfonz-arch")
+	implementation project(":alfonz-graphics")
+	implementation project(":alfonz-media")
+	implementation project(":alfonz-mvvm")
+	implementation project(":alfonz-rest")
+	implementation project(":alfonz-rx")
+	implementation project(":alfonz-utility")
+	implementation project(":alfonz-view")
+	implementation "android.arch.lifecycle:runtime:$androidArchVersion"
+	implementation "android.arch.lifecycle:extensions:$androidArchBetaVersion"
+	implementation "com.android.support:support-compat:$androidSupportVersion"
+	implementation "com.android.support:support-core-utils:$androidSupportVersion"
+	implementation "com.android.support:support-core-ui:$androidSupportVersion"
+	implementation "com.android.support:support-fragment:$androidSupportVersion"
+	implementation "com.android.support:appcompat-v7:$androidSupportVersion"
+	implementation "com.android.support:recyclerview-v7:$androidSupportVersion"
+	implementation "com.android.support:support-annotations:$androidSupportVersion"
+	implementation "com.android.support:design:$androidSupportVersion"
+	implementation "com.google.code.gson:gson:$gsonVersion"
+	implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
+	implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+	implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+	implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+	implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+	debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
+	releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+	testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
 }

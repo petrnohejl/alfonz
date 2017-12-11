@@ -39,11 +39,11 @@ android {
 
 
 dependencies {
-	compile fileTree(dir: "libs", include: ["*.jar"])
-	compile "com.android.support:support-fragment:$androidSupportVersion"
-	compile "com.android.support:appcompat-v7:$androidSupportVersion"
-	compile "com.android.support:support-annotations:$androidSupportVersion"
-	compile "eu.inloop:androidviewmodel:$androidViewModelVersion"
+	implementation fileTree(dir: "libs", include: ["*.jar"])
+	implementation "com.android.support:support-fragment:$androidSupportVersion"
+	implementation "com.android.support:appcompat-v7:$androidSupportVersion"
+	implementation "com.android.support:support-annotations:$androidSupportVersion"
+	api "eu.inloop:androidviewmodel:$androidViewModelVersion"
 }
 
 

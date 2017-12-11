@@ -39,12 +39,12 @@ android {
 
 
 dependencies {
-	compile fileTree(dir: "libs", include: ["*.jar"])
-	compile "android.arch.lifecycle:runtime:$androidArchVersion"
-	compile "android.arch.lifecycle:extensions:$androidArchBetaVersion"
-	compile "com.android.support:support-fragment:$androidSupportVersion"
-	compile "com.android.support:appcompat-v7:$androidSupportVersion"
-	compile "com.android.support:support-annotations:$androidSupportVersion"
+	implementation fileTree(dir: "libs", include: ["*.jar"])
+	implementation "android.arch.lifecycle:runtime:$androidArchVersion"
+	implementation "android.arch.lifecycle:extensions:$androidArchBetaVersion"
+	implementation "com.android.support:support-fragment:$androidSupportVersion"
+	implementation "com.android.support:appcompat-v7:$androidSupportVersion"
+	implementation "com.android.support:support-annotations:$androidSupportVersion"
 	annotationProcessor "android.arch.lifecycle:compiler:$androidArchBetaVersion"
 }
 

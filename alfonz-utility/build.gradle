@@ -35,10 +35,10 @@ android {
 
 
 dependencies {
-	compile fileTree(dir: "libs", include: ["*.jar"])
-	compile "com.android.support:support-fragment:$androidSupportVersion"
-	compile "com.android.support:support-annotations:$androidSupportVersion"
-	compile "com.android.support:design:$androidSupportVersion"
+	implementation fileTree(dir: "libs", include: ["*.jar"])
+	implementation "com.android.support:support-fragment:$androidSupportVersion"
+	implementation "com.android.support:support-annotations:$androidSupportVersion"
+	implementation "com.android.support:design:$androidSupportVersion"
 }
 
 
