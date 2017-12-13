@@ -33,7 +33,7 @@ class BaseCallManager
 	}
 
 
-	public <T> Call<T> getCall(@NonNull Callback<T> callback)
+	public <T> Call getCall(@NonNull Callback<T> callback)
 	{
 		return mCalls.get(callback.hashCode());
 	}

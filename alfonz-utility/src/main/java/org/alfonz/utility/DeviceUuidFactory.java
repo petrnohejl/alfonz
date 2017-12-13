@@ -60,7 +60,7 @@ public class DeviceUuidFactory
 						}
 
 						// write the value out to the prefs file
-						prefs.edit().putString(PREFS_DEVICE_ID, sUuid.toString()).commit();
+						prefs.edit().putString(PREFS_DEVICE_ID, sUuid.toString()).apply();
 					}
 				}
 			}

@@ -52,7 +52,7 @@ public abstract class MultiDataBoundPagerAdapter extends BaseDataBoundPagerAdapt
 
 
 	@Override
-	public int getItemPosition(Object object)
+	public int getItemPosition(@NonNull Object object)
 	{
 		Object item = ((View) object).getTag();
 		if(mItems != null)

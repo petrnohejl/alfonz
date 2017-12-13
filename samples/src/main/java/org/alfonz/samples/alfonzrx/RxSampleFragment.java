@@ -49,7 +49,7 @@ public class RxSampleFragment extends BaseFragment<RxSampleViewModel, FragmentRx
 	@Override
 	public void onButtonEventClick()
 	{
-		RxBus.getInstance().send(new Long(System.currentTimeMillis()));
+		RxBus.getInstance().send(Long.valueOf(System.currentTimeMillis()));
 		RxBus.getInstance().send(new String("Dummy"));
 	}
 }

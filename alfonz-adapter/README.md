@@ -38,8 +38,7 @@ Create an XML layout, define `view` and `data` variables, use `view` for invokin
 
 ```xml
 <layout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto">
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<data>
 		<variable name="view" type="com.example.ui.ProductListView" />

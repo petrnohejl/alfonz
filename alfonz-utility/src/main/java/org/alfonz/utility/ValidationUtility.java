@@ -16,14 +16,7 @@ public final class ValidationUtility
 
 	public static boolean isEmailValid(@Nullable CharSequence email)
 	{
-		if(email == null)
-		{
-			return false;
-		}
-		else
-		{
-			return Patterns.EMAIL_ADDRESS.matcher(email).matches();
-		}
+		return email != null && Patterns.EMAIL_ADDRESS.matcher(email).matches();
 	}
 
 

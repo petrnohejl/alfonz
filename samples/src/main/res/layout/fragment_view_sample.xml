@@ -71,6 +71,7 @@
 					android:layout_height="wrap_content"
 					android:layout_marginBottom="@dimen/global_spacing_16"
 					android:clickable="true"
+					android:focusable="true"
 					android:listSelector="@drawable/selector_clickable_item_bg">
 
 					<org.alfonz.view.EllipsizingTextView

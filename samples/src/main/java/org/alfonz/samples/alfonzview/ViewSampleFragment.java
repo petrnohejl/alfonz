@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import org.alfonz.samples.alfonzarch.BaseFragment;
 import org.alfonz.samples.databinding.FragmentViewSampleBinding;
 import org.alfonz.utility.Logcat;
-import org.alfonz.view.ObservableScrollView;
 
 
 public class ViewSampleFragment extends BaseFragment<ViewSampleViewModel, FragmentViewSampleBinding> implements ViewSampleView
@@ -39,13 +38,6 @@ public class ViewSampleFragment extends BaseFragment<ViewSampleViewModel, Fragme
 
 	private void setupScrollview()
 	{
-		getBinding().fragmentViewSampleScrollview.setOnScrollViewListener(new ObservableScrollView.OnScrollViewListener()
-		{
-			@Override
-			public void onScrollChanged(@NonNull ObservableScrollView scrollView, int x, int y, int oldx, int oldy)
-			{
-				Logcat.d("%d", y);
-			}
-		});
+		getBinding().fragmentViewSampleScrollview.setOnScrollViewListener((scrollView, x, y, oldx, oldy) -> Logcat.d("%d", y));
 	}
 }

@@ -34,7 +34,7 @@ public class RotatableImageView extends ImageView
 
 
 	@Override
-	protected void onDraw(Canvas canvas) // if you want to rotate the entire view (along with its background), you should oveerride draw() instead of onDraw()
+	protected void onDraw(Canvas canvas) // if you want to rotate the entire view (along with its background), you should override draw() instead of onDraw()
 	{
 		canvas.save();
 		canvas.rotate(mAngle % 360, canvas.getWidth() / 2, canvas.getHeight() / 2);

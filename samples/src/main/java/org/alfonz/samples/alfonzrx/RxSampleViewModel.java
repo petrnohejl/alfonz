@@ -123,9 +123,6 @@ public class RxSampleViewModel extends BaseViewModel
 		RxBus.getInstance()
 				.onEvent(Long.class)
 				.doOnSubscribe(mCompositeDisposable::add)
-				.subscribe(event ->
-				{
-					Logcat.d("received " + event.toString());
-				});
+				.subscribe(event -> Logcat.d("received " + event.toString()));
 	}
 }

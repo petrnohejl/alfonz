@@ -88,14 +88,7 @@ public final class RetrofitClient
 
 	private static Interceptor createLoggingInterceptor()
 	{
-		HttpLoggingInterceptor.Logger logger = new HttpLoggingInterceptor.Logger()
-		{
-			@Override
-			public void log(String message)
-			{
-				Logcat.d(message);
-			}
-		};
+		HttpLoggingInterceptor.Logger logger = message -> Logcat.d(message);
 		HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(logger);
 		interceptor.setLevel(SamplesConfig.LOGS ? HttpLoggingInterceptor.Level.BASIC : HttpLoggingInterceptor.Level.NONE);
 		return interceptor;

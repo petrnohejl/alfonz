@@ -46,8 +46,7 @@ public final class VersionUtility
 	{
 		ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
 		ConfigurationInfo configurationInfo = activityManager.getDeviceConfigurationInfo();
-		boolean supportedOpenGlEs2 = configurationInfo.reqGlEsVersion >= 0x20000;
-		return supportedOpenGlEs2;
+		return configurationInfo.reqGlEsVersion >= 0x20000;
 	}
 
 

@@ -107,7 +107,7 @@ public class SelectorFrameLayout extends FrameLayout
 
 
 	@Override
-	protected boolean verifyDrawable(Drawable who)
+	protected boolean verifyDrawable(@NonNull Drawable who)
 	{
 		return who == mSelector || super.verifyDrawable(who);
 	}

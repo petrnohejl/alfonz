@@ -3,6 +3,7 @@ package org.alfonz.samples.alfonzarch;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 
 public class ArchSampleViewModelFactory extends ViewModelProvider.NewInstanceFactory
@@ -16,9 +17,10 @@ public class ArchSampleViewModelFactory extends ViewModelProvider.NewInstanceFac
 	}
 
 
+	@NonNull
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T extends ViewModel> T create(Class<T> modelClass)
+	public <T extends ViewModel> T create(@NonNull Class<T> modelClass)
 	{
 		return (T) new ArchSampleViewModel(mExtras);
 	}

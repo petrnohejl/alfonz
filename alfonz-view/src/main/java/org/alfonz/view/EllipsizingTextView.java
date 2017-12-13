@@ -39,7 +39,7 @@ public class EllipsizingTextView extends TextView
 	private static final String ELLIPSIS = "…";
 	private static final Pattern DEFAULT_END_PUNCTUATION = Pattern.compile("[\\.,…;\\:\\s]*$", Pattern.DOTALL);
 
-	private final List<EllipsizeListener> ellipsizeListeners = new ArrayList<EllipsizeListener>();
+	private final List<EllipsizeListener> ellipsizeListeners = new ArrayList<>();
 	private boolean isEllipsized;
 	private boolean isStale;
 	private boolean programmaticChange;
@@ -79,6 +79,7 @@ public class EllipsizingTextView extends TextView
 		TypedArray a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.maxLines});
 		setMaxLines(a.getInt(0, Integer.MAX_VALUE));
 		setEndPunctuationPattern(DEFAULT_END_PUNCTUATION);
+		a.recycle();
 	}
 
 

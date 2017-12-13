@@ -162,7 +162,7 @@ public final class StorageUtility
 			final byte[] buffer = new byte[1024];
 			while(is.read(buffer) != -1)
 			{
-				mountOutput = mountOutput + new String(buffer);
+				mountOutput += new String(buffer);
 			}
 			is.close();
 		}

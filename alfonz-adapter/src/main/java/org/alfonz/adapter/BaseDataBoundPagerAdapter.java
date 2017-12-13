@@ -22,6 +22,7 @@ public abstract class BaseDataBoundPagerAdapter<T extends ViewDataBinding> exten
 	public abstract int getItemLayoutId(int position);
 
 
+	@NonNull
 	@Override
 	public Object instantiateItem(@NonNull ViewGroup container, int position)
 	{
@@ -39,14 +40,14 @@ public abstract class BaseDataBoundPagerAdapter<T extends ViewDataBinding> exten
 
 
 	@Override
-	public void destroyItem(@NonNull ViewGroup container, int position, Object object)
+	public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object)
 	{
 		container.removeView((View) object);
 	}
 
 
 	@Override
-	public boolean isViewFromObject(View view, Object object)
+	public boolean isViewFromObject(@NonNull View view, @NonNull Object object)
 	{
 		return view == object;
 	}

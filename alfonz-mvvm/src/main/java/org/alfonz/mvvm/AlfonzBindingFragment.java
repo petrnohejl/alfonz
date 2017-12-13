@@ -18,7 +18,7 @@ public abstract class AlfonzBindingFragment<T extends AlfonzView, R extends Alfo
 
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
 		mBinding = setupBinding(inflater);

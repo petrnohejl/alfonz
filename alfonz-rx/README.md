@@ -37,7 +37,7 @@ private DisposableObserver<String> createHelloObserver()
 }
 ```
 
-Run RxJava call. In the following example, we will check if a call of the specific type is already running. If not, we will execute it, otherwise we will do nothing. We will create an `Observable`, set it up with Schedulers and subscribe with the `Observer`. The call is automatically registered on subcribe so we can check which specific calls are currently running. After the RxJava task terminates, the call is automatically unregistered. Disposables are automatically stored in `CompositeDisposable` container. Schedulers should be applied at the end of the stream, right before the `subscribeWith()` is called.
+Run RxJava call. In the following example, we will check if a call of the specific type is already running. If not, we will execute it, otherwise we will do nothing. We will create an `Observable`, set it up with Schedulers and subscribe with the `Observer`. The call is automatically registered on subscribe so we can check which specific calls are currently running. After the RxJava task terminates, the call is automatically unregistered. Disposables are automatically stored in `CompositeDisposable` container. Schedulers should be applied at the end of the stream, right before the `subscribeWith()` is called.
 
 ```java
 private static final String HELLO_CALL_TYPE = "hello";
@@ -76,16 +76,13 @@ Register `RxBus` event bus in your ViewModel and listen to specific events.
 RxBus.getInstance()
 		.onEvent(Long.class)
 		.doOnSubscribe(mCompositeDisposable::add)
-		.subscribe(event ->
-		{
-			Logcat.d("received " + event.toString());
-		});
+		.subscribe(event -> Logcat.d("received " + event.toString()));
 ```
 
 Send events from any part of your app.
 
 ```java
-RxBus.getInstance().send(new Long(System.currentTimeMillis()));
+RxBus.getInstance().send(Long.valueOf(System.currentTimeMillis()));
 ```
 
 Don't forget to dispose all the Disposables when you don't need them anymore.

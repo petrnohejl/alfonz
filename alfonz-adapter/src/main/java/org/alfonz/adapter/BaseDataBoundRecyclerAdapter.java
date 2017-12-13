@@ -41,7 +41,7 @@ import java.util.List;
  * <p>
  * It can be used for both single type lists and multiple type lists.
  *
- * @param <T> The type of the ViewDataBinding class. Can be ommitted in multiple-binding-type use
+ * @param <T> The type of the ViewDataBinding class. Can be omitted in multiple-binding-type use
  *            case.
  */
 public abstract class BaseDataBoundRecyclerAdapter<T extends ViewDataBinding> extends RecyclerView.Adapter<BaseDataBoundRecyclerViewHolder<T>>
