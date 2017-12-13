@@ -2,6 +2,14 @@ Changelog
 =========
 
 This document lists the most important changes in Alfonz library. For more detailed changelog see a Git log.
+Each release uses the newest versions of dependencies.
+
+
+0.8.1
+-----
+
+* [arch module] Add EventObserver which passes non-null event object in onChanged()
+* [utility module] Check methods in PermissionManager now accept Context directly
 
 
 0.8.0
