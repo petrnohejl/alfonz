@@ -1,13 +1,13 @@
 package org.alfonz.arch;
 
 import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModel;
 import android.databinding.Observable;
 import android.databinding.PropertyChangeRegistry;
 import android.support.annotation.NonNull;
 
 import org.alfonz.arch.event.Event;
+import org.alfonz.arch.event.EventObserver;
 import org.alfonz.arch.event.LiveBus;
 
 
@@ -56,9 +56,9 @@ public abstract class AlfonzViewModel extends ViewModel implements Observable
 	}
 
 
-	public <T extends Event> void observeEvent(@NonNull LifecycleOwner lifecycleOwner, @NonNull Class<T> eventClass, @NonNull Observer<T> observer)
+	public <T extends Event> void observeEvent(@NonNull LifecycleOwner lifecycleOwner, @NonNull Class<T> eventClass, @NonNull EventObserver<T> eventObserver)
 	{
-		mLiveBus.observe(lifecycleOwner, eventClass, observer);
+		mLiveBus.observe(lifecycleOwner, eventClass, eventObserver);
 	}
 
 

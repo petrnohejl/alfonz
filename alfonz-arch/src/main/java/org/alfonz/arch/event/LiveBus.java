@@ -1,7 +1,6 @@
 package org.alfonz.arch.event;
 
 import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.Observer;
 import android.support.annotation.NonNull;
 import android.support.v4.util.ArrayMap;
 
@@ -20,14 +19,14 @@ public class LiveBus
 
 
 	@SuppressWarnings("unchecked")
-	public <T extends Event> void observe(@NonNull LifecycleOwner lifecycleOwner, @NonNull Class<T> eventClass, @NonNull Observer<T> observer)
+	public <T extends Event> void observe(@NonNull LifecycleOwner lifecycleOwner, @NonNull Class<T> eventClass, @NonNull EventObserver<T> eventObserver)
 	{
 		LiveEvent<T> liveEvent = (LiveEvent<T>) mEventMap.get(eventClass);
 		if(liveEvent == null)
 		{
 			liveEvent = initLiveEvent(eventClass);
 		}
-		liveEvent.observe(lifecycleOwner, observer);
+		liveEvent.observe(lifecycleOwner, eventObserver);
 	}
 
 
