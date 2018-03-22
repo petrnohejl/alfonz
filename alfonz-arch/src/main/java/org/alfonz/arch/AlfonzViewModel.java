@@ -62,6 +62,12 @@ public abstract class AlfonzViewModel extends ViewModel implements Observable
 	}
 
 
+	public <T extends Event> void removeEventObservers(@NonNull LifecycleOwner lifecycleOwner, @NonNull Class<T> eventClass)
+	{
+		mLiveBus.removeObservers(lifecycleOwner, eventClass);
+	}
+
+
 	public <T extends Event> void sendEvent(@NonNull T event)
 	{
 		mLiveBus.send(event);
