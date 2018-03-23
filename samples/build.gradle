@@ -4,7 +4,7 @@ apply from: "../utils.gradle"
 
 android {
 	compileSdkVersion 27
-	buildToolsVersion "27.0.2"
+	buildToolsVersion "27.0.3"
 
 	defaultConfig {
 		applicationId "org.alfonz.samples"
@@ -54,7 +54,7 @@ dependencies {
 	implementation project(":alfonz-rx")
 	implementation project(":alfonz-utility")
 	implementation project(":alfonz-view")
-	implementation "android.arch.lifecycle:runtime:$androidArchRuntimeVersion"
+	implementation "android.arch.lifecycle:runtime:$androidArchVersion"
 	implementation "android.arch.lifecycle:extensions:$androidArchVersion"
 	implementation "com.android.support:support-compat:$androidSupportVersion"
 	implementation "com.android.support:support-core-utils:$androidSupportVersion"

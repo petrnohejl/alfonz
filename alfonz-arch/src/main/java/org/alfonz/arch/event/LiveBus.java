@@ -34,11 +34,10 @@ public class LiveBus
 	public <T extends Event> void removeObservers(@NonNull LifecycleOwner lifecycleOwner, @NonNull Class<T> eventClass)
 	{
 		LiveEvent<T> liveEvent = (LiveEvent<T>) mEventMap.get(eventClass);
-		if(liveEvent == null)
+		if(liveEvent != null)
 		{
-			return;
+			liveEvent.removeObservers(lifecycleOwner);
 		}
-		liveEvent.removeObservers(lifecycleOwner);
 	}
 
 
