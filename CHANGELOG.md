@@ -5,6 +5,12 @@ This document lists the most important changes in Alfonz library. For more detai
 Each release uses the newest versions of dependencies.
 
 
+0.8.2
+-----
+
+* [arch module] Add removeEventObservers() to AlfonzViewModel for removing event observers
+
+
 0.8.1
 -----
 

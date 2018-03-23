@@ -21,7 +21,7 @@ buildscript {
 	ext {
 		majorVersion = 0 // max two digits
 		minorVersion = 8 // max two digits
-		patchVersion = 1 // max two digits
+		patchVersion = 2 // max two digits
 		buildVersion = 0 // max three digits
 
 		androidArchVersion = "1.1.1"
