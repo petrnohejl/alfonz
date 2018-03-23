@@ -31,6 +31,18 @@ public class LiveBus
 
 
 	@SuppressWarnings("unchecked")
+	public <T extends Event> void removeObservers(@NonNull LifecycleOwner lifecycleOwner, @NonNull Class<T> eventClass)
+	{
+		LiveEvent<T> liveEvent = (LiveEvent<T>) mEventMap.get(eventClass);
+		if(liveEvent == null)
+		{
+			return;
+		}
+		liveEvent.removeObservers(lifecycleOwner);
+	}
+
+
+	@SuppressWarnings("unchecked")
 	public <T extends Event> void send(@NonNull T event)
 	{
 		LiveEvent<T> liveEvent = (LiveEvent<T>) mEventMap.get(event.getClass());
