@@ -50,6 +50,13 @@ RoundedDrawable drawable = new RoundedDrawable(bitmap, radius);
 imageView.setImageDrawable(drawable);
 ```
 
+`PlaceholderDrawable` is a drawable showing initial letter of passed string on a colorful background.
+
+```java
+PlaceholderDrawable drawable = new PlaceholderDrawable(text, "?", 50, true);
+imageView.setImageDrawable(drawable);
+```
+
 
 Dependencies
 ------------

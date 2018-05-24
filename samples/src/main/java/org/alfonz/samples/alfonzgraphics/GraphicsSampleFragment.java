@@ -11,6 +11,7 @@ import org.alfonz.graphics.bitmap.BitmapBlur;
 import org.alfonz.graphics.bitmap.BitmapReflection;
 import org.alfonz.graphics.bitmap.BitmapScaler;
 import org.alfonz.graphics.drawable.CircularDrawable;
+import org.alfonz.graphics.drawable.PlaceholderDrawable;
 import org.alfonz.graphics.drawable.RoundedDrawable;
 import org.alfonz.samples.R;
 import org.alfonz.samples.alfonzarch.BaseFragment;
@@ -48,6 +49,7 @@ public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleViewModel
 		setupImageViewScaler();
 		setupImageViewCircular();
 		setupImageViewRounded();
+		setupImageViewPlaceholder();
 	}
 
 
@@ -91,5 +93,12 @@ public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleViewModel
 		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.photo);
 		RoundedDrawable drawable = new RoundedDrawable(bitmap, 32);
 		getBinding().fragmentGraphicsSampleImageRounded.setImageDrawable(drawable);
+	}
+
+
+	private void setupImageViewPlaceholder()
+	{
+		PlaceholderDrawable drawable = new PlaceholderDrawable(getString(R.string.app_name), "?", 50, true);
+		getBinding().fragmentGraphicsSampleImagePlaceholder.setImageDrawable(drawable);
 	}
 }
