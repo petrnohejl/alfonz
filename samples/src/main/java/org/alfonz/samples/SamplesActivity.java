@@ -8,7 +8,6 @@ import org.alfonz.samples.alfonzadapter.AdapterSampleActivity;
 import org.alfonz.samples.alfonzarch.ArchSampleActivity;
 import org.alfonz.samples.alfonzgraphics.GraphicsSampleActivity;
 import org.alfonz.samples.alfonzmedia.MediaSampleActivity;
-import org.alfonz.samples.alfonzmvvm.MvvmSampleActivity;
 import org.alfonz.samples.alfonzrest.RestSampleActivity;
 import org.alfonz.samples.alfonzrx.RxSampleActivity;
 import org.alfonz.samples.alfonzutility.UtilitySampleActivity;
@@ -32,7 +31,6 @@ public class SamplesActivity extends AppCompatActivity
 		Button archButton = findViewById(R.id.activity_samples_arch);
 		Button graphicsButton = findViewById(R.id.activity_samples_graphics);
 		Button mediaButton = findViewById(R.id.activity_samples_media);
-		Button mvvmButton = findViewById(R.id.activity_samples_mvvm);
 		Button restButton = findViewById(R.id.activity_samples_rest);
 		Button rxButton = findViewById(R.id.activity_samples_rx);
 		Button utilityButton = findViewById(R.id.activity_samples_utility);
@@ -42,7 +40,6 @@ public class SamplesActivity extends AppCompatActivity
 		archButton.setOnClickListener(view -> startActivity(ArchSampleActivity.newIntent(SamplesActivity.this)));
 		graphicsButton.setOnClickListener(view -> startActivity(GraphicsSampleActivity.newIntent(SamplesActivity.this)));
 		mediaButton.setOnClickListener(view -> startActivity(MediaSampleActivity.newIntent(SamplesActivity.this)));
-		mvvmButton.setOnClickListener(view -> startActivity(MvvmSampleActivity.newIntent(SamplesActivity.this)));
 		restButton.setOnClickListener(view -> startActivity(RestSampleActivity.newIntent(SamplesActivity.this)));
 		rxButton.setOnClickListener(view -> startActivity(RxSampleActivity.newIntent(SamplesActivity.this)));
 		utilityButton.setOnClickListener(view -> startActivity(UtilitySampleActivity.newIntent(SamplesActivity.this)));

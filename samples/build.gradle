@@ -49,7 +49,6 @@ dependencies {
 	implementation project(":alfonz-arch")
 	implementation project(":alfonz-graphics")
 	implementation project(":alfonz-media")
-	implementation project(":alfonz-mvvm")
 	implementation project(":alfonz-rest")
 	implementation project(":alfonz-rx")
 	implementation project(":alfonz-utility")

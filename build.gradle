@@ -26,7 +26,6 @@ buildscript {
 
 		androidArchVersion = "1.1.1"
 		androidSupportVersion = "27.1.1"
-		androidViewModelVersion = "1.3.4"
 		gsonVersion = "2.8.5"
 		leakCanaryVersion = "1.5.4"
 		okHttpVersion = "3.10.0"

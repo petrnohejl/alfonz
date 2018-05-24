@@ -62,18 +62,6 @@
 			android:parentActivityName=".SamplesActivity" />
 
 		<activity
-			android:name=".alfonzmvvm.MvvmSampleActivity"
-			android:label="@string/title_mvvm"
-			android:launchMode="standard"
-			android:parentActivityName=".SamplesActivity" />
-
-		<activity
-			android:name=".alfonzmvvm.MvvmSampleViewModelActivity"
-			android:label="MvvmSampleViewModelActivity"
-			android:launchMode="standard"
-			android:parentActivityName=".SamplesActivity" />
-
-		<activity
 			android:name=".alfonzrest.RestSampleActivity"
 			android:label="@string/title_rest"
 			android:launchMode="standard"

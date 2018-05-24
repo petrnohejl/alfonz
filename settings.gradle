@@ -1,1 +1,1 @@
-include ':samples', ':alfonz-adapter', ':alfonz-arch', ':alfonz-graphics', ':alfonz-media', ':alfonz-mvvm', ':alfonz-rest', ':alfonz-rx', ':alfonz-utility', ':alfonz-view'
+include ':samples', ':alfonz-adapter', ':alfonz-arch', ':alfonz-graphics', ':alfonz-media', ':alfonz-rest', ':alfonz-rx', ':alfonz-utility', ':alfonz-view'

@@ -14,7 +14,6 @@
 	<string name="title_arch">Arch\nModule</string>
 	<string name="title_graphics">Graphics\nModule</string>
 	<string name="title_media">Media\nModule</string>
-	<string name="title_mvvm">MVVM\nModule</string>
 	<string name="title_rest">REST\nModule</string>
 	<string name="title_rx">Rx\nModule</string>
 	<string name="title_utility">Utility\nModule</string>

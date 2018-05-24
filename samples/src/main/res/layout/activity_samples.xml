@@ -52,25 +52,11 @@
 				android:text="@string/title_media" />
 
 			<Button
-				android:id="@+id/activity_samples_mvvm"
-				android:layout_width="0dp"
-				android:layout_height="@dimen/global_spacing_128"
-				android:layout_weight="1"
-				android:text="@string/title_mvvm" />
-
-			<Button
 				android:id="@+id/activity_samples_rest"
 				android:layout_width="0dp"
 				android:layout_height="@dimen/global_spacing_128"
 				android:layout_weight="1"
 				android:text="@string/title_rest" />
-
-		</LinearLayout>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal">
 
 			<Button
 				android:id="@+id/activity_samples_rx"
@@ -78,6 +64,13 @@
 				android:layout_height="@dimen/global_spacing_128"
 				android:layout_weight="1"
 				android:text="@string/title_rx" />
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
 
 			<Button
 				android:id="@+id/activity_samples_utility"
@@ -92,6 +85,11 @@
 				android:layout_height="@dimen/global_spacing_128"
 				android:layout_weight="1"
 				android:text="@string/title_view" />
+
+			<Space
+				android:layout_width="0dp"
+				android:layout_height="@dimen/global_spacing_128"
+				android:layout_weight="1" />
 
 		</LinearLayout>
 	</LinearLayout>
