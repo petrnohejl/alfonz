@@ -5,7 +5,7 @@ Base classes for MVVM architecture (based on Architecture Components).
 
 The purpose of this module is to simplify implementation of MVVM architecture. MVVM binder is based on Data Binding Library from Google. This module provides 4 abstract base elements (Activity, Fragment, View, ViewModel) which make up view and view-model layers of MVVM architecture.
 
-This Arch module is basically a wrapper for [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html) library. It provides some additional features and convenient methods. If you are interested in MVVM architecture, you can check my talk about MVVM which I presented at STRV Android Meetup. See the [video record](https://www.youtube.com/watch?v=vnBmdKkMLZw) or [slides](https://speakerdeck.com/petrnohejl/mvvm-architecture-on-android) for more info. Alfonz Arch module uses a similar approach which I describe in the presentation.
+This Arch module is basically a wrapper for [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/) library. It provides some additional features and convenient methods. If you are interested in MVVM architecture, you can check my talk about MVVM which I presented at STRV Android Meetup. See the [video record](https://www.youtube.com/watch?v=vnBmdKkMLZw) or [slides](https://speakerdeck.com/petrnohejl/mvvm-architecture-on-android) for more info. Alfonz Arch module uses a similar approach which I describe in the presentation.
 
 `AlfonzActivity` provides some convenient methods for setting up ActionBar and managing Fragments. It implements `LifecycleOwner` to handle lifecycle changes.
 
@@ -110,7 +110,7 @@ public interface HelloWorldView extends AlfonzView
 }
 ```
 
-View interface will be implemented by a Fragment. We have to specify which ViewModel class will represent our view-model layer, we have to inflate our binding layout and implement View methods. You can call `getViewModel()` from the Fragment to access a ViewModel instance. You can get a binding object via `getBinding()` call. View should stay as dumb as possible and should not have any logic.
+View interface will be implemented by a Fragment. We have to specify which ViewModel class will represent our view-model layer, we have to inflate our binding layout and implement View methods. You can call `getViewModel()` from the Fragment to access a ViewModel instance. You can get a binding object via `getBinding()` call. View should stay as dumb as possible and should not have any logic. `AlfonzFragment` also provides `onBackPressed()` method which can be overridden to handle back button press.
 
 ```java
 public class HelloWorldFragment

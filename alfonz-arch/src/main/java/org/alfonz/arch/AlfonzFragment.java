@@ -21,6 +21,13 @@ public abstract class AlfonzFragment<T extends AlfonzViewModel> extends Fragment
 	}
 
 
+	public boolean onBackPressed()
+	{
+		// return true if back press was handled
+		return false;
+	}
+
+
 	public T getViewModel()
 	{
 		return mViewModel;

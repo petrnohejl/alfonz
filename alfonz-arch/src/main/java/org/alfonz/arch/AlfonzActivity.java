@@ -11,10 +11,31 @@ import android.support.v7.widget.Toolbar;
 
 import org.alfonz.arch.widget.ToolbarIndicator;
 
+import java.util.List;
+
 
 public abstract class AlfonzActivity extends AppCompatActivity
 {
 	private int mToolbarHashCode = 0;
+
+
+	@Override
+	public void onBackPressed()
+	{
+		List<Fragment> fragments = getSupportFragmentManager().getFragments();
+		boolean handled = false;
+
+		for(Fragment fragment : fragments)
+		{
+			if(fragment instanceof AlfonzFragment)
+			{
+				handled = ((AlfonzFragment) fragment).onBackPressed();
+				if(handled) break;
+			}
+		}
+
+		if(!handled) super.onBackPressed();
+	}
 
 
 	@Nullable
