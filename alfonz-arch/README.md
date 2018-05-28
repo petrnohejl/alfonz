@@ -167,7 +167,7 @@ Create a Fragment layout. View is bound in the layout in `BR.view` variable, Vie
 </layout>
 ```
 
-Finally let's create a ViewModel. The best thing about the ViewModel is that it is persisted so you don't lose state or data during device configuration changes. You don't have to use retained Fragments anymore. ViewModel instance is automatically removed after a Fragment is completely gone. I recommend to implement the ViewModel as plain Java for better testability. Never ever use Activity Context in the ViewModel. If you need the Context, use Application Context, it is safer.
+Finally let's create a ViewModel. The best thing about the ViewModel is that it is persisted so you don't lose state or data during device configuration changes. You don't have to use retained Fragments anymore. ViewModel instance is automatically removed after a Fragment is completely gone. I recommend to implement the ViewModel as plain Java for better testability. Never ever use Activity Context in the ViewModel. If you need the Context, use Application Context, it is safer. You can use `AlfonzBundleViewModelFactory` and `AlfonzBundleViewModel` to pass Application Context and Bundle data to the ViewModel.
 
 ```java
 public class HelloWorldViewModel extends BaseViewModel
