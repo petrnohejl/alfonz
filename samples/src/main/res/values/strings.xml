@@ -58,6 +58,7 @@
 	<string name="fragment_utility_sample_start_map_search_button">Start map search activity</string>
 	<string name="fragment_utility_sample_start_navigation_button">Start navigation activity</string>
 	<string name="fragment_utility_sample_start_calendar_button">Start calendar activity</string>
+	<string name="fragment_utility_sample_start_notification_settings_button">Start notification settings activity</string>
 	<string name="fragment_utility_sample_is_callable_button">Is callable</string>
 	<string name="fragment_utility_sample_permission_button">Ask for permission</string>
 	<string name="fragment_utility_sample_permissions_button">Ask for permissions</string>

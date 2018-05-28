@@ -17,6 +17,7 @@ public interface UtilitySampleView extends AlfonzView
 	void onButtonStartMapSearchClick();
 	void onButtonStartNavigationClick();
 	void onButtonStartCalendarClick();
+	void onButtonStartNotificationSettingsClick();
 	void onButtonIsCallableClick();
 	void onButtonPermissionClick();
 	void onButtonPermissionsClick();

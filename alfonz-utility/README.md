@@ -91,6 +91,7 @@ IntentUtility.startMapCoordinatesActivity(getContext(), lat, lon, zoom, label);
 IntentUtility.startMapSearchActivity(getContext(), query);
 IntentUtility.startNavigationActivity(getContext(), lat, lon);
 IntentUtility.startCalendarActivity(getContext(), title, description, beginTime, endTime);
+IntentUtility.startNotificationSettingsActivity(getContext());
 boolean callable = IntentUtility.isCallable(getContext(), intent);
 ```
 

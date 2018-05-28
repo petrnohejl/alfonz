@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Build;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -211,6 +213,43 @@ public final class IntentUtility
 			if(description != null) intent.putExtra("description", description);
 			if(beginTime > -1) intent.putExtra("beginTime", beginTime); // time in milliseconds
 			if(endTime > -1) intent.putExtra("endTime", endTime);
+			context.startActivity(intent);
+		}
+		catch(ActivityNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+
+	public static void startNotificationSettingsActivity(@NonNull Context context)
+	{
+		try
+		{
+			Intent intent;
+
+			if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+			{
+				intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+				intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
+			}
+			else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+			{
+				intent = new Intent("android.settings.APP_NOTIFICATION_SETTINGS");
+				intent.putExtra("app_package", context.getPackageName());
+				intent.putExtra("app_uid", context.getApplicationInfo().uid);
+			}
+			else if(Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT)
+			{
+				intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+				intent.addCategory(Intent.CATEGORY_DEFAULT);
+				intent.setData(Uri.parse("package:" + context.getPackageName()));
+			}
+			else
+			{
+				throw new UnsupportedOperationException("Notification settings not supported on API version " + Build.VERSION.SDK_INT);
+			}
+
 			context.startActivity(intent);
 		}
 		catch(ActivityNotFoundException e)

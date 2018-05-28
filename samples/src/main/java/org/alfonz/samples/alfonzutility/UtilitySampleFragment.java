@@ -131,6 +131,13 @@ public class UtilitySampleFragment extends BaseFragment<UtilitySampleViewModel, 
 
 
 	@Override
+	public void onButtonStartNotificationSettingsClick()
+	{
+		performStartNotificationSettingsActivity();
+	}
+
+
+	@Override
 	public void onButtonIsCallableClick()
 	{
 		performIsCallable();
@@ -247,6 +254,12 @@ public class UtilitySampleFragment extends BaseFragment<UtilitySampleViewModel, 
 	private void performStartCalendarActivity()
 	{
 		IntentUtility.startCalendarActivity(getContext(), "Alfonz", "Hello world!", 1956567600000L, 1956571200000L);
+	}
+
+
+	private void performStartNotificationSettingsActivity()
+	{
+		IntentUtility.startNotificationSettingsActivity(getContext());
 	}
 
 
