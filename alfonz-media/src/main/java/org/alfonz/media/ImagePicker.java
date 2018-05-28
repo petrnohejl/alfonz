@@ -151,13 +151,13 @@ public class ImagePicker
 	}
 
 
-	public <T extends Activity> void onActivityResult(@NonNull T activity, int requestCode, int resultCode, @NonNull Intent data)
+	public <T extends Activity> void onActivityResult(@NonNull T activity, int requestCode, int resultCode, @Nullable Intent data)
 	{
 		onActivityResult(new ActivityPickable<>(activity), requestCode, resultCode, data);
 	}
 
 
-	public <T extends Fragment> void onActivityResult(@NonNull T fragment, int requestCode, int resultCode, @NonNull Intent data)
+	public <T extends Fragment> void onActivityResult(@NonNull T fragment, int requestCode, int resultCode, @Nullable Intent data)
 	{
 		onActivityResult(new FragmentPickable<>(fragment), requestCode, resultCode, data);
 	}
@@ -269,7 +269,7 @@ public class ImagePicker
 
 
 	@SuppressWarnings("unchecked")
-	private <T> void onActivityResult(@NonNull ImagePickable<T> imagePickable, int requestCode, int resultCode, @NonNull Intent data)
+	private <T> void onActivityResult(@NonNull ImagePickable<T> imagePickable, int requestCode, int resultCode, @Nullable Intent data)
 	{
 		if(mImagePickerCallback != null)
 		{
@@ -329,15 +329,20 @@ public class ImagePicker
 
 
 	@NonNull
-	private Pair<Bitmap, String> handleImageFromGallery(@NonNull Intent data)
+	private Pair<Bitmap, String> handleImageFromGallery(@Nullable Intent data)
 	{
 		Bitmap bitmap = null;
-		Uri imageFromGalleryUri = data.getData();
-		String imageFromGalleryPath = getPathFromUri(imageFromGalleryUri);
+		String imageFromGalleryPath = null;
 
-		if(imageFromGalleryPath != null)
+		if(data != null && data.getData() != null)
 		{
-			bitmap = handleImage(imageFromGalleryPath);
+			Uri imageFromGalleryUri = data.getData();
+			imageFromGalleryPath = getPathFromUri(imageFromGalleryUri);
+
+			if(imageFromGalleryPath != null)
+			{
+				bitmap = handleImage(imageFromGalleryPath);
+			}
 		}
 
 		return new Pair<>(bitmap, imageFromGalleryPath);
