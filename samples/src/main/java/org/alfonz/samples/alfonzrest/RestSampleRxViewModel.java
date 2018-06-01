@@ -2,8 +2,8 @@ package org.alfonz.samples.alfonzrest;
 
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.OnLifecycleEvent;
-import android.databinding.ObservableField;
 
 import org.alfonz.rest.rx.RestRxManager;
 import org.alfonz.rx.AlfonzDisposableSingleObserver;
@@ -22,8 +22,8 @@ import retrofit2.Response;
 
 public class RestSampleRxViewModel extends BaseViewModel implements LifecycleObserver
 {
-	public final ObservableField<Integer> state = new ObservableField<>();
-	public final ObservableField<RepoEntity> repo = new ObservableField<>();
+	public final MutableLiveData<Integer> state = new MutableLiveData<>();
+	public final MutableLiveData<RepoEntity> repo = new MutableLiveData<>();
 
 	private RestRxManager mRestRxManager = new RestRxManager(new RestResponseHandler(), new RestHttpLogger());
 
@@ -32,7 +32,7 @@ public class RestSampleRxViewModel extends BaseViewModel implements LifecycleObs
 	public void onStart()
 	{
 		// load data
-		if(repo.get() == null) loadData();
+		if(repo.getValue() == null) loadData();
 	}
 
 
@@ -60,7 +60,7 @@ public class RestSampleRxViewModel extends BaseViewModel implements LifecycleObs
 			if(!mRestRxManager.isRunning(callType))
 			{
 				// show progress
-				state.set(StatefulLayout.PROGRESS);
+				state.setValue(StatefulLayout.PROGRESS);
 
 				// subscribe
 				Single<Response<RepoEntity>> rawSingle = RepoRxServiceProvider.getService().repo("petrnohejl", "Alfonz");
@@ -71,7 +71,7 @@ public class RestSampleRxViewModel extends BaseViewModel implements LifecycleObs
 		else
 		{
 			// show offline
-			state.set(StatefulLayout.OFFLINE);
+			state.setValue(StatefulLayout.OFFLINE);
 		}
 	}
 
@@ -81,7 +81,7 @@ public class RestSampleRxViewModel extends BaseViewModel implements LifecycleObs
 		return AlfonzDisposableSingleObserver.newInstance(
 				response ->
 				{
-					repo.set(response.body());
+					repo.setValue(response.body());
 					setState(repo);
 				},
 				throwable ->
@@ -93,15 +93,15 @@ public class RestSampleRxViewModel extends BaseViewModel implements LifecycleObs
 	}
 
 
-	private void setState(ObservableField<RepoEntity> data)
+	private void setState(MutableLiveData<RepoEntity> data)
 	{
-		if(data.get() != null)
+		if(data.getValue() != null)
 		{
-			state.set(StatefulLayout.CONTENT);
+			state.setValue(StatefulLayout.CONTENT);
 		}
 		else
 		{
-			state.set(StatefulLayout.EMPTY);
+			state.setValue(StatefulLayout.EMPTY);
 		}
 	}
 }

@@ -1,7 +1,7 @@
 package org.alfonz.samples.alfonzutility;
 
+import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
-import android.databinding.ObservableField;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
@@ -79,14 +79,14 @@ public class UtilitySampleViewModel extends BaseViewModel
 	private static final String LOG_MESSAGE_VERSION_UTILITY_GLES2 = "[VersionUtility] gles2: %s";
 	private static final String LOG_MESSAGE_VERSION_UTILITY_COMPARISON = "[VersionUtility] comparison: %s";
 
-	public final ObservableField<String> log = new ObservableField<>();
+	public final MutableLiveData<String> log = new MutableLiveData<>();
 
 	public final PermissionManager permissionManager = new PermissionManager(new PermissionRationaleHandler());
 
 
 	public UtilitySampleViewModel()
 	{
-		log.set("");
+		log.setValue("");
 	}
 
 
@@ -300,7 +300,7 @@ public class UtilitySampleViewModel extends BaseViewModel
 	private void log(String message, String arg)
 	{
 		String line = String.format(message, arg);
-		String currentLog = log.get().isEmpty() ? log.get() : log.get() + "\n";
-		log.set(currentLog + line);
+		String currentLog = log.getValue().isEmpty() ? log.getValue() : log.getValue() + "\n";
+		log.setValue(currentLog + line);
 	}
 }

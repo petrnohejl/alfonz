@@ -1,6 +1,6 @@
 package org.alfonz.samples.alfonzrx;
 
-import android.databinding.ObservableField;
+import android.arch.lifecycle.MutableLiveData;
 
 import org.alfonz.rx.AlfonzDisposableObserver;
 import org.alfonz.rx.RxBus;
@@ -29,7 +29,7 @@ public class RxSampleViewModel extends BaseViewModel
 	private static final String LOG_MESSAGE_ON_COMPLETE = "on complete";
 	private static final String[] NAMES = {"Peter", "James", "John", "Robert", "Michael", "William", "David", "Richard", "Charles", "Joseph", "Jane", "Mary", "Patricia", "Linda", "Barbara", "Elizabeth", "Jennifer", "Maria", "Susan", "Margaret"};
 
-	public final ObservableField<String> log = new ObservableField<>();
+	public final MutableLiveData<String> log = new MutableLiveData<>();
 
 	private RxManager mRxManager = new RxManager();
 	private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
@@ -37,7 +37,7 @@ public class RxSampleViewModel extends BaseViewModel
 
 	public RxSampleViewModel()
 	{
-		log.set("");
+		log.setValue("");
 		listen();
 	}
 
@@ -108,7 +108,7 @@ public class RxSampleViewModel extends BaseViewModel
 	private void log(String message)
 	{
 		String line = String.format("[%s] %s", DateConvertor.dateToString(new Date(), "HH:mm:ss.SSS"), message);
-		log.set(line + "\n" + log.get());
+		log.setValue(line + "\n" + log.getValue());
 	}
 
 

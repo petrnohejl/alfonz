@@ -172,37 +172,37 @@ Finally let's create a ViewModel. The best thing about the ViewModel is that it 
 ```java
 public class HelloWorldViewModel extends BaseViewModel
 {
-	public final ObservableField<Integer> state = new ObservableField<>();
-	public final ObservableField<MessageEntity> message = new ObservableField<>();
+	public final MutableLiveData<Integer> state = new MutableLiveData<>();
+	public final MutableLiveData<MessageEntity> message = new MutableLiveData<>();
 
 	public void loadData()
 	{
 		// show progress
-		state.set(StatefulLayout.PROGRESS);
+		state.setValue(StatefulLayout.PROGRESS);
 
 		// load data from data provider...
 	}
 
 	public void updateMessage(String text)
 	{
-		MessageEntity m = message.get();
+		MessageEntity m = message.getValue();
 		m.setText(text);
-		message.notifyChange();
+		message.setValue(m);
 	}
 
 	private void onLoadData(MessageEntity m)
 	{
 		// save data
-		message.set(m);
+		message.setValue(m);
 
 		// show content
-		if(message.get() != null)
+		if(message.getValue() != null)
 		{
-			state.set(StatefulLayout.CONTENT);
+			state.setValue(StatefulLayout.CONTENT);
 		}
 		else
 		{
-			state.set(StatefulLayout.EMPTY);
+			state.setValue(StatefulLayout.EMPTY);
 		}
 	}
 }
@@ -241,7 +241,7 @@ public class HelloWorldViewModel extends BaseViewModel implements LifecycleObser
 	public void onStart()
 	{
 		// load data
-		if(message.get() == null) loadData();
+		if(message.getValue() == null) loadData();
 	}
 }
 ```

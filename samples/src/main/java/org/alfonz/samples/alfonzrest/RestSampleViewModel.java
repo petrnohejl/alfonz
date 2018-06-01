@@ -2,8 +2,8 @@ package org.alfonz.samples.alfonzrest;
 
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.OnLifecycleEvent;
-import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 
 import org.alfonz.rest.HttpException;
@@ -23,8 +23,8 @@ import retrofit2.Response;
 
 public class RestSampleViewModel extends BaseViewModel implements LifecycleObserver
 {
-	public final ObservableField<Integer> state = new ObservableField<>();
-	public final ObservableField<RepoEntity> repo = new ObservableField<>();
+	public final MutableLiveData<Integer> state = new MutableLiveData<>();
+	public final MutableLiveData<RepoEntity> repo = new MutableLiveData<>();
 
 	private CallManager mCallManager = new CallManager(new RestResponseHandler(), new RestHttpLogger());
 
@@ -33,7 +33,7 @@ public class RestSampleViewModel extends BaseViewModel implements LifecycleObser
 	public void onStart()
 	{
 		// load data
-		if(repo.get() == null) loadData();
+		if(repo.getValue() == null) loadData();
 	}
 
 
@@ -61,7 +61,7 @@ public class RestSampleViewModel extends BaseViewModel implements LifecycleObser
 			if(!mCallManager.hasRunningCall(callType))
 			{
 				// show progress
-				state.set(StatefulLayout.PROGRESS);
+				state.setValue(StatefulLayout.PROGRESS);
 
 				// enqueue call
 				Call<RepoEntity> call = RepoServiceProvider.getService().repo("petrnohejl", "Alfonz");
@@ -72,20 +72,20 @@ public class RestSampleViewModel extends BaseViewModel implements LifecycleObser
 		else
 		{
 			// show offline
-			state.set(StatefulLayout.OFFLINE);
+			state.setValue(StatefulLayout.OFFLINE);
 		}
 	}
 
 
-	private void setState(ObservableField<RepoEntity> data)
+	private void setState(MutableLiveData<RepoEntity> data)
 	{
-		if(data.get() != null)
+		if(data.getValue() != null)
 		{
-			state.set(StatefulLayout.CONTENT);
+			state.setValue(StatefulLayout.CONTENT);
 		}
 		else
 		{
-			state.set(StatefulLayout.EMPTY);
+			state.setValue(StatefulLayout.EMPTY);
 		}
 	}
 
@@ -101,7 +101,7 @@ public class RestSampleViewModel extends BaseViewModel implements LifecycleObser
 		@Override
 		public void onSuccess(@NonNull Call<RepoEntity> call, @NonNull Response<RepoEntity> response)
 		{
-			repo.set(response.body());
+			repo.setValue(response.body());
 			setState(repo);
 		}
 

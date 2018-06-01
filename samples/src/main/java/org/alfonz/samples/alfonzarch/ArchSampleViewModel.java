@@ -1,9 +1,11 @@
 package org.alfonz.samples.alfonzarch;
 
+import android.annotation.SuppressLint;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.OnLifecycleEvent;
-import android.databinding.ObservableField;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import org.alfonz.utility.NetworkUtility;
@@ -12,8 +14,8 @@ import org.alfonz.view.StatefulLayout;
 
 public class ArchSampleViewModel extends BaseViewModel implements LifecycleObserver
 {
-	public final ObservableField<Integer> state = new ObservableField<>();
-	public final ObservableField<String> message = new ObservableField<>();
+	public final MutableLiveData<Integer> state = new MutableLiveData<>();
+	public final MutableLiveData<String> message = new MutableLiveData<>();
 
 
 	public ArchSampleViewModel(Bundle extras)
@@ -25,15 +27,15 @@ public class ArchSampleViewModel extends BaseViewModel implements LifecycleObser
 	public void onStart()
 	{
 		// load data
-		if(message.get() == null) loadData();
+		if(message.getValue() == null) loadData();
 	}
 
 
 	public void updateMessage()
 	{
-		String s = message.get();
+		String s = message.getValue();
 		s += "o";
-		message.set(s);
+		message.setValue(s);
 	}
 
 
@@ -42,30 +44,38 @@ public class ArchSampleViewModel extends BaseViewModel implements LifecycleObser
 		if(NetworkUtility.isOnline(getApplicationContext()))
 		{
 			// show progress
-			state.set(StatefulLayout.PROGRESS);
+			state.setValue(StatefulLayout.PROGRESS);
 
 			// load data
-			new Thread(new Runnable()
+			@SuppressLint("StaticFieldLeak")
+			AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>()
 			{
 				@Override
-				public void run()
+				protected String doInBackground(Void... voids)
 				{
 					try
 					{
 						Thread.sleep(2000L);
-						String s = "Hello";
-						onLoadData(s);
+						return "Hello";
 					}
 					catch(InterruptedException e)
 					{
 						e.printStackTrace();
+						return null;
 					}
 				}
-			}).start();
+
+
+				@Override
+				protected void onPostExecute(String s)
+				{
+					onLoadData(s);
+				}
+			}.execute();
 		}
 		else
 		{
-			state.set(StatefulLayout.OFFLINE);
+			state.setValue(StatefulLayout.OFFLINE);
 		}
 	}
 
@@ -73,16 +83,16 @@ public class ArchSampleViewModel extends BaseViewModel implements LifecycleObser
 	private void onLoadData(String s)
 	{
 		// save data
-		message.set(s);
+		message.setValue(s);
 
 		// show content
-		if(message.get() != null)
+		if(message.getValue() != null)
 		{
-			state.set(StatefulLayout.CONTENT);
+			state.setValue(StatefulLayout.CONTENT);
 		}
 		else
 		{
-			state.set(StatefulLayout.EMPTY);
+			state.setValue(StatefulLayout.EMPTY);
 		}
 	}
 }

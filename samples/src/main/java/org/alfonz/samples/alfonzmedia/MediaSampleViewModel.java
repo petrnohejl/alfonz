@@ -1,6 +1,6 @@
 package org.alfonz.samples.alfonzmedia;
 
-import android.databinding.ObservableField;
+import android.arch.lifecycle.MutableLiveData;
 import android.graphics.Bitmap;
 
 import org.alfonz.samples.alfonzarch.BaseViewModel;
@@ -10,13 +10,13 @@ import org.alfonz.utility.PermissionManager;
 
 public class MediaSampleViewModel extends BaseViewModel
 {
-	public final ObservableField<Bitmap> bitmap = new ObservableField<>();
+	public final MutableLiveData<Bitmap> bitmap = new MutableLiveData<>();
 
 	public final PermissionManager permissionManager = new PermissionManager(new PermissionRationaleHandler());
 
 
 	public void updateBitmap(Bitmap bitmap)
 	{
-		this.bitmap.set(bitmap);
+		this.bitmap.setValue(bitmap);
 	}
 }

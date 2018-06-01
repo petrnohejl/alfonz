@@ -43,6 +43,7 @@ public abstract class AlfonzBindingActivity<T extends AlfonzViewModel, B extends
 		B binding = inflateBindingLayout(inflater);
 		binding.setVariable(BR.view, this);
 		binding.setVariable(BR.viewModel, getViewModel());
+		binding.setLifecycleOwner(this);
 		return binding;
 	}
 }
