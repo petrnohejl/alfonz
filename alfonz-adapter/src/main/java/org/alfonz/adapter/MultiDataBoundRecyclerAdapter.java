@@ -45,7 +45,7 @@ public abstract class MultiDataBoundRecyclerAdapter extends BaseDataBoundRecycle
 
 
 	@Override
-	public void onAttachedToRecyclerView(RecyclerView recyclerView)
+	public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView)
 	{
 		super.onAttachedToRecyclerView(recyclerView);
 		mCallbackHolder.register(this, mItems);
@@ -53,7 +53,7 @@ public abstract class MultiDataBoundRecyclerAdapter extends BaseDataBoundRecycle
 
 
 	@Override
-	public void onDetachedFromRecyclerView(RecyclerView recyclerView)
+	public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView)
 	{
 		super.onDetachedFromRecyclerView(recyclerView);
 		mCallbackHolder.unregister(mItems);

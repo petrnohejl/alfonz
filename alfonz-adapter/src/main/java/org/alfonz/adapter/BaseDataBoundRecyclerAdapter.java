@@ -42,11 +42,12 @@ import java.util.List;
  * It can be used for both single type lists and multiple type lists.
  *
  * @param <T> The type of the ViewDataBinding class. Can be omitted in multiple-binding-type use
- *            case.
+ * case.
  */
 public abstract class BaseDataBoundRecyclerAdapter<T extends ViewDataBinding> extends RecyclerView.Adapter<BaseDataBoundRecyclerViewHolder<T>>
 {
 	private static final Object DB_PAYLOAD = new Object();
+
 	@Nullable
 	private RecyclerView mRecyclerView;
 	private LayoutInflater mLayoutInflater;
@@ -80,7 +81,7 @@ public abstract class BaseDataBoundRecyclerAdapter<T extends ViewDataBinding> ex
 	/**
 	 * Override this method to handle binding your items into views
 	 *
-	 * @param holder   The ViewHolder that has the binding instance
+	 * @param holder The ViewHolder that has the binding instance
 	 * @param position The position of the item in the adapter
 	 * @param payloads The payloads that were passed into the onBind method
 	 */
@@ -93,7 +94,8 @@ public abstract class BaseDataBoundRecyclerAdapter<T extends ViewDataBinding> ex
 
 	@Override
 	@CallSuper
-	public BaseDataBoundRecyclerViewHolder<T> onCreateViewHolder(ViewGroup parent, int viewType)
+	@NonNull
+	public BaseDataBoundRecyclerViewHolder<T> onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
 	{
 		if(mLayoutInflater == null)
 		{
@@ -119,21 +121,21 @@ public abstract class BaseDataBoundRecyclerAdapter<T extends ViewDataBinding> ex
 
 
 	@Override
-	public final void onBindViewHolder(BaseDataBoundRecyclerViewHolder<T> holder, int position)
+	public final void onBindViewHolder(@NonNull BaseDataBoundRecyclerViewHolder<T> holder, int position)
 	{
 		throw new IllegalArgumentException("just overridden to make final.");
 	}
 
 
 	@Override
-	public void onAttachedToRecyclerView(RecyclerView recyclerView)
+	public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView)
 	{
 		mRecyclerView = recyclerView;
 	}
 
 
 	@Override
-	public void onDetachedFromRecyclerView(RecyclerView recyclerView)
+	public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView)
 	{
 		mRecyclerView = null;
 		mLayoutInflater = null;
