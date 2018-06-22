@@ -14,16 +14,12 @@ import okio.BufferedSink;
 import okio.GzipSink;
 import okio.Okio;
 
-
-public class GzipRequestInterceptor implements Interceptor
-{
+public class GzipRequestInterceptor implements Interceptor {
 	@Override
-	public Response intercept(@NonNull Chain chain) throws IOException
-	{
+	public Response intercept(@NonNull Chain chain) throws IOException {
 		Request originalRequest = chain.request();
 
-		if(originalRequest.body() == null || originalRequest.header("Content-Encoding") != null)
-		{
+		if (originalRequest.body() == null || originalRequest.header("Content-Encoding") != null) {
 			return chain.proceed(originalRequest);
 		}
 
@@ -35,29 +31,21 @@ public class GzipRequestInterceptor implements Interceptor
 		return chain.proceed(compressedRequest);
 	}
 
-
-	private RequestBody gzip(@NonNull final RequestBody body)
-	{
-		return new RequestBody()
-		{
+	private RequestBody gzip(@NonNull final RequestBody body) {
+		return new RequestBody() {
 			@Override
-			public MediaType contentType()
-			{
+			public MediaType contentType() {
 				return body.contentType();
 			}
 
-
 			@Override
-			public long contentLength()
-			{
+			public long contentLength() {
 				// we don't know the compressed length in advance
 				return -1;
 			}
 
-
 			@Override
-			public void writeTo(@NonNull BufferedSink sink) throws IOException
-			{
+			public void writeTo(@NonNull BufferedSink sink) throws IOException {
 				BufferedSink gzipSink = Okio.buffer(new GzipSink(sink));
 				body.writeTo(gzipSink);
 				gzipSink.close();
@@ -65,30 +53,22 @@ public class GzipRequestInterceptor implements Interceptor
 		};
 	}
 
-
-	private RequestBody forceContentLength(@NonNull final RequestBody requestBody) throws IOException
-	{
+	private RequestBody forceContentLength(@NonNull final RequestBody requestBody) throws IOException {
 		final Buffer buffer = new Buffer();
 		requestBody.writeTo(buffer);
-		return new RequestBody()
-		{
+		return new RequestBody() {
 			@Override
-			public MediaType contentType()
-			{
+			public MediaType contentType() {
 				return requestBody.contentType();
 			}
 
-
 			@Override
-			public long contentLength()
-			{
+			public long contentLength() {
 				return buffer.size();
 			}
 
-
 			@Override
-			public void writeTo(@NonNull BufferedSink sink) throws IOException
-			{
+			public void writeTo(@NonNull BufferedSink sink) throws IOException {
 				sink.write(buffer.snapshot());
 			}
 		};

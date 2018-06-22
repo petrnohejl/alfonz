@@ -20,23 +20,15 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
-public final class RetrofitClient
-{
+public final class RetrofitClient {
 	private static volatile Retrofit sRetrofit;
-
 
 	private RetrofitClient() {}
 
-
-	public static Retrofit getRetrofit()
-	{
-		if(sRetrofit == null)
-		{
-			synchronized(RetrofitClient.class)
-			{
-				if(sRetrofit == null)
-				{
+	public static Retrofit getRetrofit() {
+		if (sRetrofit == null) {
+			synchronized (RetrofitClient.class) {
+				if (sRetrofit == null) {
 					sRetrofit = buildRetrofit();
 				}
 			}
@@ -44,15 +36,11 @@ public final class RetrofitClient
 		return sRetrofit;
 	}
 
-
-	public static <T> T createService(Class<T> service)
-	{
+	public static <T> T createService(Class<T> service) {
 		return getRetrofit().create(service);
 	}
 
-
-	private static Retrofit buildRetrofit()
-	{
+	private static Retrofit buildRetrofit() {
 		Retrofit.Builder builder = new Retrofit.Builder();
 		builder.baseUrl(SamplesConfig.REST_BASE_URL);
 		builder.client(buildClient());
@@ -61,9 +49,7 @@ public final class RetrofitClient
 		return builder.build();
 	}
 
-
-	private static OkHttpClient buildClient()
-	{
+	private static OkHttpClient buildClient() {
 		OkHttpClient.Builder builder = new OkHttpClient.Builder();
 		builder.connectTimeout(30, TimeUnit.SECONDS);
 		builder.readTimeout(30, TimeUnit.SECONDS);
@@ -75,9 +61,7 @@ public final class RetrofitClient
 		return builder.build();
 	}
 
-
-	private static CertificatePinner buildCertificatePinner()
-	{
+	private static CertificatePinner buildCertificatePinner() {
 		CertificatePinner.Builder builder = new CertificatePinner.Builder();
 		builder.add("*.github.com", "sha256/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=");
 		builder.add("*.github.com", "sha256/yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy=");
@@ -85,27 +69,21 @@ public final class RetrofitClient
 		return builder.build();
 	}
 
-
-	private static Interceptor createLoggingInterceptor()
-	{
+	private static Interceptor createLoggingInterceptor() {
 		HttpLoggingInterceptor.Logger logger = message -> Logcat.d(message);
 		HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(logger);
 		interceptor.setLevel(SamplesConfig.LOGS ? HttpLoggingInterceptor.Level.BASIC : HttpLoggingInterceptor.Level.NONE);
 		return interceptor;
 	}
 
-
-	private static Converter.Factory createConverterFactory()
-	{
+	private static Converter.Factory createConverterFactory() {
 		GsonBuilder builder = new GsonBuilder();
 		builder.setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 		Gson gson = builder.create();
 		return GsonConverterFactory.create(gson);
 	}
 
-
-	private static CallAdapter.Factory createCallAdapterFactory()
-	{
+	private static CallAdapter.Factory createCallAdapterFactory() {
 		return RxJava2CallAdapterFactory.create();
 	}
 }

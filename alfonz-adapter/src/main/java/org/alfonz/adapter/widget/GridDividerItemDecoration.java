@@ -10,37 +10,28 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-
 // TODO: fix drawing when grid has only a few items or odd number of items, test vertical/horizontal orientation, reverse, RTL
-public class GridDividerItemDecoration extends RecyclerView.ItemDecoration
-{
+public class GridDividerItemDecoration extends RecyclerView.ItemDecoration {
 	private static final int[] ATTRS = new int[]{android.R.attr.listDivider};
 
 	private Drawable mDivider;
 	private int mMargin;
 
-
-	public GridDividerItemDecoration(@NonNull Context context, int margin)
-	{
+	public GridDividerItemDecoration(@NonNull Context context, int margin) {
 		final TypedArray typedArray = context.obtainStyledAttributes(ATTRS);
 		mDivider = typedArray.getDrawable(0);
 		typedArray.recycle();
 		mMargin = margin;
 	}
 
-
 	@Override
-	public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView recyclerView, RecyclerView.State state)
-	{
+	public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView recyclerView, RecyclerView.State state) {
 		outRect.set(mMargin, mMargin, mMargin, mMargin);
 	}
 
-
 	@Override
-	public void onDrawOver(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView, RecyclerView.State state)
-	{
-		if(recyclerView.getLayoutManager() == null)
-		{
+	public void onDrawOver(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView, RecyclerView.State state) {
+		if (recyclerView.getLayoutManager() == null) {
 			return;
 		}
 
@@ -48,21 +39,16 @@ public class GridDividerItemDecoration extends RecyclerView.ItemDecoration
 		drawHorizontal(canvas, recyclerView);
 	}
 
-
-	public void setDrawable(@NonNull Drawable drawable)
-	{
+	public void setDrawable(@NonNull Drawable drawable) {
 		mDivider = drawable;
 	}
 
-
-	private void drawVertical(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView)
-	{
+	private void drawVertical(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView) {
 		final int top = recyclerView.getPaddingTop();
 		final int bottom = recyclerView.getHeight() - recyclerView.getPaddingBottom();
 		final int childCount = recyclerView.getChildCount();
 
-		for(int i = 0; i < childCount; i++)
-		{
+		for (int i = 0; i < childCount; i++) {
 			final View child = recyclerView.getChildAt(i);
 			final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
 			final int left = child.getRight() + params.rightMargin + mMargin;
@@ -73,11 +59,8 @@ public class GridDividerItemDecoration extends RecyclerView.ItemDecoration
 		}
 	}
 
-
-	private void drawHorizontal(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView)
-	{
-		if(recyclerView.getChildCount() == 0)
-		{
+	private void drawHorizontal(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView) {
+		if (recyclerView.getChildCount() == 0) {
 			return;
 		}
 
@@ -86,8 +69,7 @@ public class GridDividerItemDecoration extends RecyclerView.ItemDecoration
 		final int index = isReverse(recyclerView) && isVertical(recyclerView) ? recyclerView.getChildCount() - 1 : 0;
 		final View child = recyclerView.getChildAt(index);
 
-		if(child.getHeight() == 0)
-		{
+		if (child.getHeight() == 0) {
 			return;
 		}
 
@@ -96,8 +78,7 @@ public class GridDividerItemDecoration extends RecyclerView.ItemDecoration
 		int top = child.getBottom() + params.bottomMargin + mMargin;
 		int bottom = top + mDivider.getIntrinsicHeight();
 
-		while(bottom < parentBottom)
-		{
+		while (bottom < parentBottom) {
 			mDivider.setBounds(left, top, right, bottom);
 			mDivider.draw(canvas);
 
@@ -106,37 +87,25 @@ public class GridDividerItemDecoration extends RecyclerView.ItemDecoration
 		}
 	}
 
-
-	private boolean isVertical(@NonNull RecyclerView recyclerView)
-	{
-		if(recyclerView.getLayoutManager() instanceof GridLayoutManager)
-		{
+	private boolean isVertical(@NonNull RecyclerView recyclerView) {
+		if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
 			GridLayoutManager gridLayoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
 			return gridLayoutManager.getOrientation() == GridLayoutManager.VERTICAL;
-		}
-		else
-		{
+		} else {
 			throw new IllegalStateException(getIllegalStateExceptionMessage());
 		}
 	}
 
-
-	private boolean isReverse(@NonNull RecyclerView recyclerView)
-	{
-		if(recyclerView.getLayoutManager() instanceof GridLayoutManager)
-		{
+	private boolean isReverse(@NonNull RecyclerView recyclerView) {
+		if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
 			GridLayoutManager gridLayoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
 			return gridLayoutManager.getReverseLayout();
-		}
-		else
-		{
+		} else {
 			throw new IllegalStateException(getIllegalStateExceptionMessage());
 		}
 	}
 
-
-	private String getIllegalStateExceptionMessage()
-	{
+	private String getIllegalStateExceptionMessage() {
 		return String.format("%s can only be used with a %s",
 				this.getClass().getSimpleName(),
 				GridLayoutManager.class.getSimpleName());

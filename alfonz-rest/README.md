@@ -19,8 +19,7 @@ First of all, create a class for building and storing Retrofit instance. I recom
 ```java
 public static final String MESSAGE_CALL_TYPE = "message";
 
-public interface ChatService
-{
+public interface ChatService {
 	@GET("message/{id}")
 	Single<Response<MessageEntity>> message(@Path("id") String id, @Query("lang") String lang);
 }
@@ -31,24 +30,18 @@ Now you have to implement two classes which will be used by the `RestRxManager` 
 Let's start with `HttpException`. You have to implement how to parse an error body when a response is not successful.
 
 ```java
-public class RestHttpException extends HttpException
-{
-	public RestHttpException(Response<?> response)
-	{
+public class RestHttpException extends HttpException {
+	public RestHttpException(Response<?> response) {
 		super(response);
 	}
 
 	@Override
-	public Object parseError(@NonNull Response<?> response)
-	{
-		try
-		{
+	public Object parseError(@NonNull Response<?> response) {
+		try {
 			Converter<ResponseBody, ErrorEntity> converter =
 					RetrofitClient.getRetrofit().responseBodyConverter(ErrorEntity.class, new Annotation[0]);
 			return converter.convert(response.errorBody());
-		}
-		catch(IOException | NullPointerException e)
-		{
+		} catch (IOException | NullPointerException e) {
 			e.printStackTrace();
 			ErrorEntity error = new ErrorEntity();
 			error.setMessage("Unknown error");
@@ -61,30 +54,25 @@ public class RestHttpException extends HttpException
 Now implement `ResponseHandler`. Define a successful response, error message, fail message and factory method for the `HttpException`.
 
 ```java
-public class RestResponseHandler implements ResponseHandler
-{
+public class RestResponseHandler implements ResponseHandler {
 	@Override
-	public boolean isSuccess(@NonNull Response<?> response)
-	{
+	public boolean isSuccess(@NonNull Response<?> response) {
 		return response.isSuccessful();
 	}
 
 	@Override
-	public String getErrorMessage(@NonNull HttpException exception)
-	{
+	public String getErrorMessage(@NonNull HttpException exception) {
 		ErrorEntity error = (ErrorEntity) exception.error();
 		return error.getMessage();
 	}
 
 	@Override
-	public String getFailMessage(@NonNull Throwable throwable)
-	{
+	public String getFailMessage(@NonNull Throwable throwable) {
 		return throwable.getMessage();
 	}
 
 	@Override
-	public HttpException createHttpException(@NonNull Response<?> response)
-	{
+	public HttpException createHttpException(@NonNull Response<?> response) {
 		return new RestHttpException(response);
 	}
 }
@@ -93,23 +81,19 @@ public class RestResponseHandler implements ResponseHandler
 You can also implement `HttpLogger` for logging success, error and fail states of REST API calls, but it is optional.
 
 ```java
-public class RestHttpLogger implements HttpLogger
-{
+public class RestHttpLogger implements HttpLogger {
 	@Override
-	public void logSuccess(@NonNull String message)
-	{
+	public void logSuccess(@NonNull String message) {
 		Logcat.d(message);
 	}
 
 	@Override
-	public void logError(@NonNull String message)
-	{
+	public void logError(@NonNull String message) {
 		Logcat.d(message);
 	}
 
 	@Override
-	public void logFail(@NonNull String message)
-	{
+	public void logFail(@NonNull String message) {
 		Logcat.e(message);
 	}
 }
@@ -124,8 +108,7 @@ private RestRxManager mRestRxManager = new RestRxManager(new RestResponseHandler
 Create a new instance of `Observer`.
 
 ```java
-private DisposableSingleObserver<Response<MessageEntity>> createMessageObserver()
-{
+private DisposableSingleObserver<Response<MessageEntity>> createMessageObserver() {
 	return AlfonzDisposableSingleObserver.newInstance(
 			data ->
 			{
@@ -143,11 +126,9 @@ private DisposableSingleObserver<Response<MessageEntity>> createMessageObserver(
 Run RxJava REST API call. In the following example, we will check if a call of the specific type is already running. If not, we will execute it, otherwise we will do nothing. We will create a `Single`, set it up with Schedulers and subscribe with the `Observer`. The call is automatically registered on subscribe so we can check which specific calls are currently running. After the RxJava task terminates, the call is automatically unregistered. Disposables are automatically stored in `CompositeDisposable` container. Schedulers should be applied at the end of the stream, right before the `subscribeWith()` is called. `RestRxManager` takes care of handling responses, errors, exceptions and logging results.
 
 ```java
-private void runMessageCall()
-{
+private void runMessageCall() {
 	String callType = ChatRouter.MESSAGE_CALL_TYPE;
-	if(!mRestRxManager.isRunning(callType))
-	{
+	if (!mRestRxManager.isRunning(callType)) {
 		Single<Response<MessageEntity>> rawSingle = ChatRouter.getService().message("42", "en");
 		Single<Response<MessageEntity>> single =
 				mRestRxManager.setupRestSingleWithSchedulers(rawSingle, callType);
@@ -162,8 +143,7 @@ Don't forget to dispose all the Disposables when you don't need them anymore.
 
 ```java
 @Override
-public void onDestroy()
-{
+public void onDestroy() {
 	super.onDestroy();
 	mRestRxManager.disposeAll();
 }

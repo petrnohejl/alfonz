@@ -9,53 +9,37 @@ import android.telephony.TelephonyManager;
 import java.io.UnsupportedEncodingException;
 import java.util.UUID;
 
-
 // source: http://stackoverflow.com/questions/2785485/is-there-a-unique-android-device-id
-public class DeviceUuidFactory
-{
+public class DeviceUuidFactory {
 	protected static final String PREFS_FILE = "device_id.xml";
 	protected static final String PREFS_DEVICE_ID = "device_id";
 
 	protected static volatile UUID sUuid;
 
-
-	public DeviceUuidFactory(@NonNull Context context)
-	{
-		if(sUuid == null)
-		{
-			synchronized(DeviceUuidFactory.class)
-			{
-				if(sUuid == null)
-				{
+	public DeviceUuidFactory(@NonNull Context context) {
+		if (sUuid == null) {
+			synchronized (DeviceUuidFactory.class) {
+				if (sUuid == null) {
 					final SharedPreferences prefs = context.getSharedPreferences(PREFS_FILE, 0);
 					final String id = prefs.getString(PREFS_DEVICE_ID, null);
 
-					if(id != null)
-					{
+					if (id != null) {
 						// use the ids previously computed and stored in the prefs file
 						sUuid = UUID.fromString(id);
-					}
-					else
-					{
+					} else {
 						final String androidId = Secure.getString(context.getContentResolver(), Secure.ANDROID_ID);
 
 						// Use the Android ID unless it's broken, in which case fallback on deviceId,
 						// unless it's not available, then fallback on a random number which we store to a prefs file
-						try
-						{
-							if(!"9774d56d682e549c".equals(androidId))
-							{
+						try {
+							if (!"9774d56d682e549c".equals(androidId)) {
 								sUuid = UUID.nameUUIDFromBytes(androidId.getBytes("utf8"));
-							}
-							else
-							{
+							} else {
 								// requires android.permission.READ_PHONE_STATE 
 								final String deviceId = ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
 								sUuid = deviceId != null ? UUID.nameUUIDFromBytes(deviceId.getBytes("utf8")) : UUID.randomUUID();
 							}
-						}
-						catch(UnsupportedEncodingException e)
-						{
+						} catch (UnsupportedEncodingException e) {
 							throw new RuntimeException(e);
 						}
 
@@ -66,7 +50,6 @@ public class DeviceUuidFactory
 			}
 		}
 	}
-
 
 	/**
 	 * Returns a unique UUID for the current android device.  As with all UUIDs, this unique ID is "very highly likely"
@@ -92,8 +75,7 @@ public class DeviceUuidFactory
 	 * @return a UUID that may be used to uniquely identify your device for most purposes.
 	 * @see <a href="http://code.google.com/p/android/issues/detail?id=10603">Issue 10603</a>
 	 */
-	public UUID getDeviceUUID()
-	{
+	public UUID getDeviceUUID() {
 		return sUuid;
 	}
 }

@@ -9,60 +9,42 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-
-class BaseCallManager
-{
+class BaseCallManager {
 	private static final String TAG = "ALFONZ";
 
 	private Map<Integer, Call> mCalls = new ArrayMap<>();
 	private Map<Integer, String> mTypes = new ArrayMap<>();
 
-
-	public <T> void enqueueCall(@NonNull Call<T> call, @NonNull Callback<T> callback, @NonNull String callType)
-	{
+	public <T> void enqueueCall(@NonNull Call<T> call, @NonNull Callback<T> callback, @NonNull String callType) {
 		mCalls.put(callback.hashCode(), call);
 		mTypes.put(callback.hashCode(), callType);
 		call.enqueue(callback);
 	}
 
-
-	public void finishCall(@NonNull Callback callback)
-	{
+	public void finishCall(@NonNull Callback callback) {
 		mCalls.remove(callback.hashCode());
 		mTypes.remove(callback.hashCode());
 	}
 
-
-	public <T> Call getCall(@NonNull Callback<T> callback)
-	{
+	public <T> Call getCall(@NonNull Callback<T> callback) {
 		return mCalls.get(callback.hashCode());
 	}
 
-
-	public String getCallType(@NonNull Callback callback)
-	{
+	public String getCallType(@NonNull Callback callback) {
 		return mTypes.get(callback.hashCode());
 	}
 
-
-	public int getCallsCount()
-	{
+	public int getCallsCount() {
 		return mCalls.size();
 	}
 
-
-	public boolean hasRunningCall(@NonNull String callType)
-	{
+	public boolean hasRunningCall(@NonNull String callType) {
 		return mTypes.containsValue(callType);
 	}
 
-
-	public void cancelRunningCalls()
-	{
-		for(Call call : mCalls.values())
-		{
-			if(call != null)
-			{
+	public void cancelRunningCalls() {
+		for (Call call : mCalls.values()) {
+			if (call != null) {
 				call.cancel();
 			}
 		}
@@ -70,19 +52,15 @@ class BaseCallManager
 		mTypes.clear();
 	}
 
-
-	public void printRunningCalls()
-	{
+	public void printRunningCalls() {
 		String codeLocation = "[" + BaseCallManager.class.getSimpleName() + ".printRunningCalls] ";
 
-		if(mCalls.isEmpty())
-		{
+		if (mCalls.isEmpty()) {
 			Log.d(TAG, codeLocation + "empty");
 			return;
 		}
 
-		for(String callType : mTypes.values())
-		{
+		for (String callType : mTypes.values()) {
 			Log.d(TAG, codeLocation + callType);
 		}
 	}

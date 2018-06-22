@@ -13,9 +13,7 @@ import android.support.v7.widget.Toolbar;
 
 import org.alfonz.arch.R;
 
-
-public class ToolbarIndicator
-{
+public class ToolbarIndicator {
 	public static final ToolbarIndicator NONE = new ToolbarIndicator(0, false, false);
 	public static final ToolbarIndicator BACK = new ToolbarIndicator(0, true, true);
 	public static final ToolbarIndicator CLOSE = new ToolbarIndicator(R.drawable.ic_close, true, true);
@@ -25,63 +23,46 @@ public class ToolbarIndicator
 	private final boolean mIsHomeEnabled;
 	private final boolean mIsHomeAsUpEnabled;
 
-
-	public ToolbarIndicator(@DrawableRes int drawableRes, boolean isHomeEnabled, boolean isHomeAsUpEnabled)
-	{
+	public ToolbarIndicator(@DrawableRes int drawableRes, boolean isHomeEnabled, boolean isHomeAsUpEnabled) {
 		mDrawableRes = drawableRes;
 		mIsHomeEnabled = isHomeEnabled;
 		mIsHomeAsUpEnabled = isHomeAsUpEnabled;
 	}
 
-
-	private static int getThemeTintColor(@NonNull Context context)
-	{
+	private static int getThemeTintColor(@NonNull Context context) {
 		int attr;
-		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-		{
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			attr = android.R.attr.colorControlNormal;
-		}
-		else
-		{
+		} else {
 			attr = context.getResources().getIdentifier("colorControlNormal", "attr", context.getPackageName());
 		}
 
 		return getColorValueOfAttribute(context, attr);
 	}
 
-
-	private static int getColorValueOfAttribute(@NonNull Context context, int attr)
-	{
+	private static int getColorValueOfAttribute(@NonNull Context context, int attr) {
 		TypedArray typedArray = context.obtainStyledAttributes(null, new int[]{attr}, 0, 0);
 		int value = typedArray.getColor(0, 0);
 		typedArray.recycle();
 		return value;
 	}
 
-
-	public Drawable getTintedDrawable(@NonNull Toolbar toolbar)
-	{
+	public Drawable getTintedDrawable(@NonNull Toolbar toolbar) {
 		int color = getThemeTintColor(toolbar.getContext());
 		Drawable drawable = ContextCompat.getDrawable(toolbar.getContext(), mDrawableRes);
 		drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
 		return drawable;
 	}
 
-
-	public int getDrawableRes()
-	{
+	public int getDrawableRes() {
 		return mDrawableRes;
 	}
 
-
-	public boolean isHomeEnabled()
-	{
+	public boolean isHomeEnabled() {
 		return mIsHomeEnabled;
 	}
 
-
-	public boolean isHomeAsUpEnabled()
-	{
+	public boolean isHomeAsUpEnabled() {
 		return mIsHomeAsUpEnabled;
 	}
 }

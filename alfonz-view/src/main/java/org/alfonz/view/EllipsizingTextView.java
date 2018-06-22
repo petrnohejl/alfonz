@@ -32,10 +32,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-
 // source: http://stackoverflow.com/questions/2160619/android-ellipsize-multiline-textview
-public class EllipsizingTextView extends TextView
-{
+public class EllipsizingTextView extends TextView {
 	private static final String ELLIPSIS = "…";
 	private static final Pattern DEFAULT_END_PUNCTUATION = Pattern.compile("[\\.,…;\\:\\s]*$", Pattern.DOTALL);
 
@@ -53,27 +51,19 @@ public class EllipsizingTextView extends TextView
 	 */
 	private Pattern endPunctuationPattern;
 
-
-	public interface EllipsizeListener
-	{
+	public interface EllipsizeListener {
 		void ellipsizeStateChanged(boolean ellipsized);
 	}
 
-
-	public EllipsizingTextView(@NonNull Context context)
-	{
+	public EllipsizingTextView(@NonNull Context context) {
 		this(context, null);
 	}
 
-
-	public EllipsizingTextView(@NonNull Context context, AttributeSet attrs)
-	{
+	public EllipsizingTextView(@NonNull Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
 	}
 
-
-	public EllipsizingTextView(@NonNull Context context, AttributeSet attrs, int defStyle)
-	{
+	public EllipsizingTextView(@NonNull Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		super.setEllipsize(null);
 		TypedArray a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.maxLines});
@@ -82,131 +72,95 @@ public class EllipsizingTextView extends TextView
 		a.recycle();
 	}
 
-
-	public int getMaxLines()
-	{
+	public int getMaxLines() {
 		return maxLines;
 	}
 
-
 	@Override
-	public void setMaxLines(int maxLines)
-	{
+	public void setMaxLines(int maxLines) {
 		super.setMaxLines(maxLines);
 		this.maxLines = maxLines;
 		isStale = true;
 	}
 
-
 	@Override
-	public void setLineSpacing(float add, float mult)
-	{
+	public void setLineSpacing(float add, float mult) {
 		this.lineAdditionalVerticalPadding = add;
 		this.lineSpacingMultiplier = mult;
 		super.setLineSpacing(add, mult);
 	}
 
-
 	@Override
-	protected void onTextChanged(CharSequence text, int start, int before, int after)
-	{
+	protected void onTextChanged(CharSequence text, int start, int before, int after) {
 		super.onTextChanged(text, start, before, after);
-		if(!programmaticChange)
-		{
+		if (!programmaticChange) {
 			fullText = text.toString();
 			isStale = true;
 		}
 	}
 
-
 	@Override
-	protected void onSizeChanged(int w, int h, int oldw, int oldh)
-	{
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
-		if(ellipsizingLastFullyVisibleLine())
-		{
+		if (ellipsizingLastFullyVisibleLine()) {
 			isStale = true;
 		}
 	}
 
-
-	public void setPadding(int left, int top, int right, int bottom)
-	{
+	public void setPadding(int left, int top, int right, int bottom) {
 		super.setPadding(left, top, right, bottom);
-		if(ellipsizingLastFullyVisibleLine())
-		{
+		if (ellipsizingLastFullyVisibleLine()) {
 			isStale = true;
 		}
 	}
-
 
 	@Override
-	protected void onDraw(Canvas canvas)
-	{
-		if(isStale)
-		{
+	protected void onDraw(Canvas canvas) {
+		if (isStale) {
 			resetText();
 		}
 		super.onDraw(canvas);
 	}
 
-
 	@Override
-	public void setEllipsize(TruncateAt where)
-	{
+	public void setEllipsize(TruncateAt where) {
 		// Ellipsize settings are not respected
 	}
 
-
-	public void setEndPunctuationPattern(Pattern pattern)
-	{
+	public void setEndPunctuationPattern(Pattern pattern) {
 		this.endPunctuationPattern = pattern;
 	}
 
-
-	public void addEllipsizeListener(EllipsizeListener listener)
-	{
-		if(listener == null)
-		{
+	public void addEllipsizeListener(EllipsizeListener listener) {
+		if (listener == null) {
 			throw new NullPointerException();
 		}
 		ellipsizeListeners.add(listener);
 	}
 
-
-	public void removeEllipsizeListener(EllipsizeListener listener)
-	{
+	public void removeEllipsizeListener(EllipsizeListener listener) {
 		ellipsizeListeners.remove(listener);
 	}
 
-
-	public boolean isEllipsized()
-	{
+	public boolean isEllipsized() {
 		return isEllipsized;
 	}
 
-
-	public boolean ellipsizingLastFullyVisibleLine()
-	{
+	public boolean ellipsizingLastFullyVisibleLine() {
 		return maxLines == Integer.MAX_VALUE;
 	}
 
-
-	private void resetText()
-	{
+	private void resetText() {
 		String workingText = fullText;
 		boolean ellipsized = false;
 		Layout layout = createWorkingLayout(workingText);
 		int linesCount = getLinesCount();
-		if(layout.getLineCount() > linesCount)
-		{
+		if (layout.getLineCount() > linesCount) {
 			// We have more lines of text than we are allowed to display.
 			workingText = fullText.substring(0, layout.getLineEnd(linesCount - 1)).trim();
-			while(createWorkingLayout(workingText + ELLIPSIS).getLineCount() > linesCount)
-			{
+			while (createWorkingLayout(workingText + ELLIPSIS).getLineCount() > linesCount) {
 				int lastSpace = workingText.lastIndexOf(' ');
-				if(lastSpace == -1)
-				{
+				if (lastSpace == -1) {
 					break;
 				}
 				workingText = workingText.substring(0, lastSpace);
@@ -216,69 +170,51 @@ public class EllipsizingTextView extends TextView
 			workingText = workingText + ELLIPSIS;
 			ellipsized = true;
 		}
-		if(!workingText.equals(getText()))
-		{
+		if (!workingText.equals(getText())) {
 			programmaticChange = true;
-			try
-			{
+			try {
 				setText(workingText);
-			}
-			finally
-			{
+			} finally {
 				programmaticChange = false;
 			}
 		}
 		isStale = false;
-		if(ellipsized != isEllipsized)
-		{
+		if (ellipsized != isEllipsized) {
 			isEllipsized = ellipsized;
-			for(EllipsizeListener listener : ellipsizeListeners)
-			{
+			for (EllipsizeListener listener : ellipsizeListeners) {
 				listener.ellipsizeStateChanged(ellipsized);
 			}
 		}
 	}
 
-
 	/**
 	 * Get how many lines of text we are allowed to display.
 	 */
-	private int getLinesCount()
-	{
-		if(ellipsizingLastFullyVisibleLine())
-		{
+	private int getLinesCount() {
+		if (ellipsizingLastFullyVisibleLine()) {
 			int fullyVisibleLinesCount = getFullyVisibleLinesCount();
-			if(fullyVisibleLinesCount == -1)
-			{
+			if (fullyVisibleLinesCount == -1) {
 				return 1;
-			}
-			else
-			{
+			} else {
 				return fullyVisibleLinesCount;
 			}
-		}
-		else
-		{
+		} else {
 			return maxLines;
 		}
 	}
-
 
 	/**
 	 * Get how many lines of text we can display so their full height is
 	 * visible.
 	 */
-	private int getFullyVisibleLinesCount()
-	{
+	private int getFullyVisibleLinesCount() {
 		Layout layout = createWorkingLayout("");
 		int height = getHeight() - getPaddingTop() - getPaddingBottom();
 		int lineHeight = layout.getLineBottom(0);
 		return height / lineHeight;
 	}
 
-
-	private Layout createWorkingLayout(String workingText)
-	{
+	private Layout createWorkingLayout(String workingText) {
 		return new StaticLayout(workingText, getPaint(), getWidth() - getPaddingLeft() - getPaddingRight(), Alignment.ALIGN_NORMAL, lineSpacingMultiplier,
 				lineAdditionalVerticalPadding, false /* includepad */);
 	}

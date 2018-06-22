@@ -5,23 +5,17 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
-
-public class ArchSampleViewModelFactory extends ViewModelProvider.NewInstanceFactory
-{
+public class ArchSampleViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 	private final Bundle mExtras;
 
-
-	public ArchSampleViewModelFactory(Bundle extras)
-	{
+	public ArchSampleViewModelFactory(Bundle extras) {
 		mExtras = extras;
 	}
-
 
 	@NonNull
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T extends ViewModel> T create(@NonNull Class<T> modelClass)
-	{
+	public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
 		return (T) new ArchSampleViewModel(mExtras);
 	}
 }

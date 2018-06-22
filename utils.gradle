@@ -3,7 +3,6 @@ ext.getVersionCode = {
 		return majorVersion * 10000000 + minorVersion * 100000 + patchVersion * 1000 + buildVersion
 }
 
-
 ext.getVersionName = {
 	majorVersion, minorVersion, patchVersion ->
 		return "${majorVersion}.${minorVersion}.${patchVersion}"

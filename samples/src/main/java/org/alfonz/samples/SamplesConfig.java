@@ -1,8 +1,6 @@
 package org.alfonz.samples;
 
-
-public class SamplesConfig
-{
+public class SamplesConfig {
 	public static final boolean LOGS = BuildConfig.LOGS;
 	public static final boolean DEV_ENVIRONMENT = BuildConfig.DEV_ENVIRONMENT;
 

@@ -6,9 +6,11 @@
 	<data>
 		<import type="org.alfonz.adapter.utility.BindingUtility" />
 		<variable
-			name="view" type="org.alfonz.samples.alfonzadapter.AdapterSampleView" />
+			name="view"
+			type="org.alfonz.samples.alfonzadapter.AdapterSampleView" />
 		<variable
-			name="viewModel" type="org.alfonz.samples.alfonzadapter.AdapterSampleDiffViewModel" />
+			name="viewModel"
+			type="org.alfonz.samples.alfonzadapter.AdapterSampleDiffViewModel" />
 	</data>
 
 	<android.support.v7.widget.RecyclerView

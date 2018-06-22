@@ -19,46 +19,34 @@ import io.reactivex.Single;
 import io.reactivex.observers.DisposableSingleObserver;
 import retrofit2.Response;
 
-
-public class RestSampleRxViewModel extends BaseViewModel implements LifecycleObserver
-{
+public class RestSampleRxViewModel extends BaseViewModel implements LifecycleObserver {
 	public final MutableLiveData<Integer> state = new MutableLiveData<>();
 	public final MutableLiveData<RepoEntity> repo = new MutableLiveData<>();
 
 	private RestRxManager mRestRxManager = new RestRxManager(new RestResponseHandler(), new RestHttpLogger());
 
-
 	@OnLifecycleEvent(Lifecycle.Event.ON_START)
-	public void onStart()
-	{
+	public void onStart() {
 		// load data
-		if(repo.getValue() == null) loadData();
+		if (repo.getValue() == null) loadData();
 	}
 
-
 	@Override
-	public void onCleared()
-	{
+	public void onCleared() {
 		super.onCleared();
 
 		// unsubscribe
 		mRestRxManager.disposeAll();
 	}
 
-
-	public void refreshData()
-	{
+	public void refreshData() {
 		loadData();
 	}
 
-
-	private void loadData()
-	{
-		if(NetworkUtility.isOnline(getApplicationContext()))
-		{
+	private void loadData() {
+		if (NetworkUtility.isOnline(getApplicationContext())) {
 			String callType = RepoRxRouter.REPO_CALL_TYPE;
-			if(!mRestRxManager.isRunning(callType))
-			{
+			if (!mRestRxManager.isRunning(callType)) {
 				// show progress
 				state.setValue(StatefulLayout.PROGRESS);
 
@@ -67,17 +55,13 @@ public class RestSampleRxViewModel extends BaseViewModel implements LifecycleObs
 				Single<Response<RepoEntity>> single = mRestRxManager.setupRestSingleWithSchedulers(rawSingle, callType);
 				single.subscribeWith(createRepoObserver());
 			}
-		}
-		else
-		{
+		} else {
 			// show offline
 			state.setValue(StatefulLayout.OFFLINE);
 		}
 	}
 
-
-	private DisposableSingleObserver<Response<RepoEntity>> createRepoObserver()
-	{
+	private DisposableSingleObserver<Response<RepoEntity>> createRepoObserver() {
 		return AlfonzDisposableSingleObserver.newInstance(
 				response ->
 				{
@@ -92,15 +76,10 @@ public class RestSampleRxViewModel extends BaseViewModel implements LifecycleObs
 		);
 	}
 
-
-	private void setState(MutableLiveData<RepoEntity> data)
-	{
-		if(data.getValue() != null)
-		{
+	private void setState(MutableLiveData<RepoEntity> data) {
+		if (data.getValue() != null) {
 			state.setValue(StatefulLayout.CONTENT);
-		}
-		else
-		{
+		} else {
 			state.setValue(StatefulLayout.EMPTY);
 		}
 	}

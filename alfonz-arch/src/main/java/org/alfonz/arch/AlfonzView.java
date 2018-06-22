@@ -1,6 +1,4 @@
 package org.alfonz.arch;
 
-
-public interface AlfonzView
-{
+public interface AlfonzView {
 }

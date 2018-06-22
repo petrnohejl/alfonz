@@ -28,7 +28,6 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-
 /**
  * A reference implementation for an adapter that wants to use data binding "the right way". It
  * works with {@link BaseDataBoundRecyclerViewHolder}.
@@ -44,39 +43,32 @@ import java.util.List;
  * @param <T> The type of the ViewDataBinding class. Can be omitted in multiple-binding-type use
  * case.
  */
-public abstract class BaseDataBoundRecyclerAdapter<T extends ViewDataBinding> extends RecyclerView.Adapter<BaseDataBoundRecyclerViewHolder<T>>
-{
+public abstract class BaseDataBoundRecyclerAdapter<T extends ViewDataBinding> extends RecyclerView.Adapter<BaseDataBoundRecyclerViewHolder<T>> {
 	private static final Object DB_PAYLOAD = new Object();
 
+	private LayoutInflater mLayoutInflater;
 	@Nullable
 	private RecyclerView mRecyclerView;
-	private LayoutInflater mLayoutInflater;
-
 
 	/**
 	 * This is used to block items from updating themselves. RecyclerView wants to know when an
 	 * item is invalidated and it prefers to refresh it via onRebind. It also helps with performance
 	 * since data binding will not update views that are not changed.
 	 */
-	private final OnRebindCallback mOnRebindCallback = new OnRebindCallback()
-	{
+	private final OnRebindCallback mOnRebindCallback = new OnRebindCallback() {
 		@Override
-		public boolean onPreBind(@NonNull ViewDataBinding binding)
-		{
-			if(mRecyclerView == null || mRecyclerView.isComputingLayout())
-			{
+		public boolean onPreBind(@NonNull ViewDataBinding binding) {
+			if (mRecyclerView == null || mRecyclerView.isComputingLayout()) {
 				return true;
 			}
 			int childAdapterPosition = mRecyclerView.getChildAdapterPosition(binding.getRoot());
-			if(childAdapterPosition == RecyclerView.NO_POSITION)
-			{
+			if (childAdapterPosition == RecyclerView.NO_POSITION) {
 				return true;
 			}
 			notifyItemChanged(childAdapterPosition, DB_PAYLOAD);
 			return false;
 		}
 	};
-
 
 	/**
 	 * Override this method to handle binding your items into views
@@ -87,18 +79,14 @@ public abstract class BaseDataBoundRecyclerAdapter<T extends ViewDataBinding> ex
 	 */
 	protected abstract void bindItem(BaseDataBoundRecyclerViewHolder<T> holder, int position, List<Object> payloads);
 
-
 	@LayoutRes
 	public abstract int getItemLayoutId(int position);
-
 
 	@Override
 	@CallSuper
 	@NonNull
-	public BaseDataBoundRecyclerViewHolder<T> onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
-	{
-		if(mLayoutInflater == null)
-		{
+	public BaseDataBoundRecyclerViewHolder<T> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+		if (mLayoutInflater == null) {
 			mLayoutInflater = LayoutInflater.from(parent.getContext());
 		}
 
@@ -107,54 +95,39 @@ public abstract class BaseDataBoundRecyclerAdapter<T extends ViewDataBinding> ex
 		return vh;
 	}
 
-
 	@Override
-	public final void onBindViewHolder(@NonNull BaseDataBoundRecyclerViewHolder<T> holder, int position, @NonNull List<Object> payloads)
-	{
+	public final void onBindViewHolder(@NonNull BaseDataBoundRecyclerViewHolder<T> holder, int position, @NonNull List<Object> payloads) {
 		// when a VH is rebound to the same item, we don't have to call the setters
-		if(payloads.isEmpty() || hasNonDataBindingInvalidate(payloads))
-		{
+		if (payloads.isEmpty() || hasNonDataBindingInvalidate(payloads)) {
 			bindItem(holder, position, payloads);
 		}
 		holder.binding.executePendingBindings();
 	}
 
-
 	@Override
-	public final void onBindViewHolder(@NonNull BaseDataBoundRecyclerViewHolder<T> holder, int position)
-	{
+	public final void onBindViewHolder(@NonNull BaseDataBoundRecyclerViewHolder<T> holder, int position) {
 		throw new IllegalArgumentException("just overridden to make final.");
 	}
 
-
 	@Override
-	public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView)
-	{
+	public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
 		mRecyclerView = recyclerView;
 	}
 
-
 	@Override
-	public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView)
-	{
+	public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
 		mRecyclerView = null;
 		mLayoutInflater = null;
 	}
 
-
 	@Override
-	public final int getItemViewType(int position)
-	{
+	public final int getItemViewType(int position) {
 		return getItemLayoutId(position);
 	}
 
-
-	private boolean hasNonDataBindingInvalidate(@NonNull List<Object> payloads)
-	{
-		for(Object payload : payloads)
-		{
-			if(payload != DB_PAYLOAD)
-			{
+	private boolean hasNonDataBindingInvalidate(@NonNull List<Object> payloads) {
+		for (Object payload : payloads) {
+			if (payload != DB_PAYLOAD) {
 				return true;
 			}
 		}

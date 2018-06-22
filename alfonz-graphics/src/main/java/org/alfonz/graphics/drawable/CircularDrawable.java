@@ -12,9 +12,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 
-
-public class CircularDrawable extends Drawable
-{
+public class CircularDrawable extends Drawable {
 	private Bitmap mBitmap;
 	private float mDiameter;
 	private float mBorderWidth;
@@ -24,27 +22,19 @@ public class CircularDrawable extends Drawable
 	private Paint mBitmapPaint;
 	private Paint mBorderPaint;
 
-
-	public CircularDrawable(@NonNull Bitmap bitmap)
-	{
+	public CircularDrawable(@NonNull Bitmap bitmap) {
 		this(bitmap, bitmap.getWidth() < bitmap.getHeight() ? bitmap.getWidth() : bitmap.getHeight(), 0F, 0F, 0);
 	}
 
-
-	public CircularDrawable(@NonNull Bitmap bitmap, float diameter)
-	{
+	public CircularDrawable(@NonNull Bitmap bitmap, float diameter) {
 		this(bitmap, diameter, 0F, 0F, 0);
 	}
 
-
-	public CircularDrawable(@NonNull Bitmap bitmap, float borderWidth, float borderGap, int borderColor)
-	{
+	public CircularDrawable(@NonNull Bitmap bitmap, float borderWidth, float borderGap, int borderColor) {
 		this(bitmap, bitmap.getWidth() < bitmap.getHeight() ? bitmap.getWidth() : bitmap.getHeight(), borderWidth, borderGap, borderColor);
 	}
 
-
-	public CircularDrawable(@NonNull Bitmap bitmap, float diameter, float borderWidth, float borderGap, int borderColor)
-	{
+	public CircularDrawable(@NonNull Bitmap bitmap, float diameter, float borderWidth, float borderGap, int borderColor) {
 		mBitmap = bitmap;
 		mDiameter = diameter;
 		mBorderWidth = borderWidth;
@@ -58,8 +48,7 @@ public class CircularDrawable extends Drawable
 		mBitmapPaint.setDither(true);
 		mBitmapPaint.setShader(mBitmapShader);
 
-		if(mBorderWidth > 0F)
-		{
+		if (mBorderWidth > 0F) {
 			mBorderPaint = new Paint();
 			mBorderPaint.setStyle(Paint.Style.STROKE);
 			mBorderPaint.setAntiAlias(true);
@@ -68,10 +57,8 @@ public class CircularDrawable extends Drawable
 		}
 	}
 
-
 	@Override
-	protected void onBoundsChange(Rect bounds)
-	{
+	protected void onBoundsChange(Rect bounds) {
 		super.onBoundsChange(bounds);
 
 		float centerX = mBitmap.getWidth() / 2F;
@@ -86,53 +73,38 @@ public class CircularDrawable extends Drawable
 		mBitmapShader.setLocalMatrix(matrix);
 	}
 
-
 	@Override
-	public void draw(@NonNull Canvas canvas)
-	{
-		if(mBorderPaint != null)
-		{
+	public void draw(@NonNull Canvas canvas) {
+		if (mBorderPaint != null) {
 			canvas.drawCircle(getIntrinsicWidth() / 2, getIntrinsicHeight() / 2, (mDiameter / 2) - mBorderWidth - mBorderGap, mBitmapPaint);
 			canvas.drawCircle(getIntrinsicWidth() / 2, getIntrinsicHeight() / 2, (mDiameter / 2) - (mBorderWidth / 2), mBorderPaint);
-		}
-		else
-		{
+		} else {
 			canvas.drawCircle(getIntrinsicWidth() / 2, getIntrinsicHeight() / 2, mDiameter / 2, mBitmapPaint);
 		}
 	}
 
-
 	@Override
-	public void setAlpha(int alpha)
-	{
+	public void setAlpha(int alpha) {
 		mBitmapPaint.setAlpha(alpha);
 	}
 
-
 	@Override
-	public void setColorFilter(ColorFilter colorFilter)
-	{
+	public void setColorFilter(ColorFilter colorFilter) {
 		mBitmapPaint.setColorFilter(colorFilter);
 	}
 
-
 	@Override
-	public int getOpacity()
-	{
+	public int getOpacity() {
 		return PixelFormat.TRANSLUCENT;
 	}
 
-
 	@Override
-	public int getIntrinsicWidth()
-	{
+	public int getIntrinsicWidth() {
 		return (int) Math.min(mBitmap.getWidth(), mDiameter);
 	}
 
-
 	@Override
-	public int getIntrinsicHeight()
-	{
+	public int getIntrinsicHeight() {
 		return (int) Math.min(mBitmap.getHeight(), mDiameter);
 	}
 }

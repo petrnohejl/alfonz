@@ -5,49 +5,35 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 
-
 // requires android.permission.ACCESS_NETWORK_STATE
-public final class NetworkUtility
-{
+public final class NetworkUtility {
 	private NetworkUtility() {}
 
-
-	public static boolean isOnline(@NonNull Context context)
-	{
+	public static boolean isOnline(@NonNull Context context) {
 		ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 		return (networkInfo != null && networkInfo.isAvailable() && networkInfo.isConnected());
 	}
 
-
-	public static int getType(@NonNull Context context)
-	{
+	public static int getType(@NonNull Context context) {
 		ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
-		if(networkInfo != null)
-		{
+		if (networkInfo != null) {
 			// returns ConnectivityManager.TYPE_WIFI, ConnectivityManager.TYPE_MOBILE etc.
 			return networkInfo.getType();
-		}
-		else
-		{
+		} else {
 			return -1;
 		}
 	}
 
-
-	public static String getTypeName(@NonNull Context context)
-	{
+	public static String getTypeName(@NonNull Context context) {
 		ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
-		if(networkInfo != null)
-		{
+		if (networkInfo != null) {
 			return networkInfo.getTypeName();
-		}
-		else
-		{
+		} else {
 			return null;
 		}
 	}

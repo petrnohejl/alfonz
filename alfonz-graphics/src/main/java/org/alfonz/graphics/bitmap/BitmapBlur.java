@@ -9,26 +9,18 @@ import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.support.annotation.NonNull;
 
-
-public final class BitmapBlur
-{
+public final class BitmapBlur {
 	private static final float BITMAP_SCALE = 0.4F;
 	private static final float BLUR_RADIUS = 20F;
 
-
 	private BitmapBlur() {}
 
-
-	public static Bitmap getBlurredBitmap(@NonNull Context context, @NonNull Bitmap bitmap)
-	{
+	public static Bitmap getBlurredBitmap(@NonNull Context context, @NonNull Bitmap bitmap) {
 		return getBlurredBitmap(context, bitmap, BITMAP_SCALE, BLUR_RADIUS);
 	}
 
-
-	public static Bitmap getBlurredBitmap(@NonNull Context context, @NonNull Bitmap bitmap, float scale, float radius)
-	{
-		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
-		{
+	public static Bitmap getBlurredBitmap(@NonNull Context context, @NonNull Bitmap bitmap, float scale, float radius) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
 			int width = Math.round(bitmap.getWidth() * scale);
 			int height = Math.round(bitmap.getHeight() * scale);
 
@@ -46,9 +38,7 @@ public final class BitmapBlur
 			rs.destroy();
 
 			return outputBitmap;
-		}
-		else
-		{
+		} else {
 			return Bitmap.createBitmap(bitmap);
 		}
 	}

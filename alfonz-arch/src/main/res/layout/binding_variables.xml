@@ -4,11 +4,14 @@
 
 	<data>
 		<variable
-			name="view" type="Object" />
+			name="view"
+			type="Object" />
 		<variable
-			name="viewModel" type="Object" />
+			name="viewModel"
+			type="Object" />
 		<variable
-			name="data" type="Object" />
+			name="data"
+			type="Object" />
 	</data>
 
 	<View

@@ -9,64 +9,47 @@ import org.alfonz.samples.R;
 import org.alfonz.samples.alfonzarch.BaseFragment;
 import org.alfonz.samples.databinding.FragmentAdapterSampleListDiffBinding;
 
-
-public class AdapterSampleListDiffFragment extends BaseFragment<AdapterSampleDiffViewModel, FragmentAdapterSampleListDiffBinding> implements AdapterSampleView
-{
+public class AdapterSampleListDiffFragment extends BaseFragment<AdapterSampleDiffViewModel, FragmentAdapterSampleListDiffBinding> implements AdapterSampleView {
 	private MessageListDiffAdapter mAdapter;
 
-
-	public static AdapterSampleListDiffFragment newInstance()
-	{
+	public static AdapterSampleListDiffFragment newInstance() {
 		return new AdapterSampleListDiffFragment();
 	}
 
-
 	@Override
-	public AdapterSampleDiffViewModel setupViewModel()
-	{
+	public AdapterSampleDiffViewModel setupViewModel() {
 		AdapterSampleDiffViewModel viewModel = ViewModelProviders.of(this).get(AdapterSampleDiffViewModel.class);
 		getLifecycle().addObserver(viewModel);
 		return viewModel;
 	}
 
-
 	@Override
-	public FragmentAdapterSampleListDiffBinding inflateBindingLayout(@NonNull LayoutInflater inflater)
-	{
+	public FragmentAdapterSampleListDiffBinding inflateBindingLayout(@NonNull LayoutInflater inflater) {
 		return FragmentAdapterSampleListDiffBinding.inflate(inflater);
 	}
 
-
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState)
-	{
+	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		getBinding().executePendingBindings(); // helps to reload recycler scroll position after orientation change
 		setupAdapter();
 	}
 
-
 	@Override
-	public void onItemClick(String message)
-	{
+	public void onItemClick(String message) {
 		String newMessage = getViewModel().addMessage();
 		showSnackbar(getString(R.string.adapter_sample_hello, newMessage));
 	}
 
-
 	@Override
-	public boolean onItemLongClick(String message)
-	{
+	public boolean onItemLongClick(String message) {
 		getViewModel().removeMessage(message);
 		showToast(getString(R.string.adapter_sample_goodbye, message));
 		return true;
 	}
 
-
-	private void setupAdapter()
-	{
-		if(mAdapter == null)
-		{
+	private void setupAdapter() {
+		if (mAdapter == null) {
 			mAdapter = new MessageListDiffAdapter(this);
 			getBinding().adapterSampleListDiffRecycler.setAdapter(mAdapter);
 			getViewModel().items.observe(this, mAdapter::submitList);

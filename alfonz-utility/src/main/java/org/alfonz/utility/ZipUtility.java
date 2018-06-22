@@ -11,20 +11,15 @@ import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-
 // requires android.permission.WRITE_EXTERNAL_STORAGE
-public final class ZipUtility
-{
+public final class ZipUtility {
 	private ZipUtility() {}
 
-
-	public static boolean unpackZip(@NonNull String path, @NonNull String zipname)
-	{
+	public static boolean unpackZip(@NonNull String path, @NonNull String zipname) {
 		InputStream inputStream;
 		ZipInputStream zipInputStream;
 
-		try
-		{
+		try {
 			int count;
 			String filename;
 			ZipEntry zipEntry;
@@ -33,12 +28,10 @@ public final class ZipUtility
 			inputStream = new FileInputStream(path + zipname);
 			zipInputStream = new ZipInputStream(new BufferedInputStream(inputStream));
 
-			while((zipEntry = zipInputStream.getNextEntry()) != null)
-			{
+			while ((zipEntry = zipInputStream.getNextEntry()) != null) {
 				filename = zipEntry.getName();
 
-				if(zipEntry.isDirectory())
-				{
+				if (zipEntry.isDirectory()) {
 					File f = new File(path + filename);
 					f.mkdirs();
 					continue;
@@ -46,8 +39,7 @@ public final class ZipUtility
 
 				FileOutputStream fileOutputStream = new FileOutputStream(path + filename);
 
-				while((count = zipInputStream.read(buffer)) != -1)
-				{
+				while ((count = zipInputStream.read(buffer)) != -1) {
 					fileOutputStream.write(buffer, 0, count);
 				}
 
@@ -56,9 +48,7 @@ public final class ZipUtility
 			}
 
 			zipInputStream.close();
-		}
-		catch(IOException e)
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
 		}

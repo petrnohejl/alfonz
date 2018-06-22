@@ -1,13 +1,11 @@
 apply plugin: "com.android.library"
 apply from: "../utils.gradle"
 
-
 ext {
 	bintrayName = "alfonz-adapter"
 	libraryName = "Alfonz-Adapter"
 	artifact = "alfonz-adapter"
 }
-
 
 android {
 	compileSdkVersion 27
@@ -37,16 +35,15 @@ android {
 	}
 }
 
-
 dependencies {
 	implementation fileTree(dir: "libs", include: ["*.jar"])
 	implementation "com.android.support:support-compat:$androidSupportVersion"
 	implementation "com.android.support:support-core-ui:$androidSupportVersion"
 	implementation "com.android.support:recyclerview-v7:$androidSupportVersion"
 	implementation "com.android.support:support-annotations:$androidSupportVersion"
-	implementation "com.android.support:support-v4:$androidSupportVersion" // https://stackoverflow.com/questions/41568032/android-data-binding-dependency-conflict-with-the-support-library
+	implementation "com.android.support:support-v4:$androidSupportVersion"
+	// https://stackoverflow.com/questions/41568032/android-data-binding-dependency-conflict-with-the-support-library
 }
-
 
 apply from: "../install.gradle"
 apply from: "../bintray.gradle"

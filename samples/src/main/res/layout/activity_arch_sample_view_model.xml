@@ -6,9 +6,11 @@
 
 	<data>
 		<variable
-			name="view" type="org.alfonz.samples.alfonzarch.ArchSampleView" />
+			name="view"
+			type="org.alfonz.samples.alfonzarch.ArchSampleView" />
 		<variable
-			name="viewModel" type="org.alfonz.samples.alfonzarch.ArchSampleViewModel" />
+			name="viewModel"
+			type="org.alfonz.samples.alfonzarch.ArchSampleViewModel" />
 	</data>
 
 	<LinearLayout

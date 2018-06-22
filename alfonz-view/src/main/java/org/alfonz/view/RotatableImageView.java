@@ -7,31 +7,22 @@ import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-
-public class RotatableImageView extends ImageView
-{
+public class RotatableImageView extends ImageView {
 	private int mAngle;
 
-
-	public RotatableImageView(Context context)
-	{
+	public RotatableImageView(Context context) {
 		super(context);
 	}
 
-
-	public RotatableImageView(@NonNull Context context, AttributeSet attrs)
-	{
+	public RotatableImageView(@NonNull Context context, AttributeSet attrs) {
 		super(context, attrs);
 		loadAttributes(context, attrs);
 	}
 
-
-	public RotatableImageView(@NonNull Context context, AttributeSet attrs, int defStyle)
-	{
+	public RotatableImageView(@NonNull Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		loadAttributes(context, attrs);
 	}
-
 
 	@Override
 	protected void onDraw(Canvas canvas) // if you want to rotate the entire view (along with its background), you should override draw() instead of onDraw()
@@ -52,10 +43,8 @@ public class RotatableImageView extends ImageView
 //		canvas.restore();
 	}
 
-
 	@Override
-	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
-	{
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		int w = getDrawable().getIntrinsicWidth();
 		int h = getDrawable().getIntrinsicHeight();
 		double a = Math.toRadians(mAngle);
@@ -66,21 +55,15 @@ public class RotatableImageView extends ImageView
 		setMeasuredDimension(width, height);
 	}
 
-
-	public int getAngle()
-	{
+	public int getAngle() {
 		return mAngle;
 	}
 
-
-	public void setAngle(int angle)
-	{
+	public void setAngle(int angle) {
 		mAngle = angle;
 	}
 
-
-	private void loadAttributes(Context context, AttributeSet attrs)
-	{
+	private void loadAttributes(Context context, AttributeSet attrs) {
 		TypedArray arr = context.obtainStyledAttributes(attrs, R.styleable.RotatableImageView);
 		mAngle = arr.getInteger(R.styleable.RotatableImageView_angle, 0);
 		arr.recycle();

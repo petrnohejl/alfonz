@@ -4,9 +4,7 @@ import android.support.annotation.NonNull;
 
 import retrofit2.Response;
 
-
-public interface ResponseHandler
-{
+public interface ResponseHandler {
 	boolean isSuccess(@NonNull Response<?> response);
 	String getErrorMessage(@NonNull HttpException exception);
 	String getFailMessage(@NonNull Throwable throwable);

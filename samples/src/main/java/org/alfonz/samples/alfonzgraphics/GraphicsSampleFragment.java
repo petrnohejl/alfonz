@@ -17,33 +17,24 @@ import org.alfonz.samples.R;
 import org.alfonz.samples.alfonzarch.BaseFragment;
 import org.alfonz.samples.databinding.FragmentGraphicsSampleBinding;
 
-
-public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleViewModel, FragmentGraphicsSampleBinding> implements GraphicsSampleView
-{
+public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleViewModel, FragmentGraphicsSampleBinding> implements GraphicsSampleView {
 	@Override
-	public GraphicsSampleViewModel setupViewModel()
-	{
+	public GraphicsSampleViewModel setupViewModel() {
 		return ViewModelProviders.of(this).get(GraphicsSampleViewModel.class);
 	}
 
-
 	@Override
-	public FragmentGraphicsSampleBinding inflateBindingLayout(@NonNull LayoutInflater inflater)
-	{
+	public FragmentGraphicsSampleBinding inflateBindingLayout(@NonNull LayoutInflater inflater) {
 		return FragmentGraphicsSampleBinding.inflate(inflater);
 	}
 
-
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState)
-	{
+	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		setupImageViews();
 	}
 
-
-	private void setupImageViews()
-	{
+	private void setupImageViews() {
 		setupImageViewBlur();
 		setupImageViewReflection();
 		setupImageViewScaler();
@@ -52,52 +43,40 @@ public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleViewModel
 		setupImageViewPlaceholder();
 	}
 
-
-	private void setupImageViewBlur()
-	{
+	private void setupImageViewBlur() {
 		Bitmap originalBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.photo);
 		Bitmap blurredBitmap = BitmapBlur.getBlurredBitmap(getContext(), originalBitmap, 0.5F, 5F);
 		originalBitmap.recycle();
 		getBinding().graphicsSampleImageBlur.setImageBitmap(blurredBitmap);
 	}
 
-
-	private void setupImageViewReflection()
-	{
+	private void setupImageViewReflection() {
 		Bitmap originalBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.photo);
 		Bitmap reflectedBitmap = BitmapReflection.getReflectedBitmap(originalBitmap, 0);
 		originalBitmap.recycle();
 		getBinding().graphicsSampleImageReflection.setImageBitmap(reflectedBitmap);
 	}
 
-
-	private void setupImageViewScaler()
-	{
+	private void setupImageViewScaler() {
 		Bitmap originalBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.photo);
 		Bitmap scaledBitmap = BitmapScaler.scaleToFill(originalBitmap, 32, 32);
 		originalBitmap.recycle();
 		getBinding().graphicsSampleImageScaler.setImageBitmap(scaledBitmap);
 	}
 
-
-	private void setupImageViewCircular()
-	{
+	private void setupImageViewCircular() {
 		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.photo);
 		CircularDrawable drawable = new CircularDrawable(bitmap);
 		getBinding().graphicsSampleImageCircular.setImageDrawable(drawable);
 	}
 
-
-	private void setupImageViewRounded()
-	{
+	private void setupImageViewRounded() {
 		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.photo);
 		RoundedDrawable drawable = new RoundedDrawable(bitmap, 32);
 		getBinding().graphicsSampleImageRounded.setImageDrawable(drawable);
 	}
 
-
-	private void setupImageViewPlaceholder()
-	{
+	private void setupImageViewPlaceholder() {
 		PlaceholderDrawable drawable = new PlaceholderDrawable(getString(R.string.app_name), "?", 50, true);
 		getBinding().graphicsSampleImagePlaceholder.setImageDrawable(drawable);
 	}

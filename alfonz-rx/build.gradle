@@ -1,13 +1,11 @@
 apply plugin: "com.android.library"
 apply from: "../utils.gradle"
 
-
 ext {
 	bintrayName = "alfonz-rx"
 	libraryName = "Alfonz-Rx"
 	artifact = "alfonz-rx"
 }
-
 
 android {
 	compileSdkVersion 27
@@ -33,7 +31,6 @@ android {
 	}
 }
 
-
 dependencies {
 	implementation fileTree(dir: "libs", include: ["*.jar"])
 	implementation "com.android.support:support-core-utils:$androidSupportVersion"
@@ -42,7 +39,6 @@ dependencies {
 	implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
 	implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
 }
-
 
 apply from: "../install.gradle"
 apply from: "../bintray.gradle"

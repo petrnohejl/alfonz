@@ -13,20 +13,15 @@ import org.alfonz.samples.alfonzrx.RxSampleActivity;
 import org.alfonz.samples.alfonzutility.UtilitySampleActivity;
 import org.alfonz.samples.alfonzview.ViewSampleActivity;
 
-
-public class SamplesActivity extends AppCompatActivity
-{
+public class SamplesActivity extends AppCompatActivity {
 	@Override
-	public void onCreate(Bundle savedInstanceState)
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_samples);
 		setupButtons();
 	}
 
-
-	private void setupButtons()
-	{
+	private void setupButtons() {
 		Button adapterButton = findViewById(R.id.samples_adapter);
 		Button archButton = findViewById(R.id.samples_arch);
 		Button graphicsButton = findViewById(R.id.samples_graphics);

@@ -11,87 +11,62 @@ import android.os.Bundle;
 import org.alfonz.utility.NetworkUtility;
 import org.alfonz.view.StatefulLayout;
 
-
-public class ArchSampleViewModel extends BaseViewModel implements LifecycleObserver
-{
+public class ArchSampleViewModel extends BaseViewModel implements LifecycleObserver {
 	public final MutableLiveData<Integer> state = new MutableLiveData<>();
 	public final MutableLiveData<String> message = new MutableLiveData<>();
 
-
-	public ArchSampleViewModel(Bundle extras)
-	{
+	public ArchSampleViewModel(Bundle extras) {
 	}
-
 
 	@OnLifecycleEvent(Lifecycle.Event.ON_START)
-	public void onStart()
-	{
+	public void onStart() {
 		// load data
-		if(message.getValue() == null) loadData();
+		if (message.getValue() == null) loadData();
 	}
 
-
-	public void updateMessage()
-	{
+	public void updateMessage() {
 		String s = message.getValue();
 		s += "o";
 		message.setValue(s);
 	}
 
-
-	private void loadData()
-	{
-		if(NetworkUtility.isOnline(getApplicationContext()))
-		{
+	private void loadData() {
+		if (NetworkUtility.isOnline(getApplicationContext())) {
 			// show progress
 			state.setValue(StatefulLayout.PROGRESS);
 
 			// load data
 			@SuppressLint("StaticFieldLeak")
-			AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>()
-			{
+			AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>() {
 				@Override
-				protected String doInBackground(Void... voids)
-				{
-					try
-					{
+				protected String doInBackground(Void... voids) {
+					try {
 						Thread.sleep(2000L);
 						return "Hello";
-					}
-					catch(InterruptedException e)
-					{
+					} catch (InterruptedException e) {
 						e.printStackTrace();
 						return null;
 					}
 				}
 
-
 				@Override
-				protected void onPostExecute(String s)
-				{
+				protected void onPostExecute(String s) {
 					onLoadData(s);
 				}
 			}.execute();
-		}
-		else
-		{
+		} else {
 			state.setValue(StatefulLayout.OFFLINE);
 		}
 	}
 
-
-	private void onLoadData(String s)
-	{
+	private void onLoadData(String s) {
 		// save data
 		message.setValue(s);
 
 		// show content
-		if(message.getValue() != null)
-		{
+		if (message.getValue() != null) {
 			state.setValue(StatefulLayout.CONTENT);
-		}
-		else
-		{
+		} else {
 			state.setValue(StatefulLayout.EMPTY);
 		}
 	}

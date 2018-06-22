@@ -4,9 +4,11 @@
 
 	<data>
 		<variable
-			name="view" type="org.alfonz.samples.alfonzadapter.AdapterSampleView" />
+			name="view"
+			type="org.alfonz.samples.alfonzadapter.AdapterSampleView" />
 		<variable
-			name="data" type="Integer" />
+			name="data"
+			type="Integer" />
 	</data>
 
 	<TextView

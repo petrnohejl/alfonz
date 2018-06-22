@@ -2,9 +2,7 @@ package org.alfonz.samples.alfonzutility;
 
 import org.alfonz.arch.AlfonzView;
 
-
-public interface UtilitySampleView extends AlfonzView
-{
+public interface UtilitySampleView extends AlfonzView {
 	void onButtonShowKeyboardClick();
 	void onButtonHideKeyboardClick();
 	void onButtonStartWebClick();

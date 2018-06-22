@@ -17,9 +17,7 @@ import org.alfonz.adapter.widget.GridSpacingItemDecoration;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-
-public final class BindingUtility
-{
+public final class BindingUtility {
 	public static final byte LAYOUT_LINEAR_VERTICAL = 0b00000101;
 	public static final byte LAYOUT_LINEAR_HORIZONTAL = 0b00000100;
 	public static final byte LAYOUT_GRID_VERTICAL = 0b00001001;
@@ -46,7 +44,6 @@ public final class BindingUtility
 	private static final byte LAYOUT_GRID_MASK = 0b00001000;
 	private static final byte LAYOUT_STAGGERED_GRID_MASK = 0b00010000;
 
-
 	@Retention(RetentionPolicy.SOURCE)
 	@IntDef({LAYOUT_LINEAR_VERTICAL,
 			LAYOUT_LINEAR_HORIZONTAL,
@@ -62,7 +59,6 @@ public final class BindingUtility
 			LAYOUT_STAGGERED_GRID_HORIZONTAL_REVERSE})
 	public @interface RecyclerLayout {}
 
-
 	@Retention(RetentionPolicy.SOURCE)
 	@IntDef({DECORATION_LINEAR_DIVIDER_VERTICAL,
 			DECORATION_LINEAR_DIVIDER_HORIZONTAL,
@@ -70,26 +66,20 @@ public final class BindingUtility
 			DECORATION_GRID_SPACING})
 	public @interface RecyclerDecoration {}
 
-
 	@Retention(RetentionPolicy.SOURCE)
 	@IntDef({ANIMATOR_DEFAULT})
 	public @interface RecyclerAnimator {}
 
-
 	private BindingUtility() {}
 
-
 	@BindingAdapter(value = {"recyclerLayout", "recyclerLayoutSpanCount", "recyclerLayoutSpanSize"}, requireAll = false)
-	public static void setRecyclerLayout(@NonNull RecyclerView recyclerView, @RecyclerLayout int recyclerLayout, int spanCount, float spanSize)
-	{
+	public static void setRecyclerLayout(@NonNull RecyclerView recyclerView, @RecyclerLayout int recyclerLayout, int spanCount, float spanSize) {
 		// noinspection ResourceType
-		if(recyclerLayout == 0)
-		{
+		if (recyclerLayout == 0) {
 			throw new IllegalArgumentException("Attribute recyclerLayout is mandatory");
 		}
 
-		if(spanCount > 0 && spanSize > 0)
-		{
+		if (spanCount > 0 && spanSize > 0) {
 			throw new IllegalArgumentException("Cannot use attributes recyclerLayoutSpanCount and recyclerLayoutSpanSize at the same time");
 		}
 
@@ -100,106 +90,76 @@ public final class BindingUtility
 		boolean grid = (recyclerLayout & LAYOUT_GRID_MASK) != 0;
 		boolean staggeredGrid = (recyclerLayout & LAYOUT_STAGGERED_GRID_MASK) != 0;
 
-		if(linear)
-		{
+		if (linear) {
 			LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
 			linearLayoutManager.setOrientation(vertical ? LinearLayoutManager.VERTICAL : LinearLayoutManager.HORIZONTAL);
 			linearLayoutManager.setReverseLayout(reverse);
 			layoutManager = linearLayoutManager;
-		}
-		else if(grid)
-		{
+		} else if (grid) {
 			GridLayoutManager gridLayoutManager = new GridLayoutManager(
 					recyclerView.getContext(),
 					calculateGridSpanCount(recyclerView, spanCount, spanSize, vertical));
 			gridLayoutManager.setOrientation(vertical ? GridLayoutManager.VERTICAL : GridLayoutManager.HORIZONTAL);
 			gridLayoutManager.setReverseLayout(reverse);
 			layoutManager = gridLayoutManager;
-		}
-		else if(staggeredGrid)
-		{
+		} else if (staggeredGrid) {
 			StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(
 					calculateGridSpanCount(recyclerView, spanCount, spanSize, vertical),
 					vertical ? StaggeredGridLayoutManager.VERTICAL : StaggeredGridLayoutManager.HORIZONTAL);
 			staggeredGridLayoutManager.setReverseLayout(reverse);
 			layoutManager = staggeredGridLayoutManager;
-		}
-		else
-		{
+		} else {
 			throw new IllegalArgumentException("Unknown layout manager type");
 		}
 
 		recyclerView.setLayoutManager(layoutManager);
 	}
 
-
 	@BindingAdapter(value = {"recyclerDecoration", "recyclerDecorationMargin", "recyclerDecorationBoundaryMargin"}, requireAll = false)
-	public static void setRecyclerDecoration(@NonNull RecyclerView recyclerView, @RecyclerDecoration int recyclerDecoration, float margin, float boundaryMargin)
-	{
+	public static void setRecyclerDecoration(@NonNull RecyclerView recyclerView, @RecyclerDecoration int recyclerDecoration, float margin, float boundaryMargin) {
 		// noinspection ResourceType
-		if(recyclerDecoration == 0)
-		{
+		if (recyclerDecoration == 0) {
 			throw new IllegalArgumentException("Attribute recyclerDecoration is mandatory");
 		}
 
 		RecyclerView.ItemDecoration itemDecoration;
 
-		if(recyclerDecoration == DECORATION_LINEAR_DIVIDER_VERTICAL)
-		{
+		if (recyclerDecoration == DECORATION_LINEAR_DIVIDER_VERTICAL) {
 			itemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
-		}
-		else if(recyclerDecoration == DECORATION_LINEAR_DIVIDER_HORIZONTAL)
-		{
+		} else if (recyclerDecoration == DECORATION_LINEAR_DIVIDER_HORIZONTAL) {
 			itemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.HORIZONTAL);
-		}
-		else if(recyclerDecoration == DECORATION_GRID_DIVIDER)
-		{
+		} else if (recyclerDecoration == DECORATION_GRID_DIVIDER) {
 			itemDecoration = new GridDividerItemDecoration(recyclerView.getContext(), (int) margin);
-		}
-		else if(recyclerDecoration == DECORATION_GRID_SPACING)
-		{
+		} else if (recyclerDecoration == DECORATION_GRID_SPACING) {
 			itemDecoration = new GridSpacingItemDecoration((int) margin, (int) boundaryMargin);
-		}
-		else
-		{
+		} else {
 			throw new IllegalArgumentException("Unknown item decoration type");
 		}
 
 		recyclerView.addItemDecoration(itemDecoration);
 	}
 
-
 	@BindingAdapter({"recyclerAnimator"})
-	public static void setRecyclerAnimator(@NonNull RecyclerView recyclerView, @RecyclerAnimator int recyclerAnimator)
-	{
+	public static void setRecyclerAnimator(@NonNull RecyclerView recyclerView, @RecyclerAnimator int recyclerAnimator) {
 		RecyclerView.ItemAnimator itemAnimator;
 
-		if(recyclerAnimator == ANIMATOR_DEFAULT)
-		{
+		if (recyclerAnimator == ANIMATOR_DEFAULT) {
 			itemAnimator = new DefaultItemAnimator();
-		}
-		else
-		{
+		} else {
 			throw new IllegalArgumentException("Unknown item animator type");
 		}
 
 		recyclerView.setItemAnimator(itemAnimator);
 	}
 
-
-	private static int calculateGridSpanCount(@NonNull RecyclerView recyclerView, int spanCount, float spanSize, boolean vertical)
-	{
-		if(spanCount == 0 && spanSize == 0)
-		{
+	private static int calculateGridSpanCount(@NonNull RecyclerView recyclerView, int spanCount, float spanSize, boolean vertical) {
+		if (spanCount == 0 && spanSize == 0) {
 			throw new IllegalArgumentException("Missing recyclerLayoutSpanCount or recyclerLayoutSpanSize attribute");
 		}
 
-		if(spanCount > 0)
-		{
+		if (spanCount > 0) {
 			return spanCount;
-		}
-		else
-		{
+		} else {
 			DisplayMetrics displayMetrics = recyclerView.getContext().getResources().getDisplayMetrics();
 			float screenSize = vertical ? displayMetrics.widthPixels : displayMetrics.heightPixels;
 			return Math.round(screenSize / spanSize);

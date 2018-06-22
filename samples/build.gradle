@@ -1,7 +1,6 @@
 apply plugin: "com.android.application"
 apply from: "../utils.gradle"
 
-
 android {
 	compileSdkVersion 27
 	buildToolsVersion "27.0.3"
@@ -41,7 +40,6 @@ android {
 		enabled = true
 	}
 }
-
 
 dependencies {
 	implementation fileTree(dir: "libs", include: ["*.jar"])

@@ -13,266 +13,189 @@ import org.alfonz.samples.databinding.FragmentUtilitySampleBinding;
 import org.alfonz.utility.IntentUtility;
 import org.alfonz.utility.KeyboardUtility;
 
-
-public class UtilitySampleFragment extends BaseFragment<UtilitySampleViewModel, FragmentUtilitySampleBinding> implements UtilitySampleView
-{
+public class UtilitySampleFragment extends BaseFragment<UtilitySampleViewModel, FragmentUtilitySampleBinding> implements UtilitySampleView {
 	@Override
-	public UtilitySampleViewModel setupViewModel()
-	{
+	public UtilitySampleViewModel setupViewModel() {
 		return ViewModelProviders.of(this).get(UtilitySampleViewModel.class);
 	}
 
-
 	@Override
-	public FragmentUtilitySampleBinding inflateBindingLayout(@NonNull LayoutInflater inflater)
-	{
+	public FragmentUtilitySampleBinding inflateBindingLayout(@NonNull LayoutInflater inflater) {
 		return FragmentUtilitySampleBinding.inflate(inflater);
 	}
 
-
 	@Override
-	public void onCreate(Bundle savedInstanceState)
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getViewModel().performUtilities(getContext());
 		getActivity().startService(new Intent(getActivity(), UtilitySampleService.class));
 	}
 
-
 	@Override
-	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
-	{
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		getViewModel().permissionManager.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
 	}
 
-
 	@Override
-	public void onButtonShowKeyboardClick()
-	{
+	public void onButtonShowKeyboardClick() {
 		performShowKeyboard();
 	}
 
-
 	@Override
-	public void onButtonHideKeyboardClick()
-	{
+	public void onButtonHideKeyboardClick() {
 		performHideKeyboard();
 	}
 
-
 	@Override
-	public void onButtonStartWebClick()
-	{
+	public void onButtonStartWebClick() {
 		performStartWebActivity();
 	}
 
-
 	@Override
-	public void onButtonStartStoreClick()
-	{
+	public void onButtonStartStoreClick() {
 		performStartStoreActivity();
 	}
 
-
 	@Override
-	public void onButtonStartShareClick()
-	{
+	public void onButtonStartShareClick() {
 		performStartShareActivity();
 	}
 
-
 	@Override
-	public void onButtonStartEmailClick()
-	{
+	public void onButtonStartEmailClick() {
 		performStartEmailActivity();
 	}
 
-
 	@Override
-	public void onButtonStartSmsClick()
-	{
+	public void onButtonStartSmsClick() {
 		performStartSmsActivity();
 	}
 
-
 	@Override
-	public void onButtonStartCallClick()
-	{
+	public void onButtonStartCallClick() {
 		performStartCallActivity();
 	}
 
-
 	@Override
-	public void onButtonStartMapCoordinatesClick()
-	{
+	public void onButtonStartMapCoordinatesClick() {
 		performStartMapCoordinatesActivity();
 	}
 
-
 	@Override
-	public void onButtonStartMapSearchClick()
-	{
+	public void onButtonStartMapSearchClick() {
 		performStartMapSearchActivity();
 	}
 
-
 	@Override
-	public void onButtonStartNavigationClick()
-	{
+	public void onButtonStartNavigationClick() {
 		performStartNavigationActivity();
 	}
 
-
 	@Override
-	public void onButtonStartCalendarClick()
-	{
+	public void onButtonStartCalendarClick() {
 		performStartCalendarActivity();
 	}
 
-
 	@Override
-	public void onButtonStartNotificationSettingsClick()
-	{
+	public void onButtonStartNotificationSettingsClick() {
 		performStartNotificationSettingsActivity();
 	}
 
-
 	@Override
-	public void onButtonIsCallableClick()
-	{
+	public void onButtonIsCallableClick() {
 		performIsCallable();
 	}
 
-
 	@Override
-	public void onButtonPermissionClick()
-	{
+	public void onButtonPermissionClick() {
 		performPermissionRequest();
 	}
 
-
 	@Override
-	public void onButtonPermissionsClick()
-	{
+	public void onButtonPermissionsClick() {
 		performPermissionsRequest();
 	}
 
-
 	@Override
-	public void onButtonLogcatClick()
-	{
+	public void onButtonLogcatClick() {
 		getViewModel().performLogcat();
 	}
 
-
 	@Override
-	public void onButtonDownloadClick()
-	{
+	public void onButtonDownloadClick() {
 		getViewModel().permissionManager.request(
 				this,
 				Manifest.permission.WRITE_EXTERNAL_STORAGE,
 				requestable -> requestable.getViewModel().performDownloadUtility());
 	}
 
-
 	@Override
-	public void onButtonZipClick()
-	{
+	public void onButtonZipClick() {
 		getViewModel().permissionManager.request(
 				this,
 				Manifest.permission.WRITE_EXTERNAL_STORAGE,
 				requestable -> requestable.getViewModel().performZipUtility());
 	}
 
-
-	private void performShowKeyboard()
-	{
+	private void performShowKeyboard() {
 		KeyboardUtility.showKeyboard(getBinding().utilitySampleEdittext);
 	}
 
-
-	private void performHideKeyboard()
-	{
+	private void performHideKeyboard() {
 		KeyboardUtility.hideKeyboard(getBinding().utilitySampleEdittext);
 	}
 
-
-	private void performStartWebActivity()
-	{
+	private void performStartWebActivity() {
 		IntentUtility.startWebActivity(getContext(), "http://alfonz.org");
 	}
 
-
-	private void performStartStoreActivity()
-	{
+	private void performStartStoreActivity() {
 		IntentUtility.startStoreActivity(getContext());
 	}
 
-
-	private void performStartShareActivity()
-	{
+	private void performStartShareActivity() {
 		IntentUtility.startShareActivity(getContext(), "Alfonz", "Hello world!", "Share Alfonz");
 	}
 
-
-	private void performStartEmailActivity()
-	{
+	private void performStartEmailActivity() {
 		IntentUtility.startEmailActivity(getContext(), "hello@world.com", "Alfonz", "Hello world!");
 	}
 
-
-	private void performStartSmsActivity()
-	{
+	private void performStartSmsActivity() {
 		IntentUtility.startSmsActivity(getContext(), "123456789", "Hello world!");
 	}
 
-
-	private void performStartCallActivity()
-	{
+	private void performStartCallActivity() {
 		IntentUtility.startCallActivity(getContext(), "123456789");
 	}
 
-
-	private void performStartMapCoordinatesActivity()
-	{
+	private void performStartMapCoordinatesActivity() {
 		IntentUtility.startMapCoordinatesActivity(getContext(), 49.194793, 16.608594, 18, "Brno");
 	}
 
-
-	private void performStartMapSearchActivity()
-	{
+	private void performStartMapSearchActivity() {
 		IntentUtility.startMapSearchActivity(getContext(), "Brno");
 	}
 
-
-	private void performStartNavigationActivity()
-	{
+	private void performStartNavigationActivity() {
 		IntentUtility.startNavigationActivity(getContext(), 49.194793, 16.608594);
 	}
 
-
-	private void performStartCalendarActivity()
-	{
+	private void performStartCalendarActivity() {
 		IntentUtility.startCalendarActivity(getContext(), "Alfonz", "Hello world!", 1956567600000L, 1956571200000L);
 	}
 
-
-	private void performStartNotificationSettingsActivity()
-	{
+	private void performStartNotificationSettingsActivity() {
 		IntentUtility.startNotificationSettingsActivity(getContext());
 	}
 
-
-	private void performIsCallable()
-	{
+	private void performIsCallable() {
 		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/AndroidOfficial"));
 		boolean callable = IntentUtility.isCallable(getContext(), intent);
 		showToast(String.valueOf(callable));
 	}
 
-
-	private void performPermissionRequest()
-	{
+	private void performPermissionRequest() {
 		getViewModel().permissionManager.request(
 				this,
 				Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -281,9 +204,7 @@ public class UtilitySampleFragment extends BaseFragment<UtilitySampleViewModel, 
 				requestable -> requestable.showToast("Blocked"));
 	}
 
-
-	private void performPermissionsRequest()
-	{
+	private void performPermissionsRequest() {
 		String[] permissions = new String[]{
 				Manifest.permission.READ_EXTERNAL_STORAGE,
 				Manifest.permission.WRITE_EXTERNAL_STORAGE,

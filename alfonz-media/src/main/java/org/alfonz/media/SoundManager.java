@@ -15,9 +15,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 
-
-public class SoundManager
-{
+public class SoundManager {
 	public static final int PLAY_SINGLE = 0;            // play 1 sound at the moment, immediately stop all currently playing sounds
 	public static final int PLAY_SINGLE_CONTINUE = 1;   // play 1 sound at the moment, if the sound is same as currently playing sound, continue playing
 	public static final int PLAY_MULTIPLE_CONTINUE = 2; // play multiple sounds at the moment, if the sound is same as currently playing sound, continue playing
@@ -26,36 +24,26 @@ public class SoundManager
 	@Mode private int mMode;
 	private Map<String, MediaPlayer> mMediaMap;
 
-
 	@Retention(RetentionPolicy.SOURCE)
 	@IntDef({PLAY_SINGLE, PLAY_SINGLE_CONTINUE, PLAY_MULTIPLE_CONTINUE})
 	public @interface Mode {}
 
-
-	public SoundManager(@NonNull Context context, @Mode int mode)
-	{
+	public SoundManager(@NonNull Context context, @Mode int mode) {
 		mContext = context.getApplicationContext();
 		mMode = mode;
 		mMediaMap = new ArrayMap<>();
 	}
 
-
-	public void play(@NonNull String path)
-	{
+	public void play(@NonNull String path) {
 		playSound(path, null);
 	}
 
-
-	public void playAsset(@NonNull String filename)
-	{
+	public void playAsset(@NonNull String filename) {
 		// get sound
 		AssetFileDescriptor assetFileDescriptor;
-		try
-		{
+		try {
 			assetFileDescriptor = mContext.getAssets().openFd(filename);
-		}
-		catch(IOException e)
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
 			return;
 		}
@@ -64,19 +52,15 @@ public class SoundManager
 		playSound(filename, assetFileDescriptor);
 	}
 
-
 	// should be called in Activity.onStop()
-	public void stopAll()
-	{
+	public void stopAll() {
 		Collection<MediaPlayer> collection = mMediaMap.values();
 		Iterator<MediaPlayer> iterator = collection.iterator();
 
-		while(iterator.hasNext())
-		{
+		while (iterator.hasNext()) {
 			MediaPlayer mediaPlayer = iterator.next();
-			if(mediaPlayer != null)
-			{
-				if(mediaPlayer.isPlaying()) mediaPlayer.stop();
+			if (mediaPlayer != null) {
+				if (mediaPlayer.isPlaying()) mediaPlayer.stop();
 				mediaPlayer.release();
 			}
 		}
@@ -84,71 +68,55 @@ public class SoundManager
 		mMediaMap.clear();
 	}
 
-
-	private void playSound(@NonNull final String path, @Nullable AssetFileDescriptor assetFileDescriptor)
-	{
+	private void playSound(@NonNull final String path, @Nullable AssetFileDescriptor assetFileDescriptor) {
 		// stop all currently playing sounds
-		if(mMode == PLAY_SINGLE)
-		{
+		if (mMode == PLAY_SINGLE) {
 			stopAll();
 		}
 
 		// sound already playing
-		if(mMediaMap.containsKey(path))
-		{
+		if (mMediaMap.containsKey(path)) {
 			return;
 		}
 
 		// stop all currently playing sounds
-		if(mMode == PLAY_SINGLE_CONTINUE)
-		{
+		if (mMode == PLAY_SINGLE_CONTINUE) {
 			stopAll();
 		}
 
 		// init media player
 		MediaPlayer mediaPlayer;
-		try
-		{
+		try {
 			mediaPlayer = new MediaPlayer();
 			mMediaMap.put(path, mediaPlayer);
 
 			// data source
-			if(assetFileDescriptor != null)
-			{
+			if (assetFileDescriptor != null) {
 				mediaPlayer.setDataSource(assetFileDescriptor.getFileDescriptor(), assetFileDescriptor.getStartOffset(), assetFileDescriptor.getLength());
-			}
-			else
-			{
+			} else {
 				mediaPlayer.setDataSource(path);
 			}
 
 			mediaPlayer.prepareAsync();
-		}
-		catch(@NonNull IllegalArgumentException | IllegalStateException | IOException e)
-		{
+		} catch (@NonNull IllegalArgumentException | IllegalStateException | IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
 		// play sound
-		mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener()
-		{
+		mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 			@Override
-			public void onPrepared(@NonNull MediaPlayer mediaPlayer)
-			{
+			public void onPrepared(@NonNull MediaPlayer mediaPlayer) {
 				mediaPlayer.start();
 			}
 		});
 
 		// release media player
-		mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
-		{
+		mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 			@Override
-			public void onCompletion(@Nullable MediaPlayer mediaPlayer)
-			{
+			public void onCompletion(@Nullable MediaPlayer mediaPlayer) {
 				mMediaMap.remove(path);
-				if(mediaPlayer != null)
-				{
+				if (mediaPlayer != null) {
 					mediaPlayer.release();
 				}
 			}

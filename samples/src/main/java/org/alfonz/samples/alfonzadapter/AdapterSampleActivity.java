@@ -12,43 +12,33 @@ import org.alfonz.arch.widget.ToolbarIndicator;
 import org.alfonz.samples.R;
 import org.alfonz.samples.alfonzarch.BaseActivity;
 
-
-public class AdapterSampleActivity extends BaseActivity
-{
-	public static Intent newIntent(Context context)
-	{
+public class AdapterSampleActivity extends BaseActivity {
+	public static Intent newIntent(Context context) {
 		Intent intent = new Intent(context, AdapterSampleActivity.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		return intent;
 	}
 
-
 	@Override
-	public void onCreate(Bundle savedInstanceState)
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_adapter_sample);
 		setupActionBar(ToolbarIndicator.BACK);
 		setupFragment(savedInstanceState);
 	}
 
-
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
+	public boolean onCreateOptionsMenu(Menu menu) {
 		// action bar menu
 		MenuInflater menuInflater = getMenuInflater();
 		menuInflater.inflate(R.menu.activity_adapter_sample, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
-
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
+	public boolean onOptionsItemSelected(MenuItem item) {
 		// action bar menu behavior
-		switch(item.getItemId())
-		{
+		switch (item.getItemId()) {
 			case R.id.menu_adapter_sample_list_simple:
 				Fragment listSimpleFragment = AdapterSampleListSimpleFragment.newInstance();
 				replaceFragment(listSimpleFragment);
@@ -84,10 +74,8 @@ public class AdapterSampleActivity extends BaseActivity
 		}
 	}
 
-
-	private void setupFragment(Bundle savedInstanceState)
-	{
-		if(savedInstanceState != null) return;
+	private void setupFragment(Bundle savedInstanceState) {
+		if (savedInstanceState != null) return;
 		Fragment fragment = AdapterSampleListSimpleFragment.newInstance();
 		replaceFragment(fragment);
 	}

@@ -6,15 +6,11 @@ import android.net.Uri;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 
-
 // requires android.permission.WRITE_EXTERNAL_STORAGE
-public final class DownloadUtility
-{
+public final class DownloadUtility {
 	private DownloadUtility() {}
 
-
-	public static void downloadFile(@NonNull Context context, @NonNull String url, @NonNull String fileName)
-	{
+	public static void downloadFile(@NonNull Context context, @NonNull String url, @NonNull String fileName) {
 		DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
 
 		// set download directory

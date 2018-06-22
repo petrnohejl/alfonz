@@ -1,13 +1,11 @@
 apply plugin: "com.android.library"
 apply from: "../utils.gradle"
 
-
 ext {
 	bintrayName = "alfonz-utility"
 	libraryName = "Alfonz-Utility"
 	artifact = "alfonz-utility"
 }
-
 
 android {
 	compileSdkVersion 27
@@ -33,14 +31,12 @@ android {
 	}
 }
 
-
 dependencies {
 	implementation fileTree(dir: "libs", include: ["*.jar"])
 	implementation "com.android.support:support-fragment:$androidSupportVersion"
 	implementation "com.android.support:support-annotations:$androidSupportVersion"
 	implementation "com.android.support:design:$androidSupportVersion"
 }
-
 
 apply from: "../install.gradle"
 apply from: "../bintray.gradle"

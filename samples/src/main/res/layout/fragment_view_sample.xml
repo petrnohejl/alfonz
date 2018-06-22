@@ -5,9 +5,11 @@
 
 	<data>
 		<variable
-			name="view" type="org.alfonz.samples.alfonzview.ViewSampleView" />
+			name="view"
+			type="org.alfonz.samples.alfonzview.ViewSampleView" />
 		<variable
-			name="viewModel" type="org.alfonz.samples.alfonzview.ViewSampleViewModel" />
+			name="viewModel"
+			type="org.alfonz.samples.alfonzview.ViewSampleViewModel" />
 	</data>
 
 	<org.alfonz.view.StatefulLayout

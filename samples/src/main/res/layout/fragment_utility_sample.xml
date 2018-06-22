@@ -4,9 +4,11 @@
 
 	<data>
 		<variable
-			name="view" type="org.alfonz.samples.alfonzutility.UtilitySampleView" />
+			name="view"
+			type="org.alfonz.samples.alfonzutility.UtilitySampleView" />
 		<variable
-			name="viewModel" type="org.alfonz.samples.alfonzutility.UtilitySampleViewModel" />
+			name="viewModel"
+			type="org.alfonz.samples.alfonzutility.UtilitySampleViewModel" />
 	</data>
 
 	<ScrollView

@@ -113,11 +113,9 @@ How to use Logcat
 `Logcat` is a logging utility. Log message can show a code location - class, method, line and current thread. Logs can be easily disabled which is recommended for release builds. `Logcat` has to be initialized in `Application` class.
 
 ```java
-public class ExampleApplication extends Application
-{
+public class ExampleApplication extends Application {
 	@Override
-	public void onCreate()
-	{
+	public void onCreate() {
 		super.onCreate();
 		Logcat.init(BuildConfig.LOGS, "EXAMPLE");
 	}
@@ -155,14 +153,11 @@ How to use PermissionManager
 First implement `RationaleHandler`. Define a rationale message and rationale UI.
 
 ```java
-public class PermissionRationaleHandler implements PermissionManager.RationaleHandler
-{
+public class PermissionRationaleHandler implements PermissionManager.RationaleHandler {
 	@Override
-	public String getRationaleMessage(@NonNull String permission)
-	{
+	public String getRationaleMessage(@NonNull String permission) {
 		int resId;
-		switch(permission)
-		{
+		switch (permission) {
 			case Manifest.permission.READ_EXTERNAL_STORAGE:
 				resId = R.string.permission_read_external_storage;
 				break;
@@ -176,8 +171,7 @@ public class PermissionRationaleHandler implements PermissionManager.RationaleHa
 	}
 
 	@Override
-	public void showRationale(@NonNull View rootView, @NonNull String rationaleMessage, @NonNull PermissionManager.ConfirmAction confirmAction)
-	{
+	public void showRationale(@NonNull View rootView, @NonNull String rationaleMessage, @NonNull PermissionManager.ConfirmAction confirmAction) {
 		Snackbar.make(rootView, rationaleMessage, Snackbar.LENGTH_INDEFINITE)
 				.setAction(android.R.string.ok, view -> confirmAction.run())
 				.show();
@@ -195,8 +189,7 @@ Override `onRequestPermissionsResult()` as follows.
 
 ```java
 @Override
-public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
-{
+public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 	getViewModel().permissionManager.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
 }
 ```

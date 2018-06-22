@@ -17,8 +17,7 @@ Override `onActivityResult()` as follows.
 
 ```java
 @Override
-public void onActivityResult(int requestCode, int resultCode, Intent data)
-{
+public void onActivityResult(int requestCode, int resultCode, Intent data) {
 	mImagePicker.onActivityResult(this, requestCode, resultCode, data);
 }
 ```
@@ -62,8 +61,7 @@ Stop all playing sounds and release resources in `Activity.onStop()`.
 
 ```java
 @Override
-public void onStop()
-{
+public void onStop() {
 	mSoundManager.stopAll();
 }
 ```

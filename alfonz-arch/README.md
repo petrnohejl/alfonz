@@ -29,35 +29,29 @@ How to use
 First of all, it's good practice to create base classes for Activity, Fragment, ViewModel in your project so you can share global methods or fields. Your base classes will extend Alfonz base classes.
 
 ```java
-public abstract class BaseActivity extends AlfonzActivity
-{
+public abstract class BaseActivity extends AlfonzActivity {
 	// add whatever you need...
 }
 ```
 
 ```java
 public abstract class BaseFragment<T extends BaseViewModel, B extends ViewDataBinding>
-		extends AlfonzBindingFragment<T, B>
-{
+		extends AlfonzBindingFragment<T, B> {
 	@Override
-	public void onCreate(Bundle savedInstanceState)
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getViewModel().observeEvent(this, ToastEvent.class, toastEvent -> showToast(toastEvent.message));
 	}
 
-	public void showToast(String message)
-	{
+	public void showToast(String message) {
 		Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
 	}
 }
 ```
 
 ```java
-public abstract class BaseViewModel extends AlfonzViewModel
-{
-	public void handleError(String message)
-	{
+public abstract class BaseViewModel extends AlfonzViewModel {
+	public void handleError(String message) {
 		sendEvent(new ToastEvent(message));
 	}
 }
@@ -68,11 +62,9 @@ Now you can implement classes which will represent a screen. I will show you how
 Let's start with Activity. You can choose which action bar indicator you prefer to use.
 
 ```java
-public class HelloWorldActivity extends BaseActivity
-{
+public class HelloWorldActivity extends BaseActivity {
 	@Override
-	public void onCreate(Bundle savedInstanceState)
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_hello_world);
 		setupActionBar(ToolbarIndicator.BACK);
@@ -104,8 +96,7 @@ Create an Activity layout. Toolbar in the layout must be identified as `R.id.too
 Now let's create a View. It will have just one event callback method.
 
 ```java
-public interface HelloWorldView extends AlfonzView
-{
+public interface HelloWorldView extends AlfonzView {
 	void onClick();
 }
 ```
@@ -115,23 +106,19 @@ View interface will be implemented by a Fragment. We have to specify which ViewM
 ```java
 public class HelloWorldFragment
 		extends BaseFragment<HelloWorldViewModel, FragmentHelloWorldBinding>
-		implements HelloWorldView
-{
+		implements HelloWorldView {
 	@Override
-	public HelloWorldViewModel setupViewModel()
-	{
+	public HelloWorldViewModel setupViewModel() {
 		return ViewModelProviders.of(this).get(HelloWorldViewModel.class);
 	}
 
 	@Override
-	public FragmentHelloWorldBinding inflateBindingLayout(@NonNull LayoutInflater inflater)
-	{
+	public FragmentHelloWorldBinding inflateBindingLayout(@NonNull LayoutInflater inflater) {
 		return FragmentHelloWorldBinding.inflate(inflater);
 	}
 
 	@Override
-	public void onClick()
-	{
+	public void onClick() {
 		getViewModel().updateMessage("Hello!");
 	}
 }
@@ -170,38 +157,31 @@ Create a Fragment layout. View is bound in the layout in `BR.view` variable, Vie
 Finally let's create a ViewModel. The best thing about the ViewModel is that it is persisted so you don't lose state or data during device configuration changes. You don't have to use retained Fragments anymore. ViewModel instance is automatically removed after a Fragment is completely gone. I recommend to implement the ViewModel as plain Java for better testability. Never ever use Activity Context in the ViewModel. If you need the Context, use Application Context, it is safer. You can use `AlfonzBundleViewModelFactory` and `AlfonzBundleViewModel` to pass Application Context and Bundle data to the ViewModel.
 
 ```java
-public class HelloWorldViewModel extends BaseViewModel
-{
+public class HelloWorldViewModel extends BaseViewModel {
 	public final MutableLiveData<Integer> state = new MutableLiveData<>();
 	public final MutableLiveData<MessageEntity> message = new MutableLiveData<>();
 
-	public void loadData()
-	{
+	public void loadData() {
 		// show progress
 		state.setValue(StatefulLayout.PROGRESS);
 
 		// load data from data provider...
 	}
 
-	public void updateMessage(String text)
-	{
+	public void updateMessage(String text) {
 		MessageEntity m = message.getValue();
 		m.setText(text);
 		message.setValue(m);
 	}
 
-	private void onLoadData(MessageEntity m)
-	{
+	private void onLoadData(MessageEntity m) {
 		// save data
 		message.setValue(m);
 
 		// show content
-		if(message.getValue() != null)
-		{
+		if (message.getValue() != null) {
 			state.setValue(StatefulLayout.CONTENT);
-		}
-		else
-		{
+		} else {
 			state.setValue(StatefulLayout.EMPTY);
 		}
 	}
@@ -211,12 +191,10 @@ public class HelloWorldViewModel extends BaseViewModel
 Communication from ViewModel to View layer is done via LiveData event bus. LiveBus is a part of `AlfonzViewModel` and it is basically a map with LiveEvent instances for each event type. New instance of LiveEvent is created automatically inside the bus once the specific event is observed or sent for a first time. So event should be delivered even if an observer is not active. ViewModel has no direct reference to Views. LiveData events can be observed by more Fragment instances, but each event will be delivered just once to the first observer. This is intentional, because actions like show a dialog or start an activity should be run just once.
 
 ```java
-public class SnackbarEvent extends Event
-{
+public class SnackbarEvent extends Event {
 	public final String message;
 
-	public SnackbarEvent(String message)
-	{
+	public SnackbarEvent(String message) {
 		this.message = message;
 	}
 }
@@ -235,13 +213,11 @@ sendEvent(new SnackbarEvent(message));
 `AlfonzViewModel` has just one lifecycle method `onCleared()` which is called when ViewModel is no longer used and will be destroyed. Sometimes it could be useful to have in ViewModel the same lifecycle methods as Activity or Fragment provide. ViewModel can implement `LifecycleObserver` to accomplish this.
 
 ```java
-public class HelloWorldViewModel extends BaseViewModel implements LifecycleObserver
-{
+public class HelloWorldViewModel extends BaseViewModel implements LifecycleObserver {
 	@OnLifecycleEvent(Lifecycle.Event.ON_START)
-	public void onStart()
-	{
+	public void onStart() {
 		// load data
-		if(message.getValue() == null) loadData();
+		if (message.getValue() == null) loadData();
 	}
 }
 ```

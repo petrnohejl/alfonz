@@ -6,9 +6,11 @@
 
 	<data>
 		<variable
-			name="view" type="org.alfonz.samples.alfonzrest.RestSampleView" />
+			name="view"
+			type="org.alfonz.samples.alfonzrest.RestSampleView" />
 		<variable
-			name="viewModel" type="org.alfonz.samples.alfonzrest.RestSampleRxViewModel" />
+			name="viewModel"
+			type="org.alfonz.samples.alfonzrest.RestSampleRxViewModel" />
 	</data>
 
 	<org.alfonz.view.StatefulLayout

@@ -20,46 +20,34 @@ import org.alfonz.view.StatefulLayout;
 import retrofit2.Call;
 import retrofit2.Response;
 
-
-public class RestSampleViewModel extends BaseViewModel implements LifecycleObserver
-{
+public class RestSampleViewModel extends BaseViewModel implements LifecycleObserver {
 	public final MutableLiveData<Integer> state = new MutableLiveData<>();
 	public final MutableLiveData<RepoEntity> repo = new MutableLiveData<>();
 
 	private CallManager mCallManager = new CallManager(new RestResponseHandler(), new RestHttpLogger());
 
-
 	@OnLifecycleEvent(Lifecycle.Event.ON_START)
-	public void onStart()
-	{
+	public void onStart() {
 		// load data
-		if(repo.getValue() == null) loadData();
+		if (repo.getValue() == null) loadData();
 	}
 
-
 	@Override
-	public void onCleared()
-	{
+	public void onCleared() {
 		super.onCleared();
 
 		// cancel async tasks
-		if(mCallManager != null) mCallManager.cancelRunningCalls();
+		if (mCallManager != null) mCallManager.cancelRunningCalls();
 	}
 
-
-	public void refreshData()
-	{
+	public void refreshData() {
 		loadData();
 	}
 
-
-	private void loadData()
-	{
-		if(NetworkUtility.isOnline(getApplicationContext()))
-		{
+	private void loadData() {
+		if (NetworkUtility.isOnline(getApplicationContext())) {
 			String callType = RepoRouter.REPO_CALL_TYPE;
-			if(!mCallManager.hasRunningCall(callType))
-			{
+			if (!mCallManager.hasRunningCall(callType)) {
 				// show progress
 				state.setValue(StatefulLayout.PROGRESS);
 
@@ -68,55 +56,39 @@ public class RestSampleViewModel extends BaseViewModel implements LifecycleObser
 				RepoCallback callback = new RepoCallback(mCallManager);
 				mCallManager.enqueueCall(call, callback, callType);
 			}
-		}
-		else
-		{
+		} else {
 			// show offline
 			state.setValue(StatefulLayout.OFFLINE);
 		}
 	}
 
-
-	private void setState(MutableLiveData<RepoEntity> data)
-	{
-		if(data.getValue() != null)
-		{
+	private void setState(MutableLiveData<RepoEntity> data) {
+		if (data.getValue() != null) {
 			state.setValue(StatefulLayout.CONTENT);
-		}
-		else
-		{
+		} else {
 			state.setValue(StatefulLayout.EMPTY);
 		}
 	}
 
-
-	private class RepoCallback extends Callback<RepoEntity>
-	{
-		public RepoCallback(CallManager callManager)
-		{
+	private class RepoCallback extends Callback<RepoEntity> {
+		public RepoCallback(CallManager callManager) {
 			super(callManager);
 		}
 
-
 		@Override
-		public void onSuccess(@NonNull Call<RepoEntity> call, @NonNull Response<RepoEntity> response)
-		{
+		public void onSuccess(@NonNull Call<RepoEntity> call, @NonNull Response<RepoEntity> response) {
 			repo.setValue(response.body());
 			setState(repo);
 		}
 
-
 		@Override
-		public void onError(@NonNull Call<RepoEntity> call, @NonNull HttpException exception)
-		{
+		public void onError(@NonNull Call<RepoEntity> call, @NonNull HttpException exception) {
 			handleError(mCallManager.getHttpErrorMessage(exception));
 			setState(repo);
 		}
 
-
 		@Override
-		public void onFail(@NonNull Call<RepoEntity> call, @NonNull Throwable throwable)
-		{
+		public void onFail(@NonNull Call<RepoEntity> call, @NonNull Throwable throwable) {
 			handleError(mCallManager.getHttpErrorMessage(throwable));
 			setState(repo);
 		}

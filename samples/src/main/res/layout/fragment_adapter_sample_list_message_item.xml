@@ -5,9 +5,11 @@
 
 	<data>
 		<variable
-			name="view" type="org.alfonz.samples.alfonzadapter.AdapterSampleView" />
+			name="view"
+			type="org.alfonz.samples.alfonzadapter.AdapterSampleView" />
 		<variable
-			name="data" type="String" />
+			name="data"
+			type="String" />
 	</data>
 
 	<LinearLayout

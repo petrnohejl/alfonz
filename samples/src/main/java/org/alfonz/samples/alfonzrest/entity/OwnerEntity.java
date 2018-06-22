@@ -2,51 +2,35 @@ package org.alfonz.samples.alfonzrest.entity;
 
 import com.google.gson.annotations.SerializedName;
 
-
-public class OwnerEntity
-{
+public class OwnerEntity {
 	@SerializedName("id") private long id;
 	@SerializedName("login") private String login;
 	@SerializedName("avatar_url") private String avatarUrl;
 
-
-	public OwnerEntity()
-	{
+	public OwnerEntity() {
 	}
 
-
-	public long getId()
-	{
+	public long getId() {
 		return id;
 	}
 
-
-	public void setId(long id)
-	{
+	public void setId(long id) {
 		this.id = id;
 	}
 
-
-	public String getLogin()
-	{
+	public String getLogin() {
 		return login;
 	}
 
-
-	public void setLogin(String login)
-	{
+	public void setLogin(String login) {
 		this.login = login;
 	}
 
-
-	public String getAvatarUrl()
-	{
+	public String getAvatarUrl() {
 		return avatarUrl;
 	}
 
-
-	public void setAvatarUrl(String avatarUrl)
-	{
+	public void setAvatarUrl(String avatarUrl) {
 		this.avatarUrl = avatarUrl;
 	}
 }

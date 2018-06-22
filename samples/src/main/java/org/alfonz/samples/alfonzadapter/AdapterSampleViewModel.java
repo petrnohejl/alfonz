@@ -13,67 +13,51 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-
-public class AdapterSampleViewModel extends BaseViewModel implements LifecycleObserver
-{
+public class AdapterSampleViewModel extends BaseViewModel implements LifecycleObserver {
 	public final ObservableList<String> messages = new ObservableArrayList<>();
 	public final ObservableList<Integer> numbers = new ObservableArrayList<>();
 	public final ObservableList<Boolean> bits = new ObservableArrayList<>();
 
 	private int mCounter = 0;
 
-
 	@OnLifecycleEvent(Lifecycle.Event.ON_START)
-	public void onStart()
-	{
+	public void onStart() {
 		// load data
-		if(messages.isEmpty()) loadData();
+		if (messages.isEmpty()) loadData();
 	}
 
-
-	public String addMessage()
-	{
+	public String addMessage() {
 		String[] months = new DateFormatSymbols().getMonths();
 		String message = createMessage(months[mCounter % 12]);
 		messages.add(message);
 		return message;
 	}
 
-
-	public void removeMessage(String message)
-	{
+	public void removeMessage(String message) {
 		messages.remove(message);
 	}
 
-
-	private void loadData()
-	{
+	private void loadData() {
 		loadMessages();
 		loadNumbers();
 		loadBits();
 	}
 
-
-	private void loadMessages()
-	{
+	private void loadMessages() {
 		String[] months = new DateFormatSymbols().getMonths();
 		List<String> list = new ArrayList<>();
-		for(int i = 0; i < months.length; i++)
-		{
+		for (int i = 0; i < months.length; i++) {
 			list.add(createMessage(months[i]));
 		}
 		messages.addAll(list);
 	}
 
-
-	private void loadNumbers()
-	{
+	private void loadNumbers() {
 		int a = 0;
 		int b = 1;
 
 		List<Integer> list = new ArrayList<>();
-		for(int i = 0; i < 16; i++)
-		{
+		for (int i = 0; i < 16; i++) {
 			list.add(a);
 			a = a + b;
 			b = a - b;
@@ -81,20 +65,15 @@ public class AdapterSampleViewModel extends BaseViewModel implements LifecycleOb
 		numbers.addAll(list);
 	}
 
-
-	private void loadBits()
-	{
+	private void loadBits() {
 		List<Boolean> list = new ArrayList<>();
-		for(int i = 0; i < 6; i++)
-		{
+		for (int i = 0; i < 6; i++) {
 			list.add(i % 2 == 0);
 		}
 		bits.addAll(list);
 	}
 
-
-	private String createMessage(String month)
-	{
+	private String createMessage(String month) {
 		return String.format(Locale.US, "%03d %s", ++mCounter, month);
 	}
 }

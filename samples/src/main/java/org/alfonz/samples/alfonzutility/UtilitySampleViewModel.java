@@ -35,9 +35,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
-
-public class UtilitySampleViewModel extends BaseViewModel
-{
+public class UtilitySampleViewModel extends BaseViewModel {
 	private static final String LOG_MESSAGE_CONTENT_UTILITY = "[ContentUtility] uri to path: %s";
 	private static final String LOG_MESSAGE_DATE_CONVERTOR_D2S = "[DateConvertor] date to str: %s";
 	private static final String LOG_MESSAGE_DATE_CONVERTOR_S2D = "[DateConvertor] str to date: %s";
@@ -83,15 +81,11 @@ public class UtilitySampleViewModel extends BaseViewModel
 
 	public final PermissionManager permissionManager = new PermissionManager(new PermissionRationaleHandler());
 
-
-	public UtilitySampleViewModel()
-	{
+	public UtilitySampleViewModel() {
 		log.setValue("");
 	}
 
-
-	public void performLogcat()
-	{
+	public void performLogcat() {
 		Logcat.d("Hello");
 		Logcat.e("Hello");
 		Logcat.i("Hello");
@@ -101,15 +95,11 @@ public class UtilitySampleViewModel extends BaseViewModel
 		Logcat.printStackTrace(new RuntimeException());
 	}
 
-
-	public void performDownloadUtility()
-	{
+	public void performDownloadUtility() {
 		DownloadUtility.downloadFile(getApplicationContext(), "http://github.com/petrnohejl/Alfonz/zipball/master/", "alfonz.zip");
 	}
 
-
-	public void performZipUtility()
-	{
+	public void performZipUtility() {
 		String path = StorageUtility.getStorageDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/";
 		String zipname = "alfonz.zip";
 
@@ -117,9 +107,7 @@ public class UtilitySampleViewModel extends BaseViewModel
 		sendEvent(new ToastEvent("success: " + success));
 	}
 
-
-	public void performUtilities(Context context)
-	{
+	public void performUtilities(Context context) {
 		performContentUtility();
 		performDateConvertor();
 		performDeviceUuidFactory();
@@ -134,18 +122,14 @@ public class UtilitySampleViewModel extends BaseViewModel
 		performVersionUtility();
 	}
 
-
-	private void performContentUtility()
-	{
+	private void performContentUtility() {
 		Uri uri = Uri.fromFile(Environment.getExternalStorageDirectory());
 		String path = ContentUtility.getPath(getApplicationContext(), uri);
 
 		log(LOG_MESSAGE_CONTENT_UTILITY, path);
 	}
 
-
-	private void performDateConvertor()
-	{
+	private void performDateConvertor() {
 		Date date = new Date();
 		Calendar calendar = Calendar.getInstance();
 		String string = "2016-12-02 12:00:00";
@@ -165,18 +149,14 @@ public class UtilitySampleViewModel extends BaseViewModel
 		log(LOG_MESSAGE_DATE_CONVERTOR_C2S, string2);
 	}
 
-
-	private void performDeviceUuidFactory()
-	{
+	private void performDeviceUuidFactory() {
 		DeviceUuidFactory deviceUuidFactory = new DeviceUuidFactory(getApplicationContext());
 		UUID uuid = deviceUuidFactory.getDeviceUUID();
 
 		log(LOG_MESSAGE_DEVICE_UUID_FACTORY, uuid.toString());
 	}
 
-
-	private void performDimensionUtility()
-	{
+	private void performDimensionUtility() {
 		float px1 = DimensionUtility.dp2px(getApplicationContext(), 100);
 		float px2 = DimensionUtility.sp2px(getApplicationContext(), 100);
 		float dp = DimensionUtility.px2dp(getApplicationContext(), 100);
@@ -188,9 +168,7 @@ public class UtilitySampleViewModel extends BaseViewModel
 		log(LOG_MESSAGE_DIMENSION_UTILITY_PX2SP, Float.toString(sp));
 	}
 
-
-	private void performHashUtility()
-	{
+	private void performHashUtility() {
 		String md5 = HashUtility.getMd5("Hello world!");
 		String sha1 = HashUtility.getSha1("Hello world!");
 
@@ -198,9 +176,7 @@ public class UtilitySampleViewModel extends BaseViewModel
 		log(LOG_MESSAGE_HASH_UTILITY_SHA1, sha1);
 	}
 
-
-	private void performNetworkUtility()
-	{
+	private void performNetworkUtility() {
 		boolean online = NetworkUtility.isOnline(getApplicationContext());
 		int networkType = NetworkUtility.getType(getApplicationContext());
 		String networkName = NetworkUtility.getTypeName(getApplicationContext());
@@ -209,9 +185,7 @@ public class UtilitySampleViewModel extends BaseViewModel
 		log(LOG_MESSAGE_NETWORK_UTILITY_TYPE, networkName + " / " + networkType);
 	}
 
-
-	private void performResourcesUtility(Context context)
-	{
+	private void performResourcesUtility(Context context) {
 		// don't access the activity context from view model, it is dangerous and dirty
 		// I do it just to make this sample code simpler and more clear
 
@@ -228,17 +202,13 @@ public class UtilitySampleViewModel extends BaseViewModel
 		log(LOG_MESSAGE_RESOURCES_UTILITY_DRAWABLE, drawable == null ? "null" : drawable.toString());
 	}
 
-
-	private void performServiceUtility()
-	{
+	private void performServiceUtility() {
 		boolean running = ServiceUtility.isRunning(getApplicationContext(), UtilitySampleService.class);
 
 		log(LOG_MESSAGE_SERVICE_UTILITY, Boolean.toString(running));
 	}
 
-
-	private void performStorageUtility()
-	{
+	private void performStorageUtility() {
 		boolean available = StorageUtility.isAvailable();
 		boolean writable = StorageUtility.isWritable();
 		File storageDir = StorageUtility.getStorageDirectory();
@@ -264,17 +234,13 @@ public class UtilitySampleViewModel extends BaseViewModel
 		log(LOG_MESSAGE_STORAGE_UTILITY_MOUNTS, mounts == null ? "null" : Integer.toString(mounts.size()));
 	}
 
-
-	private void performStringConvertor()
-	{
+	private void performStringConvertor() {
 		String capitalized = StringConvertor.capitalize("Hello world!");
 
 		log(LOG_MESSAGE_STRING_CONVERTOR, capitalized);
 	}
 
-
-	private void performValidationUtility()
-	{
+	private void performValidationUtility() {
 		boolean valid1 = ValidationUtility.isEmailValid("hello@alfonz.org");
 		boolean valid2 = ValidationUtility.isDateValid("2016-12-02 12:00:00", "yyyy-MM-dd HH:mm:ss");
 
@@ -282,9 +248,7 @@ public class UtilitySampleViewModel extends BaseViewModel
 		log(LOG_MESSAGE_VALIDATION_UTILITY_DATE, Boolean.toString(valid2));
 	}
 
-
-	private void performVersionUtility()
-	{
+	private void performVersionUtility() {
 		String name = VersionUtility.getVersionName(getApplicationContext());
 		int code = VersionUtility.getVersionCode(getApplicationContext());
 		boolean glEs2 = VersionUtility.isSupportedOpenGlEs2(getApplicationContext());
@@ -296,9 +260,7 @@ public class UtilitySampleViewModel extends BaseViewModel
 		log(LOG_MESSAGE_VERSION_UTILITY_COMPARISON, Integer.toString(comparison));
 	}
 
-
-	private void log(String message, String arg)
-	{
+	private void log(String message, String arg) {
 		String line = String.format(message, arg);
 		String currentLog = log.getValue().isEmpty() ? log.getValue() : log.getValue() + "\n";
 		log.setValue(currentLog + line);

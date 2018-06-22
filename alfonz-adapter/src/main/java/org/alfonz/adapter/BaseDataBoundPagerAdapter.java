@@ -9,25 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-public abstract class BaseDataBoundPagerAdapter<T extends ViewDataBinding> extends PagerAdapter
-{
+public abstract class BaseDataBoundPagerAdapter<T extends ViewDataBinding> extends PagerAdapter {
 	private LayoutInflater mLayoutInflater;
 
-
 	protected abstract void bindItem(T binding, int position);
-
 
 	@LayoutRes
 	public abstract int getItemLayoutId(int position);
 
-
 	@NonNull
 	@Override
-	public Object instantiateItem(@NonNull ViewGroup container, int position)
-	{
-		if(mLayoutInflater == null)
-		{
+	public Object instantiateItem(@NonNull ViewGroup container, int position) {
+		if (mLayoutInflater == null) {
 			mLayoutInflater = LayoutInflater.from(container.getContext());
 		}
 
@@ -38,17 +31,13 @@ public abstract class BaseDataBoundPagerAdapter<T extends ViewDataBinding> exten
 		return binding.getRoot();
 	}
 
-
 	@Override
-	public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object)
-	{
+	public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
 		container.removeView((View) object);
 	}
 
-
 	@Override
-	public boolean isViewFromObject(@NonNull View view, @NonNull Object object)
-	{
+	public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
 		return view == object;
 	}
 }

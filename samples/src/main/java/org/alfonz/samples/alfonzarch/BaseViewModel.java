@@ -6,17 +6,12 @@ import org.alfonz.arch.AlfonzViewModel;
 import org.alfonz.samples.SamplesApplication;
 import org.alfonz.samples.alfonzarch.event.ToastEvent;
 
-
-public abstract class BaseViewModel extends AlfonzViewModel
-{
-	public Context getApplicationContext()
-	{
+public abstract class BaseViewModel extends AlfonzViewModel {
+	public Context getApplicationContext() {
 		return SamplesApplication.getContext();
 	}
 
-
-	public void handleError(String message)
-	{
+	public void handleError(String message) {
 		sendEvent(new ToastEvent(message));
 	}
 }

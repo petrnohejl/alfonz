@@ -1,13 +1,11 @@
 apply plugin: "com.android.library"
 apply from: "../utils.gradle"
 
-
 ext {
 	bintrayName = "alfonz-rest"
 	libraryName = "Alfonz-Rest"
 	artifact = "alfonz-rest"
 }
-
 
 android {
 	compileSdkVersion 27
@@ -33,7 +31,6 @@ android {
 	}
 }
 
-
 dependencies {
 	implementation fileTree(dir: "libs", include: ["*.jar"])
 	implementation project(":alfonz-rx")
@@ -43,7 +40,6 @@ dependencies {
 	implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
 	implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
 }
-
 
 apply from: "../install.gradle"
 apply from: "../bintray.gradle"

@@ -12,9 +12,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 
-
-public class RoundedDrawable extends Drawable
-{
+public class RoundedDrawable extends Drawable {
 	private Bitmap mBitmap;
 	private float mCornerRadius;
 	private int mMargin;
@@ -22,15 +20,11 @@ public class RoundedDrawable extends Drawable
 	private BitmapShader mBitmapShader;
 	private RectF mRect = new RectF();
 
-
-	public RoundedDrawable(@NonNull Bitmap bitmap, float cornerRadius)
-	{
+	public RoundedDrawable(@NonNull Bitmap bitmap, float cornerRadius) {
 		this(bitmap, cornerRadius, 0);
 	}
 
-
-	public RoundedDrawable(@NonNull Bitmap bitmap, float cornerRadius, int margin)
-	{
+	public RoundedDrawable(@NonNull Bitmap bitmap, float cornerRadius, int margin) {
 		mBitmap = bitmap;
 		mCornerRadius = cornerRadius;
 		mMargin = margin;
@@ -42,53 +36,39 @@ public class RoundedDrawable extends Drawable
 		mPaint.setShader(mBitmapShader);
 	}
 
-
 	@Override
-	protected void onBoundsChange(@NonNull Rect bounds)
-	{
+	protected void onBoundsChange(@NonNull Rect bounds) {
 		super.onBoundsChange(bounds);
 		mRect.set(mMargin, mMargin, bounds.width() - mMargin, bounds.height() - mMargin);
 	}
 
-
 	@Override
-	public void draw(@NonNull Canvas canvas)
-	{
+	public void draw(@NonNull Canvas canvas) {
 		canvas.drawRoundRect(mRect, mCornerRadius, mCornerRadius, mPaint);
 	}
 
-
 	@Override
-	public void setAlpha(int alpha)
-	{
+	public void setAlpha(int alpha) {
 		mPaint.setAlpha(alpha);
 	}
 
-
 	@Override
-	public void setColorFilter(ColorFilter colorFilter)
-	{
+	public void setColorFilter(ColorFilter colorFilter) {
 		mPaint.setColorFilter(colorFilter);
 	}
 
-
 	@Override
-	public int getOpacity()
-	{
+	public int getOpacity() {
 		return PixelFormat.TRANSLUCENT;
 	}
 
-
 	@Override
-	public int getIntrinsicWidth()
-	{
+	public int getIntrinsicWidth() {
 		return mBitmap.getWidth();
 	}
 
-
 	@Override
-	public int getIntrinsicHeight()
-	{
+	public int getIntrinsicHeight() {
 		return mBitmap.getHeight();
 	}
 }

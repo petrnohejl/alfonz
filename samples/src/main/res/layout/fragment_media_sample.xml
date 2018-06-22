@@ -5,9 +5,11 @@
 
 	<data>
 		<variable
-			name="view" type="org.alfonz.samples.alfonzmedia.MediaSampleView" />
+			name="view"
+			type="org.alfonz.samples.alfonzmedia.MediaSampleView" />
 		<variable
-			name="viewModel" type="org.alfonz.samples.alfonzmedia.MediaSampleViewModel" />
+			name="viewModel"
+			type="org.alfonz.samples.alfonzmedia.MediaSampleViewModel" />
 	</data>
 
 	<ScrollView

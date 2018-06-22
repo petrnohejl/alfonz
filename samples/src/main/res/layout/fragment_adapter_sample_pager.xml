@@ -4,9 +4,11 @@
 
 	<data>
 		<variable
-			name="view" type="org.alfonz.samples.alfonzadapter.AdapterSampleView" />
+			name="view"
+			type="org.alfonz.samples.alfonzadapter.AdapterSampleView" />
 		<variable
-			name="viewModel" type="org.alfonz.samples.alfonzadapter.AdapterSampleViewModel" />
+			name="viewModel"
+			type="org.alfonz.samples.alfonzadapter.AdapterSampleViewModel" />
 	</data>
 
 	<android.support.v4.view.ViewPager

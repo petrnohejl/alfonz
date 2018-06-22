@@ -16,10 +16,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
 
-
 // inspired by: https://github.com/jakubkinst/Android-StatefulView
-public class StatefulLayout extends FrameLayout
-{
+public class StatefulLayout extends FrameLayout {
 	public static final int CONTENT = 0;
 	public static final int PROGRESS = 1;
 	public static final int OFFLINE = 2;
@@ -39,52 +37,39 @@ public class StatefulLayout extends FrameLayout
 	@State private int mState;
 	private OnStateChangeListener mOnStateChangeListener;
 
-
 	@Retention(RetentionPolicy.SOURCE)
 	@IntDef({CONTENT, PROGRESS, OFFLINE, EMPTY})
 	public @interface State {}
 
-
-	public interface OnStateChangeListener
-	{
+	public interface OnStateChangeListener {
 		void onStateChange(View view, @State int state);
 	}
 
-
-	public StatefulLayout(@NonNull Context context)
-	{
+	public StatefulLayout(@NonNull Context context) {
 		this(context, null);
 	}
 
-
-	public StatefulLayout(@NonNull Context context, AttributeSet attrs)
-	{
+	public StatefulLayout(@NonNull Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
 	}
 
-
-	public StatefulLayout(@NonNull Context context, AttributeSet attrs, int defStyleAttr)
-	{
+	public StatefulLayout(@NonNull Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 
 		TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.StatefulLayout);
 
-		if(typedArray.hasValue(R.styleable.StatefulLayout_state))
-		{
+		if (typedArray.hasValue(R.styleable.StatefulLayout_state)) {
 			// noinspection ResourceType
 			mInitialState = typedArray.getInt(R.styleable.StatefulLayout_state, CONTENT);
 		}
 
-		if(typedArray.hasValue(R.styleable.StatefulLayout_progressLayout) &&
+		if (typedArray.hasValue(R.styleable.StatefulLayout_progressLayout) &&
 				typedArray.hasValue(R.styleable.StatefulLayout_offlineLayout) &&
-				typedArray.hasValue(R.styleable.StatefulLayout_emptyLayout))
-		{
+				typedArray.hasValue(R.styleable.StatefulLayout_emptyLayout)) {
 			mProgressLayoutId = typedArray.getResourceId(R.styleable.StatefulLayout_progressLayout, 0);
 			mOfflineLayoutId = typedArray.getResourceId(R.styleable.StatefulLayout_offlineLayout, 0);
 			mEmptyLayoutId = typedArray.getResourceId(R.styleable.StatefulLayout_emptyLayout, 0);
-		}
-		else
-		{
+		} else {
 			throw new IllegalArgumentException("Attributes progressLayout, offlineLayout and emptyLayout are mandatory");
 		}
 
@@ -93,53 +78,38 @@ public class StatefulLayout extends FrameLayout
 		typedArray.recycle();
 	}
 
-
 	@Override
-	protected void onFinishInflate()
-	{
+	protected void onFinishInflate() {
 		super.onFinishInflate();
 		setupView();
 	}
 
-
-	public void showContent()
-	{
+	public void showContent() {
 		setState(CONTENT);
 	}
 
-
-	public void showProgress()
-	{
+	public void showProgress() {
 		setState(PROGRESS);
 	}
 
-
-	public void showOffline()
-	{
+	public void showOffline() {
 		setState(OFFLINE);
 	}
 
-
-	public void showEmpty()
-	{
+	public void showEmpty() {
 		setState(EMPTY);
 	}
 
-
 	@State
-	public int getState()
-	{
+	public int getState() {
 		return mState;
 	}
 
-
 	@SuppressWarnings("ResourceType")
-	public void setState(@State int state)
-	{
+	public void setState(@State int state) {
 		mState = state;
 
-		for(int i = 0; i < mContentLayoutList.size(); i++)
-		{
+		for (int i = 0; i < mContentLayoutList.size(); i++) {
 			mContentLayoutList.get(i).setVisibility(determineVisibility(state == CONTENT));
 		}
 
@@ -147,28 +117,21 @@ public class StatefulLayout extends FrameLayout
 		mOfflineLayout.setVisibility(determineVisibility(state == OFFLINE));
 		mEmptyLayout.setVisibility(determineVisibility(state == EMPTY));
 
-		if(mOnStateChangeListener != null) mOnStateChangeListener.onStateChange(this, state);
+		if (mOnStateChangeListener != null) mOnStateChangeListener.onStateChange(this, state);
 	}
 
-
-	public void setOnStateChangeListener(OnStateChangeListener l)
-	{
+	public void setOnStateChangeListener(OnStateChangeListener l) {
 		mOnStateChangeListener = l;
 	}
 
-
-	public void saveInstanceState(@NonNull Bundle outState)
-	{
+	public void saveInstanceState(@NonNull Bundle outState) {
 		outState.putInt(SAVED_STATE, mState);
 	}
 
-
 	@State
-	public int restoreInstanceState(@Nullable Bundle savedInstanceState)
-	{
+	public int restoreInstanceState(@Nullable Bundle savedInstanceState) {
 		@State int state = CONTENT;
-		if(savedInstanceState != null && savedInstanceState.containsKey(SAVED_STATE))
-		{
+		if (savedInstanceState != null && savedInstanceState.containsKey(SAVED_STATE)) {
 			// noinspection ResourceType
 			state = savedInstanceState.getInt(SAVED_STATE);
 			setState(state);
@@ -176,14 +139,10 @@ public class StatefulLayout extends FrameLayout
 		return state;
 	}
 
-
-	private void setupView()
-	{
-		if(mContentLayoutList == null && !isInEditMode())
-		{
+	private void setupView() {
+		if (mContentLayoutList == null && !isInEditMode()) {
 			mContentLayoutList = new ArrayList<>();
-			for(int i = 0; i < getChildCount(); i++)
-			{
+			for (int i = 0; i < getChildCount(); i++) {
 				mContentLayoutList.add(getChildAt(i));
 			}
 
@@ -199,21 +158,13 @@ public class StatefulLayout extends FrameLayout
 		}
 	}
 
-
-	private int determineVisibility(boolean visible)
-	{
-		if(visible)
-		{
+	private int determineVisibility(boolean visible) {
+		if (visible) {
 			return View.VISIBLE;
-		}
-		else
-		{
-			if(mInvisibleWhenHidden)
-			{
+		} else {
+			if (mInvisibleWhenHidden) {
 				return View.INVISIBLE;
-			}
-			else
-			{
+			} else {
 				return View.GONE;
 			}
 		}

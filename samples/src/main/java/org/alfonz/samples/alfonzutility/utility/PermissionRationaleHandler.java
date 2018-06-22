@@ -9,16 +9,12 @@ import org.alfonz.samples.R;
 import org.alfonz.samples.SamplesApplication;
 import org.alfonz.utility.PermissionManager;
 
-
-public class PermissionRationaleHandler implements PermissionManager.RationaleHandler
-{
+public class PermissionRationaleHandler implements PermissionManager.RationaleHandler {
 	@Override
-	public String getRationaleMessage(@NonNull String permission)
-	{
+	public String getRationaleMessage(@NonNull String permission) {
 		int resId;
 
-		switch(permission)
-		{
+		switch (permission) {
 			case Manifest.permission.READ_EXTERNAL_STORAGE:
 				resId = R.string.permission_read_external_storage;
 				break;
@@ -38,10 +34,8 @@ public class PermissionRationaleHandler implements PermissionManager.RationaleHa
 		return SamplesApplication.getContext().getString(resId);
 	}
 
-
 	@Override
-	public void showRationale(@NonNull View rootView, @NonNull String rationaleMessage, @NonNull PermissionManager.ConfirmAction confirmAction)
-	{
+	public void showRationale(@NonNull View rootView, @NonNull String rationaleMessage, @NonNull PermissionManager.ConfirmAction confirmAction) {
 		Snackbar
 				.make(rootView, rationaleMessage, Snackbar.LENGTH_INDEFINITE)
 				.setAction(android.R.string.ok, view -> confirmAction.run())

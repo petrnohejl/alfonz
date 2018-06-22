@@ -4,9 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
-
-public class RepoEntity
-{
+public class RepoEntity {
 	@SerializedName("id") private long id;
 	@SerializedName("name") private String name;
 	@SerializedName("owner") private OwnerEntity owner;
@@ -25,212 +23,142 @@ public class RepoEntity
 	@SerializedName("open_issues_count") private int openIssuesCount;
 	@SerializedName("subscribers_count") private int subscribersCount;
 
-
-	public RepoEntity()
-	{
+	public RepoEntity() {
 	}
 
-
-	public long getId()
-	{
+	public long getId() {
 		return id;
 	}
 
-
-	public void setId(long id)
-	{
+	public void setId(long id) {
 		this.id = id;
 	}
 
-
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
-
-	public void setName(String name)
-	{
+	public void setName(String name) {
 		this.name = name;
 	}
 
-
-	public OwnerEntity getOwner()
-	{
+	public OwnerEntity getOwner() {
 		return owner;
 	}
 
-
-	public void setOwner(OwnerEntity owner)
-	{
+	public void setOwner(OwnerEntity owner) {
 		this.owner = owner;
 	}
 
-
-	public boolean isPrivate()
-	{
+	public boolean isPrivate() {
 		return isPrivate;
 	}
 
-
-	public void setPrivate(boolean isPrivate)
-	{
+	public void setPrivate(boolean isPrivate) {
 		this.isPrivate = isPrivate;
 	}
 
-
-	public String getHtmlUrl()
-	{
+	public String getHtmlUrl() {
 		return htmlUrl;
 	}
 
-
-	public void setHtmlUrl(String htmlUrl)
-	{
+	public void setHtmlUrl(String htmlUrl) {
 		this.htmlUrl = htmlUrl;
 	}
 
-
-	public String getDescription()
-	{
+	public String getDescription() {
 		return description;
 	}
 
-
-	public void setDescription(String description)
-	{
+	public void setDescription(String description) {
 		this.description = description;
 	}
 
-
-	public boolean isFork()
-	{
+	public boolean isFork() {
 		return fork;
 	}
 
-
-	public void setFork(boolean fork)
-	{
+	public void setFork(boolean fork) {
 		this.fork = fork;
 	}
 
-
-	public String getUrl()
-	{
+	public String getUrl() {
 		return url;
 	}
 
-
-	public void setUrl(String url)
-	{
+	public void setUrl(String url) {
 		this.url = url;
 	}
 
-
-	public Date getCreatedAt()
-	{
+	public Date getCreatedAt() {
 		return createdAt;
 	}
 
-
-	public void setCreatedAt(Date createdAt)
-	{
+	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
 
-
-	public Date getUpdatedAt()
-	{
+	public Date getUpdatedAt() {
 		return updatedAt;
 	}
 
-
-	public void setUpdatedAt(Date updatedAt)
-	{
+	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 
-
-	public Date getPushedAt()
-	{
+	public Date getPushedAt() {
 		return pushedAt;
 	}
 
-
-	public void setPushedAt(Date pushedAt)
-	{
+	public void setPushedAt(Date pushedAt) {
 		this.pushedAt = pushedAt;
 	}
 
-
-	public int getStargazersCount()
-	{
+	public int getStargazersCount() {
 		return stargazersCount;
 	}
 
-
-	public void setStargazersCount(int stargazersCount)
-	{
+	public void setStargazersCount(int stargazersCount) {
 		this.stargazersCount = stargazersCount;
 	}
 
-
-	public int getWatchersCount()
-	{
+	public int getWatchersCount() {
 		return watchersCount;
 	}
 
-
-	public void setWatchersCount(int watchersCount)
-	{
+	public void setWatchersCount(int watchersCount) {
 		this.watchersCount = watchersCount;
 	}
 
-
-	public String getLanguage()
-	{
+	public String getLanguage() {
 		return language;
 	}
 
-
-	public void setLanguage(String language)
-	{
+	public void setLanguage(String language) {
 		this.language = language;
 	}
 
-
-	public int getForksCount()
-	{
+	public int getForksCount() {
 		return forksCount;
 	}
 
-
-	public void setForksCount(int forksCount)
-	{
+	public void setForksCount(int forksCount) {
 		this.forksCount = forksCount;
 	}
 
-
-	public int getOpenIssuesCount()
-	{
+	public int getOpenIssuesCount() {
 		return openIssuesCount;
 	}
 
-
-	public void setOpenIssuesCount(int openIssuesCount)
-	{
+	public void setOpenIssuesCount(int openIssuesCount) {
 		this.openIssuesCount = openIssuesCount;
 	}
 
-
-	public int getSubscribersCount()
-	{
+	public int getSubscribersCount() {
 		return subscribersCount;
 	}
 
-
-	public void setSubscribersCount(int subscribersCount)
-	{
+	public void setSubscribersCount(int subscribersCount) {
 		this.subscribersCount = subscribersCount;
 	}
 }

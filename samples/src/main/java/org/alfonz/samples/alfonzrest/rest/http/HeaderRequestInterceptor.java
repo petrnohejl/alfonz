@@ -6,12 +6,9 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
-
-public class HeaderRequestInterceptor implements Interceptor
-{
+public class HeaderRequestInterceptor implements Interceptor {
 	@Override
-	public Response intercept(Chain chain) throws IOException
-	{
+	public Response intercept(Chain chain) throws IOException {
 		Request.Builder builder = chain.request().newBuilder();
 		builder.addHeader("Accept", "application/json");
 		builder.addHeader("Accept-Charset", "utf-8");

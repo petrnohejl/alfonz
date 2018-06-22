@@ -18,8 +18,7 @@ private RxManager mRxManager = new RxManager();
 Create a new instance of `Observer`.
 
 ```java
-private DisposableObserver<String> createHelloObserver()
-{
+private DisposableObserver<String> createHelloObserver() {
 	return AlfonzDisposableObserver.newInstance(
 			data ->
 			{
@@ -42,10 +41,8 @@ Run RxJava call. In the following example, we will check if a call of the specif
 ```java
 private static final String HELLO_CALL_TYPE = "hello";
 
-private void runHelloCall()
-{
-	if(!mRxManager.isRunning(HELLO_CALL_TYPE))
-	{
+private void runHelloCall() {
+	if (!mRxManager.isRunning(HELLO_CALL_TYPE)) {
 		Observable<String> rawObservable = Observable.just("Hello").map(s -> s + " world!");
 		Observable<String> observable = mRxManager.setupObservableWithSchedulers(rawObservable, HELLO_CALL_TYPE);
 		observable.subscribeWith(createHelloObserver());
@@ -57,8 +54,7 @@ Don't forget to dispose all the Disposables when you don't need them anymore.
 
 ```java
 @Override
-public void onDestroy()
-{
+public void onDestroy() {
 	super.onDestroy();
 	mRxManager.disposeAll();
 }
@@ -89,8 +85,7 @@ Don't forget to dispose all the Disposables when you don't need them anymore.
 
 ```java
 @Override
-public void onDestroy()
-{
+public void onDestroy() {
 	super.onDestroy();
 	mCompositeDisposable.clear();
 }

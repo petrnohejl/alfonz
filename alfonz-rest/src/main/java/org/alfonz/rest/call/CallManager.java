@@ -7,50 +7,35 @@ import org.alfonz.rest.HttpException;
 import org.alfonz.rest.HttpLogger;
 import org.alfonz.rest.ResponseHandler;
 
-
-public class CallManager extends BaseCallManager
-{
+public class CallManager extends BaseCallManager {
 	private ResponseHandler mResponseHandler;
 	private HttpLogger mHttpLogger;
 
-
-	public CallManager(@NonNull ResponseHandler responseHandler)
-	{
+	public CallManager(@NonNull ResponseHandler responseHandler) {
 		mResponseHandler = responseHandler;
 	}
 
-
-	public CallManager(@NonNull ResponseHandler responseHandler, @Nullable HttpLogger httpLogger)
-	{
+	public CallManager(@NonNull ResponseHandler responseHandler, @Nullable HttpLogger httpLogger) {
 		mResponseHandler = responseHandler;
 		mHttpLogger = httpLogger;
 	}
 
-
-	public String getHttpErrorMessage(@NonNull Throwable throwable)
-	{
-		if(throwable instanceof HttpException)
-		{
+	public String getHttpErrorMessage(@NonNull Throwable throwable) {
+		if (throwable instanceof HttpException) {
 			return mResponseHandler.getErrorMessage((HttpException) throwable);
-		}
-		else
-		{
+		} else {
 			throwable.printStackTrace();
 			return mResponseHandler.getFailMessage(throwable);
 		}
 	}
 
-
 	@NonNull
-	ResponseHandler getResponseHandler()
-	{
+	ResponseHandler getResponseHandler() {
 		return mResponseHandler;
 	}
 
-
 	@Nullable
-	HttpLogger getHttpLogger()
-	{
+	HttpLogger getHttpLogger() {
 		return mHttpLogger;
 	}
 }

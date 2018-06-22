@@ -24,10 +24,8 @@ Choose an adapter which suits your needs:
 Simple-type adapters can be used directly - just create a new instance. Multi-type adapters are abstract. Create a class, extend the generic adapter and call `super` in the constructor. Pass item layout, view (view layer in MVVM) and observable array collection in the `super`. Adapter will inflate the layout for an item and bind the view and the data into `BR.view` and `BR.data` variables.
 
 ```java
-public class ProductListAdapter extends SimpleDataBoundRecyclerAdapter
-{
-	public ProductListAdapter(ProductListView view, ProductListViewModel viewModel)
-	{
+public class ProductListAdapter extends SimpleDataBoundRecyclerAdapter {
+	public ProductListAdapter(ProductListView view, ProductListViewModel viewModel) {
 		super(R.layout.fragment_product_list_item, view, viewModel.products);
 	}
 }
@@ -63,8 +61,7 @@ Create an XML layout, define `view` and `data` variables, use `view` for invokin
 Create a new instance of the adapter and set it in your RecyclerView. Implement event callbacks in the MVVM view layer - it is usually Fragment.
 
 ```java
-public interface ProductListView extends AlfonzView, AdapterView
-{
+public interface ProductListView extends AlfonzView, AdapterView {
 	void onItemClick(ProductEntity product);
 }
 ```
@@ -72,27 +69,22 @@ public interface ProductListView extends AlfonzView, AdapterView
 ```java
 public class ProductListFragment
 		extends BaseFragment<ProductListView, ProductListViewModel, FragmentProductListBinding>
-		implements ProductListView
-{
+		implements ProductListView {
 	private ProductListAdapter mAdapter;
 
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState)
-	{
+	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		setupAdapter();
 	}
 
 	@Override
-	public void onItemClick(ProductEntity product)
-	{
+	public void onItemClick(ProductEntity product) {
 		startProductDetailActivity(product.getId());
 	}
 
-	private void setupAdapter()
-	{
-		if(mAdapter == null)
-		{
+	private void setupAdapter() {
+		if (mAdapter == null) {
 			mAdapter = new ProductListAdapter(this, getViewModel());
 			getBinding().fragmentProductListRecycler.setAdapter(mAdapter);
 		}
