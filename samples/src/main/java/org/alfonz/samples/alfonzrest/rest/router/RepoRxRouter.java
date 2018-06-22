@@ -1,4 +1,4 @@
-package org.alfonz.samples.alfonzrest.rest.provider;
+package org.alfonz.samples.alfonzrest.rest.router;
 
 import org.alfonz.samples.alfonzrest.entity.RepoEntity;
 import org.alfonz.samples.alfonzrest.rest.RetrofitClient;
@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 
-public class RepoRxServiceProvider
+public class RepoRxRouter
 {
 	public static final String REPO_CALL_TYPE = "repo";
 
@@ -23,14 +23,14 @@ public class RepoRxServiceProvider
 	}
 
 
-	private RepoRxServiceProvider() {}
+	private RepoRxRouter() {}
 
 
 	public static RepoService getService()
 	{
 		if(sService == null)
 		{
-			synchronized(RepoRxServiceProvider.class)
+			synchronized(RepoRxRouter.class)
 			{
 				if(sService == null)
 				{

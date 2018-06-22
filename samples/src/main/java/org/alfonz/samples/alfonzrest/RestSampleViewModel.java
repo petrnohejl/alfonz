@@ -13,7 +13,7 @@ import org.alfonz.samples.alfonzarch.BaseViewModel;
 import org.alfonz.samples.alfonzrest.entity.RepoEntity;
 import org.alfonz.samples.alfonzrest.rest.RestHttpLogger;
 import org.alfonz.samples.alfonzrest.rest.RestResponseHandler;
-import org.alfonz.samples.alfonzrest.rest.provider.RepoServiceProvider;
+import org.alfonz.samples.alfonzrest.rest.router.RepoRouter;
 import org.alfonz.utility.NetworkUtility;
 import org.alfonz.view.StatefulLayout;
 
@@ -57,14 +57,14 @@ public class RestSampleViewModel extends BaseViewModel implements LifecycleObser
 	{
 		if(NetworkUtility.isOnline(getApplicationContext()))
 		{
-			String callType = RepoServiceProvider.REPO_CALL_TYPE;
+			String callType = RepoRouter.REPO_CALL_TYPE;
 			if(!mCallManager.hasRunningCall(callType))
 			{
 				// show progress
 				state.setValue(StatefulLayout.PROGRESS);
 
 				// enqueue call
-				Call<RepoEntity> call = RepoServiceProvider.getService().repo("petrnohejl", "Alfonz");
+				Call<RepoEntity> call = RepoRouter.getService().repo("petrnohejl", "Alfonz");
 				RepoCallback callback = new RepoCallback(mCallManager);
 				mCallManager.enqueueCall(call, callback, callType);
 			}

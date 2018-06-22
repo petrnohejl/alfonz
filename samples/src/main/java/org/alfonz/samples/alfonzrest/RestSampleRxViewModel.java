@@ -11,7 +11,7 @@ import org.alfonz.samples.alfonzarch.BaseViewModel;
 import org.alfonz.samples.alfonzrest.entity.RepoEntity;
 import org.alfonz.samples.alfonzrest.rest.RestHttpLogger;
 import org.alfonz.samples.alfonzrest.rest.RestResponseHandler;
-import org.alfonz.samples.alfonzrest.rest.provider.RepoRxServiceProvider;
+import org.alfonz.samples.alfonzrest.rest.router.RepoRxRouter;
 import org.alfonz.utility.NetworkUtility;
 import org.alfonz.view.StatefulLayout;
 
@@ -56,14 +56,14 @@ public class RestSampleRxViewModel extends BaseViewModel implements LifecycleObs
 	{
 		if(NetworkUtility.isOnline(getApplicationContext()))
 		{
-			String callType = RepoRxServiceProvider.REPO_CALL_TYPE;
+			String callType = RepoRxRouter.REPO_CALL_TYPE;
 			if(!mRestRxManager.isRunning(callType))
 			{
 				// show progress
 				state.setValue(StatefulLayout.PROGRESS);
 
 				// subscribe
-				Single<Response<RepoEntity>> rawSingle = RepoRxServiceProvider.getService().repo("petrnohejl", "Alfonz");
+				Single<Response<RepoEntity>> rawSingle = RepoRxRouter.getService().repo("petrnohejl", "Alfonz");
 				Single<Response<RepoEntity>> single = mRestRxManager.setupRestSingleWithSchedulers(rawSingle, callType);
 				single.subscribeWith(createRepoObserver());
 			}

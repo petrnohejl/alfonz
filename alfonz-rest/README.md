@@ -145,10 +145,10 @@ Run RxJava REST API call. In the following example, we will check if a call of t
 ```java
 private void runMessageCall()
 {
-	String callType = ChatProvider.MESSAGE_CALL_TYPE;
+	String callType = ChatRouter.MESSAGE_CALL_TYPE;
 	if(!mRestRxManager.isRunning(callType))
 	{
-		Single<Response<MessageEntity>> rawSingle = ChatProvider.getService().message("42", "en");
+		Single<Response<MessageEntity>> rawSingle = ChatRouter.getService().message("42", "en");
 		Single<Response<MessageEntity>> single =
 				mRestRxManager.setupRestSingleWithSchedulers(rawSingle, callType);
 		single.subscribeWith(createMessageObserver());
