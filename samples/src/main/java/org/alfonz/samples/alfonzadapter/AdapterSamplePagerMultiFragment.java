@@ -49,7 +49,7 @@ public class AdapterSamplePagerMultiFragment extends BaseFragment<AdapterSampleV
 	public void onItemClick(String message)
 	{
 		String newMessage = getViewModel().addMessage();
-		showSnackbar(getString(R.string.fragment_adapter_sample_hello, newMessage));
+		showSnackbar(getString(R.string.adapter_sample_hello, newMessage));
 	}
 
 
@@ -57,7 +57,7 @@ public class AdapterSamplePagerMultiFragment extends BaseFragment<AdapterSampleV
 	public boolean onItemLongClick(String message)
 	{
 		getViewModel().removeMessage(message);
-		showToast(getString(R.string.fragment_adapter_sample_goodbye, message));
+		showToast(getString(R.string.adapter_sample_goodbye, message));
 		return true;
 	}
 
@@ -67,7 +67,7 @@ public class AdapterSamplePagerMultiFragment extends BaseFragment<AdapterSampleV
 		if(mAdapter == null)
 		{
 			mAdapter = new MessagePagerMultiAdapter(this, getViewModel());
-			getBinding().fragmentAdapterSamplePager.setAdapter(mAdapter);
+			getBinding().adapterSamplePager.setAdapter(mAdapter);
 		}
 	}
 }

@@ -58,7 +58,7 @@ public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleViewModel
 		Bitmap originalBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.photo);
 		Bitmap blurredBitmap = BitmapBlur.getBlurredBitmap(getContext(), originalBitmap, 0.5F, 5F);
 		originalBitmap.recycle();
-		getBinding().fragmentGraphicsSampleImageBlur.setImageBitmap(blurredBitmap);
+		getBinding().graphicsSampleImageBlur.setImageBitmap(blurredBitmap);
 	}
 
 
@@ -67,7 +67,7 @@ public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleViewModel
 		Bitmap originalBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.photo);
 		Bitmap reflectedBitmap = BitmapReflection.getReflectedBitmap(originalBitmap, 0);
 		originalBitmap.recycle();
-		getBinding().fragmentGraphicsSampleImageReflection.setImageBitmap(reflectedBitmap);
+		getBinding().graphicsSampleImageReflection.setImageBitmap(reflectedBitmap);
 	}
 
 
@@ -76,7 +76,7 @@ public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleViewModel
 		Bitmap originalBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.photo);
 		Bitmap scaledBitmap = BitmapScaler.scaleToFill(originalBitmap, 32, 32);
 		originalBitmap.recycle();
-		getBinding().fragmentGraphicsSampleImageScaler.setImageBitmap(scaledBitmap);
+		getBinding().graphicsSampleImageScaler.setImageBitmap(scaledBitmap);
 	}
 
 
@@ -84,7 +84,7 @@ public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleViewModel
 	{
 		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.photo);
 		CircularDrawable drawable = new CircularDrawable(bitmap);
-		getBinding().fragmentGraphicsSampleImageCircular.setImageDrawable(drawable);
+		getBinding().graphicsSampleImageCircular.setImageDrawable(drawable);
 	}
 
 
@@ -92,13 +92,13 @@ public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleViewModel
 	{
 		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.photo);
 		RoundedDrawable drawable = new RoundedDrawable(bitmap, 32);
-		getBinding().fragmentGraphicsSampleImageRounded.setImageDrawable(drawable);
+		getBinding().graphicsSampleImageRounded.setImageDrawable(drawable);
 	}
 
 
 	private void setupImageViewPlaceholder()
 	{
 		PlaceholderDrawable drawable = new PlaceholderDrawable(getString(R.string.app_name), "?", 50, true);
-		getBinding().fragmentGraphicsSampleImagePlaceholder.setImageDrawable(drawable);
+		getBinding().graphicsSampleImagePlaceholder.setImageDrawable(drawable);
 	}
 }

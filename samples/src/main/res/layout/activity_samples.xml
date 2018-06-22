@@ -17,21 +17,21 @@
 			android:orientation="horizontal">
 
 			<Button
-				android:id="@+id/activity_samples_adapter"
+				android:id="@+id/samples_adapter"
 				android:layout_width="0dp"
 				android:layout_height="@dimen/global_spacing_128"
 				android:layout_weight="1"
 				android:text="@string/title_adapter" />
 
 			<Button
-				android:id="@+id/activity_samples_arch"
+				android:id="@+id/samples_arch"
 				android:layout_width="0dp"
 				android:layout_height="@dimen/global_spacing_128"
 				android:layout_weight="1"
 				android:text="@string/title_arch" />
 
 			<Button
-				android:id="@+id/activity_samples_graphics"
+				android:id="@+id/samples_graphics"
 				android:layout_width="0dp"
 				android:layout_height="@dimen/global_spacing_128"
 				android:layout_weight="1"
@@ -45,21 +45,21 @@
 			android:orientation="horizontal">
 
 			<Button
-				android:id="@+id/activity_samples_media"
+				android:id="@+id/samples_media"
 				android:layout_width="0dp"
 				android:layout_height="@dimen/global_spacing_128"
 				android:layout_weight="1"
 				android:text="@string/title_media" />
 
 			<Button
-				android:id="@+id/activity_samples_rest"
+				android:id="@+id/samples_rest"
 				android:layout_width="0dp"
 				android:layout_height="@dimen/global_spacing_128"
 				android:layout_weight="1"
 				android:text="@string/title_rest" />
 
 			<Button
-				android:id="@+id/activity_samples_rx"
+				android:id="@+id/samples_rx"
 				android:layout_width="0dp"
 				android:layout_height="@dimen/global_spacing_128"
 				android:layout_weight="1"
@@ -73,14 +73,14 @@
 			android:orientation="horizontal">
 
 			<Button
-				android:id="@+id/activity_samples_utility"
+				android:id="@+id/samples_utility"
 				android:layout_width="0dp"
 				android:layout_height="@dimen/global_spacing_128"
 				android:layout_weight="1"
 				android:text="@string/title_utility" />
 
 			<Button
-				android:id="@+id/activity_samples_view"
+				android:id="@+id/samples_view"
 				android:layout_width="0dp"
 				android:layout_height="@dimen/global_spacing_128"
 				android:layout_weight="1"

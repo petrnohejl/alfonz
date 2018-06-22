@@ -27,14 +27,14 @@ public class SamplesActivity extends AppCompatActivity
 
 	private void setupButtons()
 	{
-		Button adapterButton = findViewById(R.id.activity_samples_adapter);
-		Button archButton = findViewById(R.id.activity_samples_arch);
-		Button graphicsButton = findViewById(R.id.activity_samples_graphics);
-		Button mediaButton = findViewById(R.id.activity_samples_media);
-		Button restButton = findViewById(R.id.activity_samples_rest);
-		Button rxButton = findViewById(R.id.activity_samples_rx);
-		Button utilityButton = findViewById(R.id.activity_samples_utility);
-		Button viewButton = findViewById(R.id.activity_samples_view);
+		Button adapterButton = findViewById(R.id.samples_adapter);
+		Button archButton = findViewById(R.id.samples_arch);
+		Button graphicsButton = findViewById(R.id.samples_graphics);
+		Button mediaButton = findViewById(R.id.samples_media);
+		Button restButton = findViewById(R.id.samples_rest);
+		Button rxButton = findViewById(R.id.samples_rx);
+		Button utilityButton = findViewById(R.id.samples_utility);
+		Button viewButton = findViewById(R.id.samples_view);
 
 		adapterButton.setOnClickListener(view -> startActivity(AdapterSampleActivity.newIntent(SamplesActivity.this)));
 		archButton.setOnClickListener(view -> startActivity(ArchSampleActivity.newIntent(SamplesActivity.this)));

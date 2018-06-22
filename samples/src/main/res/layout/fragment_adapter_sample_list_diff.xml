@@ -12,7 +12,7 @@
 	</data>
 
 	<android.support.v7.widget.RecyclerView
-		android:id="@+id/fragment_adapter_sample_list_diff_recycler"
+		android:id="@+id/adapter_sample_list_diff_recycler"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:scrollbars="vertical"

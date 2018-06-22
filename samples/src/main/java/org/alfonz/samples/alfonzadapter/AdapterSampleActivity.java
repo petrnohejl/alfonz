@@ -49,32 +49,32 @@ public class AdapterSampleActivity extends BaseActivity
 		// action bar menu behavior
 		switch(item.getItemId())
 		{
-			case R.id.menu_activity_adapter_sample_list_simple:
+			case R.id.menu_adapter_sample_list_simple:
 				Fragment listSimpleFragment = AdapterSampleListSimpleFragment.newInstance();
 				replaceFragment(listSimpleFragment);
 				return true;
 
-			case R.id.menu_activity_adapter_sample_list_multi:
+			case R.id.menu_adapter_sample_list_multi:
 				Fragment listMultiFragment = AdapterSampleListMultiFragment.newInstance();
 				replaceFragment(listMultiFragment);
 				return true;
 
-			case R.id.menu_activity_adapter_sample_list_diff:
+			case R.id.menu_adapter_sample_list_diff:
 				Fragment listDiffFragment = AdapterSampleListDiffFragment.newInstance();
 				replaceFragment(listDiffFragment);
 				return true;
 
-			case R.id.menu_activity_adapter_sample_grid_simple:
+			case R.id.menu_adapter_sample_grid_simple:
 				Fragment gridSimpleFragment = AdapterSampleGridSimpleFragment.newInstance();
 				replaceFragment(gridSimpleFragment);
 				return true;
 
-			case R.id.menu_activity_adapter_sample_pager_simple:
+			case R.id.menu_adapter_sample_pager_simple:
 				Fragment pagerSimpleFragment = AdapterSamplePagerSimpleFragment.newInstance();
 				replaceFragment(pagerSimpleFragment);
 				return true;
 
-			case R.id.menu_activity_adapter_sample_pager_multi:
+			case R.id.menu_adapter_sample_pager_multi:
 				Fragment pagerMultiFragment = AdapterSamplePagerMultiFragment.newInstance();
 				replaceFragment(pagerMultiFragment);
 				return true;

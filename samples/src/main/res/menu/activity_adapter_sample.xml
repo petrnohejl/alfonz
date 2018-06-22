@@ -4,38 +4,38 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<item
-		android:id="@+id/menu_activity_adapter_sample_list_simple"
-		android:title="@string/menu_activity_adapter_sample_list_simple"
+		android:id="@+id/menu_adapter_sample_list_simple"
+		android:title="@string/menu_adapter_sample_list_simple"
 		android:icon="@null"
 		app:showAsAction="never" />
 
 	<item
-		android:id="@+id/menu_activity_adapter_sample_list_multi"
-		android:title="@string/menu_activity_adapter_sample_list_multi"
+		android:id="@+id/menu_adapter_sample_list_multi"
+		android:title="@string/menu_adapter_sample_list_multi"
 		android:icon="@null"
 		app:showAsAction="never" />
 
 	<item
-		android:id="@+id/menu_activity_adapter_sample_list_diff"
-		android:title="@string/menu_activity_adapter_sample_list_diff"
+		android:id="@+id/menu_adapter_sample_list_diff"
+		android:title="@string/menu_adapter_sample_list_diff"
 		android:icon="@null"
 		app:showAsAction="never" />
 
 	<item
-		android:id="@+id/menu_activity_adapter_sample_grid_simple"
-		android:title="@string/menu_activity_adapter_sample_grid_simple"
+		android:id="@+id/menu_adapter_sample_grid_simple"
+		android:title="@string/menu_adapter_sample_grid_simple"
 		android:icon="@null"
 		app:showAsAction="never" />
 
 	<item
-		android:id="@+id/menu_activity_adapter_sample_pager_simple"
-		android:title="@string/menu_activity_adapter_sample_pager_simple"
+		android:id="@+id/menu_adapter_sample_pager_simple"
+		android:title="@string/menu_adapter_sample_pager_simple"
 		android:icon="@null"
 		app:showAsAction="never" />
 
 	<item
-		android:id="@+id/menu_activity_adapter_sample_pager_multi"
-		android:title="@string/menu_activity_adapter_sample_pager_multi"
+		android:id="@+id/menu_adapter_sample_pager_multi"
+		android:title="@string/menu_adapter_sample_pager_multi"
 		android:icon="@null"
 		app:showAsAction="never" />
 

@@ -38,6 +38,6 @@ public class ViewSampleFragment extends BaseFragment<ViewSampleViewModel, Fragme
 
 	private void setupScrollview()
 	{
-		getBinding().fragmentViewSampleScrollview.setOnScrollViewListener((scrollView, x, y, oldx, oldy) -> Logcat.d("%d", y));
+		getBinding().viewSampleScrollview.setOnScrollViewListener((scrollView, x, y, oldx, oldy) -> Logcat.d("%d", y));
 	}
 }

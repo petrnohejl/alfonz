@@ -21,7 +21,7 @@
 			android:orientation="vertical">
 
 			<ImageView
-				android:id="@+id/fragment_graphics_sample_image_blur"
+				android:id="@+id/graphics_sample_image_blur"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="@dimen/global_spacing_16"
@@ -29,7 +29,7 @@
 				android:scaleType="fitCenter" />
 
 			<ImageView
-				android:id="@+id/fragment_graphics_sample_image_reflection"
+				android:id="@+id/graphics_sample_image_reflection"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="@dimen/global_spacing_16"
@@ -37,7 +37,7 @@
 				android:scaleType="fitCenter" />
 
 			<ImageView
-				android:id="@+id/fragment_graphics_sample_image_scaler"
+				android:id="@+id/graphics_sample_image_scaler"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="@dimen/global_spacing_16"
@@ -45,7 +45,7 @@
 				android:scaleType="fitCenter" />
 
 			<ImageView
-				android:id="@+id/fragment_graphics_sample_image_circular"
+				android:id="@+id/graphics_sample_image_circular"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="@dimen/global_spacing_16"
@@ -53,7 +53,7 @@
 				android:scaleType="fitCenter" />
 
 			<ImageView
-				android:id="@+id/fragment_graphics_sample_image_rounded"
+				android:id="@+id/graphics_sample_image_rounded"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="@dimen/global_spacing_16"
@@ -61,7 +61,7 @@
 				android:scaleType="fitCenter" />
 
 			<ImageView
-				android:id="@+id/fragment_graphics_sample_image_placeholder"
+				android:id="@+id/graphics_sample_image_placeholder"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="@dimen/global_spacing_16"

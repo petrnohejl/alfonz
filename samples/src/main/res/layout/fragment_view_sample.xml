@@ -21,7 +21,7 @@
 		app:invisibleWhenHidden="false">
 
 		<org.alfonz.view.ObservableScrollView
-			android:id="@+id/fragment_view_sample_scrollview"
+			android:id="@+id/view_sample_scrollview"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:fillViewport="true">

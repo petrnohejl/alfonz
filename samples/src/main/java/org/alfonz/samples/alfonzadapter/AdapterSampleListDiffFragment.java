@@ -50,7 +50,7 @@ public class AdapterSampleListDiffFragment extends BaseFragment<AdapterSampleDif
 	public void onItemClick(String message)
 	{
 		String newMessage = getViewModel().addMessage();
-		showSnackbar(getString(R.string.fragment_adapter_sample_hello, newMessage));
+		showSnackbar(getString(R.string.adapter_sample_hello, newMessage));
 	}
 
 
@@ -58,7 +58,7 @@ public class AdapterSampleListDiffFragment extends BaseFragment<AdapterSampleDif
 	public boolean onItemLongClick(String message)
 	{
 		getViewModel().removeMessage(message);
-		showToast(getString(R.string.fragment_adapter_sample_goodbye, message));
+		showToast(getString(R.string.adapter_sample_goodbye, message));
 		return true;
 	}
 
@@ -68,7 +68,7 @@ public class AdapterSampleListDiffFragment extends BaseFragment<AdapterSampleDif
 		if(mAdapter == null)
 		{
 			mAdapter = new MessageListDiffAdapter(this);
-			getBinding().fragmentAdapterSampleListDiffRecycler.setAdapter(mAdapter);
+			getBinding().adapterSampleListDiffRecycler.setAdapter(mAdapter);
 			getViewModel().items.observe(this, mAdapter::submitList);
 		}
 	}

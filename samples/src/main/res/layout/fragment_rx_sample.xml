@@ -23,25 +23,25 @@
 			<Button
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="@string/fragment_rx_sample_button_run"
+				android:text="@string/rx_sample_button_run"
 				android:onClick="@{() -> view.onButtonRunClick()}" />
 
 			<Button
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="@string/fragment_rx_sample_button_terminate"
+				android:text="@string/rx_sample_button_terminate"
 				android:onClick="@{() -> view.onButtonTerminateClick()}" />
 
 			<Button
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="@string/fragment_rx_sample_button_is_running"
+				android:text="@string/rx_sample_button_is_running"
 				android:onClick="@{() -> view.onButtonIsRunningClick()}" />
 
 			<Button
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="@string/fragment_rx_sample_button_event"
+				android:text="@string/rx_sample_button_event"
 				android:onClick="@{() -> view.onButtonEventClick()}" />
 
 			<TextView

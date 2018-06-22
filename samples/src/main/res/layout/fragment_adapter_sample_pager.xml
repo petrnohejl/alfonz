@@ -10,7 +10,7 @@
 	</data>
 
 	<android.support.v4.view.ViewPager
-		android:id="@+id/fragment_adapter_sample_pager"
+		android:id="@+id/adapter_sample_pager"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent" />
 

@@ -19,12 +19,12 @@
 	<string name="title_utility">Utility\nModule</string>
 	<string name="title_view">View\nModule</string>
 
-	<string name="menu_activity_adapter_sample_list_simple">List Simple</string>
-	<string name="menu_activity_adapter_sample_list_multi">List Multi</string>
-	<string name="menu_activity_adapter_sample_list_diff">List Diff</string>
-	<string name="menu_activity_adapter_sample_grid_simple">Grid Simple</string>
-	<string name="menu_activity_adapter_sample_pager_simple">Pager Simple</string>
-	<string name="menu_activity_adapter_sample_pager_multi">Pager Multi</string>
+	<string name="menu_adapter_sample_list_simple">List Simple</string>
+	<string name="menu_adapter_sample_list_multi">List Multi</string>
+	<string name="menu_adapter_sample_list_diff">List Diff</string>
+	<string name="menu_adapter_sample_grid_simple">Grid Simple</string>
+	<string name="menu_adapter_sample_pager_simple">Pager Simple</string>
+	<string name="menu_adapter_sample_pager_multi">Pager Multi</string>
 
 	<string name="placeholder_empty">No data</string>
 	<string name="placeholder_offline">No network</string>
@@ -34,36 +34,36 @@
 	<string name="permission_access_location">Permission to access your location is required</string>
 	<string name="permission_unknown">Permission is required</string>
 
-	<string name="fragment_adapter_sample_hello">Hello %1$s</string>
-	<string name="fragment_adapter_sample_goodbye">Goodbye %1$s</string>
+	<string name="adapter_sample_hello">Hello %1$s</string>
+	<string name="adapter_sample_goodbye">Goodbye %1$s</string>
 
-	<string name="fragment_media_sample_button_play_sound">Play sound</string>
-	<string name="fragment_media_sample_button_stop_sound">Stop sound</string>
-	<string name="fragment_media_sample_button_pick_image_from_camera">Pick image from camera</string>
-	<string name="fragment_media_sample_button_pick_image_from_gallery">Pick image from gallery</string>
+	<string name="media_sample_button_play_sound">Play sound</string>
+	<string name="media_sample_button_stop_sound">Stop sound</string>
+	<string name="media_sample_button_pick_image_from_camera">Pick image from camera</string>
+	<string name="media_sample_button_pick_image_from_gallery">Pick image from gallery</string>
 
-	<string name="fragment_rx_sample_button_run">Run Rx call</string>
-	<string name="fragment_rx_sample_button_terminate">Terminate all calls</string>
-	<string name="fragment_rx_sample_button_is_running">Is running?</string>
-	<string name="fragment_rx_sample_button_event">Send Rx event</string>
+	<string name="rx_sample_button_run">Run Rx call</string>
+	<string name="rx_sample_button_terminate">Terminate all calls</string>
+	<string name="rx_sample_button_is_running">Is running?</string>
+	<string name="rx_sample_button_event">Send Rx event</string>
 
-	<string name="fragment_utility_sample_show_keyboard_button">Show keyboard</string>
-	<string name="fragment_utility_sample_hide_keyboard_button">Hide keyboard</string>
-	<string name="fragment_utility_sample_start_web_button">Start web activity</string>
-	<string name="fragment_utility_sample_start_store_button">Start store activity</string>
-	<string name="fragment_utility_sample_start_share_button">Start share activity</string>
-	<string name="fragment_utility_sample_start_email_button">Start email activity</string>
-	<string name="fragment_utility_sample_start_sms_button">Start sms activity</string>
-	<string name="fragment_utility_sample_start_call_button">Start call activity</string>
-	<string name="fragment_utility_sample_start_map_coordinates_button">Start map coordinates activity</string>
-	<string name="fragment_utility_sample_start_map_search_button">Start map search activity</string>
-	<string name="fragment_utility_sample_start_navigation_button">Start navigation activity</string>
-	<string name="fragment_utility_sample_start_calendar_button">Start calendar activity</string>
-	<string name="fragment_utility_sample_start_notification_settings_button">Start notification settings activity</string>
-	<string name="fragment_utility_sample_is_callable_button">Is callable</string>
-	<string name="fragment_utility_sample_permission_button">Ask for permission</string>
-	<string name="fragment_utility_sample_permissions_button">Ask for permissions</string>
-	<string name="fragment_utility_sample_logcat_button">Logcat</string>
-	<string name="fragment_utility_sample_download_button">Download file</string>
-	<string name="fragment_utility_sample_zip_button">Unzip file</string>
+	<string name="utility_sample_show_keyboard_button">Show keyboard</string>
+	<string name="utility_sample_hide_keyboard_button">Hide keyboard</string>
+	<string name="utility_sample_start_web_button">Start web activity</string>
+	<string name="utility_sample_start_store_button">Start store activity</string>
+	<string name="utility_sample_start_share_button">Start share activity</string>
+	<string name="utility_sample_start_email_button">Start email activity</string>
+	<string name="utility_sample_start_sms_button">Start sms activity</string>
+	<string name="utility_sample_start_call_button">Start call activity</string>
+	<string name="utility_sample_start_map_coordinates_button">Start map coordinates activity</string>
+	<string name="utility_sample_start_map_search_button">Start map search activity</string>
+	<string name="utility_sample_start_navigation_button">Start navigation activity</string>
+	<string name="utility_sample_start_calendar_button">Start calendar activity</string>
+	<string name="utility_sample_start_notification_settings_button">Start notification settings activity</string>
+	<string name="utility_sample_is_callable_button">Is callable</string>
+	<string name="utility_sample_permission_button">Ask for permission</string>
+	<string name="utility_sample_permissions_button">Ask for permissions</string>
+	<string name="utility_sample_logcat_button">Logcat</string>
+	<string name="utility_sample_download_button">Download file</string>
+	<string name="utility_sample_zip_button">Unzip file</string>
 </resources>

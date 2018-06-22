@@ -24,29 +24,29 @@
 			<Button
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="@string/fragment_media_sample_button_play_sound"
+				android:text="@string/media_sample_button_play_sound"
 				android:onClick="@{() -> view.onButtonPlaySoundClick()}" />
 
 			<Button
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="@string/fragment_media_sample_button_stop_sound"
+				android:text="@string/media_sample_button_stop_sound"
 				android:onClick="@{() -> view.onButtonStopSoundClick()}" />
 
 			<Button
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="@string/fragment_media_sample_button_pick_image_from_camera"
+				android:text="@string/media_sample_button_pick_image_from_camera"
 				android:onClick="@{() -> view.onButtonPickImageFromCameraClick()}" />
 
 			<Button
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="@string/fragment_media_sample_button_pick_image_from_gallery"
+				android:text="@string/media_sample_button_pick_image_from_gallery"
 				android:onClick="@{() -> view.onButtonPickImageFromGalleryClick()}" />
 
 			<ImageView
-				android:id="@+id/fragment_media_sample_image"
+				android:id="@+id/media_sample_image"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="@dimen/global_spacing_16"

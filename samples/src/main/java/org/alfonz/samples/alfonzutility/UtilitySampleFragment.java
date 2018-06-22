@@ -187,13 +187,13 @@ public class UtilitySampleFragment extends BaseFragment<UtilitySampleViewModel, 
 
 	private void performShowKeyboard()
 	{
-		KeyboardUtility.showKeyboard(getBinding().fragmentUtilitySampleEdittext);
+		KeyboardUtility.showKeyboard(getBinding().utilitySampleEdittext);
 	}
 
 
 	private void performHideKeyboard()
 	{
-		KeyboardUtility.hideKeyboard(getBinding().fragmentUtilitySampleEdittext);
+		KeyboardUtility.hideKeyboard(getBinding().utilitySampleEdittext);
 	}
 
 
