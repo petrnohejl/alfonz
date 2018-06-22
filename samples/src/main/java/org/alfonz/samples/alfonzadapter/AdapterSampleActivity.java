@@ -54,14 +54,19 @@ public class AdapterSampleActivity extends BaseActivity
 				replaceFragment(listSimpleFragment);
 				return true;
 
-			case R.id.menu_activity_adapter_sample_grid_simple:
-				Fragment gridSimpleFragment = AdapterSampleGridSimpleFragment.newInstance();
-				replaceFragment(gridSimpleFragment);
-				return true;
-
 			case R.id.menu_activity_adapter_sample_list_multi:
 				Fragment listMultiFragment = AdapterSampleListMultiFragment.newInstance();
 				replaceFragment(listMultiFragment);
+				return true;
+
+			case R.id.menu_activity_adapter_sample_list_diff:
+				Fragment listDiffFragment = AdapterSampleListDiffFragment.newInstance();
+				replaceFragment(listDiffFragment);
+				return true;
+
+			case R.id.menu_activity_adapter_sample_grid_simple:
+				Fragment gridSimpleFragment = AdapterSampleGridSimpleFragment.newInstance();
+				replaceFragment(gridSimpleFragment);
 				return true;
 
 			case R.id.menu_activity_adapter_sample_pager_simple:

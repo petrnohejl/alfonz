@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+		<import type="org.alfonz.adapter.utility.BindingUtility" />
+		<variable
+			name="view" type="org.alfonz.samples.alfonzadapter.AdapterSampleView" />
+		<variable
+			name="viewModel" type="org.alfonz.samples.alfonzadapter.AdapterSampleDiffViewModel" />
+	</data>
+
+	<android.support.v7.widget.RecyclerView
+		android:id="@+id/fragment_adapter_sample_list_diff_recycler"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:scrollbars="vertical"
+		app:recyclerLayout="@{BindingUtility.LAYOUT_LINEAR_VERTICAL}"
+		app:recyclerDecoration="@{BindingUtility.DECORATION_LINEAR_DIVIDER_VERTICAL}"
+		app:recyclerAnimator="@{BindingUtility.ANIMATOR_DEFAULT}" />
+
+</layout>
