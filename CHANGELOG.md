@@ -5,6 +5,18 @@ This document lists the most important changes in Alfonz library. For more detai
 Each release uses the newest versions of dependencies.
 
 
+0.9.0
+-----
+
+* [adapter module] Add DataBoundListAdapter
+* [arch module] Add onBackPressed() method in AlfonzFragment
+* [arch module] Add AlfonzBundleViewModel and its factory class for passing Application Context and Bundle data to ViewModel
+* [arch module] Support for LiveData with Data Binding
+* [graphics module] Add PlaceholderDrawable
+* [mvvm module] Remove module
+* [utility module] Add notification settings intent to IntentUtility
+
+
 0.8.2
 -----
 
@@ -52,7 +64,7 @@ Each release uses the newest versions of dependencies.
 * [mvvm module] Add Fragment tag in replaceFragment()
 * [mvvm module] New AlfonzBindingActivity
 * [rest module] Make catchObservableHttpError() and catchSingleHttpError() public
-* [utility module] Add isCallable method in IntentUtility
+* [utility module] Add isCallable() method in IntentUtility
 * [utility module] New ServiceUtility
 * [view module] Add invisibleWhenHidden attribute in StatefulLayout
 * [view module] Use IntDef instead of enum in StatefulLayout
