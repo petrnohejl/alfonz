@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,23 +13,39 @@ import android.support.v7.widget.Toolbar;
 import org.alfonz.arch.widget.ToolbarIndicator;
 
 import java.util.List;
+import java.util.ListIterator;
 
 public abstract class AlfonzActivity extends AppCompatActivity {
 	private int mToolbarHashCode = 0;
 
-	@Override
-	public void onBackPressed() {
-		List<Fragment> fragments = getSupportFragmentManager().getFragments();
-		boolean handled = false;
+	/**
+	 * Checks fragments which are visible and has {@link Fragment#getUserVisibleHint()} set to true (in case of ViewPager).
+	 *
+	 * @param fragmentManager it may be {@code {@link #getSupportFragmentManager()}} for activity or {@link Fragment#getChildFragmentManager()} in case of handling nested fragments
+	 * @return whether any fragment consumed the event
+	 */
+	public static boolean fragmentHandleOnBackPressed(FragmentManager fragmentManager) {
+		List<Fragment> fragments = fragmentManager.getFragments();
+		ListIterator<Fragment> fragmentsIterator = fragments.listIterator(fragments.size());
 
-		for (Fragment fragment : fragments) {
-			if (fragment instanceof AlfonzFragment) {
-				handled = ((AlfonzFragment) fragment).onBackPressed();
-				if (handled) break;
+		while (fragmentsIterator.hasPrevious()) {
+			Fragment fragment = fragmentsIterator.previous();
+			if (fragment.isVisible() && fragment.getUserVisibleHint() && fragment instanceof AlfonzFragment) {
+				boolean handled = ((AlfonzFragment) fragment).onBackPressed();
+				if (handled) return true;
 			}
 		}
 
-		if (!handled) super.onBackPressed();
+		return false;
+	}
+
+	@Override
+	public void onBackPressed() {
+		if (fragmentHandleOnBackPressed(getSupportFragmentManager())) {
+			return;
+		}
+
+		super.onBackPressed();
 	}
 
 	@Nullable

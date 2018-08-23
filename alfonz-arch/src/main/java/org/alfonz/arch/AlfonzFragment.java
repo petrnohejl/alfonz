@@ -15,9 +15,12 @@ public abstract class AlfonzFragment<T extends AlfonzViewModel> extends Fragment
 		mViewModel = setupViewModel();
 	}
 
+	/**
+	 * @return whether back press was consumed, default = false
+	 */
 	public boolean onBackPressed() {
-		// return true if back press was handled
-		return false;
+		// checks all it's child fragments for handling onBackPressed
+		return AlfonzActivity.fragmentHandleOnBackPressed(getChildFragmentManager());
 	}
 
 	public T getViewModel() {
