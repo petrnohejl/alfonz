@@ -190,8 +190,8 @@ public class ImagePicker {
 	}
 
 	private <T> void pickImageFromGallery(@NonNull ImagePickable<T> imagePickable, @NonNull ImagePickerCallback<T> imagePickerCallback) {
-		Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-		intent.setType("image/jpeg");
+		Intent intent = new Intent(Intent.ACTION_PICK);
+		intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/jpeg");
 
 		mImagePickerCallback = imagePickerCallback;
 		imagePickable.startActivityForResult(intent, REQUEST_CODE_GALLERY);
