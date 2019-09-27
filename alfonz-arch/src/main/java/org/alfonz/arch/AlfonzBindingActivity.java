@@ -1,9 +1,10 @@
 package org.alfonz.arch;
 
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
+
+import androidx.annotation.NonNull;
+import androidx.databinding.ViewDataBinding;
 
 public abstract class AlfonzBindingActivity<T extends AlfonzViewModel, B extends ViewDataBinding> extends AlfonzActivity implements AlfonzView {
 	private T mViewModel;

@@ -1,7 +1,6 @@
 package org.alfonz.rx;
 
-import android.support.annotation.Nullable;
-
+import androidx.annotation.Nullable;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 import io.reactivex.observers.DisposableSingleObserver;

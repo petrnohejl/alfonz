@@ -1,9 +1,8 @@
 package org.alfonz.rest.call;
 
-import android.support.annotation.NonNull;
-
 import org.alfonz.rest.HttpException;
 
+import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Response;
 

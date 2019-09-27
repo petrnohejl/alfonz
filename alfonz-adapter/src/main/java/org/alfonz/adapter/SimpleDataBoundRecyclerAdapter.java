@@ -1,13 +1,13 @@
 package org.alfonz.adapter;
 
-import android.databinding.ObservableList;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
-
 import org.alfonz.adapter.callback.RecyclerListChangedCallbackHolder;
 
 import java.util.List;
+
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.databinding.ObservableList;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class SimpleDataBoundRecyclerAdapter extends BaseDataBoundRecyclerAdapter {
 	@LayoutRes private int mLayoutId;

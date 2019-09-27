@@ -1,14 +1,13 @@
 package org.alfonz.rest.rx;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-
 import org.alfonz.rest.HttpException;
 import org.alfonz.rest.HttpLogger;
 import org.alfonz.rest.ResponseHandler;
 import org.alfonz.rx.RxManager;
 import org.alfonz.rx.utility.SchedulersUtility;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.Single;

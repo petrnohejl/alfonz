@@ -1,20 +1,20 @@
 package org.alfonz.arch.event;
 
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.Observer;
-import android.support.annotation.MainThread;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import androidx.annotation.MainThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 // source: https://github.com/googlesamples/android-architecture-components/issues/63
 public class LiveEvent<T> extends MutableLiveData<T> {
 	private final AtomicBoolean mPending = new AtomicBoolean(false);
 
 	@MainThread
-	public void observe(@NonNull LifecycleOwner lifecycleOwner, @NonNull final Observer<T> observer) {
+	public void observe(@NonNull LifecycleOwner lifecycleOwner, @NonNull final Observer<? super T> observer) {
 		// observe the internal MutableLiveData
 		super.observe(lifecycleOwner, new Observer<T>() {
 			@Override

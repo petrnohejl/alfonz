@@ -2,9 +2,10 @@ package org.alfonz.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
 
 // source: http://stackoverflow.com/questions/5875877/setting-a-maximum-width-on-a-viewgroup
 public class MaxWidthLinearLayout extends LinearLayout {

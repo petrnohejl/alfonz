@@ -9,7 +9,8 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 // requires android.permission.READ_EXTERNAL_STORAGE
 // source: http://stackoverflow.com/questions/20067508/get-real-path-from-uri-android-kitkat-new-storage-access-framework

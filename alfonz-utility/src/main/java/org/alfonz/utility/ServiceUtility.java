@@ -3,7 +3,8 @@ package org.alfonz.utility;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
 import android.content.Context;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 public final class ServiceUtility {
 	private ServiceUtility() {}

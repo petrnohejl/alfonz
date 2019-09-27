@@ -1,13 +1,14 @@
 package org.alfonz.samples.alfonzadapter;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 
 import org.alfonz.samples.R;
 import org.alfonz.samples.alfonzarch.BaseFragment;
 import org.alfonz.samples.databinding.FragmentAdapterSampleListDiffBinding;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProviders;
 
 public class AdapterSampleListDiffFragment extends BaseFragment<AdapterSampleDiffViewModel, FragmentAdapterSampleListDiffBinding> implements AdapterSampleView {
 	private MessageListDiffAdapter mAdapter;

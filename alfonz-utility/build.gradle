@@ -8,12 +8,12 @@ ext {
 }
 
 android {
-	compileSdkVersion 27
-	buildToolsVersion "27.0.3"
+	compileSdkVersion 29
+	buildToolsVersion "29.0.2"
 
 	defaultConfig {
 		minSdkVersion 16
-		targetSdkVersion 27
+		targetSdkVersion 29
 		versionCode getVersionCode(majorVersion, minorVersion, patchVersion, buildVersion)
 		versionName getVersionName(majorVersion, minorVersion, patchVersion)
 	}
@@ -33,9 +33,9 @@ android {
 
 dependencies {
 	implementation fileTree(dir: "libs", include: ["*.jar"])
-	implementation "com.android.support:support-fragment:$androidSupportVersion"
-	implementation "com.android.support:support-annotations:$androidSupportVersion"
-	implementation "com.android.support:design:$androidSupportVersion"
+	implementation "androidx.annotation:annotation:$androidxAnnotationVersion"
+	implementation "androidx.fragment:fragment:$androidxFragmentVersion"
+	implementation "com.google.android.material:material:$materialVersion"
 }
 
 apply from: "../install.gradle"

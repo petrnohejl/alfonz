@@ -20,7 +20,6 @@ package org.alfonz.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.support.annotation.NonNull;
 import android.text.Layout;
 import android.text.Layout.Alignment;
 import android.text.StaticLayout;
@@ -31,6 +30,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import androidx.annotation.NonNull;
 
 // source: http://stackoverflow.com/questions/2160619/android-ellipsize-multiline-textview
 public class EllipsizingTextView extends TextView {

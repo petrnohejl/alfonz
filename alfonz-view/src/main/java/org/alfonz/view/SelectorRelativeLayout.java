@@ -6,9 +6,10 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
+
+import androidx.annotation.NonNull;
 
 // source: http://stackoverflow.com/questions/26693675/recyclerview-how-to-simulate-listviews-draw-selector-on-top
 public class SelectorRelativeLayout extends RelativeLayout {

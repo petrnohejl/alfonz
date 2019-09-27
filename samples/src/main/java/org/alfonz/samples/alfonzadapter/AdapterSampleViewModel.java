@@ -1,17 +1,17 @@
 package org.alfonz.samples.alfonzadapter;
 
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleObserver;
-import android.arch.lifecycle.OnLifecycleEvent;
-import android.databinding.ObservableArrayList;
-import android.databinding.ObservableList;
-
 import org.alfonz.samples.alfonzarch.BaseViewModel;
 
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import androidx.databinding.ObservableArrayList;
+import androidx.databinding.ObservableList;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.OnLifecycleEvent;
 
 public class AdapterSampleViewModel extends BaseViewModel implements LifecycleObserver {
 	public final ObservableList<String> messages = new ObservableArrayList<>();

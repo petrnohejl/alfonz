@@ -8,12 +8,12 @@ ext {
 }
 
 android {
-	compileSdkVersion 27
-	buildToolsVersion "27.0.3"
+	compileSdkVersion 29
+	buildToolsVersion "29.0.2"
 
 	defaultConfig {
 		minSdkVersion 16
-		targetSdkVersion 27
+		targetSdkVersion 29
 		versionCode getVersionCode(majorVersion, minorVersion, patchVersion, buildVersion)
 		versionName getVersionName(majorVersion, minorVersion, patchVersion)
 	}
@@ -37,14 +37,12 @@ android {
 
 dependencies {
 	implementation fileTree(dir: "libs", include: ["*.jar"])
-	implementation "android.arch.lifecycle:runtime:$androidArchVersion"
-	implementation "android.arch.lifecycle:extensions:$androidArchVersion"
-	implementation "com.android.support:support-fragment:$androidSupportVersion"
-	implementation "com.android.support:appcompat-v7:$androidSupportVersion"
-	implementation "com.android.support:support-annotations:$androidSupportVersion"
-	implementation "com.android.support:support-v4:$androidSupportVersion"
-	// https://stackoverflow.com/questions/41568032/android-data-binding-dependency-conflict-with-the-support-library
-	annotationProcessor "android.arch.lifecycle:compiler:$androidArchVersion"
+	implementation "androidx.annotation:annotation:$androidxAnnotationVersion"
+	implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+	implementation "androidx.fragment:fragment:$androidxFragmentVersion"
+	implementation "androidx.lifecycle:lifecycle-extensions:$androidxLifecycleVersion"
+	implementation "androidx.lifecycle:lifecycle-runtime:$androidxLifecycleVersion"
+	annotationProcessor "androidx.lifecycle:lifecycle-common-java8:2.1.0"
 }
 
 apply from: "../install.gradle"

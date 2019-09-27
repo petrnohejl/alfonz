@@ -1,17 +1,18 @@
 package org.alfonz.samples.alfonzutility;
 
 import android.Manifest;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 
 import org.alfonz.samples.alfonzarch.BaseFragment;
 import org.alfonz.samples.databinding.FragmentUtilitySampleBinding;
 import org.alfonz.utility.IntentUtility;
 import org.alfonz.utility.KeyboardUtility;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProviders;
 
 public class UtilitySampleFragment extends BaseFragment<UtilitySampleViewModel, FragmentUtilitySampleBinding> implements UtilitySampleView {
 	@Override

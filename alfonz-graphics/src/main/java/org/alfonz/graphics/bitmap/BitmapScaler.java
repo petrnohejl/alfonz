@@ -1,7 +1,8 @@
 package org.alfonz.graphics.bitmap;
 
 import android.graphics.Bitmap;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 public final class BitmapScaler {
 	private BitmapScaler() {}

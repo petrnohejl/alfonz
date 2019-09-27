@@ -8,7 +8,8 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 public final class BitmapReflection {
 	private BitmapReflection() {}

@@ -1,15 +1,16 @@
 package org.alfonz.samples.alfonzarch;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 
 import org.alfonz.arch.AlfonzBindingActivity;
 import org.alfonz.arch.widget.ToolbarIndicator;
 import org.alfonz.samples.databinding.ActivityArchSampleViewModelBinding;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProviders;
 
 public class ArchSampleViewModelActivity extends AlfonzBindingActivity<ArchSampleViewModel, ActivityArchSampleViewModelBinding> implements ArchSampleView {
 	public static Intent newIntent(Context context) {

@@ -1,7 +1,5 @@
 package org.alfonz.samples.alfonzrx;
 
-import android.arch.lifecycle.MutableLiveData;
-
 import org.alfonz.rx.AlfonzDisposableObserver;
 import org.alfonz.rx.RxBus;
 import org.alfonz.rx.RxManager;
@@ -13,6 +11,7 @@ import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import androidx.lifecycle.MutableLiveData;
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;

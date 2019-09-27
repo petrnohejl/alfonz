@@ -3,11 +3,12 @@ package org.alfonz.utility;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.provider.Settings.Secure;
-import android.support.annotation.NonNull;
 import android.telephony.TelephonyManager;
 
 import java.io.UnsupportedEncodingException;
 import java.util.UUID;
+
+import androidx.annotation.NonNull;
 
 // source: http://stackoverflow.com/questions/2785485/is-there-a-unique-android-device-id
 public class DeviceUuidFactory {

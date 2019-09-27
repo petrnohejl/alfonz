@@ -1,10 +1,9 @@
 package org.alfonz.rx;
 
-import android.support.annotation.NonNull;
-
 import com.jakewharton.rxrelay2.PublishRelay;
 import com.jakewharton.rxrelay2.Relay;
 
+import androidx.annotation.NonNull;
 import io.reactivex.Observable;
 
 public class RxBus {

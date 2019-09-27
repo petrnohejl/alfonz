@@ -1,9 +1,10 @@
 package org.alfonz.view;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
 
 public class AspectRatioImageView extends ImageView {
 	public AspectRatioImageView(@NonNull Context context) {

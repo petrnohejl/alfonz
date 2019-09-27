@@ -1,15 +1,16 @@
 package org.alfonz.arch.bundle;
 
 import android.app.Application;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
 import org.alfonz.arch.AlfonzActivity;
 import org.alfonz.arch.AlfonzFragment;
 
 import java.lang.reflect.InvocationTargetException;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 public class AlfonzBundleViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 	private final Application mApplication;

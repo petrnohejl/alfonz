@@ -1,9 +1,10 @@
 package org.alfonz.view;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.ScrollView;
+
+import androidx.annotation.NonNull;
 
 // source: http://stackoverflow.com/questions/3948934/synchronise-scrollview-scroll-positions-android
 public class ObservableScrollView extends ScrollView {

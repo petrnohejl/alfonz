@@ -1,7 +1,5 @@
 package org.alfonz.utility;
 
-import android.support.annotation.NonNull;
-
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,6 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
+import androidx.annotation.NonNull;
 
 // requires android.permission.WRITE_EXTERNAL_STORAGE
 public final class ZipUtility {

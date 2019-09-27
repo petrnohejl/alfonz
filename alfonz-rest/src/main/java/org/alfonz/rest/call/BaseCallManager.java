@@ -1,11 +1,11 @@
 package org.alfonz.rest.call;
 
-import android.support.annotation.NonNull;
-import android.support.v4.util.ArrayMap;
 import android.util.Log;
 
 import java.util.Map;
 
+import androidx.annotation.NonNull;
+import androidx.collection.ArrayMap;
 import retrofit2.Call;
 import retrofit2.Callback;
 

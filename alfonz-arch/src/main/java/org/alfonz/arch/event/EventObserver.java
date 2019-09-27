@@ -1,7 +1,7 @@
 package org.alfonz.arch.event;
 
-import android.arch.lifecycle.Observer;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
 
 @SuppressWarnings("NullableProblems")
 public interface EventObserver<T> extends Observer<T> {

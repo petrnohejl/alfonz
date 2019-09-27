@@ -1,13 +1,15 @@
 package org.alfonz.samples.alfonzutility.utility;
 
 import android.Manifest;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.view.View;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.alfonz.samples.R;
 import org.alfonz.samples.SamplesApplication;
 import org.alfonz.utility.PermissionManager;
+
+import androidx.annotation.NonNull;
 
 public class PermissionRationaleHandler implements PermissionManager.RationaleHandler {
 	@Override

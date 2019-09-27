@@ -1,7 +1,8 @@
 package org.alfonz.utility;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 public final class Logcat {
 	private static Config sConfig;
@@ -17,11 +18,13 @@ public final class Logcat {
 	}
 
 	public static void d(@NonNull String msg, Object... args) {
-		if (sConfig.isEnabled()) Log.d(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args));
+		if (sConfig.isEnabled())
+			Log.d(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args));
 	}
 
 	public static void e(@NonNull String msg, Object... args) {
-		if (sConfig.isEnabled()) Log.e(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args));
+		if (sConfig.isEnabled())
+			Log.e(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args));
 	}
 
 	public static void e(@NonNull Throwable throwable, @NonNull String msg, Object... args) {
@@ -30,19 +33,23 @@ public final class Logcat {
 	}
 
 	public static void i(@NonNull String msg, Object... args) {
-		if (sConfig.isEnabled()) Log.i(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args));
+		if (sConfig.isEnabled())
+			Log.i(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args));
 	}
 
 	public static void v(@NonNull String msg, Object... args) {
-		if (sConfig.isEnabled()) Log.v(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args));
+		if (sConfig.isEnabled())
+			Log.v(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args));
 	}
 
 	public static void w(@NonNull String msg, Object... args) {
-		if (sConfig.isEnabled()) Log.w(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args));
+		if (sConfig.isEnabled())
+			Log.w(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args));
 	}
 
 	public static void wtf(@NonNull String msg, Object... args) {
-		if (sConfig.isEnabled()) Log.wtf(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args));
+		if (sConfig.isEnabled())
+			Log.wtf(sConfig.getTag(), getCodeLocation().toString() + formatMessage(msg, args));
 	}
 
 	public static void printStackTrace(@NonNull Throwable throwable) {

@@ -4,7 +4,8 @@ import android.app.DownloadManager;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 // requires android.permission.WRITE_EXTERNAL_STORAGE
 public final class DownloadUtility {

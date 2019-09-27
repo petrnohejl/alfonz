@@ -1,13 +1,13 @@
 package org.alfonz.rx;
 
-import android.support.annotation.NonNull;
-import android.support.v4.util.ArrayMap;
 import android.util.Log;
 
 import org.alfonz.rx.utility.SchedulersUtility;
 
 import java.util.Map;
 
+import androidx.annotation.NonNull;
+import androidx.collection.ArrayMap;
 import io.reactivex.Completable;
 import io.reactivex.Maybe;
 import io.reactivex.Observable;

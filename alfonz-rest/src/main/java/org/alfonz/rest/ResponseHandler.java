@@ -1,7 +1,6 @@
 package org.alfonz.rest;
 
-import android.support.annotation.NonNull;
-
+import androidx.annotation.NonNull;
 import retrofit2.Response;
 
 public interface ResponseHandler {

@@ -1,6 +1,6 @@
 package org.alfonz.adapter;
 
-import android.arch.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LifecycleOwner;
 
 public interface AdapterView extends LifecycleOwner {
 }

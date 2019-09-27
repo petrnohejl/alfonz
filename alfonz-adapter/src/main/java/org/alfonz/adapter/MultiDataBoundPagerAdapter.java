@@ -1,12 +1,13 @@
 package org.alfonz.adapter;
 
-import android.databinding.ObservableList;
-import android.databinding.ViewDataBinding;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.View;
 
 import org.alfonz.adapter.callback.OnPagerListChangedCallback;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.ObservableList;
+import androidx.databinding.ViewDataBinding;
 
 public abstract class MultiDataBoundPagerAdapter extends BaseDataBoundPagerAdapter {
 	private AdapterView mView;

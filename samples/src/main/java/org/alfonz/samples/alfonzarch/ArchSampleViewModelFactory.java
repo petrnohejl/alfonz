@@ -1,9 +1,10 @@
 package org.alfonz.samples.alfonzarch;
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 public class ArchSampleViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 	private final Bundle mExtras;

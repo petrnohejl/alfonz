@@ -1,6 +1,6 @@
 package org.alfonz.utility;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public final class StringConvertor {
 	private StringConvertor() {}

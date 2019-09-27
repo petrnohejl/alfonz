@@ -1,7 +1,6 @@
 package org.alfonz.samples;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 import org.alfonz.samples.alfonzadapter.AdapterSampleActivity;
@@ -12,6 +11,8 @@ import org.alfonz.samples.alfonzrest.RestSampleActivity;
 import org.alfonz.samples.alfonzrx.RxSampleActivity;
 import org.alfonz.samples.alfonzutility.UtilitySampleActivity;
 import org.alfonz.samples.alfonzview.ViewSampleActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SamplesActivity extends AppCompatActivity {
 	@Override

@@ -8,12 +8,12 @@ ext {
 }
 
 android {
-	compileSdkVersion 27
-	buildToolsVersion "27.0.3"
+	compileSdkVersion 29
+	buildToolsVersion "29.0.2"
 
 	defaultConfig {
 		minSdkVersion 16
-		targetSdkVersion 27
+		targetSdkVersion 29
 		versionCode getVersionCode(majorVersion, minorVersion, patchVersion, buildVersion)
 		versionName getVersionName(majorVersion, minorVersion, patchVersion)
 	}
@@ -33,8 +33,8 @@ android {
 
 dependencies {
 	implementation fileTree(dir: "libs", include: ["*.jar"])
-	implementation "com.android.support:support-core-utils:$androidSupportVersion"
-	implementation "com.android.support:support-annotations:$androidSupportVersion"
+	implementation "androidx.annotation:annotation:$androidxAnnotationVersion"
+	implementation "androidx.collection:collection:$androidxCollectionVersion"
 	implementation "com.jakewharton.rxrelay2:rxrelay:$rxRelayVersion"
 	implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
 	implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"

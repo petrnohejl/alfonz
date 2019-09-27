@@ -1,11 +1,11 @@
 package org.alfonz.adapter.callback;
 
-import android.databinding.ObservableList;
-import android.support.annotation.NonNull;
-
 import org.alfonz.adapter.BaseDataBoundRecyclerAdapter;
 
 import java.lang.ref.WeakReference;
+
+import androidx.annotation.NonNull;
+import androidx.databinding.ObservableList;
 
 public class OnRecyclerListChangedCallback<T extends ObservableList<?>> extends ObservableList.OnListChangedCallback<T> {
 	@NonNull private final WeakReference<BaseDataBoundRecyclerAdapter> mAdapter;

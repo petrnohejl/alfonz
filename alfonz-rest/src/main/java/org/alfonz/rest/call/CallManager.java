@@ -1,11 +1,11 @@
 package org.alfonz.rest.call;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-
 import org.alfonz.rest.HttpException;
 import org.alfonz.rest.HttpLogger;
 import org.alfonz.rest.ResponseHandler;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class CallManager extends BaseCallManager {
 	private ResponseHandler mResponseHandler;

@@ -1,8 +1,8 @@
 package org.alfonz.adapter.callback;
 
-import android.databinding.ObservableMap;
-
 import org.alfonz.adapter.BaseDataBoundRecyclerAdapter;
+
+import androidx.databinding.ObservableMap;
 
 public class RecyclerMapChangedCallbackHolder {
 	private OnRecyclerMapChangedCallback mCallback;

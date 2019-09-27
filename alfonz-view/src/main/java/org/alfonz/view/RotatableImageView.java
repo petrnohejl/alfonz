@@ -3,9 +3,10 @@ package org.alfonz.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
 
 public class RotatableImageView extends ImageView {
 	private int mAngle;

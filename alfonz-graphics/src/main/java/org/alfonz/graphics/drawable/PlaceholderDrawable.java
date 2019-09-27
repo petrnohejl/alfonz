@@ -8,8 +8,9 @@ import android.graphics.PixelFormat;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
 
 public class PlaceholderDrawable extends Drawable {
 	public static final int DEFAULT_TEXT_SIZE_PERCENTAGE = 50;

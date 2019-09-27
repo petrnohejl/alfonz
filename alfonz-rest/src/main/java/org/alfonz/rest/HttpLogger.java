@@ -1,6 +1,6 @@
 package org.alfonz.rest;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public interface HttpLogger {
 	void logSuccess(@NonNull String message);

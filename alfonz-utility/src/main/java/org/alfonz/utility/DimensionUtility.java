@@ -1,9 +1,10 @@
 package org.alfonz.utility;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+
+import androidx.annotation.NonNull;
 
 public final class DimensionUtility {
 	private DimensionUtility() {}

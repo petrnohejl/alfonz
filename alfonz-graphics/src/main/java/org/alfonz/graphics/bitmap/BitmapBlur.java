@@ -7,7 +7,8 @@ import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 public final class BitmapBlur {
 	private static final float BITMAP_SCALE = 0.4F;

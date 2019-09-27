@@ -1,11 +1,12 @@
 package org.alfonz.arch;
 
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.databinding.ViewDataBinding;
 
 public abstract class AlfonzBindingFragment<T extends AlfonzViewModel, B extends ViewDataBinding> extends AlfonzFragment<T> {
 	private B mBinding;

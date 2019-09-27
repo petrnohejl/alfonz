@@ -1,11 +1,12 @@
 package org.alfonz.arch.utility;
 
-import android.databinding.BindingAdapter;
-import android.databinding.BindingConversion;
 import android.graphics.Bitmap;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.databinding.BindingAdapter;
+import androidx.databinding.BindingConversion;
 
 public final class BindingUtility {
 	private BindingUtility() {}

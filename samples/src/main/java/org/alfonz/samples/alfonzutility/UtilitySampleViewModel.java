@@ -1,6 +1,5 @@
 package org.alfonz.samples.alfonzutility;
 
-import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -34,6 +33,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Pattern;
+
+import androidx.lifecycle.MutableLiveData;
 
 public class UtilitySampleViewModel extends BaseViewModel {
 	private static final String LOG_MESSAGE_CONTENT_UTILITY = "[ContentUtility] uri to path: %s";
