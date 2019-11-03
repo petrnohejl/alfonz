@@ -1,9 +1,9 @@
 package org.alfonz.samples.alfonzadapter;
 
+import androidx.recyclerview.widget.DiffUtil;
+
 import org.alfonz.adapter.DataBoundListAdapter;
 import org.alfonz.samples.R;
-
-import androidx.recyclerview.widget.DiffUtil;
 
 public class MessageListDiffAdapter extends DataBoundListAdapter {
 	public MessageListDiffAdapter(AdapterSampleView view) {

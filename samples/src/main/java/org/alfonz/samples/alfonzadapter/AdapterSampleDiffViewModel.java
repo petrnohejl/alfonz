@@ -1,17 +1,17 @@
 package org.alfonz.samples.alfonzadapter;
 
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.MediatorLiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.OnLifecycleEvent;
+
 import org.alfonz.samples.alfonzarch.BaseViewModel;
 
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleObserver;
-import androidx.lifecycle.MediatorLiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.OnLifecycleEvent;
 
 public class AdapterSampleDiffViewModel extends BaseViewModel implements LifecycleObserver {
 	public final MediatorLiveData<List<?>> items = new MediatorLiveData<>();

@@ -2,12 +2,12 @@ package org.alfonz.adapter;
 
 import android.view.View;
 
-import org.alfonz.adapter.callback.OnPagerListChangedCallback;
-
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableList;
 import androidx.databinding.ViewDataBinding;
+
+import org.alfonz.adapter.callback.OnPagerListChangedCallback;
 
 public class SimpleDataBoundPagerAdapter extends BaseDataBoundPagerAdapter {
 	@LayoutRes private int mLayoutId;

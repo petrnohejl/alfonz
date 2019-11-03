@@ -2,12 +2,12 @@ package org.alfonz.samples.alfonzrx;
 
 import android.view.LayoutInflater;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProviders;
+
 import org.alfonz.rx.RxBus;
 import org.alfonz.samples.alfonzarch.BaseFragment;
 import org.alfonz.samples.databinding.FragmentRxSampleBinding;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
 
 public class RxSampleFragment extends BaseFragment<RxSampleViewModel, FragmentRxSampleBinding> implements RxSampleView {
 	@Override

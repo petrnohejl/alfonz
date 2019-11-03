@@ -3,12 +3,12 @@ package org.alfonz.samples.alfonzadapter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProviders;
+
 import org.alfonz.samples.R;
 import org.alfonz.samples.alfonzarch.BaseFragment;
 import org.alfonz.samples.databinding.FragmentAdapterSamplePagerBinding;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
 
 public class AdapterSamplePagerMultiFragment extends BaseFragment<AdapterSampleViewModel, FragmentAdapterSamplePagerBinding> implements AdapterSampleView {
 	private MessagePagerMultiAdapter mAdapter;

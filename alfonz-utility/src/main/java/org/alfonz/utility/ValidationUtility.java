@@ -2,12 +2,12 @@ package org.alfonz.utility;
 
 import android.util.Patterns;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public final class ValidationUtility {
 	private ValidationUtility() {}

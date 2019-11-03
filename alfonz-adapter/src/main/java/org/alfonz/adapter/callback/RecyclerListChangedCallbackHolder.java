@@ -1,8 +1,8 @@
 package org.alfonz.adapter.callback;
 
-import org.alfonz.adapter.BaseDataBoundRecyclerAdapter;
-
 import androidx.databinding.ObservableList;
+
+import org.alfonz.adapter.BaseDataBoundRecyclerAdapter;
 
 public class RecyclerListChangedCallbackHolder {
 	private OnRecyclerListChangedCallback mCallback;

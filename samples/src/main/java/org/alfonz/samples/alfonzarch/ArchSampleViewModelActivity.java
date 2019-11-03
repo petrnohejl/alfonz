@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProviders;
+
 import org.alfonz.arch.AlfonzBindingActivity;
 import org.alfonz.arch.widget.ToolbarIndicator;
 import org.alfonz.samples.databinding.ActivityArchSampleViewModelBinding;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
 
 public class ArchSampleViewModelActivity extends AlfonzBindingActivity<ArchSampleViewModel, ActivityArchSampleViewModelBinding> implements ArchSampleView {
 	public static Intent newIntent(Context context) {

@@ -1,11 +1,11 @@
 package org.alfonz.adapter.callback;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.ObservableList;
+
 import org.alfonz.adapter.BaseDataBoundPagerAdapter;
 
 import java.lang.ref.WeakReference;
-
-import androidx.annotation.NonNull;
-import androidx.databinding.ObservableList;
 
 public class OnPagerListChangedCallback<T extends ObservableList<?>> extends ObservableList.OnListChangedCallback<T> {
 	@NonNull private final WeakReference<BaseDataBoundPagerAdapter> mAdapter;

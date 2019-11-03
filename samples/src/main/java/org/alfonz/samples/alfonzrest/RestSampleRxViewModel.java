@@ -1,5 +1,10 @@
 package org.alfonz.samples.alfonzrest;
 
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.OnLifecycleEvent;
+
 import org.alfonz.rest.rx.RestRxManager;
 import org.alfonz.rx.AlfonzDisposableSingleObserver;
 import org.alfonz.samples.alfonzarch.BaseViewModel;
@@ -10,10 +15,6 @@ import org.alfonz.samples.alfonzrest.rest.router.RepoRxRouter;
 import org.alfonz.utility.NetworkUtility;
 import org.alfonz.view.StatefulLayout;
 
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleObserver;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.OnLifecycleEvent;
 import io.reactivex.Single;
 import io.reactivex.observers.DisposableSingleObserver;
 import retrofit2.Response;

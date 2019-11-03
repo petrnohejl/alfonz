@@ -1,12 +1,13 @@
 package org.alfonz.samples.alfonzrest.rest;
 
+import androidx.annotation.NonNull;
+
 import org.alfonz.rest.HttpException;
 import org.alfonz.samples.alfonzrest.entity.ErrorEntity;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 
-import androidx.annotation.NonNull;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Response;

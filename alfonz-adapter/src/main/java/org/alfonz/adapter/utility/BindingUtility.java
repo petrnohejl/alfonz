@@ -2,12 +2,6 @@ package org.alfonz.adapter.utility;
 
 import android.util.DisplayMetrics;
 
-import org.alfonz.adapter.widget.GridDividerItemDecoration;
-import org.alfonz.adapter.widget.GridSpacingItemDecoration;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.databinding.BindingAdapter;
@@ -17,6 +11,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
+import org.alfonz.adapter.widget.GridDividerItemDecoration;
+import org.alfonz.adapter.widget.GridSpacingItemDecoration;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 public final class BindingUtility {
 	public static final byte LAYOUT_LINEAR_VERTICAL = 0b00000101;

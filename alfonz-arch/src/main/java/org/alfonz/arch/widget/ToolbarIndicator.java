@@ -7,12 +7,12 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 
-import org.alfonz.arch.R;
-
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+
+import org.alfonz.arch.R;
 
 public class ToolbarIndicator {
 	public static final ToolbarIndicator NONE = new ToolbarIndicator(0, false, false);

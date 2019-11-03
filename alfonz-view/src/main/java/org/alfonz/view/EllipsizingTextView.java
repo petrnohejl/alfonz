@@ -27,11 +27,11 @@ import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-
-import androidx.annotation.NonNull;
 
 // source: http://stackoverflow.com/questions/2160619/android-ellipsize-multiline-textview
 public class EllipsizingTextView extends TextView {

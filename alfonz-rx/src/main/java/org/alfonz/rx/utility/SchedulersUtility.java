@@ -1,6 +1,7 @@
 package org.alfonz.rx.utility;
 
 import androidx.annotation.NonNull;
+
 import io.reactivex.CompletableTransformer;
 import io.reactivex.FlowableTransformer;
 import io.reactivex.MaybeTransformer;

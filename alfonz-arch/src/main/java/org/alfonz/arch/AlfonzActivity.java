@@ -2,10 +2,6 @@ package org.alfonz.arch;
 
 import android.graphics.drawable.Drawable;
 
-import org.alfonz.arch.widget.ToolbarIndicator;
-
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -13,6 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import org.alfonz.arch.widget.ToolbarIndicator;
+
+import java.util.List;
 
 public abstract class AlfonzActivity extends AppCompatActivity {
 	private int mToolbarHashCode = 0;

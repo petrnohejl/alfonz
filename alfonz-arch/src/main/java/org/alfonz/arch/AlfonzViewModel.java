@@ -1,14 +1,14 @@
 package org.alfonz.arch;
 
-import org.alfonz.arch.event.Event;
-import org.alfonz.arch.event.EventObserver;
-import org.alfonz.arch.event.LiveBus;
-
 import androidx.annotation.NonNull;
 import androidx.databinding.Observable;
 import androidx.databinding.PropertyChangeRegistry;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModel;
+
+import org.alfonz.arch.event.Event;
+import org.alfonz.arch.event.EventObserver;
+import org.alfonz.arch.event.LiveBus;
 
 public abstract class AlfonzViewModel extends ViewModel implements Observable {
 	private transient PropertyChangeRegistry mObservableCallbacks;

@@ -1,11 +1,11 @@
 package org.alfonz.utility;
 
+import androidx.annotation.NonNull;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
-
-import androidx.annotation.NonNull;
 
 public final class HashUtility {
 	private HashUtility() {}

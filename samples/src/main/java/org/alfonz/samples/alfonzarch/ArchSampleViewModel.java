@@ -4,13 +4,13 @@ import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import org.alfonz.utility.NetworkUtility;
-import org.alfonz.view.StatefulLayout;
-
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.OnLifecycleEvent;
+
+import org.alfonz.utility.NetworkUtility;
+import org.alfonz.view.StatefulLayout;
 
 public class ArchSampleViewModel extends BaseViewModel implements LifecycleObserver {
 	public final MutableLiveData<Integer> state = new MutableLiveData<>();

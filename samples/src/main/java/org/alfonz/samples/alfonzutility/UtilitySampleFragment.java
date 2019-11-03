@@ -6,13 +6,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProviders;
+
 import org.alfonz.samples.alfonzarch.BaseFragment;
 import org.alfonz.samples.databinding.FragmentUtilitySampleBinding;
 import org.alfonz.utility.IntentUtility;
 import org.alfonz.utility.KeyboardUtility;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
 
 public class UtilitySampleFragment extends BaseFragment<UtilitySampleViewModel, FragmentUtilitySampleBinding> implements UtilitySampleView {
 	@Override

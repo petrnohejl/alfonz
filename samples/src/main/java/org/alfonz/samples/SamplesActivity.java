@@ -3,6 +3,8 @@ package org.alfonz.samples;
 import android.os.Bundle;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import org.alfonz.samples.alfonzadapter.AdapterSampleActivity;
 import org.alfonz.samples.alfonzarch.ArchSampleActivity;
 import org.alfonz.samples.alfonzgraphics.GraphicsSampleActivity;
@@ -11,8 +13,6 @@ import org.alfonz.samples.alfonzrest.RestSampleActivity;
 import org.alfonz.samples.alfonzrx.RxSampleActivity;
 import org.alfonz.samples.alfonzutility.UtilitySampleActivity;
 import org.alfonz.samples.alfonzview.ViewSampleActivity;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class SamplesActivity extends AppCompatActivity {
 	@Override

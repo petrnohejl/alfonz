@@ -12,6 +12,12 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.util.Pair;
+import androidx.exifinterface.media.ExifInterface;
+import androidx.fragment.app.Fragment;
+
 import org.alfonz.graphics.bitmap.BitmapScaler;
 
 import java.io.File;
@@ -19,12 +25,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.util.Pair;
-import androidx.exifinterface.media.ExifInterface;
-import androidx.fragment.app.Fragment;
 
 public class ImagePicker {
 	private static final int REQUEST_CODE_CAMERA = 1;

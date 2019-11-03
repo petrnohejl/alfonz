@@ -5,14 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProviders;
+
 import org.alfonz.media.ImagePicker;
 import org.alfonz.media.SoundManager;
 import org.alfonz.samples.R;
 import org.alfonz.samples.alfonzarch.BaseFragment;
 import org.alfonz.samples.databinding.FragmentMediaSampleBinding;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
 
 public class MediaSampleFragment extends BaseFragment<MediaSampleViewModel, FragmentMediaSampleBinding> implements MediaSampleView {
 	private SoundManager mSoundManager;

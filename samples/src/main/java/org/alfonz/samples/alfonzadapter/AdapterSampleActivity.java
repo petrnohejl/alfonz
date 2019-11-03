@@ -7,11 +7,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import androidx.fragment.app.Fragment;
+
 import org.alfonz.arch.widget.ToolbarIndicator;
 import org.alfonz.samples.R;
 import org.alfonz.samples.alfonzarch.BaseActivity;
-
-import androidx.fragment.app.Fragment;
 
 public class AdapterSampleActivity extends BaseActivity {
 	public static Intent newIntent(Context context) {

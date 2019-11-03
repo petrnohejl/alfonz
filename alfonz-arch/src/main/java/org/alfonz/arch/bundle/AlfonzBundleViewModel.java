@@ -3,9 +3,9 @@ package org.alfonz.arch.bundle;
 import android.app.Application;
 import android.os.Bundle;
 
-import org.alfonz.arch.AlfonzViewModel;
-
 import androidx.annotation.NonNull;
+
+import org.alfonz.arch.AlfonzViewModel;
 
 public abstract class AlfonzBundleViewModel extends AlfonzViewModel {
 	private Application mApplication;

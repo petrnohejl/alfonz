@@ -2,10 +2,11 @@ package org.alfonz.rest.call;
 
 import android.util.Log;
 
-import java.util.Map;
-
 import androidx.annotation.NonNull;
 import androidx.collection.ArrayMap;
+
+import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 

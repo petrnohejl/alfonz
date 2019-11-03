@@ -5,6 +5,9 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProviders;
+
 import org.alfonz.graphics.bitmap.BitmapBlur;
 import org.alfonz.graphics.bitmap.BitmapReflection;
 import org.alfonz.graphics.bitmap.BitmapScaler;
@@ -14,9 +17,6 @@ import org.alfonz.graphics.drawable.RoundedDrawable;
 import org.alfonz.samples.R;
 import org.alfonz.samples.alfonzarch.BaseFragment;
 import org.alfonz.samples.databinding.FragmentGraphicsSampleBinding;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
 
 public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleViewModel, FragmentGraphicsSampleBinding> implements GraphicsSampleView {
 	@Override

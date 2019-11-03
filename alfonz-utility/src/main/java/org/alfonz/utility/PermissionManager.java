@@ -5,9 +5,6 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.view.View;
 
-import java.util.Map;
-import java.util.Set;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.ArrayMap;
@@ -15,6 +12,9 @@ import androidx.collection.ArraySet;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+
+import java.util.Map;
+import java.util.Set;
 
 public class PermissionManager {
 	private static final int REQUEST_CODE_PERMISSION = 1;

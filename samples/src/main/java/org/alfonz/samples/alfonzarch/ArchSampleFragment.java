@@ -3,10 +3,10 @@ package org.alfonz.samples.alfonzarch;
 import android.content.Intent;
 import android.view.LayoutInflater;
 
-import org.alfonz.samples.databinding.FragmentArchSampleBinding;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProviders;
+
+import org.alfonz.samples.databinding.FragmentArchSampleBinding;
 
 public class ArchSampleFragment extends BaseFragment<ArchSampleViewModel, FragmentArchSampleBinding> implements ArchSampleView {
 	@Override

@@ -1,13 +1,13 @@
 package org.alfonz.adapter;
 
-import org.alfonz.adapter.callback.RecyclerMapChangedCallbackHolder;
-
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.ObservableArrayMap;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.alfonz.adapter.callback.RecyclerMapChangedCallbackHolder;
+
+import java.util.List;
 
 public abstract class MultiMapDataBoundRecyclerAdapter extends BaseDataBoundRecyclerAdapter {
 	private AdapterView mView;

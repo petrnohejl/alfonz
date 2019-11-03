@@ -5,10 +5,10 @@ import android.content.SharedPreferences;
 import android.provider.Settings.Secure;
 import android.telephony.TelephonyManager;
 
+import androidx.annotation.NonNull;
+
 import java.io.UnsupportedEncodingException;
 import java.util.UUID;
-
-import androidx.annotation.NonNull;
 
 // source: http://stackoverflow.com/questions/2785485/is-there-a-unique-android-device-id
 public class DeviceUuidFactory {

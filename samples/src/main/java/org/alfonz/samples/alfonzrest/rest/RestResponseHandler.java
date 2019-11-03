@@ -2,6 +2,8 @@ package org.alfonz.samples.alfonzrest.rest;
 
 import android.net.ParseException;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.JsonParseException;
 import com.google.gson.stream.MalformedJsonException;
 
@@ -15,7 +17,6 @@ import java.io.FileNotFoundException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
-import androidx.annotation.NonNull;
 import retrofit2.Response;
 
 public class RestResponseHandler implements ResponseHandler {

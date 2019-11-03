@@ -1,10 +1,10 @@
 package org.alfonz.arch.event;
 
-import java.util.Map;
-
 import androidx.annotation.NonNull;
 import androidx.collection.ArrayMap;
 import androidx.lifecycle.LifecycleOwner;
+
+import java.util.Map;
 
 public class LiveBus {
 	private final Map<Class<? extends Event>, LiveEvent<? extends Event>> mEventMap;

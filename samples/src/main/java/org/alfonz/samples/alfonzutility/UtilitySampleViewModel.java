@@ -5,6 +5,8 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
 
+import androidx.lifecycle.MutableLiveData;
+
 import org.alfonz.samples.R;
 import org.alfonz.samples.alfonzarch.BaseViewModel;
 import org.alfonz.samples.alfonzarch.event.ToastEvent;
@@ -33,8 +35,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Pattern;
-
-import androidx.lifecycle.MutableLiveData;
 
 public class UtilitySampleViewModel extends BaseViewModel {
 	private static final String LOG_MESSAGE_CONTENT_UTILITY = "[ContentUtility] uri to path: %s";

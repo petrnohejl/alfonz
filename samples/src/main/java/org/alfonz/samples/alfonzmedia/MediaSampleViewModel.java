@@ -2,11 +2,11 @@ package org.alfonz.samples.alfonzmedia;
 
 import android.graphics.Bitmap;
 
+import androidx.lifecycle.MutableLiveData;
+
 import org.alfonz.samples.alfonzarch.BaseViewModel;
 import org.alfonz.samples.alfonzutility.utility.PermissionRationaleHandler;
 import org.alfonz.utility.PermissionManager;
-
-import androidx.lifecycle.MutableLiveData;
 
 public class MediaSampleViewModel extends BaseViewModel {
 	public final MutableLiveData<Bitmap> bitmap = new MutableLiveData<>();

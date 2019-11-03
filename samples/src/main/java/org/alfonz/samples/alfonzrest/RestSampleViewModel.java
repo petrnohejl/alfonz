@@ -1,5 +1,11 @@
 package org.alfonz.samples.alfonzrest;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.OnLifecycleEvent;
+
 import org.alfonz.rest.HttpException;
 import org.alfonz.rest.call.CallManager;
 import org.alfonz.rest.call.Callback;
@@ -11,11 +17,6 @@ import org.alfonz.samples.alfonzrest.rest.router.RepoRouter;
 import org.alfonz.utility.NetworkUtility;
 import org.alfonz.view.StatefulLayout;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleObserver;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.OnLifecycleEvent;
 import retrofit2.Call;
 import retrofit2.Response;
 

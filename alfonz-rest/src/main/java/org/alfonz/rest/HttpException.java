@@ -1,6 +1,7 @@
 package org.alfonz.rest;
 
 import androidx.annotation.NonNull;
+
 import retrofit2.Response;
 
 public abstract class HttpException extends retrofit2.HttpException {

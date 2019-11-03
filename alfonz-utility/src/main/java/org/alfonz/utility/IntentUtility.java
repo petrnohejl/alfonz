@@ -9,12 +9,12 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 
-import java.util.List;
-import java.util.Locale;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+
+import java.util.List;
+import java.util.Locale;
 
 public final class IntentUtility {
 	private IntentUtility() {}
