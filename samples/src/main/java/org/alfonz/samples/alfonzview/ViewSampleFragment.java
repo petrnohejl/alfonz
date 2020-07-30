@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.alfonz.samples.alfonzarch.BaseFragment;
 import org.alfonz.samples.databinding.FragmentViewSampleBinding;
@@ -13,7 +13,7 @@ import org.alfonz.utility.Logcat;
 public class ViewSampleFragment extends BaseFragment<ViewSampleViewModel, FragmentViewSampleBinding> implements ViewSampleView {
 	@Override
 	public ViewSampleViewModel setupViewModel() {
-		ViewSampleViewModel viewModel = ViewModelProviders.of(this).get(ViewSampleViewModel.class);
+		ViewSampleViewModel viewModel = new ViewModelProvider(this).get(ViewSampleViewModel.class);
 		getLifecycle().addObserver(viewModel);
 		return viewModel;
 	}

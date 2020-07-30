@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.alfonz.samples.R;
 import org.alfonz.samples.alfonzarch.BaseFragment;
@@ -19,7 +19,7 @@ public class AdapterSamplePagerMultiFragment extends BaseFragment<AdapterSampleV
 
 	@Override
 	public AdapterSampleViewModel setupViewModel() {
-		AdapterSampleViewModel viewModel = ViewModelProviders.of(this).get(AdapterSampleViewModel.class);
+		AdapterSampleViewModel viewModel = new ViewModelProvider(this).get(AdapterSampleViewModel.class);
 		getLifecycle().addObserver(viewModel);
 		return viewModel;
 	}

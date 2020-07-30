@@ -71,7 +71,7 @@ public class PlaceholderDrawable extends Drawable {
 	@Override
 	public void draw(@NonNull Canvas canvas) {
 		if (mBounds == null) {
-			mBounds = new RectF(0, 0, canvas.getWidth(), canvas.getHeight());
+			mBounds = new RectF(0, 0, getBounds().width(), getBounds().height());
 			setupTextValues();
 		}
 

@@ -7,7 +7,7 @@ import android.telephony.TelephonyManager;
 
 import androidx.annotation.NonNull;
 
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 // source: http://stackoverflow.com/questions/2785485/is-there-a-unique-android-device-id
@@ -32,16 +32,12 @@ public class DeviceUuidFactory {
 
 						// Use the Android ID unless it's broken, in which case fallback on deviceId,
 						// unless it's not available, then fallback on a random number which we store to a prefs file
-						try {
-							if (!"9774d56d682e549c".equals(androidId)) {
-								sUuid = UUID.nameUUIDFromBytes(androidId.getBytes("utf8"));
-							} else {
-								// requires android.permission.READ_PHONE_STATE 
-								final String deviceId = ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
-								sUuid = deviceId != null ? UUID.nameUUIDFromBytes(deviceId.getBytes("utf8")) : UUID.randomUUID();
-							}
-						} catch (UnsupportedEncodingException e) {
-							throw new RuntimeException(e);
+						if (!"9774d56d682e549c".equals(androidId)) {
+							sUuid = UUID.nameUUIDFromBytes(androidId.getBytes(StandardCharsets.UTF_8));
+						} else {
+							// requires android.permission.READ_PHONE_STATE
+							final String deviceId = ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
+							sUuid = deviceId != null ? UUID.nameUUIDFromBytes(deviceId.getBytes(StandardCharsets.UTF_8)) : UUID.randomUUID();
 						}
 
 						// write the value out to the prefs file

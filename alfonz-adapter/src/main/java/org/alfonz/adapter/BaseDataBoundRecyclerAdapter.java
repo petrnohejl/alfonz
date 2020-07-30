@@ -56,7 +56,7 @@ public abstract class BaseDataBoundRecyclerAdapter<T extends ViewDataBinding> ex
 	 * item is invalidated and it prefers to refresh it via onRebind. It also helps with performance
 	 * since data binding will not update views that are not changed.
 	 */
-	private final OnRebindCallback mOnRebindCallback = new OnRebindCallback() {
+	private final OnRebindCallback<?> mOnRebindCallback = new OnRebindCallback() {
 		@Override
 		public boolean onPreBind(@NonNull ViewDataBinding binding) {
 			if (mRecyclerView == null || mRecyclerView.isComputingLayout()) {

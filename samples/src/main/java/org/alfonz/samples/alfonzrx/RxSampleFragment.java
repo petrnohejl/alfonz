@@ -3,7 +3,7 @@ package org.alfonz.samples.alfonzrx;
 import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.alfonz.rx.RxBus;
 import org.alfonz.samples.alfonzarch.BaseFragment;
@@ -12,7 +12,7 @@ import org.alfonz.samples.databinding.FragmentRxSampleBinding;
 public class RxSampleFragment extends BaseFragment<RxSampleViewModel, FragmentRxSampleBinding> implements RxSampleView {
 	@Override
 	public RxSampleViewModel setupViewModel() {
-		return ViewModelProviders.of(this).get(RxSampleViewModel.class);
+		return new ViewModelProvider(this).get(RxSampleViewModel.class);
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class RxSampleFragment extends BaseFragment<RxSampleViewModel, FragmentRx
 
 	@Override
 	public void onButtonEventClick() {
-		RxBus.getInstance().send(Long.valueOf(System.currentTimeMillis()));
-		RxBus.getInstance().send(new String("Dummy"));
+		RxBus.getInstance().send(System.currentTimeMillis());
+		RxBus.getInstance().send("Dummy");
 	}
 }

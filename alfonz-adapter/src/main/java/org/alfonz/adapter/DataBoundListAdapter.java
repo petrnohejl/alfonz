@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class DataBoundListAdapter<T> extends ListAdapter<T, BaseDataBoundRecyclerViewHolder> {
+public class DataBoundListAdapter<T> extends ListAdapter<T, BaseDataBoundRecyclerViewHolder<?>> {
 	private AdapterView mView;
 	private ItemViewType mItemViewType;
 	private LayoutInflater mLayoutInflater;
@@ -35,7 +35,7 @@ public class DataBoundListAdapter<T> extends ListAdapter<T, BaseDataBoundRecycle
 
 	@NonNull
 	@Override
-	public BaseDataBoundRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+	public BaseDataBoundRecyclerViewHolder<?> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 		if (mLayoutInflater == null) {
 			mLayoutInflater = LayoutInflater.from(parent.getContext());
 		}

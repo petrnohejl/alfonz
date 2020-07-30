@@ -20,11 +20,11 @@ public class ViewSampleViewModel extends BaseViewModel implements LifecycleObser
 
 	private void loadData() {
 		// set message
-		String s = "";
+		StringBuilder s = new StringBuilder();
 		for (int i = 0; i < 8; i++) {
-			s += "lorem ipsum dolor sit amet ";
+			s.append("lorem ipsum dolor sit amet ");
 		}
-		message.setValue(s.trim());
+		message.setValue(s.toString().trim());
 
 		// set state
 		state.setValue(StatefulLayout.CONTENT);

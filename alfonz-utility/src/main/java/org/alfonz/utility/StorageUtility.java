@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -52,13 +51,11 @@ public final class StorageUtility {
 		File result = null;
 		File primary = getStorageDirectory();
 		Set<String> externalMounts = getExternalMounts();
-		Iterator<String> iterator = externalMounts.iterator();
 
-		while (iterator.hasNext()) {
-			String s = iterator.next();
+		for (String s : externalMounts) {
 			if (primary != null && s != null && !s.equals(primary.getAbsolutePath())) {
 				File secondary = new File(s);
-				if (secondary != null && secondary.exists() && secondary.isDirectory()) {
+				if (secondary.exists() && secondary.isDirectory()) {
 					String canonicalPrimary = null;
 					String canonicalSecondary = null;
 
@@ -118,7 +115,7 @@ public final class StorageUtility {
 	public static Set<String> getExternalMounts() {
 		final Set<String> externalMounts = new ArraySet<>();
 		String regex = "(?i).*vold.*(vfat|ntfs|exfat|fat32|ext3|ext4).*rw.*";
-		String mountOutput = "";
+		StringBuilder mountOutput = new StringBuilder();
 
 		// run mount process
 		try {
@@ -127,7 +124,7 @@ public final class StorageUtility {
 			final InputStream is = process.getInputStream();
 			final byte[] buffer = new byte[1024];
 			while (is.read(buffer) != -1) {
-				mountOutput += new String(buffer);
+				mountOutput.append(new String(buffer));
 			}
 			is.close();
 		} catch (@NonNull final Exception e) {
@@ -135,7 +132,7 @@ public final class StorageUtility {
 		}
 
 		// parse mount output
-		final String[] lines = mountOutput.split("\n");
+		final String[] lines = mountOutput.toString().split("\n");
 		for (String line : lines) {
 			if (!line.toLowerCase(Locale.US).contains("asec")) // skip lines with "asec"
 			{
@@ -155,8 +152,7 @@ public final class StorageUtility {
 	private static void walkFiles(File directory, boolean recursive, Pattern fileNameFilter, Pattern directoryNameFilter, List<File> fileList) {
 		File[] list = directory.listFiles();
 		if (list != null) {
-			for (int i = 0; i < list.length; i++) {
-				File f = list[i];
+			for (File f : list) {
 				if (f.isDirectory()) {
 					if (recursive) {
 						if (validateName(f.getName(), directoryNameFilter)) {

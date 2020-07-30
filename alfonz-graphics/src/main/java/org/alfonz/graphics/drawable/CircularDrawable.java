@@ -18,13 +18,12 @@ public class CircularDrawable extends Drawable {
 	private float mDiameter;
 	private float mBorderWidth;
 	private float mBorderGap;
-	private int mBorderColor;
 	private BitmapShader mBitmapShader;
 	private Paint mBitmapPaint;
 	private Paint mBorderPaint;
 
 	public CircularDrawable(@NonNull Bitmap bitmap) {
-		this(bitmap, bitmap.getWidth() < bitmap.getHeight() ? bitmap.getWidth() : bitmap.getHeight(), 0F, 0F, 0);
+		this(bitmap, Math.min(bitmap.getWidth(), bitmap.getHeight()), 0F, 0F, 0);
 	}
 
 	public CircularDrawable(@NonNull Bitmap bitmap, float diameter) {
@@ -32,7 +31,7 @@ public class CircularDrawable extends Drawable {
 	}
 
 	public CircularDrawable(@NonNull Bitmap bitmap, float borderWidth, float borderGap, int borderColor) {
-		this(bitmap, bitmap.getWidth() < bitmap.getHeight() ? bitmap.getWidth() : bitmap.getHeight(), borderWidth, borderGap, borderColor);
+		this(bitmap, Math.min(bitmap.getWidth(), bitmap.getHeight()), borderWidth, borderGap, borderColor);
 	}
 
 	public CircularDrawable(@NonNull Bitmap bitmap, float diameter, float borderWidth, float borderGap, int borderColor) {
@@ -40,7 +39,6 @@ public class CircularDrawable extends Drawable {
 		mDiameter = diameter;
 		mBorderWidth = borderWidth;
 		mBorderGap = borderGap;
-		mBorderColor = borderColor;
 
 		mBitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
 
@@ -54,7 +52,7 @@ public class CircularDrawable extends Drawable {
 			mBorderPaint.setStyle(Paint.Style.STROKE);
 			mBorderPaint.setAntiAlias(true);
 			mBorderPaint.setStrokeWidth(mBorderWidth);
-			mBorderPaint.setColor(mBorderColor);
+			mBorderPaint.setColor(borderColor);
 		}
 	}
 
@@ -77,10 +75,10 @@ public class CircularDrawable extends Drawable {
 	@Override
 	public void draw(@NonNull Canvas canvas) {
 		if (mBorderPaint != null) {
-			canvas.drawCircle(getIntrinsicWidth() / 2, getIntrinsicHeight() / 2, (mDiameter / 2) - mBorderWidth - mBorderGap, mBitmapPaint);
-			canvas.drawCircle(getIntrinsicWidth() / 2, getIntrinsicHeight() / 2, (mDiameter / 2) - (mBorderWidth / 2), mBorderPaint);
+			canvas.drawCircle(getIntrinsicWidth() / 2F, getIntrinsicHeight() / 2F, (mDiameter / 2F) - mBorderWidth - mBorderGap, mBitmapPaint);
+			canvas.drawCircle(getIntrinsicWidth() / 2F, getIntrinsicHeight() / 2F, (mDiameter / 2F) - (mBorderWidth / 2F), mBorderPaint);
 		} else {
-			canvas.drawCircle(getIntrinsicWidth() / 2, getIntrinsicHeight() / 2, mDiameter / 2, mBitmapPaint);
+			canvas.drawCircle(getIntrinsicWidth() / 2F, getIntrinsicHeight() / 2F, mDiameter / 2F, mBitmapPaint);
 		}
 	}
 

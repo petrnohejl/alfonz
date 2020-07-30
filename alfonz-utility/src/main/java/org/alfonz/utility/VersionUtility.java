@@ -68,11 +68,7 @@ public final class VersionUtility {
 						if (nums1[1] < nums2[1]) return 1;
 						else if (nums1[1] > nums2[1]) return -1;
 						else {
-							if (nums1[2] < nums2[2]) return 1;
-							else if (nums1[2] > nums2[2]) return -1;
-							else {
-								return 0;
-							}
+							return Integer.compare(nums2[2], nums1[2]);
 						}
 					}
 				} else {
@@ -86,7 +82,7 @@ public final class VersionUtility {
 
 	private static int[] convertStringArrayToIntArray(String[] stringArray) throws NumberFormatException {
 		if (stringArray != null) {
-			int intArray[] = new int[stringArray.length];
+			int[] intArray = new int[stringArray.length];
 			for (int i = 0; i < stringArray.length; i++) {
 				intArray[i] = Integer.parseInt(stringArray[i]);
 			}

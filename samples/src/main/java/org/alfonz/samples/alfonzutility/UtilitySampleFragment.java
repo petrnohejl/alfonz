@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.alfonz.samples.alfonzarch.BaseFragment;
 import org.alfonz.samples.databinding.FragmentUtilitySampleBinding;
@@ -17,7 +17,7 @@ import org.alfonz.utility.KeyboardUtility;
 public class UtilitySampleFragment extends BaseFragment<UtilitySampleViewModel, FragmentUtilitySampleBinding> implements UtilitySampleView {
 	@Override
 	public UtilitySampleViewModel setupViewModel() {
-		return ViewModelProviders.of(this).get(UtilitySampleViewModel.class);
+		return new ViewModelProvider(this).get(UtilitySampleViewModel.class);
 	}
 
 	@Override

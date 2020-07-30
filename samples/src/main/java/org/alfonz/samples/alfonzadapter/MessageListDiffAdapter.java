@@ -1,5 +1,6 @@
 package org.alfonz.samples.alfonzadapter;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
 import org.alfonz.adapter.DataBoundListAdapter;
@@ -21,12 +22,12 @@ public class MessageListDiffAdapter extends DataBoundListAdapter {
 				},
 				new DiffUtil.ItemCallback() {
 					@Override
-					public boolean areItemsTheSame(Object oldItem, Object newItem) {
+					public boolean areItemsTheSame(@NonNull Object oldItem, @NonNull Object newItem) {
 						return oldItem.equals(newItem);
 					}
 
 					@Override
-					public boolean areContentsTheSame(Object oldItem, Object newItem) {
+					public boolean areContentsTheSame(@NonNull Object oldItem, @NonNull Object newItem) {
 						return oldItem.equals(newItem);
 					}
 				}

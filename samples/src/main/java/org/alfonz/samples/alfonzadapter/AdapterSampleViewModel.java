@@ -46,8 +46,8 @@ public class AdapterSampleViewModel extends BaseViewModel implements LifecycleOb
 	private void loadMessages() {
 		String[] months = new DateFormatSymbols().getMonths();
 		List<String> list = new ArrayList<>();
-		for (int i = 0; i < months.length; i++) {
-			list.add(createMessage(months[i]));
+		for (String month : months) {
+			list.add(createMessage(month));
 		}
 		messages.addAll(list);
 	}

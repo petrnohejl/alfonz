@@ -18,7 +18,6 @@ public class RoundedDrawable extends Drawable {
 	private float mCornerRadius;
 	private int mMargin;
 	private Paint mPaint;
-	private BitmapShader mBitmapShader;
 	private RectF mRect = new RectF();
 
 	public RoundedDrawable(@NonNull Bitmap bitmap, float cornerRadius) {
@@ -30,11 +29,11 @@ public class RoundedDrawable extends Drawable {
 		mCornerRadius = cornerRadius;
 		mMargin = margin;
 
-		mBitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+		BitmapShader bitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
 
 		mPaint = new Paint();
 		mPaint.setAntiAlias(true);
-		mPaint.setShader(mBitmapShader);
+		mPaint.setShader(bitmapShader);
 	}
 
 	@Override

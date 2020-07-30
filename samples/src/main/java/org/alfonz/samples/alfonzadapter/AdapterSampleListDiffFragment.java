@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.alfonz.samples.R;
 import org.alfonz.samples.alfonzarch.BaseFragment;
@@ -19,7 +19,7 @@ public class AdapterSampleListDiffFragment extends BaseFragment<AdapterSampleDif
 
 	@Override
 	public AdapterSampleDiffViewModel setupViewModel() {
-		AdapterSampleDiffViewModel viewModel = ViewModelProviders.of(this).get(AdapterSampleDiffViewModel.class);
+		AdapterSampleDiffViewModel viewModel = new ViewModelProvider(this).get(AdapterSampleDiffViewModel.class);
 		getLifecycle().addObserver(viewModel);
 		return viewModel;
 	}
@@ -53,7 +53,7 @@ public class AdapterSampleListDiffFragment extends BaseFragment<AdapterSampleDif
 		if (mAdapter == null) {
 			mAdapter = new MessageListDiffAdapter(this);
 			getBinding().adapterSampleListDiffRecycler.setAdapter(mAdapter);
-			getViewModel().items.observe(this, mAdapter::submitList);
+			getViewModel().items.observe(getViewLifecycleOwner(), mAdapter::submitList);
 		}
 	}
 }

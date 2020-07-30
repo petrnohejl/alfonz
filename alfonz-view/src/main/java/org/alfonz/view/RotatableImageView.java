@@ -4,11 +4,11 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
 
-public class RotatableImageView extends ImageView {
+public class RotatableImageView extends AppCompatImageView {
 	private int mAngle;
 
 	public RotatableImageView(Context context) {
@@ -29,7 +29,7 @@ public class RotatableImageView extends ImageView {
 	protected void onDraw(Canvas canvas) // if you want to rotate the entire view (along with its background), you should override draw() instead of onDraw()
 	{
 		canvas.save();
-		canvas.rotate(mAngle % 360, canvas.getWidth() / 2, canvas.getHeight() / 2);
+		canvas.rotate(mAngle % 360, getWidth() / 2F, getHeight() / 2F);
 		super.onDraw(canvas);
 		canvas.restore();
 

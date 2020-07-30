@@ -109,7 +109,7 @@ public class HelloWorldFragment
 		implements HelloWorldView {
 	@Override
 	public HelloWorldViewModel setupViewModel() {
-		return ViewModelProviders.of(this).get(HelloWorldViewModel.class);
+		return new ViewModelProvider(this).get(HelloWorldViewModel.class);
 	}
 
 	@Override

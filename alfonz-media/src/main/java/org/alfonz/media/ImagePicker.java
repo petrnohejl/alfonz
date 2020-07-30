@@ -320,7 +320,7 @@ public class ImagePicker {
 
 		// decode the JPEG file into a bitmap
 		Bitmap originalBitmap = null;
-		Bitmap bitmap = null;
+		Bitmap bitmap;
 		try {
 			originalBitmap = BitmapFactory.decodeFile(imagePath, bitmapOptions);
 			bitmap = BitmapScaler.scaleToFill(originalBitmap, mImageSize, mImageSize);

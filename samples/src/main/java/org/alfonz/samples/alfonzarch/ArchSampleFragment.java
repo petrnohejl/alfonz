@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.alfonz.samples.databinding.FragmentArchSampleBinding;
 
@@ -12,7 +12,7 @@ public class ArchSampleFragment extends BaseFragment<ArchSampleViewModel, Fragme
 	@Override
 	public ArchSampleViewModel setupViewModel() {
 		ArchSampleViewModelFactory factory = new ArchSampleViewModelFactory(getActivity().getIntent().getExtras());
-		ArchSampleViewModel viewModel = ViewModelProviders.of(this, factory).get(ArchSampleViewModel.class);
+		ArchSampleViewModel viewModel = new ViewModelProvider(this, factory).get(ArchSampleViewModel.class);
 		getLifecycle().addObserver(viewModel);
 		return viewModel;
 	}

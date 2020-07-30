@@ -31,7 +31,7 @@ public class GridDividerItemDecoration extends RecyclerView.ItemDecoration {
 	}
 
 	@Override
-	public void onDrawOver(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView, RecyclerView.State state) {
+	public void onDrawOver(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.State state) {
 		if (recyclerView.getLayoutManager() == null) {
 			return;
 		}

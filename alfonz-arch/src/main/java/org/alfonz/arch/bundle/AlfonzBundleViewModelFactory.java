@@ -26,7 +26,7 @@ public class AlfonzBundleViewModelFactory extends ViewModelProvider.NewInstanceF
 		mBundle = activity.getIntent().getExtras();
 	}
 
-	public AlfonzBundleViewModelFactory(@NonNull AlfonzFragment fragment) {
+	public AlfonzBundleViewModelFactory(@NonNull AlfonzFragment<?> fragment) {
 		mApplication = null;
 		mBundle = fragment.getArguments();
 	}
@@ -41,7 +41,7 @@ public class AlfonzBundleViewModelFactory extends ViewModelProvider.NewInstanceF
 		mBundle = activity.getIntent().getExtras();
 	}
 
-	public AlfonzBundleViewModelFactory(@NonNull Application application, @NonNull AlfonzFragment fragment) {
+	public AlfonzBundleViewModelFactory(@NonNull Application application, @NonNull AlfonzFragment<?> fragment) {
 		mApplication = application;
 		mBundle = fragment.getArguments();
 	}
@@ -62,13 +62,7 @@ public class AlfonzBundleViewModelFactory extends ViewModelProvider.NewInstanceF
 			} else {
 				return modelClass.getDeclaredConstructor().newInstance();
 			}
-		} catch (NoSuchMethodException e) {
-			throw new RuntimeException("Cannot create an instance of " + modelClass, e);
-		} catch (IllegalAccessException e) {
-			throw new RuntimeException("Cannot create an instance of " + modelClass, e);
-		} catch (InstantiationException e) {
-			throw new RuntimeException("Cannot create an instance of " + modelClass, e);
-		} catch (InvocationTargetException e) {
+		} catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
 			throw new RuntimeException("Cannot create an instance of " + modelClass, e);
 		}
 	}

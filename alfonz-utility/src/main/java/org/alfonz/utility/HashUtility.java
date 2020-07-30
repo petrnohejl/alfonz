@@ -2,7 +2,7 @@ package org.alfonz.utility;
 
 import androidx.annotation.NonNull;
 
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
@@ -14,11 +14,11 @@ public final class HashUtility {
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			byte[] bytes = md.digest(data);
-			StringBuffer stringBuffer = new StringBuffer();
-			for (int i = 0; i < bytes.length; ++i) {
-				stringBuffer.append(Integer.toHexString((bytes[i] & 0xFF) | 0x100).substring(1, 3));
+			StringBuilder stringBuilder = new StringBuilder();
+			for (byte b : bytes) {
+				stringBuilder.append(Integer.toHexString((b & 0xFF) | 0x100).substring(1, 3));
 			}
-			return stringBuffer.toString();
+			return stringBuilder.toString();
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
@@ -26,12 +26,7 @@ public final class HashUtility {
 	}
 
 	public static String getMd5(@NonNull String data) {
-		try {
-			return getMd5(data.getBytes("UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return getMd5(data.getBytes(StandardCharsets.UTF_8));
 	}
 
 	public static String getSha1(@NonNull byte[] data) {
@@ -47,12 +42,7 @@ public final class HashUtility {
 	}
 
 	public static String getSha1(@NonNull String data) {
-		try {
-			return getSha1(data.getBytes("UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return getSha1(data.getBytes(StandardCharsets.UTF_8));
 	}
 
 	private static String byteToHex(@NonNull final byte[] hash) {

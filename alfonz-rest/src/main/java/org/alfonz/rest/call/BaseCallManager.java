@@ -13,7 +13,7 @@ import retrofit2.Callback;
 class BaseCallManager {
 	private static final String TAG = "ALFONZ";
 
-	private Map<Integer, Call> mCalls = new ArrayMap<>();
+	private Map<Integer, Call<?>> mCalls = new ArrayMap<>();
 	private Map<Integer, String> mTypes = new ArrayMap<>();
 
 	public <T> void enqueueCall(@NonNull Call<T> call, @NonNull Callback<T> callback, @NonNull String callType) {
@@ -22,16 +22,16 @@ class BaseCallManager {
 		call.enqueue(callback);
 	}
 
-	public void finishCall(@NonNull Callback callback) {
+	public void finishCall(@NonNull Callback<?> callback) {
 		mCalls.remove(callback.hashCode());
 		mTypes.remove(callback.hashCode());
 	}
 
-	public <T> Call getCall(@NonNull Callback<T> callback) {
+	public <T> Call<?> getCall(@NonNull Callback<T> callback) {
 		return mCalls.get(callback.hashCode());
 	}
 
-	public String getCallType(@NonNull Callback callback) {
+	public String getCallType(@NonNull Callback<?> callback) {
 		return mTypes.get(callback.hashCode());
 	}
 
@@ -44,7 +44,7 @@ class BaseCallManager {
 	}
 
 	public void cancelRunningCalls() {
-		for (Call call : mCalls.values()) {
+		for (Call<?> call : mCalls.values()) {
 			if (call != null) {
 				call.cancel();
 			}

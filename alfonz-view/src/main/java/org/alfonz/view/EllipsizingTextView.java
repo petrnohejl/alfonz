@@ -25,16 +25,16 @@ import android.text.Layout.Alignment;
 import android.text.StaticLayout;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
 // source: http://stackoverflow.com/questions/2160619/android-ellipsize-multiline-textview
-public class EllipsizingTextView extends TextView {
+public class EllipsizingTextView extends AppCompatTextView {
 	private static final String ELLIPSIS = "…";
 	private static final Pattern DEFAULT_END_PUNCTUATION = Pattern.compile("[\\.,…;\\:\\s]*$", Pattern.DOTALL);
 
@@ -171,7 +171,7 @@ public class EllipsizingTextView extends TextView {
 			workingText = workingText + ELLIPSIS;
 			ellipsized = true;
 		}
-		if (!workingText.equals(getText())) {
+		if (!workingText.contentEquals(getText())) {
 			programmaticChange = true;
 			try {
 				setText(workingText);

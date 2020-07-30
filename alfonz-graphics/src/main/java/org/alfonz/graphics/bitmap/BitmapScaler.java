@@ -23,7 +23,7 @@ public final class BitmapScaler {
 	public static Bitmap scaleToFill(@NonNull Bitmap bitmap, int width, int height) {
 		float factorH = height / (float) bitmap.getWidth();
 		float factorW = width / (float) bitmap.getWidth();
-		float factorToUse = (factorH > factorW) ? factorW : factorH;
+		float factorToUse = Math.min(factorH, factorW);
 		return Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * factorToUse), (int) (bitmap.getHeight() * factorToUse), true);
 	}
 

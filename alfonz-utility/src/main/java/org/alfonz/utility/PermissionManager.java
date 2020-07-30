@@ -205,7 +205,7 @@ public class PermissionManager {
 	}
 
 	@NonNull
-	private ConfirmAction createRationaleConfirmAction(@NonNull final PermissionRequestable permissionRequestable, @NonNull final String permission, @NonNull final PermissionCallback permissionCallback) {
+	private ConfirmAction createRationaleConfirmAction(@NonNull final PermissionRequestable<?> permissionRequestable, @NonNull final String permission, @NonNull final PermissionCallback<?> permissionCallback) {
 		return new ConfirmAction() {
 			@Override
 			public void run() {
@@ -216,7 +216,7 @@ public class PermissionManager {
 	}
 
 	@NonNull
-	private ConfirmAction createRationaleConfirmAction(@NonNull final PermissionRequestable permissionRequestable, @NonNull final String[] permissions, @NonNull final PermissionsCallback permissionsCallback) {
+	private ConfirmAction createRationaleConfirmAction(@NonNull final PermissionRequestable<?> permissionRequestable, @NonNull final String[] permissions, @NonNull final PermissionsCallback<?> permissionsCallback) {
 		return new ConfirmAction() {
 			@Override
 			public void run() {
@@ -245,7 +245,7 @@ public class PermissionManager {
 		}
 
 		public boolean isGranted() {
-			return !mResultMap.values().contains(false);
+			return !mResultMap.containsValue(false);
 		}
 
 		public boolean isGranted(@NonNull String... permissions) {

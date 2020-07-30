@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.alfonz.arch.AlfonzBindingActivity;
 import org.alfonz.arch.widget.ToolbarIndicator;
@@ -22,7 +22,7 @@ public class ArchSampleViewModelActivity extends AlfonzBindingActivity<ArchSampl
 	@Override
 	public ArchSampleViewModel setupViewModel() {
 		ArchSampleViewModelFactory factory = new ArchSampleViewModelFactory(getIntent().getExtras());
-		ArchSampleViewModel viewModel = ViewModelProviders.of(this, factory).get(ArchSampleViewModel.class);
+		ArchSampleViewModel viewModel = new ViewModelProvider(this, factory).get(ArchSampleViewModel.class);
 		getLifecycle().addObserver(viewModel);
 		return viewModel;
 	}

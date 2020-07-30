@@ -8,7 +8,7 @@ public class RecyclerListChangedCallbackHolder {
 	private OnRecyclerListChangedCallback mCallback;
 
 	@SuppressWarnings("unchecked")
-	public void register(BaseDataBoundRecyclerAdapter adapter, ObservableList<?> items) {
+	public void register(BaseDataBoundRecyclerAdapter<?> adapter, ObservableList<?> items) {
 		if (mCallback == null) {
 			mCallback = new OnRecyclerListChangedCallback(adapter);
 			items.addOnListChangedCallback(mCallback);
@@ -16,7 +16,7 @@ public class RecyclerListChangedCallbackHolder {
 	}
 
 	@SuppressWarnings("unchecked")
-	public void register(BaseDataBoundRecyclerAdapter adapter, ObservableList<?>[] items) {
+	public void register(BaseDataBoundRecyclerAdapter<?> adapter, ObservableList<?>[] items) {
 		if (mCallback == null) {
 			mCallback = new OnRecyclerListChangedCallback(adapter);
 			for (ObservableList<?> list : items) {

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.alfonz.media.ImagePicker;
 import org.alfonz.media.SoundManager;
@@ -20,7 +20,7 @@ public class MediaSampleFragment extends BaseFragment<MediaSampleViewModel, Frag
 
 	@Override
 	public MediaSampleViewModel setupViewModel() {
-		return ViewModelProviders.of(this).get(MediaSampleViewModel.class);
+		return new ViewModelProvider(this).get(MediaSampleViewModel.class);
 	}
 
 	@Override

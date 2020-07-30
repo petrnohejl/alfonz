@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.alfonz.graphics.bitmap.BitmapBlur;
 import org.alfonz.graphics.bitmap.BitmapReflection;
@@ -21,7 +21,7 @@ import org.alfonz.samples.databinding.FragmentGraphicsSampleBinding;
 public class GraphicsSampleFragment extends BaseFragment<GraphicsSampleViewModel, FragmentGraphicsSampleBinding> implements GraphicsSampleView {
 	@Override
 	public GraphicsSampleViewModel setupViewModel() {
-		return ViewModelProviders.of(this).get(GraphicsSampleViewModel.class);
+		return new ViewModelProvider(this).get(GraphicsSampleViewModel.class);
 	}
 
 	@Override

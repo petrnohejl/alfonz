@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.Map;
 
 public class SoundManager {
@@ -56,10 +55,8 @@ public class SoundManager {
 	// should be called in Activity.onStop()
 	public void stopAll() {
 		Collection<MediaPlayer> collection = mMediaMap.values();
-		Iterator<MediaPlayer> iterator = collection.iterator();
 
-		while (iterator.hasNext()) {
-			MediaPlayer mediaPlayer = iterator.next();
+		for (MediaPlayer mediaPlayer : collection) {
 			if (mediaPlayer != null) {
 				if (mediaPlayer.isPlaying()) mediaPlayer.stop();
 				mediaPlayer.release();

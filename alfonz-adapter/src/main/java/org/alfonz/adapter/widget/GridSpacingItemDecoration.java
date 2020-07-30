@@ -23,7 +23,7 @@ public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 	}
 
 	@Override
-	public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView recyclerView, RecyclerView.State state) {
+	public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.State state) {
 		super.getItemOffsets(outRect, view, recyclerView, state);
 
 		int position = recyclerView.getChildLayoutPosition(view);

@@ -24,8 +24,6 @@ public class PermissionRationaleHandler implements PermissionManager.RationaleHa
 				resId = R.string.permission_write_external_storage;
 				break;
 			case Manifest.permission.ACCESS_COARSE_LOCATION:
-				resId = R.string.permission_access_location;
-				break;
 			case Manifest.permission.ACCESS_FINE_LOCATION:
 				resId = R.string.permission_access_location;
 				break;

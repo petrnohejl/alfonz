@@ -167,6 +167,7 @@ public final class Logcat {
 			mLineNumber = root.getLineNumber();
 		}
 
+		@NonNull
 		@Override
 		public String toString() {
 			StringBuilder builder = new StringBuilder();

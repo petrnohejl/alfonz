@@ -24,7 +24,7 @@ public abstract class AlfonzActivity extends AppCompatActivity {
 
 		for (Fragment fragment : fragments) {
 			if (fragment instanceof AlfonzFragment) {
-				handled = ((AlfonzFragment) fragment).onBackPressed();
+				handled = ((AlfonzFragment<?>) fragment).onBackPressed();
 				if (handled) break;
 			}
 		}

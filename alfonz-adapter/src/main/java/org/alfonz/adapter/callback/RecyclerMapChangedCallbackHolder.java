@@ -8,7 +8,7 @@ public class RecyclerMapChangedCallbackHolder {
 	private OnRecyclerMapChangedCallback mCallback;
 
 	@SuppressWarnings("unchecked")
-	public void register(BaseDataBoundRecyclerAdapter adapter, ObservableMap<?, ?> items) {
+	public void register(BaseDataBoundRecyclerAdapter<?> adapter, ObservableMap<?, ?> items) {
 		if (mCallback == null) {
 			mCallback = new OnRecyclerMapChangedCallback(adapter);
 			items.addOnMapChangedCallback(mCallback);
@@ -16,7 +16,7 @@ public class RecyclerMapChangedCallbackHolder {
 	}
 
 	@SuppressWarnings("unchecked")
-	public void register(BaseDataBoundRecyclerAdapter adapter, ObservableMap<?, ?>[] items) {
+	public void register(BaseDataBoundRecyclerAdapter<?> adapter, ObservableMap<?, ?>[] items) {
 		if (mCallback == null) {
 			mCallback = new OnRecyclerMapChangedCallback(adapter);
 			for (ObservableMap<?, ?> map : items) {
