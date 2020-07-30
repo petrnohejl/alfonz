@@ -12,7 +12,7 @@ android {
 	buildToolsVersion "29.0.3"
 
 	defaultConfig {
-		minSdkVersion 16
+		minSdkVersion 19
 		targetSdkVersion 29
 		versionCode getVersionCode(majorVersion, minorVersion, patchVersion, buildVersion)
 		versionName getVersionName(majorVersion, minorVersion, patchVersion)

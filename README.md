@@ -43,7 +43,7 @@ implementation "org.alfonz:alfonz-utility:0.9.1"
 implementation "org.alfonz:alfonz-view:0.9.1"
 ```
 
-Artifacts are available in [JCenter repository](https://bintray.com/alfonz/maven). Alfonz requires at minimum Android 4.1 (API level 16).
+Artifacts are available in [JCenter repository](https://bintray.com/alfonz/maven). Alfonz requires at minimum Android 4.4 (API level 19).
 
 
 Developed by
