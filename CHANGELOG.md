@@ -5,6 +5,13 @@ This document lists the most important changes in Alfonz library. For more detai
 Each release uses the newest versions of dependencies.
 
 
+0.9.2
+-----
+
+* [all modules] Raise min SDK version to 19
+* [all modules] Migrate to RxJava 3
+
+
 0.9.1
 -----
 
