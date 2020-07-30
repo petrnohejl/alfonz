@@ -2,10 +2,10 @@ package org.alfonz.rx;
 
 import androidx.annotation.Nullable;
 
-import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
-import io.reactivex.observers.DisposableMaybeObserver;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.functions.Action;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.observers.DisposableMaybeObserver;
 
 public class AlfonzDisposableMaybeObserver<T> extends DisposableMaybeObserver<T> {
 	@Nullable private Consumer<T> mOnSuccessAction;
@@ -39,8 +39,8 @@ public class AlfonzDisposableMaybeObserver<T> extends DisposableMaybeObserver<T>
 		if (mOnSuccessAction == null) return;
 		try {
 			mOnSuccessAction.accept(value);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Throwable throwable) {
+			throwable.printStackTrace();
 		}
 	}
 
@@ -49,8 +49,8 @@ public class AlfonzDisposableMaybeObserver<T> extends DisposableMaybeObserver<T>
 		if (mOnErrorAction == null) return;
 		try {
 			mOnErrorAction.accept(t);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Throwable throwable) {
+			throwable.printStackTrace();
 		}
 	}
 
@@ -59,8 +59,8 @@ public class AlfonzDisposableMaybeObserver<T> extends DisposableMaybeObserver<T>
 		if (mOnCompleteAction == null) return;
 		try {
 			mOnCompleteAction.run();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Throwable throwable) {
+			throwable.printStackTrace();
 		}
 	}
 }

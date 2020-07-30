@@ -9,9 +9,9 @@ import org.alfonz.rest.ResponseHandler;
 import org.alfonz.rx.RxManager;
 import org.alfonz.rx.utility.SchedulersUtility;
 
-import io.reactivex.Completable;
-import io.reactivex.Observable;
-import io.reactivex.Single;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import retrofit2.Response;
 
 public class RestRxManager extends RxManager {

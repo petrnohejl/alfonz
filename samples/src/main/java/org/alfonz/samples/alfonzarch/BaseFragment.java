@@ -27,7 +27,8 @@ public abstract class BaseFragment<T extends BaseViewModel, B extends ViewDataBi
 
 		// leak canary watcher
 		AppWatcher.INSTANCE.getObjectWatcher().watch(this, "Watch Fragment");
-		if (getActivity().isFinishing()) AppWatcher.INSTANCE.getObjectWatcher().watch(getViewModel(), "Watch ViewModel");
+		if (getActivity().isFinishing())
+			AppWatcher.INSTANCE.getObjectWatcher().watch(getViewModel(), "Watch ViewModel");
 	}
 
 	public void showToast(String message) {

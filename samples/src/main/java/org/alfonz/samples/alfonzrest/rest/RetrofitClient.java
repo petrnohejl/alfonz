@@ -17,7 +17,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.CallAdapter;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public final class RetrofitClient {
@@ -84,6 +84,6 @@ public final class RetrofitClient {
 	}
 
 	private static CallAdapter.Factory createCallAdapterFactory() {
-		return RxJava2CallAdapterFactory.create();
+		return RxJava3CallAdapterFactory.create();
 	}
 }

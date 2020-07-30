@@ -2,9 +2,9 @@ package org.alfonz.rx;
 
 import androidx.annotation.Nullable;
 
-import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Consumer;
-import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.observers.DisposableSingleObserver;
 
 public class AlfonzDisposableSingleObserver<T> extends DisposableSingleObserver<T> {
 	@Nullable private Consumer<T> mOnSuccessAction;
@@ -32,8 +32,8 @@ public class AlfonzDisposableSingleObserver<T> extends DisposableSingleObserver<
 		if (mOnSuccessAction == null) return;
 		try {
 			mOnSuccessAction.accept(value);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Throwable throwable) {
+			throwable.printStackTrace();
 		}
 	}
 
@@ -42,8 +42,8 @@ public class AlfonzDisposableSingleObserver<T> extends DisposableSingleObserver<
 		if (mOnErrorAction == null) return;
 		try {
 			mOnErrorAction.accept(t);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Throwable throwable) {
+			throwable.printStackTrace();
 		}
 	}
 }

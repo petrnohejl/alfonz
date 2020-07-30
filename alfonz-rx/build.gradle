@@ -35,9 +35,9 @@ dependencies {
 	implementation fileTree(dir: "libs", include: ["*.jar"])
 	implementation "androidx.annotation:annotation:$androidxAnnotationVersion"
 	implementation "androidx.collection:collection:$androidxCollectionVersion"
-	implementation "com.jakewharton.rxrelay2:rxrelay:$rxRelayVersion"
-	implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
-	implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+	implementation "com.jakewharton.rxrelay3:rxrelay:$rxRelayVersion"
+	implementation "io.reactivex.rxjava3:rxandroid:$rxAndroidVersion"
+	implementation "io.reactivex.rxjava3:rxjava:$rxJavaVersion"
 }
 
 apply from: "../install.gradle"

@@ -38,7 +38,7 @@ dependencies {
 	implementation "androidx.collection:collection:$androidxCollectionVersion"
 	implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
 	implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-	implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+	implementation "io.reactivex.rxjava3:rxjava:$rxJavaVersion"
 }
 
 apply from: "../install.gradle"

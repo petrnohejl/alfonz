@@ -2,10 +2,10 @@ package org.alfonz.rx;
 
 import androidx.annotation.NonNull;
 
-import com.jakewharton.rxrelay2.PublishRelay;
-import com.jakewharton.rxrelay2.Relay;
+import com.jakewharton.rxrelay3.PublishRelay;
+import com.jakewharton.rxrelay3.Relay;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 
 public class RxBus {
 	private static volatile RxBus sRxBus;

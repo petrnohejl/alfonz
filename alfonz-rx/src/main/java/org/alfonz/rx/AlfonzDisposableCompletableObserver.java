@@ -2,10 +2,10 @@ package org.alfonz.rx;
 
 import androidx.annotation.Nullable;
 
-import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
-import io.reactivex.observers.DisposableCompletableObserver;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.functions.Action;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.observers.DisposableCompletableObserver;
 
 public class AlfonzDisposableCompletableObserver extends DisposableCompletableObserver {
 	@Nullable private Action mOnCompleteAction;
@@ -33,8 +33,8 @@ public class AlfonzDisposableCompletableObserver extends DisposableCompletableOb
 		if (mOnCompleteAction == null) return;
 		try {
 			mOnCompleteAction.run();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Throwable throwable) {
+			throwable.printStackTrace();
 		}
 	}
 
@@ -43,8 +43,8 @@ public class AlfonzDisposableCompletableObserver extends DisposableCompletableOb
 		if (mOnErrorAction == null) return;
 		try {
 			mOnErrorAction.accept(t);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Throwable throwable) {
+			throwable.printStackTrace();
 		}
 	}
 }

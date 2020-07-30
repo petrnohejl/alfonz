@@ -36,9 +36,9 @@ buildscript {
 		materialVersion = "1.1.0"
 		okHttpVersion = "4.8.0"
 		retrofitVersion = "2.9.0"
-		rxAndroidVersion = "2.1.1"
-		rxJavaVersion = "2.2.19"
-		rxRelayVersion = "2.1.1"
+		rxAndroidVersion = "3.0.0"
+		rxJavaVersion = "3.0.4"
+		rxRelayVersion = "3.0.0"
 
 		bintrayRepo = "maven"
 		publishedGroupId = "org.alfonz"
