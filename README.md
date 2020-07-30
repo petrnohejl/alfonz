@@ -5,7 +5,7 @@ Mr. Alfonz is here to help you build your Android app, make the development proc
 
 When I develop Android apps, I often repeat the same code. I use the same utilities or helper classes. I decided to pack these classes into a library and that's how Alfonz was born. Alfonz's grandpa is my collection of [templates and utilities](https://github.com/petrnohejl/Android-Templates-And-Utilities).
 
-Alfonz is a multi purpose library split into small modules (something like Android Support Library). Some of them depend on other modules or 3rd party libraries (RxJava, Retrofit, OkHttp), but in general I try to keep Alfonz simple and independent from other libs as much as possible. Alfonz is written in Java, but it's fully compatible with Kotlin as well.
+Alfonz is a multi purpose library split into small modules (something like Android Jetpack). Some of them depend on other modules or 3rd party libraries (RxJava, Retrofit, OkHttp), but in general I try to keep Alfonz simple and independent from other libs as much as possible. Alfonz is written in Java, but it's fully compatible with Kotlin as well.
 
 [![Alfonz logo](extras/graphics/alfonz.gif)](https://www.androidify.com/en/#/gallery/ab210bf216670c2d575502f78b920e97)
 

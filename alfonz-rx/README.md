@@ -95,7 +95,7 @@ public void onDestroy() {
 Dependencies
 ------------
 
-* Android Support Library
+* AndroidX
 * [RxAndroid](https://github.com/ReactiveX/RxAndroid)
 * [RxJava](https://github.com/ReactiveX/RxJava)
 * [RxRelay](https://github.com/JakeWharton/RxRelay)

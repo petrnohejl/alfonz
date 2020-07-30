@@ -100,7 +100,7 @@ How to use custom layouts
 Dependencies
 ------------
 
-* Android Support Library
+* AndroidX
 
 
 Samples and download

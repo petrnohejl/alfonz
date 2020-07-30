@@ -240,8 +240,7 @@ There are also a few useful binding adapters. You can use following XML attribut
 Dependencies
 ------------
 
-* Android Architecture Components
-* Android Support Library
+* AndroidX
 * Data Binding Library
 
 

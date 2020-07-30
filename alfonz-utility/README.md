@@ -310,7 +310,7 @@ boolean success = ZipUtility.unpackZip(path, zipname);
 Dependencies
 ------------
 
-* Android Support Library
+* AndroidX
 
 
 Samples and download

@@ -154,7 +154,7 @@ Dependencies
 ------------
 
 * Alfonz Rx Module
-* Android Support Library
+* AndroidX
 * [OkHttp](https://github.com/square/okhttp)
 * [Retrofit](https://github.com/square/retrofit)
 * [RxJava](https://github.com/ReactiveX/RxJava)

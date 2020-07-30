@@ -138,7 +138,7 @@ There are also a few useful binding adapters for setting up recycler layout, dec
 Dependencies
 ------------
 
-* Android Support Library
+* AndroidX
 * Data Binding Library
 
 

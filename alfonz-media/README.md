@@ -71,7 +71,7 @@ Dependencies
 ------------
 
 * Alfonz Graphics Module
-* Android Support Library
+* AndroidX
 
 
 Samples and download
