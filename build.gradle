@@ -27,18 +27,17 @@ buildscript {
 		androidxAnnotationVersion = "1.1.0"
 		androidxAppCompatVersion = "1.1.0"
 		androidxCollectionVersion = "1.1.0"
-		androidxExifInterfaceVersion = "1.0.0"
-		androidxFragmentVersion = "1.1.0"
-		androidxLifecycleVersion = "2.1.0"
-		androidxRecyclerViewVersion = "1.0.0"
+		androidxExifInterfaceVersion = "1.2.0"
+		androidxFragmentVersion = "1.2.5"
+		androidxLifecycleVersion = "2.2.0"
+		androidxRecyclerViewVersion = "1.1.0"
 		androidxViewPagerVersion = "1.0.0"
-		gsonVersion = "2.8.5"
-		leakCanaryVersion = "1.6.3"
-		materialVersion = "1.0.0"
-		okHttpVersion = "4.2.0"
-		retrofitVersion = "2.6.2"
+		gsonVersion = "2.8.6"
+		materialVersion = "1.1.0"
+		okHttpVersion = "4.8.0"
+		retrofitVersion = "2.9.0"
 		rxAndroidVersion = "2.1.1"
-		rxJavaVersion = "2.2.12"
+		rxJavaVersion = "2.2.19"
 		rxRelayVersion = "2.1.1"
 
 		bintrayRepo = "maven"
@@ -61,8 +60,8 @@ buildscript {
 	}
 
 	dependencies {
-		classpath "com.android.tools.build:gradle:3.5.0"
-		classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4"
+		classpath "com.android.tools.build:gradle:4.0.1"
+		classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5"
 		classpath "com.github.dcendents:android-maven-gradle-plugin:2.1"
 
 		// NOTE: Do not place your application dependencies here; they belong

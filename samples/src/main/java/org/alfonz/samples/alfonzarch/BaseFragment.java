@@ -8,9 +8,10 @@ import androidx.databinding.ViewDataBinding;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.alfonz.arch.AlfonzBindingFragment;
-import org.alfonz.samples.SamplesApplication;
 import org.alfonz.samples.alfonzarch.event.SnackbarEvent;
 import org.alfonz.samples.alfonzarch.event.ToastEvent;
+
+import leakcanary.AppWatcher;
 
 public abstract class BaseFragment<T extends BaseViewModel, B extends ViewDataBinding> extends AlfonzBindingFragment<T, B> {
 	@Override
@@ -25,8 +26,8 @@ public abstract class BaseFragment<T extends BaseViewModel, B extends ViewDataBi
 		super.onDestroy();
 
 		// leak canary watcher
-		SamplesApplication.getRefWatcher().watch(this);
-		if (getActivity().isFinishing()) SamplesApplication.getRefWatcher().watch(getViewModel());
+		AppWatcher.INSTANCE.getObjectWatcher().watch(this, "Watch Fragment");
+		if (getActivity().isFinishing()) AppWatcher.INSTANCE.getObjectWatcher().watch(getViewModel(), "Watch ViewModel");
 	}
 
 	public void showToast(String message) {
