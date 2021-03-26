@@ -33,14 +33,14 @@ Download
 --------
 
 ```groovy
-implementation "org.alfonz:alfonz-adapter:0.9.2"
-implementation "org.alfonz:alfonz-arch:0.9.2"
-implementation "org.alfonz:alfonz-graphics:0.9.2"
-implementation "org.alfonz:alfonz-media:0.9.2"
-implementation "org.alfonz:alfonz-rest:0.9.2"
-implementation "org.alfonz:alfonz-rx:0.9.2"
-implementation "org.alfonz:alfonz-utility:0.9.2"
-implementation "org.alfonz:alfonz-view:0.9.2"
+implementation "org.alfonz:alfonz-adapter:0.9.3"
+implementation "org.alfonz:alfonz-arch:0.9.3"
+implementation "org.alfonz:alfonz-graphics:0.9.3"
+implementation "org.alfonz:alfonz-media:0.9.3"
+implementation "org.alfonz:alfonz-rest:0.9.3"
+implementation "org.alfonz:alfonz-rx:0.9.3"
+implementation "org.alfonz:alfonz-utility:0.9.3"
+implementation "org.alfonz:alfonz-view:0.9.3"
 ```
 
 Artifacts are available in [JCenter repository](https://bintray.com/alfonz/maven). Alfonz requires at minimum Android 4.4 (API level 19).
