@@ -7,7 +7,7 @@ android {
 
 	defaultConfig {
 		applicationId "org.alfonz.samples"
-		minSdkVersion 19
+		minSdkVersion 21
 		targetSdkVersion 30
 		versionCode getVersionCode(majorVersion, minorVersion, patchVersion, buildVersion)
 		versionName getVersionName(majorVersion, minorVersion, patchVersion)
