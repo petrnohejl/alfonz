@@ -8,12 +8,12 @@ ext {
 }
 
 android {
-	compileSdkVersion 29
-	buildToolsVersion "29.0.3"
+	compileSdkVersion 30
+	buildToolsVersion "30.0.3"
 
 	defaultConfig {
 		minSdkVersion 19
-		targetSdkVersion 29
+		targetSdkVersion 30
 		versionCode getVersionCode(majorVersion, minorVersion, patchVersion, buildVersion)
 		versionName getVersionName(majorVersion, minorVersion, patchVersion)
 	}
@@ -42,7 +42,7 @@ dependencies {
 	implementation "androidx.fragment:fragment:$androidxFragmentVersion"
 	implementation "androidx.lifecycle:lifecycle-extensions:$androidxLifecycleVersion"
 	implementation "androidx.lifecycle:lifecycle-runtime:$androidxLifecycleVersion"
-	annotationProcessor "androidx.lifecycle:lifecycle-common-java8:2.2.0"
+	annotationProcessor "androidx.lifecycle:lifecycle-common-java8:2.3.0"
 }
 
 apply from: "../install.gradle"
