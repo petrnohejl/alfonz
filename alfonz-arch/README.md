@@ -83,7 +83,7 @@ Create an Activity layout. Toolbar in the layout must be identified as `R.id.too
 
 	<include layout="@layout/toolbar" />
 
-	<fragment
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/fragment_hello_world"
 		android:name="com.example.fragment.HelloWorldFragment"
 		android:layout_width="match_parent"

@@ -7,7 +7,7 @@
 
 	<include layout="@layout/toolbar" />
 
-	<fragment
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/fragment_arch_sample"
 		android:name="org.alfonz.samples.alfonzarch.ArchSampleFragment"
 		android:layout_width="match_parent"
