@@ -7,3 +7,9 @@ ext.getVersionName = {
 	majorVersion, minorVersion, patchVersion ->
 		return "${majorVersion}.${minorVersion}.${patchVersion}"
 }
+
+ext.getArtifactName = {
+	defaultConfig ->
+		def date = new Date().format("yyyyMMdd")
+		return project.name + "-" + defaultConfig.versionName + "-" + defaultConfig.versionCode + "-" + date
+}
