@@ -8,12 +8,12 @@ ext {
 }
 
 android {
-	compileSdkVersion 30
-	buildToolsVersion "30.0.3"
+	compileSdkVersion 32
+	buildToolsVersion "32.0.0"
 
 	defaultConfig {
-		minSdkVersion 19
-		targetSdkVersion 30
+		minSdkVersion 21
+		targetSdkVersion 32
 		versionCode getVersionCode(majorVersion, minorVersion, patchVersion, buildVersion)
 		versionName getVersionName(majorVersion, minorVersion, patchVersion)
 	}
@@ -30,13 +30,12 @@ android {
 	}
 
 	compileOptions {
-		sourceCompatibility JavaVersion.VERSION_1_7
-		targetCompatibility JavaVersion.VERSION_1_7
+		sourceCompatibility JavaVersion.VERSION_11
+		targetCompatibility JavaVersion.VERSION_11
 	}
 }
 
 dependencies {
-	implementation fileTree(dir: "libs", include: ["*.jar"])
 	implementation "androidx.annotation:annotation:$androidxAnnotationVersion"
 	implementation "androidx.recyclerview:recyclerview:$androidxRecyclerViewVersion"
 	implementation "androidx.viewpager:viewpager:$androidxViewPagerVersion"

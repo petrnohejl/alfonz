@@ -2,13 +2,13 @@ apply plugin: "com.android.application"
 apply from: "../utils.gradle"
 
 android {
-	compileSdkVersion 30
-	buildToolsVersion "30.0.3"
+	compileSdkVersion 32
+	buildToolsVersion "32.0.0"
 
 	defaultConfig {
 		applicationId "org.alfonz.samples"
 		minSdkVersion 21
-		targetSdkVersion 30
+		targetSdkVersion 32
 		versionCode getVersionCode(majorVersion, minorVersion, patchVersion, buildVersion)
 		versionName getVersionName(majorVersion, minorVersion, patchVersion)
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -36,13 +36,12 @@ android {
 	}
 
 	compileOptions {
-		sourceCompatibility JavaVersion.VERSION_1_8
-		targetCompatibility JavaVersion.VERSION_1_8
+		sourceCompatibility JavaVersion.VERSION_11
+		targetCompatibility JavaVersion.VERSION_11
 	}
 }
 
 dependencies {
-	implementation fileTree(dir: "libs", include: ["*.jar"])
 	implementation project(":alfonz-adapter")
 	implementation project(":alfonz-arch")
 	implementation project(":alfonz-graphics")
@@ -60,8 +59,8 @@ dependencies {
 	implementation "androidx.viewpager:viewpager:$androidxViewPagerVersion"
 	implementation "com.google.android.material:material:$materialVersion"
 	implementation "com.google.code.gson:gson:$gsonVersion"
-	implementation "com.squareup.leakcanary:leakcanary-object-watcher-android:2.5"
-	debugImplementation "com.squareup.leakcanary:leakcanary-android:2.5"
+	implementation "com.squareup.leakcanary:leakcanary-object-watcher-android:2.8.1"
+	debugImplementation "com.squareup.leakcanary:leakcanary-android:2.8.1"
 	implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
 	implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
 	implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofitVersion"
