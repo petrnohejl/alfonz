@@ -1,12 +1,6 @@
 apply plugin: "com.android.library"
 apply from: "../utils.gradle"
 
-ext {
-	bintrayName = "alfonz-graphics"
-	libraryName = "Alfonz-Graphics"
-	artifact = "alfonz-graphics"
-}
-
 android {
 	compileSdkVersion 32
 	buildToolsVersion "32.0.0"
@@ -34,6 +28,3 @@ android {
 dependencies {
 	implementation "androidx.annotation:annotation:$androidxAnnotationVersion"
 }
-
-apply from: "../install.gradle"
-apply from: "../bintray.gradle"

@@ -1,12 +1,6 @@
 apply plugin: "com.android.library"
 apply from: "../utils.gradle"
 
-ext {
-	bintrayName = "alfonz-media"
-	libraryName = "Alfonz-Media"
-	artifact = "alfonz-media"
-}
-
 android {
 	compileSdkVersion 32
 	buildToolsVersion "32.0.0"
@@ -37,6 +31,3 @@ dependencies {
 	implementation "androidx.exifinterface:exifinterface:$androidxExifInterfaceVersion"
 	implementation "androidx.fragment:fragment:$androidxFragmentVersion"
 }
-
-apply from: "../install.gradle"
-apply from: "../bintray.gradle"

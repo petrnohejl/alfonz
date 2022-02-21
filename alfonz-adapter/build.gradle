@@ -1,12 +1,6 @@
 apply plugin: "com.android.library"
 apply from: "../utils.gradle"
 
-ext {
-	bintrayName = "alfonz-adapter"
-	libraryName = "Alfonz-Adapter"
-	artifact = "alfonz-adapter"
-}
-
 android {
 	compileSdkVersion 32
 	buildToolsVersion "32.0.0"
@@ -41,6 +35,3 @@ dependencies {
 	implementation "androidx.viewpager:viewpager:$androidxViewPagerVersion"
 
 }
-
-apply from: "../install.gradle"
-apply from: "../bintray.gradle"

@@ -1,12 +1,6 @@
 apply plugin: "com.android.library"
 apply from: "../utils.gradle"
 
-ext {
-	bintrayName = "alfonz-rx"
-	libraryName = "Alfonz-Rx"
-	artifact = "alfonz-rx"
-}
-
 android {
 	compileSdkVersion 32
 	buildToolsVersion "32.0.0"
@@ -38,6 +32,3 @@ dependencies {
 	implementation "io.reactivex.rxjava3:rxandroid:$rxAndroidVersion"
 	implementation "io.reactivex.rxjava3:rxjava:$rxJavaVersion"
 }
-
-apply from: "../install.gradle"
-apply from: "../bintray.gradle"

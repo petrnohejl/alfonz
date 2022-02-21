@@ -1,12 +1,6 @@
 apply plugin: "com.android.library"
 apply from: "../utils.gradle"
 
-ext {
-	bintrayName = "alfonz-arch"
-	libraryName = "Alfonz-Arch"
-	artifact = "alfonz-arch"
-}
-
 android {
 	compileSdkVersion 32
 	buildToolsVersion "32.0.0"
@@ -43,6 +37,3 @@ dependencies {
 	implementation "androidx.lifecycle:lifecycle-runtime:$androidxLifecycleRuntimeVersion"
 	annotationProcessor "androidx.lifecycle:lifecycle-common-java8:2.4.1"
 }
-
-apply from: "../install.gradle"
-apply from: "../bintray.gradle"

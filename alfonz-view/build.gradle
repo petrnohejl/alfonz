@@ -1,12 +1,6 @@
 apply plugin: "com.android.library"
 apply from: "../utils.gradle"
 
-ext {
-	bintrayName = "alfonz-view"
-	libraryName = "Alfonz-View"
-	artifact = "alfonz-view"
-}
-
 android {
 	compileSdkVersion 32
 	buildToolsVersion "32.0.0"
@@ -35,6 +29,3 @@ dependencies {
 	implementation "androidx.annotation:annotation:$androidxAnnotationVersion"
 	implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
 }
-
-apply from: "../install.gradle"
-apply from: "../bintray.gradle"
