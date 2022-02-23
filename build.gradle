@@ -17,7 +17,7 @@ buildscript {
 	ext {
 		majorVersion = 0 // max two digits
 		minorVersion = 9 // max two digits
-		patchVersion = 3 // max two digits
+		patchVersion = 4 // max two digits
 		buildVersion = 0 // max three digits
 
 		androidxAnnotationVersion = "1.3.0"

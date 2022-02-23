@@ -5,6 +5,12 @@ This document lists the most important changes in Alfonz library. For more detai
 Each release uses the newest versions of dependencies.
 
 
+0.9.4
+-----
+
+* [all modules] Update dependencies
+
+
 0.9.3
 -----
 
